@@ -1,4 +1,4 @@
-Plugin-Domain-Name-Management
+Readme
 =============================
 
-An UI Plugin for oVirt to allow Domain Name Management directly in WebAdmin.
+This UI Plugin is here to answer the 16th request for oVirt 4.1
