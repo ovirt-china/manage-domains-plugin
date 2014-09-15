@@ -1,7 +1,7 @@
 Description
 =============================
 
-**[WORK IN PROGRESS]**
+**[WORK IN PROGRESS] See the [Roadmap](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Roadmap) for more informations.**
 
 This oVirt plugin is integrating an Authentication Domains Controller in the WebAdmin of EayunOS. Letting user add/edit/delete/validate/list Authentication Domains without using complex command line.
 
