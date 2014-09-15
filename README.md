@@ -8,3 +8,6 @@ This oVirt plugin is integrating an Authentication Domains Controller in the Web
 It is an UI Plugin commmunicating with a servlet.
 
 It has been requested by a client to be integrated in EayunOS v4.1.
+
+> The following abbreviations are used :
+> * emd = engine-manage-domains
