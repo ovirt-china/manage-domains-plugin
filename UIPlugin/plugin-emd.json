@@ -1,5 +1,14 @@
 {
+	// Unique name of the plugin (required)
+	// Unrelated to descriptor file name, must not be empty
 	"name": "plugin-emd",
-	"url": "plugin/plugin-emd/start.html",
+
+	// URL of plugin host page that bootstraps plugin code (required)
+	// This URL maps to $ENGINE_USR/ui-plugins/example-resources/plugin.html
+	"url": "plugin/plugin-emd/plugin.html",
+
+	// Path to plugin resource files relative to descriptor (optional)
+	// Required when using UI plugin infrastructure to serve plugin resource files
+	// This path maps to $ENGINE_USR/ui-plugins/example-resources
 	"resourcePath": "plugin-emd-resources"
 }
