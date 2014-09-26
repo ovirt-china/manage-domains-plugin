@@ -1,8 +1,10 @@
 'use strict';
 
-(function (mod) {
+(function() {
 
-   mod.factory('dataManager', ['$window', '$rootScope', function ($window, $rootScope) {
+   var app = angular.module('plugin.tab', ['plugin.common']);
+
+   app.factory('dataManager', ['$window', '$rootScope', function ($window, $rootScope) {
       var treeItemType, treeItemEntityId;
       return {
          exposeTestDataFunction: function () {
@@ -21,7 +23,7 @@
       };
    }]);
 
-   mod.controller('tabController', ['$scope', 'dataManager', function ($scope, dataManager) {
+   app.controller('tabController', ['$scope', 'dataManager', function ($scope, dataManager) {
       $scope.$watch(function() {
          return dataManager.getTreeItemType();
       },
@@ -35,13 +37,11 @@
       function(newVal, oldVal) {
          $scope.treeItemEntityId = newVal;
       });
-    }]);
+   }]);
 
-   mod.run(['messageUtil', 'dataManager', function (messageUtil, dataManager) {
+   app.run(['messageUtil', 'dataManager', function (messageUtil, dataManager) {
       dataManager.exposeTestDataFunction();
       messageUtil.sendMessageToParent('GetTabData');
    }]);
 
-}(
-   angular.module('plugin.tab', ['plugin.common'])
-));
+})();

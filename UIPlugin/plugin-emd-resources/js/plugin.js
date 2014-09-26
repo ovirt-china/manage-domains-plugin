@@ -2,15 +2,16 @@
 
 // Use to initiate the plugin
 
-(function (mod) {
+(function() {
+
+   var app = angular.module('plugin.init', ['plugin.common']);
 
    // Get API object for 'domain-name-mgmt' plugin
-   mod.factory('pluginApi', ['$window', 'pluginName', function ($window, pluginName) {
+   app.factory('pluginApi', ['$window', 'pluginName', function ($window, pluginName) {
       return $window.parent.pluginApi(pluginName);
    }]);
 
-   //
-   mod.factory('tabManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
+   app.factory('tabManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
       var tabWindow, selectedTreeItem;
       return {
          addTab: function () {
@@ -33,7 +34,7 @@
    }]);
 
    // Define event handler functions for later invocation by UI plugin infrastructure
-   mod.factory('pluginEventHandlers', ['pluginName', 'tabManager', function (pluginName, tabManager) {
+   app.factory('pluginEventHandlers', ['pluginName', 'tabManager', function (pluginName, tabManager) {
       return {
          UiInit: function () {
             tabManager.addTab();
@@ -55,7 +56,7 @@
    }]);
 
    // Register event handler functions and tell the API we are good to go.
-   mod.factory('initService', ['pluginApi', 'pluginEventHandlers', function (pluginApi, pluginEventHandlers) {
+   app.factory('initService', ['pluginApi', 'pluginEventHandlers', function (pluginApi, pluginEventHandlers) {
       return {
          bootstrapPlugin: function () {
             var apiOptions = {
@@ -68,10 +69,7 @@
       };
    }]);
 
-   mod.run(['initService', function (initService) {
+   app.run(['initService', function (initService) {
       initService.bootstrapPlugin();
    }]);
-
-}(
-   angular.module('plugin.init', ['plugin.common'])
-));
+})();

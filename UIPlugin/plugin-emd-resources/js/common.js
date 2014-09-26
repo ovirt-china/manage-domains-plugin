@@ -1,16 +1,15 @@
 'use strict';
 
-(function (mod) {
+(function() {
 
-   //http://angular-tips.com/blog/2013/08/understanding-service-types/
-   // http://blog.jdriven.com/2013/03/how-to-create-singleton-angularjs-services-in-4-different-ways/
+   var app = angular.module('plugin.common', []);
 
    // Set the name of the plugin
-   mod.value('pluginName', 'plugin-emd');
+   app.value('pluginName', 'plugin-emd');
 
-   // Rewrite the url
-   mod.factory('urlUtil', ['pluginName', function (pluginName) {
-      return {
+   // Rewrite url
+   app.factory('urlUtil', ['pluginName', function (pluginName) {
+     return {
          relativeUrl: function (path) {
             return 'plugin/' + pluginName + '/' + path;
          }
@@ -18,7 +17,7 @@
    }]);
 
    // Send a message to WebAdmin
-   mod.factory('messageUtil', ['$window', 'pluginName', function ($window, pluginName) {
+   app.factory('messageUtil', ['$window', 'pluginName', function ($window, pluginName) {
       return {
          sendMessageToParent: function (action) {
             var data = {
@@ -30,8 +29,4 @@
          }
       };
    }]);
-
-}(
-
-   angular.module('plugin.common', [])
-));
+})();
