@@ -15,7 +15,7 @@
       var tabWindow, selectedTreeItem;
       return {
          addTab: function () {
-            pluginApi.addMainTab('Domains', 'emd-tab', urlUtil.relativeUrl('emd-tab.html'));
+            pluginApi.addMainTab('Domains', 'emd-tab', urlUtil.relativeUrl('tab.html'));
          },
          setTabWindow: function (window) {
             tabWindow = window;

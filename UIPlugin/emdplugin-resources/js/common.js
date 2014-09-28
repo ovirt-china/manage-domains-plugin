@@ -5,7 +5,7 @@
    var app = angular.module('plugin.common', []);
 
    // Set the name of the plugin
-   app.value('pluginName', 'plugin-emd');
+   app.value('pluginName', 'EMDPlugin');
 
    // Rewrite url
    app.factory('urlUtil', ['pluginName', function (pluginName) {

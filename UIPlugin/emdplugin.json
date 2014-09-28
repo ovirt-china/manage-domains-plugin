@@ -1,0 +1,10 @@
+{
+   // Unique name of the plugin
+   "name": "EMDPlugin",
+
+   // Url of plugin host page that bootstraps plugin code
+   "url": "plugin/EMDPlugin/plugin.html",
+
+   // Path to plugin resource files relative to descriptor
+   "resourcePath": "emdplugin-resources"
+}
