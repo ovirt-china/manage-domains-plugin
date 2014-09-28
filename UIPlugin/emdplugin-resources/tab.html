@@ -2,15 +2,18 @@
 <html ng-app="plugin.tab">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/patternfly.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="dist/css/patternfly.min.css">
+    <link rel="stylesheet" href="css/customstyle.css">
 
 </head>
 <body ng-controller="tabController">
-   <p>
-      <button class="btn btn-primary" type="button">Add</button>
-      <button class="btn btn-default" type="button">Edit</button>
-      <button class="btn btn-danger" type="button">Remove</button>
+
+   <p class="navbar-tab">
+      <button class="btn btn-primary" type="button">
+          <span class="glyphicon glyphicon-plus"></span> Add
+      </button>
+      <button class="btn btn-default" disabled="disabled" type="button"> <span class="glyphicon glyphicon-pencil"></span> Edit</button>
+      <button class="btn btn-danger" disabled="disabled" type="button"> <span class="glyphicon glyphicon-trash"></span> Remove</button>
    </p>
 
 

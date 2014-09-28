@@ -1,0 +1,7 @@
+.navbar-tab {
+   margin: 5px;
+}
+
+.navbar-tab>.btn {
+   margin-right: 5px;
+}
