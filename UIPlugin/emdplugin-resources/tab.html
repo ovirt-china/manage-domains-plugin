@@ -7,40 +7,31 @@
 
 </head>
 <body ng-controller="tabController">
-    <p>
-        Tree item type: <b>{{treeItemType}}</b>
-    </p>
-    <p>
-        Tree item entity ID: <b>{{treeItemEntityId}}</b>
-    </p>
+   <p>
+      <button class="btn btn-primary" type="button">Add</button>
+      <button class="btn btn-default" type="button">Edit</button>
+      <button class="btn btn-danger" type="button">Remove</button>
+   </p>
 
 
       <table class="table table-striped table-bordered table-hover">
          <thead>
             <tr>
-               <th>#</th>
-               <th>First Name</th>
-               <th>Last Name</th>
-               <th>Username</th>
+               <th>Domain</th>
+               <th>Provider</th>
+               <th>Status</th>
             </tr>
          </thead>
          <tbody>
             <tr>
-               <td>1</td>
-               <td>Mark</td>
-               <td>Otto</td>
-               <td>@mdo</td>
+               <td>AD_DOMAIN</td>
+               <td>Active Directory</td>
+               <td>Validate</td>
             </tr>
             <tr>
-               <td>2</td>
-               <td>Jacob</td>
-               <td>Thornton</td>
-               <td>@fat</td>
-            </tr>
-            <tr>
-               <td>3</td>
-               <td colspan="2">Larry the Bird</td>
-               <td>@twitter</td>
+               <td>auth-server</td>
+               <td>free-ipa</td>
+               <td>Validate</td>
             </tr>
          </tbody>
       </table>
