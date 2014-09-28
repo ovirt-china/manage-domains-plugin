@@ -72,4 +72,27 @@
    app.run(['initService', function (initService) {
       initService.bootstrapPlugin();
    }]);
+
+   app.controller('dialogController', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
+      return {
+        showDialog: function () {
+           pluginApi.showDialog('Add Domain', 'add-domain-dialog', urlUtil.relativeUrl('add.html'), '640px', '480px',
+           {
+             buttons: [
+                 {
+                    label: 'Close',
+                    onClick: function() {
+                          pluginApi.closeDialog('add-domain-dialog');
+                    }
+                 }
+             ],
+             resizeEnabled: true,
+             closeIconVisible: true,
+             closeOnEscKey: true
+          });
+        }
+     };
+   }]);
+
+
 })();
