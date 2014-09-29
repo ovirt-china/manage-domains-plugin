@@ -47,22 +47,11 @@
       messageUtil.sendMessageToParent('GetTabData');
    }]);
 
-   app.controller('dialogController', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
-      openAddDialog = function(){
-         pluginApi.showDialog('Add Domain', 'add-domain-dialog', urlUtil.relativeUrl('add.html'), '640px', '480px',
-      {
-         buttons: [
-            {
-               label: 'Close',
-               onClick: function() {
-                  pluginApi.closeDialog('add-domain-dialog');
-               }
-            }
-         ],
-         resizeEnabled: true,
-         closeIconVisible: true,
-         closeOnEscKey: true
-      });};
+   // If we need access to the API it is maybe in the plugin.js that we need to create this.
+   app.controller('dialogController', ['$scope', '$window', function ($scope, $window) {
+      $scope.openAddDialog = function() {
+         $window.alert("Soon a beautiful dialog to add a new domain ;)");
+      };
    }]);
 
 
