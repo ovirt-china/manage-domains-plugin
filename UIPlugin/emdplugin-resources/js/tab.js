@@ -74,7 +74,8 @@
    }]);
 
    app.controller('dialogController', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
-      pluginApi.showDialog('Add Domain', 'add-domain-dialog', urlUtil.relativeUrl('add.html'), '640px', '480px',
+      openAddDialog = function(){
+         pluginApi.showDialog('Add Domain', 'add-domain-dialog', urlUtil.relativeUrl('add.html'), '640px', '480px',
       {
          buttons: [
             {
@@ -87,7 +88,7 @@
          resizeEnabled: true,
          closeIconVisible: true,
          closeOnEscKey: true
-      });
+      });};
    }]);
 
 
