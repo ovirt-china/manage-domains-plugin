@@ -5,3 +5,25 @@
 .navbar-tab>.btn {
    margin-right: 5px;
 }
+
+
+/*--------------------Forms--------------------*/
+.form-horizontal {
+   padding-top: 5px;
+}
+
+.form-group {
+   padding-right: 30px;
+   margin-bottom: 0px;
+   padding-top: 15px;
+}
+
+.form-group.highlight {
+   background-color: #82aa32;
+   color: #fff;
+   padding-bottom:3px;
+}
+
+.form-group.highlight .help-block {
+   color: #fff;
+}
