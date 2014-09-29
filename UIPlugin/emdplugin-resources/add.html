@@ -50,10 +50,10 @@
             <label class="col-sm-2 control-label" for="inputError-markup">Password</label>
             <div class="col-sm-10">
                <div class="input-group">
-                  <input type="password" id="inputError-markup" class="form-control">
-
+                  <input type="password" id="inputError-markup" class="form-control" ng-hide="showpassword" ng-model="password">
+                  <input type="text" id="inputError-markup" class="form-control" ng-show="showpassword" ng-model="password">
                   <span class="input-group-addon">
-                     <input type="checkbox">
+                     <input type="checkbox" ng-model="showpassword" ng-checked="false">
                      Show password
                   </span>
                </div>
@@ -67,7 +67,7 @@
          <div class="form-group">
             <label class="col-sm-2 control-label" for="inputError-markup">Add Permission</label>
             <div class="col-sm-10">
-               <label>
+               <label class="checkbox-selection">
                   <input type="checkbox"> Add engine superuser permissions to the user.
                </label>
             </div>
@@ -75,7 +75,7 @@
 
          <!-- Config File -->
          <div class="form-group">
-            <label class="col-sm-2 control-label" for="inputError-markup">User</label>
+            <label class="col-sm-2 control-label" for="inputError-markup">Config File</label>
             <div class="col-sm-10">
                <input type="text" id="inputError-markup" class="form-control">
                <span class="help-block">Use the given alternate configuration file.[Use the absolute path of the file on the machine]</span>
@@ -95,7 +95,7 @@
          <div class="form-group">
             <label class="col-sm-2 control-label" for="inputError-markup">Resolve KDC</label>
             <div class="col-sm-10">
-               <label>
+               <label class="checkbox-selection">
                   <input type="checkbox"> Resolve KDC servers using DNS (don't assume they are the same as LDAP servers).
                </label>
             </div>

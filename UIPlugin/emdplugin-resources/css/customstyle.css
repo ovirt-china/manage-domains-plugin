@@ -27,3 +27,16 @@
 .form-group.highlight .help-block {
    color: #fff;
 }
+
+.form-group .input-group-addon {
+   color: #737373;
+}
+
+.form-group .input-group-addon input[type="checkbox"] {
+   margin-top: 2px;
+}
+
+.form-group .checkbox-selection {
+   color: #737373;
+   font-weight: normal;
+}
