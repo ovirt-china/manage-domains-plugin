@@ -27,6 +27,8 @@
 
 .form-group.highlight .help-block {
    color: #fff;
+   padding-left:20px;
+   padding-right:20px;
 }
 
 .form-group .input-group-addon {
