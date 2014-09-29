@@ -40,3 +40,15 @@
    color: #737373;
    font-weight: normal;
 }
+
+a.collapse-button {
+   color: #333;
+   font-weight: 600;
+}
+
+a.collapse-button:hover {
+   color: #333;
+   text-decoration: none;
+   font-weight: 600;
+
+}

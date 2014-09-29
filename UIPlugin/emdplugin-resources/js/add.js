@@ -27,7 +27,15 @@
       };
    }]);
 
-   
+   app.controller('collapseWatcher', ['$scope', function($scope) {
+     $scope.showAdvParam = false;
+
+      $scope.actCollapse = function(state) {
+        $scope.showAdvParam = !state;
+    };
+  }]);
+
+
 
 
 })();

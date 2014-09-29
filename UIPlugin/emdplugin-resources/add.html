@@ -61,60 +61,81 @@
             </div>
          </div>
 
-         <span>Advanced Parameters</span>
 
-         <!-- Add Permission -->
-         <div class="form-group">
-            <label class="col-sm-2 control-label" for="inputError-markup">Add Permission</label>
-            <div class="col-sm-10">
-               <label class="checkbox-selection">
-                  <input type="checkbox"> Add engine superuser permissions to the user.
-               </label>
-            </div>
-         </div>
+         <div ng-controller="collapseWatcher">
 
-         <!-- Config File -->
-         <div class="form-group">
-            <label class="col-sm-2 control-label" for="inputError-markup">Config File</label>
-            <div class="col-sm-10">
-               <input type="text" id="inputError-markup" class="form-control">
-               <span class="help-block">Use the given alternate configuration file.[Use the absolute path of the file on the machine]</span>
-            </div>
-         </div>
 
-         <!-- LDAP Servers -->
-         <div class="form-group">
-            <label class="col-sm-2 control-label" for="inputError-markup">LDAP Servers</label>
-            <div class="col-sm-10">
-               <input type="text" id="inputError-markup" class="form-control">
-               <span class="help-block">A comma delimited list of LDAP servers to be set to the domain.</span>
-            </div>
-         </div>
 
-         <!-- Resolve KDC -->
-         <div class="form-group">
-            <label class="col-sm-2 control-label" for="inputError-markup">Resolve KDC</label>
-            <div class="col-sm-10">
-               <label class="checkbox-selection">
-                  <input type="checkbox"> Resolve KDC servers using DNS (don't assume they are the same as LDAP servers).
-               </label>
-            </div>
-         </div>
+         <a class="collapse-button" data-toggle="collapse" href="#advanced-param" ng-click="actCollapse(showAdvParam)">
+            <span class="glyphicon glyphicon-chevron-down
+" ng-show="showAdvParam" ></span>
+<span class="glyphicon glyphicon-chevron-right
+" ng-hide="showAdvParam" ></span>
+            Advanced Parameters
+         </a>
 
-         <!-- Config File -->
-         <div class="form-group">
-            <label class="col-sm-2 control-label" for="inputError-markup">Password File</label>
-            <div class="col-sm-10">
-               <input type="text" id="inputError-markup" class="form-control">
-               <span class="help-block">A file containing the password.[Use the absolute path of the file on the machine]</span>
+<!-- Advanced Parameters that are going to collapse  -->
+         <div id="advanced-param" class="collapse">
+
+            <!-- Add Permission -->
+            <div class="form-group">
+               <label class="col-sm-2 control-label" for="inputError-markup">Add Permission</label>
+               <div class="col-sm-10">
+                  <label class="checkbox-selection">
+                     <input type="checkbox"> Add engine superuser permissions to the user.
+                  </label>
+               </div>
             </div>
-         </div>
+
+            <!-- Config File -->
+            <div class="form-group">
+               <label class="col-sm-2 control-label" for="inputError-markup">Config File</label>
+               <div class="col-sm-10">
+                  <input type="text" id="inputError-markup" class="form-control">
+                  <span class="help-block">Use the given alternate configuration file.[Use the absolute path of the file on the machine]</span>
+               </div>
+            </div>
+
+            <!-- LDAP Servers -->
+            <div class="form-group">
+               <label class="col-sm-2 control-label" for="inputError-markup">LDAP Servers</label>
+               <div class="col-sm-10">
+                  <input type="text" id="inputError-markup" class="form-control">
+                  <span class="help-block">A comma delimited list of LDAP servers to be set to the domain.</span>
+               </div>
+            </div>
+
+            <!-- Resolve KDC -->
+            <div class="form-group">
+               <label class="col-sm-2 control-label" for="inputError-markup">Resolve KDC</label>
+               <div class="col-sm-10">
+                  <label class="checkbox-selection">
+                     <input type="checkbox"> Resolve KDC servers using DNS (don't assume they are the same as LDAP servers).
+                  </label>
+               </div>
+            </div>
+
+            <!-- Config File -->
+            <div class="form-group">
+               <label class="col-sm-2 control-label" for="inputError-markup">Password File</label>
+               <div class="col-sm-10">
+                  <input type="text" id="inputError-markup" class="form-control">
+                  <span class="help-block">A file containing the password.[Use the absolute path of the file on the machine]</span>
+               </div>
+            </div>
+
+         </div> <!-- End of collapse block -->
+
+      </div>
+
       </form>
 
 
-
+      <script src="components/jquery/jquery.min.js"></script>
+      <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
       <script src="lib/angular/js/angular.js"></script>
       <script src="js/common.js"></script>
       <script src="js/add.js"></script>
+
    </body>
 </html>
