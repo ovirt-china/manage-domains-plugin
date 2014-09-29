@@ -13,6 +13,7 @@
 }
 
 .form-group {
+   padding-left: 30px;
    padding-right: 30px;
    margin-bottom: 0px;
    padding-top: 15px;
@@ -44,6 +45,7 @@
 a.collapse-button {
    color: #333;
    font-weight: 600;
+   padding-left: 10px;
 }
 
 a.collapse-button:hover {
