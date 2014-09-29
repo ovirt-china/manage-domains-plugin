@@ -27,6 +27,7 @@
       };
    }]);
 
+   // Allow the chevron to change state when the Advanced Parameters are collapsed or not.
    app.controller('collapseWatcher', ['$scope', function($scope) {
      $scope.showAdvParam = false;
 
