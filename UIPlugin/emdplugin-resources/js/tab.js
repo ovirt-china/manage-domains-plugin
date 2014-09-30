@@ -100,10 +100,16 @@
    }]);
 
 
+   // app.controller('dialogController', ['$scope', '$window', function ($scope, $window) {
+   //    $scope.openAddDialog = function() {
+   //       $window.alert("Soon a beautiful dialog to add a new domain ;)");
+   //    };
+   // }]);
+
 
    // Controller to provide the functions to open the dialogs
-   app.controller('dialogController', ['dialogManager', function (dialogManager){
-      openAddDialog = function() {
+   app.controller('dialogController', ['$scope', 'dialogManager', function ($scope, dialogManager){
+      $scope.openAddDialog = function() {
          console.log("About to show the dialog");
          dialogManager.showAddDialog();
       };
