@@ -35,10 +35,10 @@
 
 
    // Hold all the function to create the dialog windows
-   app.factory('dialogManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
-
+   app.controller('dialogController', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
+      return {
          // Show the Add Dialog Window
-         var showAddDialog = function () {
+         showAddDialog: function () {
             pluginApi.showDialog('Add Domain', 'add-dialog', urlUtil.relativeUrl('add.html'), '780px', '650px',
                {
                   buttons: [
@@ -52,21 +52,6 @@
                   resizeEnabled: true,
                   closeIconVisible: false,
                   closeOnEscKey: false
-               }
-            );
-         };
-
-      return {
-
-         //Add the Add Dialog Window
-         addAddDialog: function(){
-            pluginApi.addMainTabActionButton('DataCenter', 'Hello',
-               {
-                  onClick: function() {
-                     console.log('About to show the dialog.');
-                     showAddDialog();
-                  },
-                  location: 'OnlyFromContext'
                }
             );
          }

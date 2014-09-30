@@ -4,7 +4,7 @@
 
 (function() {
 
-   var app = angular.module('plugin.tab', ['plugin.common']);
+   var app = angular.module('plugin.tab', ['plugin.common', 'plugin.init']);
 
    app.factory('dataManager', ['$window', '$rootScope', function ($window, $rootScope) {
       var treeItemType, treeItemEntityId;
@@ -45,13 +45,6 @@
    app.run(['messageUtil', 'dataManager', function (messageUtil, dataManager) {
       dataManager.exposeTestDataFunction();
       messageUtil.sendMessageToParent('GetTabData');
-   }]);
-
-   // If we need access to the API it is maybe in the plugin.js that we need to create this.
-   app.controller('dialogController', ['$scope', '$window', function ($scope, $window) {
-      $scope.openAddDialog = function() {
-         $window.alert("Soon a beautiful dialog to add a new domain ;)");
-      };
    }]);
 
 
