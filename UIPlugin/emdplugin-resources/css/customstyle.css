@@ -6,6 +6,12 @@
    margin-right: 5px;
 }
 
+.container {
+   margin-right: 0px;
+   margin-left: 0px;
+   width: 100%;
+}
+
 
 /*--------------------Forms--------------------*/
 .form-horizontal {
