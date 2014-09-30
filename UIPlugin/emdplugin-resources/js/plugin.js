@@ -54,7 +54,7 @@
                   closeOnEscKey: false
                }
             );
-         },
+         };
 
          //Add the Add Dialog Window
          addAddDialog: function(){
@@ -67,7 +67,7 @@
                   location: 'OnlyFromContext'
                }
             );
-         },
+         }
       };
    }]);
 
