@@ -58,7 +58,7 @@
 
          //Add the Add Dialog Window
          addAddDialog: function(){
-            pluginApi.addMainTabActionButton('Domains', 'Add',
+            pluginApi.addMainTabActionButton('emd-tab', 'Add',
                {
                   onClick: function() {
                      showAddDialog();
