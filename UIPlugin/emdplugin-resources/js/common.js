@@ -7,6 +7,11 @@
    // Set the name of the plugin
    app.value('pluginName', 'EMDPlugin');
 
+   // Get API object for 'domain-name-mgmt' plugin
+   app.factory('pluginApi', ['$window', 'pluginName', function ($window, pluginName) {
+      return $window.parent.pluginApi(pluginName);
+   }]);
+
    // Rewrite url
    app.factory('urlUtil', ['pluginName', function (pluginName) {
      return {

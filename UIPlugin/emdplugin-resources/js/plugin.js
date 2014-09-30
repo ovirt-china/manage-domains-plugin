@@ -6,11 +6,6 @@
 
    var app = angular.module('plugin.init', ['plugin.common']);
 
-   // Get API object for 'domain-name-mgmt' plugin
-   app.factory('pluginApi', ['$window', 'pluginName', function ($window, pluginName) {
-      return $window.parent.pluginApi(pluginName);
-   }]);
-
    app.factory('tabManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
       var tabWindow, selectedTreeItem;
       return {
@@ -33,40 +28,11 @@
       };
    }]);
 
-
-   // Hold all the function to create the dialog windows
-   app.factory('dialogManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
-      return {
-         // Show the Add Dialog Window
-         showAddDialog: function () {
-            pluginApi.showDialog('Add Domain', 'add-dialog', urlUtil.relativeUrl('add.html'), '780px', '650px',
-               {
-                  buttons: [
-                     {
-                        label: 'Cancel',
-                        onClick: function() {
-                           pluginApi.closeDialog('add-dialog');
-                        }
-                     }
-                  ],
-                  resizeEnabled: true,
-                  closeIconVisible: false,
-                  closeOnEscKey: false
-               }
-            );
-         }
-      };
-   }]);
-
-
-
    // Define event handler functions for later invocation by UI plugin infrastructure
    app.factory('pluginEventHandlers', ['pluginName', 'tabManager', 'dialogManager', function (pluginName, tabManager, dialogManager) {
       return {
          UiInit: function () {
             tabManager.addTab();
-            dialogManager.addAddDialog();
-
          },
          MessageReceived: function (dataString, sourceWindow) {
             var data = JSON.parse(dataString);
