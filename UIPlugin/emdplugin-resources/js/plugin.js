@@ -33,6 +33,31 @@
       };
    }]);
 
+
+   // Hold all the function to create the dialog windows
+   app.factory('dialogManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
+      return {   
+         // Show the Add Dialog Window
+         showAddDialog: function () {
+            pluginApi.showDialog('Add Domain', 'add-dialog', urlUtil.relativeUrl('add.html'), '640px', '480px',
+               {
+                  buttons: [
+                     {
+                        label: 'Cancel',
+                        onClick: function() {
+                           pluginapi.closeDialog('add-dialog');
+                        }
+                     }
+                  ],
+                  resizeEnabled: true,
+                  closeIconVisible: false,
+                  closeOnEscKey: false
+               }
+            );
+         }
+      };
+   }]);
+
    // Define event handler functions for later invocation by UI plugin infrastructure
    app.factory('pluginEventHandlers', ['pluginName', 'tabManager', function (pluginName, tabManager) {
       return {
