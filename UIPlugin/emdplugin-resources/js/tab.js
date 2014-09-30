@@ -79,13 +79,34 @@
          showEditDialog: function () {
             var dialogName = "Edit " + selectedDomain;
 
-            pluginApi.showDialog( dialogName, 'add-dialog', urlUtil.relativeUrl('edit.html'), '300px', '300px',
+            pluginApi.showDialog( dialogName, 'edit-dialog', urlUtil.relativeUrl('edit.html'), '300px', '300px',
                {
                   buttons: [
                      {
                         label: 'Cancel',
                         onClick: function() {
-                           pluginApi.closeDialog('add-dialog');
+                           pluginApi.closeDialog('edit-dialog');
+                        }
+                     }
+                  ],
+                  resizeEnabled: true,
+                  closeIconVisible: false,
+                  closeOnEscKey: false
+               }
+            );
+         },
+
+         // Show the Edit Dialog Window
+         showRemoveDialog: function () {
+            var dialogName = "Remove " + selectedDomain;
+
+            pluginApi.showDialog( dialogName, 'remove-dialog', urlUtil.relativeUrl('remove.html'), '300px', '300px',
+               {
+                  buttons: [
+                     {
+                        label: 'Cancel',
+                        onClick: function() {
+                           pluginApi.closeDialog('remove-dialog');
                         }
                      }
                   ],
@@ -106,8 +127,11 @@
       };
 
       $scope.openEditDialog = function() {
-         console.log("About to open the Edit Dialog");
          dialogManager.showEditDialog();
+      };
+
+      $scope.openRemoveDialog = function() {
+         dialogManager.showRemoveDialog();
       };
    }]);
 
