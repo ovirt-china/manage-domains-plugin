@@ -103,9 +103,10 @@
 
 
 
-
+   // Controller to provide the functions to open the dialogs
    app.controller('dialogController', ['dialogManager', function (dialogManager){
       var openAddDialog = function() {
+         console.log("About to show the dialog");
          dialogManager.showAddDialog();
       };
    }]);
