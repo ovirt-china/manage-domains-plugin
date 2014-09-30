@@ -29,7 +29,7 @@
    }]);
 
    // Define event handler functions for later invocation by UI plugin infrastructure
-   app.factory('pluginEventHandlers', ['pluginName', 'tabManager', 'dialogManager', function (pluginName, tabManager, dialogManager) {
+   app.factory('pluginEventHandlers', ['pluginName', 'tabManager', function (pluginName, tabManager) {
       return {
          UiInit: function () {
             tabManager.addTab();
