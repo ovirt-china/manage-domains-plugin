@@ -36,7 +36,7 @@
 
    // Hold all the function to create the dialog windows
    app.factory('dialogManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
-      return {   
+      return {
          // Show the Add Dialog Window
          showAddDialog: function () {
             pluginApi.showDialog('Add Domain', 'add-dialog', urlUtil.relativeUrl('add.html'), '640px', '480px',
@@ -54,15 +54,31 @@
                   closeOnEscKey: false
                }
             );
-         }
+         },
+
+         //Add the Add Dialog Window
+         addAddDialog: function(){
+            pluginApi.addMainTabActionButton('Domains', 'Add',
+               {
+                  onClick: function() {
+                     showAddDialog();
+                  },
+                  location: 'OnlyFromToolBar'
+               }
+            );
+         },
       };
    }]);
 
+
+
    // Define event handler functions for later invocation by UI plugin infrastructure
-   app.factory('pluginEventHandlers', ['pluginName', 'tabManager', function (pluginName, tabManager) {
+   app.factory('pluginEventHandlers', ['pluginName', 'tabManager', 'dialogManager' function (pluginName, tabManager) {
       return {
          UiInit: function () {
             tabManager.addTab();
+            dialogManager.addAddDialog();
+   
          },
          MessageReceived: function (dataString, sourceWindow) {
             var data = JSON.parse(dataString);
