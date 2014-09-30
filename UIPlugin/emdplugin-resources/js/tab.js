@@ -4,7 +4,7 @@
 
 (function() {
 
-   var app = angular.module('plugin.tab', ['plugin.common', 'plugin.init']);
+   var app = angular.module('plugin.tab', ['plugin.common']);
 
    app.factory('dataManager', ['$window', '$rootScope', function ($window, $rootScope) {
       var treeItemType, treeItemEntityId;
@@ -48,6 +48,61 @@
       dataManager.exposeTestDataFunction();
       messageUtil.sendMessageToParent('GetTabData');
    }]);
+
+
+
+   // Hold all the function to create the dialog windows
+   app.factory('dialogManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
+
+      // Grab the domain selected
+      var selectedDomain = "TODO";
+
+      return {
+         // Show the Add Dialog Window
+         showAddDialog: function () {
+            pluginApi.showDialog('Add Domain', 'add-dialog', urlUtil.relativeUrl('add.html'), '780px', '650px',
+               {
+                  buttons: [
+                     {
+                        label: 'Cancel',
+                        onClick: function() {
+                           pluginApi.closeDialog('add-dialog');
+                        }
+                     }
+                  ],
+                  resizeEnabled: true,
+                  closeIconVisible: false,
+                  closeOnEscKey: false
+               }
+            );
+         },
+
+         // Show the Edit Dialog Window
+         showEditDialog: function () {
+            var dialogName = "Edit " + selectedDomain;
+
+            pluginApi.showDialog( dialogName, 'add-dialog', urlUtil.relativeUrl('edit.html'), '780px', '650px',
+               {
+                  buttons: [
+                     {
+                        label: 'Cancel',
+                        onClick: function() {
+                           pluginApi.closeDialog('add-dialog');
+                        }
+                     }
+                  ],
+                  resizeEnabled: true,
+                  closeIconVisible: false,
+                  closeOnEscKey: false
+               }
+            );
+         },
+
+      };
+   }]);
+
+
+
 
    app.controller('dialogController', ['dialogManager', function (dialogManager){
       var openAddDialog = function() {
