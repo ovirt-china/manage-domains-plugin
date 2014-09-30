@@ -61,6 +61,7 @@
             pluginApi.addMainTabActionButton('DataCenter', 'Hello',
                {
                   onClick: function() {
+                     console.log('About to show the dialog.');
                      showAddDialog();
                   },
                   location: 'OnlyFromContext'
