@@ -62,7 +62,7 @@
                {
                   onClick: function() {
                      console.log('About to show the dialog.');
-                     showAddDialog();
+                     this.showAddDialog();
                   },
                   location: 'OnlyFromContext'
                }
