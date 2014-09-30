@@ -36,7 +36,7 @@
 
    // Hold all the function to create the dialog windows
    app.factory('dialogManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
-      return {
+
          // Show the Add Dialog Window
          var showAddDialog = function () {
             pluginApi.showDialog('Add Domain', 'add-dialog', urlUtil.relativeUrl('add.html'), '640px', '480px',
@@ -55,6 +55,8 @@
                }
             );
          };
+
+      return {
 
          //Add the Add Dialog Window
          addAddDialog: function(){
