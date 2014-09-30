@@ -63,7 +63,7 @@
                   onClick: function() {
                      showAddDialog();
                   },
-                  location: 'OnlyFromToolBar'
+                  location: 'OnlyFromContext'
                }
             );
          },
