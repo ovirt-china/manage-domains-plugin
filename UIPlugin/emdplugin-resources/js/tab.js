@@ -79,7 +79,7 @@
          showEditDialog: function () {
             var dialogName = "Edit " + selectedDomain;
 
-            pluginApi.showDialog( dialogName, 'add-dialog', urlUtil.relativeUrl('edit.html'), '800px', '650px',
+            pluginApi.showDialog( dialogName, 'add-dialog', urlUtil.relativeUrl('edit.html'), '300px', '300px',
                {
                   buttons: [
                      {
@@ -102,8 +102,11 @@
    // Controller to provide the functions to open the dialogs
    app.controller('dialogController', ['$scope', 'dialogManager', function ($scope, dialogManager){
       $scope.openAddDialog = function() {
-         console.log("About to show the dialog");
          dialogManager.showAddDialog();
+      };
+
+      $scope.openEditDialog = function() {
+         dialogManager.showEditDialog();
       };
    }]);
 
