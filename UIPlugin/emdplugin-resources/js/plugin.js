@@ -58,7 +58,7 @@
 
          //Add the Add Dialog Window
          addAddDialog: function(){
-            pluginApi.addMainTabActionButton('emd-tab', 'Add',
+            pluginApi.addMainTabActionButton('DataCenter', 'Hello',
                {
                   onClick: function() {
                      showAddDialog();
