@@ -37,7 +37,9 @@
 
       $scope.$watch(function() {
          return dataManager.getTreeItemEntityId();
-      }, function(newVal, oldVal) {
+      },
+
+      function(newVal, oldVal) {
          $scope.treeItemEntityId = newVal;
       });
    }]);
@@ -45,6 +47,12 @@
    app.run(['messageUtil', 'dataManager', function (messageUtil, dataManager) {
       dataManager.exposeTestDataFunction();
       messageUtil.sendMessageToParent('GetTabData');
+   }]);
+
+   app.controller('dialogController', ['dialogManager', function (dialogManager){
+      var openAddDialog = function() {
+         dialogManager.showAddDialog();
+      };
    }]);
 
 

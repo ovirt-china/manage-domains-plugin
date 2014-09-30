@@ -35,7 +35,7 @@
 
 
    // Hold all the function to create the dialog windows
-   app.controller('dialogController', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
+   app.factory('dialogManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
       return {
          // Show the Add Dialog Window
          showAddDialog: function () {
