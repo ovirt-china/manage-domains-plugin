@@ -39,13 +39,13 @@
 
          // Show the Add Dialog Window
          var showAddDialog = function () {
-            pluginApi.showDialog('Add Domain', 'add-dialog', urlUtil.relativeUrl('add.html'), '768px', '650px',
+            pluginApi.showDialog('Add Domain', 'add-dialog', urlUtil.relativeUrl('add.html'), '780px', '650px',
                {
                   buttons: [
                      {
                         label: 'Cancel',
                         onClick: function() {
-                           pluginapi.closeDialog('add-dialog');
+                           pluginApi.closeDialog('add-dialog');
                         }
                      }
                   ],
