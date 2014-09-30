@@ -106,6 +106,7 @@
       };
 
       $scope.openEditDialog = function() {
+         console.log("About to open the Edit Dialog");
          dialogManager.showEditDialog();
       };
    }]);
