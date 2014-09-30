@@ -38,7 +38,7 @@
    app.factory('dialogManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
       return {
          // Show the Add Dialog Window
-         showAddDialog: function () {
+         var showAddDialog = function () {
             pluginApi.showDialog('Add Domain', 'add-dialog', urlUtil.relativeUrl('add.html'), '640px', '480px',
                {
                   buttons: [
@@ -62,7 +62,7 @@
                {
                   onClick: function() {
                      console.log('About to show the dialog.');
-                     this.showAddDialog();
+                     showAddDialog();
                   },
                   location: 'OnlyFromContext'
                }
