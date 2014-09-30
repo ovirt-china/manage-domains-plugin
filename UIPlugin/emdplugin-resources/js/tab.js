@@ -1,7 +1,5 @@
 'use strict';
 
-// Use to initiate the plugin
-
 (function() {
 
    var app = angular.module('plugin.tab', ['plugin.common']);
@@ -105,7 +103,7 @@
 
    // Controller to provide the functions to open the dialogs
    app.controller('dialogController', ['dialogManager', function (dialogManager){
-      var openAddDialog = function() {
+      openAddDialog = function() {
          console.log("About to show the dialog");
          dialogManager.showAddDialog();
       };
