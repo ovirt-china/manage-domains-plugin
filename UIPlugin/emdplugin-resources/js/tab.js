@@ -47,7 +47,20 @@
       messageUtil.sendMessageToParent('GetTabData');
    }]);
 
-
+  app.controller('TableController', function(){
+    this.domains = [
+        {
+          name: "AD_DOMAIN",
+          provider: "Active Directory",
+          status: "Validate"
+        },
+        {
+          name: "auth-server",
+          provider: "free-ipa",
+          status: "Validate"
+        }
+    ];
+  });
 
    // Hold all the function to create the dialog windows
    app.factory('dialogManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
@@ -96,7 +109,7 @@
             );
          },
 
-         // Show the Edit Dialog Window
+         // Show the Remove Dialog Window
          showRemoveDialog: function () {
             var dialogName = "Remove " + selectedDomain;
 
@@ -134,6 +147,5 @@
          dialogManager.showRemoveDialog();
       };
    }]);
-
 
 })();

@@ -20,7 +20,7 @@
       </button>
    </p>
 
-
+    <div ng-controller="TableController as table">
       <table class="table table-striped table-bordered table-hover">
          <thead>
             <tr>
@@ -30,19 +30,14 @@
             </tr>
          </thead>
          <tbody>
-            <tr>
-               <td>AD_DOMAIN</td>
-               <td>Active Directory</td>
-               <td>Validate</td>
-            </tr>
-            <tr>
-               <td>auth-server</td>
-               <td>free-ipa</td>
-               <td>Validate</td>
+            <tr ng-repeat="domain in table.domains">
+               <td>{{ domain.name }}</td>
+               <td>{{ domain.provider }}</td>
+               <td>{{ domain.status }}</td>
             </tr>
          </tbody>
       </table>
-
+    </div>
 
     <script src="lib/angular/js/angular.js"></script>
     <script src="js/common.js"></script>
