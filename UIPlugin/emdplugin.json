@@ -7,4 +7,8 @@
 
    // Path to plugin resource files relative to descriptor
    "resourcePath": "emdplugin-resources"
+
+    "config": {
+        "allowedOrigins": ["http://127.0.0.1:8080"]
+    }
 }
