@@ -54,10 +54,24 @@
    app.factory('initService', ['pluginApi', 'pluginEventHandlers', function (pluginApi, pluginEventHandlers) {
       return {
          bootstrapPlugin: function () {
-            var apiOptions = {
-               allowedMessageOrigins: ['http://localhost:8080']
-            };
-            pluginApi.options(apiOptions);
+
+
+          var config = pluginApi.configObject();
+
+          pluginApi.options({
+          	// Note: "config.allowedOrigins" is JSON array
+          	allowedMessageOrigins: config.allowedOrigins
+          });
+
+
+
+            // var apiOptions = {
+            //    allowedMessageOrigins: ['http://localhost:8080']
+            // };
+            // pluginApi.options(apiOptions);
+
+
+
             pluginApi.register(pluginEventHandlers);
             pluginApi.ready();
          }
