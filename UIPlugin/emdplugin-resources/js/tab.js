@@ -47,7 +47,7 @@
       messageUtil.sendMessageToParent('GetTabData');
    }]);
 
-  app.controller('TableController', function(){
+  app.controller('TableController', ['$scope', function($scope){
     this.domains = [
         {
           name: "AD_DOMAIN",
@@ -60,7 +60,13 @@
           status: "Validate"
         }
     ];
-  });
+
+    $scope.setSelected = function() {
+        $scope.selected = this.domains;
+        console.log($scope.selected);
+    };
+
+  }]);
 
    // Hold all the function to create the dialog windows
    app.factory('dialogManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {

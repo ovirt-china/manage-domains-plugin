@@ -30,7 +30,7 @@
             </tr>
          </thead>
          <tbody>
-            <tr ng-repeat="domain in table.domains">
+            <tr ng-repeat="domain in table.domains" ng-click="setSelected();">
                <td>{{ domain.name }}</td>
                <td>{{ domain.provider }}</td>
                <td>{{ domain.status }}</td>
