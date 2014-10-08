@@ -27,6 +27,7 @@
                <th>Domain</th>
                <th>Provider</th>
                <th>Status</th>
+               <th>Action</th>
             </tr>
          </thead>
          <tbody>
@@ -34,6 +35,16 @@
                <td>{{ domain.name }}</td>
                <td>{{ domain.provider }}</td>
                <td>{{ domain.status }}</td>
+               <td>
+                  <div class="btn-group" ng-controller="dialogController">
+                    <button class="btn btn-default" type="button" ng-click="openEditDialog()">
+                       <span class="glyphicon glyphicon-pencil"></span> Edit
+                    </button>
+                    <button class="btn btn-danger" type="button" ng-click="openRemoveDialog()">
+                       <span class="glyphicon glyphicon-trash"></span> Remove
+                    </button>
+                  </div>
+               </td>
             </tr>
          </tbody>
       </table>

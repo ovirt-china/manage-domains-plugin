@@ -114,7 +114,7 @@
 
          // Show the Remove Dialog Window
          showRemoveDialog: function () {
-            var dialogName = "Remove " + $scope.selectedDomain.name;
+            var dialogName = "Remove " + selectedDomain;
 
             pluginApi.showDialog( dialogName, 'remove-dialog', urlUtil.relativeUrl('remove.html'), '300px', '300px',
                {
