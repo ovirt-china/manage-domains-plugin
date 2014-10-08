@@ -1,5 +1,5 @@
 {
     "config": {
-        "allowedOrigins": ["http://127.0.0.1:8080", "https://192.168.2.98:8080", "*"]
+        "allowedOrigins": ["http://127.0.0.1:8080", "https://localhost:8080"]
     }
 }
