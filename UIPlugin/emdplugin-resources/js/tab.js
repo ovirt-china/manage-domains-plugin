@@ -61,8 +61,8 @@
         }
     ];
 
-    $scope.setSelected = function() {
-        $scope.selected = this.domains;
+    $scope.setSelected = function(domain) {
+        $scope.selected = domain;
         console.log($scope.selected);
     };
 
