@@ -36,11 +36,11 @@
                <td>{{ domain.provider }}</td>
                <td>{{ domain.status }}</td>
                <td>
-                  <div class="btn-group" ng-controller="dialogController">
-                    <button class="btn btn-default" type="button" ng-click="openEditDialog(domain)">
+                  <div class="action-table" ng-controller="dialogController">
+                    <button class="btn btn-default" type="button" ng-click="openEditDialog({{domain}})">
                        <span class="glyphicon glyphicon-pencil"></span> Edit
                     </button>
-                    <button class="btn btn-danger" type="button" ng-click="openRemoveDialog(domain)">
+                    <button class="btn btn-danger" type="button" ng-click="openRemoveDialog({{domain}})">
                        <span class="glyphicon glyphicon-trash"></span> Remove
                     </button>
                   </div>
