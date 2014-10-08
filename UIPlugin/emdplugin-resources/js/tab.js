@@ -61,6 +61,8 @@
         }
     ];
 
+
+
   }]);
 
    // Hold all the function to create the dialog windows
@@ -137,12 +139,12 @@
          dialogManager.showAddDialog();
       };
 
-      $scope.openEditDialog = function() {
-         dialogManager.showEditDialog();
+      $scope.openEditDialog = function(domain) {
+         dialogManager.showEditDialog(domain);
       };
 
-      $scope.openRemoveDialog = function() {
-         dialogManager.showRemoveDialog();
+      $scope.openRemoveDialog = function(domain) {
+         dialogManager.showRemoveDialog(domain);
       };
    }]);
 
