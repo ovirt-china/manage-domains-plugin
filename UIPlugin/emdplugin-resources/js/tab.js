@@ -61,15 +61,10 @@
         }
     ];
 
-    $scope.setSelected = function(domain) {
-        $scope.selectedDomain = domain;
-        console.log($scope.selectedDomain);
-    };
-
   }]);
 
    // Hold all the function to create the dialog windows
-   app.factory('dialogManager', ['$scope', 'pluginApi', 'urlUtil', function ($scope, pluginApi, urlUtil) {
+   app.factory('dialogManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
 
       return {
          // Show the Add Dialog Window
@@ -92,8 +87,8 @@
          },
 
          // Show the Edit Dialog Window
-         showEditDialog: function () {
-            var dialogName = "Edit " + $scope.selectedDomain.name;
+         showEditDialog: function (domain) {
+            var dialogName = "Edit " + domain.name;
 
             pluginApi.showDialog( dialogName, 'edit-dialog', urlUtil.relativeUrl('edit.html'), '300px', '300px',
                {
@@ -113,8 +108,8 @@
          },
 
          // Show the Remove Dialog Window
-         showRemoveDialog: function () {
-            var dialogName = "Remove " + selectedDomain;
+         showRemoveDialog: function (domain) {
+            var dialogName = "Remove " + domain.name;
 
             pluginApi.showDialog( dialogName, 'remove-dialog', urlUtil.relativeUrl('remove.html'), '300px', '300px',
                {
