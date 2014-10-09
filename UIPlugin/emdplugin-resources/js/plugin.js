@@ -11,19 +11,6 @@
       return {
          addTab: function () {
             pluginApi.addMainTab('Domains', 'emd-tab', urlUtil.relativeUrl('tab.html'));
-         },
-         setTabWindow: function (window) {
-            tabWindow = window;
-         },
-         setSelectedTreeItem: function (item) {
-            selectedTreeItem = item;
-         },
-         updateTab: function () {
-            if (tabWindow && selectedTreeItem) {
-               var type = selectedTreeItem.type;
-               var entityId = selectedTreeItem.entity && selectedTreeItem.entity.id;
-               tabWindow.setTestData(type, entityId);
-            }
          }
       };
    }]);
@@ -36,17 +23,14 @@
          },
          MessageReceived: function (dataString, sourceWindow) {
             var data = JSON.parse(dataString);
-            if (data && data.sender === pluginName) {
-               if (data.action === 'GetTabData') {
-                  tabManager.setTabWindow(sourceWindow);
-                  tabManager.updateTab();
-               }
-            }
+            console.log("Message received from " + sourceWindow + "Message is " + data);
+            // if (data && data.sender === pluginName) {
+            //    if (data.action === 'GetTabData') {
+            //       tabManager.setTabWindow(sourceWindow);
+            //       tabManager.updateTab();
+            //    }
+            // }
          },
-         SystemTreeSelectionChange: function (selectedItem) {
-            tabManager.setSelectedTreeItem(selectedItem);
-            tabManager.updateTab();
-         }
       };
    }]);
 
@@ -55,7 +39,7 @@
       return {
          bootstrapPlugin: function () {
 
-
+          // Get the config file and merge it with the default file.
           var config = pluginApi.configObject();
 
           pluginApi.options({
@@ -63,14 +47,10 @@
           	allowedMessageOrigins: config.allowedOrigins
           });
 
-
-
             // var apiOptions = {
             //    allowedMessageOrigins: ['http://localhost:8080']
             // };
             // pluginApi.options(apiOptions);
-
-
 
             pluginApi.register(pluginEventHandlers);
             pluginApi.ready();
