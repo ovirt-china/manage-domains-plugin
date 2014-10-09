@@ -22,13 +22,13 @@
          },
          MessageReceived: function (dataString, sourceWindow) {
             var data = JSON.parse(dataString);
-            console.log("Message received from " + sourceWindow + "Message is " + data);
-            // if (data && data.sender === pluginName) {
+            if (data && data.sender === pluginName) {
+              console.info("Message received from " + sourceWindow + " Message is " + data);
             //    if (data.action === 'GetTabData') {
             //       tabManager.setTabWindow(sourceWindow);
             //       tabManager.updateTab();
             //    }
-            // }
+            }
          },
       };
    }]);
@@ -47,7 +47,7 @@
           // });
 
             var apiOptions = {
-               allowedMessageOrigins: ['*']
+               allowedMessageOrigins: ['https://192.168.2.98']
             };
             pluginApi.options(apiOptions);
 
