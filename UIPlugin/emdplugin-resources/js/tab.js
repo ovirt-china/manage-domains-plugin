@@ -4,8 +4,8 @@
 
    var app = angular.module('plugin.tab', ['plugin.common']);
 
-   app.run(['messageUtil', function (messageUtil) {
-      // Nothing for the moment but will have to get the list of domains soon or later.
+   app.run(function() {
+    // Nothing here for the moment but the time to get the list of servers will come sooner or later.
    }]);
 
   app.controller('TableController', ['$scope', function($scope){
