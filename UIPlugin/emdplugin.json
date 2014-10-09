@@ -9,6 +9,6 @@
    "resourcePath": "emdplugin-resources"
 
     "config": {
-        "allowedOrigins": ["http://127.0.0.1:8080", "https://192.168.2.98"]
+        "allowedOrigins": ["https://192.168.2.98"]
     }
 }
