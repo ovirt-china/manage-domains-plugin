@@ -5,6 +5,7 @@
    var app = angular.module('plugin.tab', ['plugin.common']);
 
    app.run(['messageUtil', function (messageUtil) {
+      console.log("Start of the run function of tab.js");
       messageUtil.sendMessageToParent('Test');
    }]);
 
