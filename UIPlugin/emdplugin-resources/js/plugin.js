@@ -40,12 +40,12 @@
          bootstrapPlugin: function () {
 
           // Get the config file and merge it with the default file.
-          var config = pluginApi.configObject();
-
-          pluginApi.options({
-          	// Note: "config.allowedOrigins" is JSON array
-          	allowedMessageOrigins: config.allowedOrigins
-          });
+          // var config = pluginApi.configObject();
+          //
+          // pluginApi.options({
+          // 	// Note: "config.allowedOrigins" is JSON array
+          // 	allowedMessageOrigins: config.allowedOrigins
+          // });
 
             // var apiOptions = {
             //    allowedMessageOrigins: ['http://localhost:8080']
