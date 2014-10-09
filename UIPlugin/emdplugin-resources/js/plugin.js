@@ -21,7 +21,7 @@
             tabManager.addTab();
          },
          MessageReceived: function (dataString, sourceWindow) {
-            // if (data) {
+            if (dataString) {
               var data = JSON.parse(dataString);
               if (data.sender === pluginName) {
                 console.info("Message received from " + sourceWindow + " Message is " + data);
@@ -30,7 +30,7 @@
               //       tabManager.updateTab();
               //    }
               }
-            // }
+            }
           },
       };
    }]);
