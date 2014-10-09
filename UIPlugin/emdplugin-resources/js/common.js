@@ -31,6 +31,8 @@
             };
 
             $window.parent.postMessage(JSON.stringify(data), '*');
+
+            console.info("[" + pluginName + "] to [$window.parent] send: " + action);
          }
       };
    }]);
