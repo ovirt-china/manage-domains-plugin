@@ -21,15 +21,17 @@
             tabManager.addTab();
          },
          MessageReceived: function (dataString, sourceWindow) {
-            var data = JSON.parse(dataString);
-            if (data && data.sender === pluginName) {
-              console.info("Message received from " + sourceWindow + " Message is " + data);
-            //    if (data.action === 'GetTabData') {
-            //       tabManager.setTabWindow(sourceWindow);
-            //       tabManager.updateTab();
-            //    }
+            if (data) {
+              var data = JSON.parse(dataString);
+              if (data.sender === pluginName) {
+                console.info("Message received from " + sourceWindow + " Message is " + data);
+              //    if (data.action === 'GetTabData') {
+              //       tabManager.setTabWindow(sourceWindow);
+              //       tabManager.updateTab();
+              //    }
+              }
             }
-         },
+          },
       };
    }]);
 
