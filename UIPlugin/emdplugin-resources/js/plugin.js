@@ -7,7 +7,6 @@
    var app = angular.module('plugin.init', ['plugin.common']);
 
    app.factory('tabManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
-      var tabWindow, selectedTreeItem;
       return {
          addTab: function () {
             pluginApi.addMainTab('Domains', 'emd-tab', urlUtil.relativeUrl('tab.html'));
