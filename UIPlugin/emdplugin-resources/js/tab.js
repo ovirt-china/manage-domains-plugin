@@ -21,9 +21,7 @@
           status: "Validate"
         }
     ];
-
-
-
+    
   }]);
 
    // Hold all the function to create the dialog windows
