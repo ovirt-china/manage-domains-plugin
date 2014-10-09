@@ -10,6 +10,6 @@
 
    // Default configuration associated with the plugin
     "config": {
-        "allowedOrigins": ["https://192.168.2.98"]
+        "allowedOrigins": ["*"]
     }
 }
