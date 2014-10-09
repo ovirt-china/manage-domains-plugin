@@ -6,8 +6,9 @@
    "url": "plugin/EMDPlugin/plugin.html",
 
    // Path to plugin resource files relative to descriptor
-   "resourcePath": "emdplugin-resources"
+   "resourcePath": "emdplugin-resources",
 
+   // Default configuration associated with the plugin
     "config": {
         "allowedOrigins": ["https://192.168.2.98"]
     }
