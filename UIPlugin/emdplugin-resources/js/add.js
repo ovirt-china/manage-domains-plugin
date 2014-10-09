@@ -6,6 +6,10 @@
 
    var app = angular.module('plugin.add', ['plugin.common']);
 
+   app.run(['messageUtil', function (messageUtil) {
+      messageUtil.sendMessageToParent('The Add Dialog has been opened.');
+   }]);
+
    // Allow the chevron to change state when the Advanced Parameters are collapsed or not.
    app.controller('collapseWatcher', ['$scope', function($scope) {
       $scope.showAdvParam = false;
@@ -14,5 +18,5 @@
          $scope.showAdvParam = !state;
       };
    }]);
-   
+
 })();
