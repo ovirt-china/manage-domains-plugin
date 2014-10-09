@@ -46,10 +46,10 @@
           // 	allowedMessageOrigins: config.allowedOrigins
           // });
 
-            // var apiOptions = {
-            //    allowedMessageOrigins: ['http://localhost:8080']
-            // };
-            // pluginApi.options(apiOptions);
+            var apiOptions = {
+               allowedMessageOrigins: ['*']
+            };
+            pluginApi.options(apiOptions);
 
             pluginApi.register(pluginEventHandlers);
             pluginApi.ready();
