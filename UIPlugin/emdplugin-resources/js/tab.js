@@ -6,7 +6,7 @@
 
    app.run(function() {
     // Nothing here for the moment but the time to get the list of servers will come sooner or later.
-   }]);
+   });
 
   app.controller('TableController', ['$scope', function($scope){
     this.domains = [
