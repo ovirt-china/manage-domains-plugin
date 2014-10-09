@@ -32,7 +32,7 @@
 
             $window.parent.postMessage(JSON.stringify(data), '*');
 
-            console.info("[" + pluginName + "] to [$window.parent] send: " + action);
+            console.info('Send Message from [' + pluginName + '] to [$window.parent]' + '\n' +'Message: ' + action);
          }
       };
    }]);
