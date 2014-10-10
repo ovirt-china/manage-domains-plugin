@@ -24,18 +24,14 @@
 
   }]);
 
-
   // Used to cache the information about the selected domain
-  app.factory('dialogManagerCache', ['$scope', '$cacheFactory', function($scope, $cacheFactory){
-
-    $scope.cache = $cacheFactory('dialogManagerCache');
-
+  app.factory('dialogManagerCache', ['$cacheFactory', function($cacheFactory){
     return {
       put: function(key, value) {
-        $scope.cache.put(key, value === undefined ? null : value);
+        $cacheFactory('dialogManagerCache').put(key, value === undefined ? null : value);
       },
       get: function(key) {
-        $scope.cache.get(key);
+        return $cacheFactory('dialogManagerCache').get(key);
       }
     }
   }]);
@@ -90,6 +86,8 @@
          // Show the Remove Dialog Window
          showRemoveDialog: function (domain) {
             var dialogName = "Remove " + domain.name;
+
+            cache.put('domainToRemove',domain.name);
 
             pluginApi.showDialog( dialogName, 'remove-dialog', urlUtil.relativeUrl('remove.html'), '300px', '300px',
                {
