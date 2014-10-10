@@ -21,11 +21,25 @@
           status: "Validate"
         }
     ];
-    
+
   }]);
 
+
+  // Used to cache the information about the selected domain
+  app.factory('dialogManagerCache', ['$cacheFactory', function($cacheFactory){
+    return {
+      put: function(key, value) {
+        $cacheFactory('dialogManagerCache').put(key, value === undefined ? null : value);
+      },
+      get: function(key) {
+        $cacheFactory('dialogManagerCache').get(key);
+      }
+    }
+  }]);
+
+
    // Hold all the function to create the dialog windows
-   app.factory('dialogManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
+   app.factory('dialogManager', ['pluginApi', 'urlUtil', 'dialogManagerCache', function (pluginApi, urlUtil, cache) {
 
       return {
          // Show the Add Dialog Window
@@ -50,6 +64,8 @@
          // Show the Edit Dialog Window
          showEditDialog: function (domain) {
             var dialogName = "Edit " + domain.name;
+
+            cache.put('domainToEdit',domain.name);
 
             pluginApi.showDialog( dialogName, 'edit-dialog', urlUtil.relativeUrl('edit.html'), '300px', '300px',
                {
