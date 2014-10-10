@@ -26,13 +26,16 @@
 
 
   // Used to cache the information about the selected domain
-  app.factory('dialogManagerCache', ['$cacheFactory', function($cacheFactory){
+  app.factory('dialogManagerCache', ['$scope', '$cacheFactory', function($scope, $cacheFactory){
+
+    $scope.cache = $cacheFactory('dialogManagerCache');
+
     return {
       put: function(key, value) {
-        $cacheFactory('dialogManagerCache').put(key, value === undefined ? null : value);
+        $scope.cache.put(key, value === undefined ? null : value);
       },
       get: function(key) {
-        $cacheFactory('dialogManagerCache').get(key);
+        $scope.cache.get(key);
       }
     }
   }]);
