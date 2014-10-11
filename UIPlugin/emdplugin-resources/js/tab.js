@@ -26,7 +26,7 @@
 
 
    // Hold all the function to create the dialog windows
-   app.factory('dialogManager', ['pluginApi', 'urlUtil', 'cacheManager', function (pluginApi, urlUtil, cache) {
+   app.factory('dialogManager', ['pluginApi', 'urlUtil', 'dialogCache', function (pluginApi, urlUtil, cache) {
 
       return {
          // Show the Add Dialog Window
