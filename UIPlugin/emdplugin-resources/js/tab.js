@@ -24,14 +24,19 @@
 
   }]);
 
+  // Create the cache
+  app.factory('dialogCache', ['$cacheFactory', function($cacheFactory){
+    return $cacheFactory('dialogCache');
+  }]);
+
   // Used to cache the information about the selected domain
-  app.factory('dialogManagerCache', ['$cacheFactory', function($cacheFactory){
+  app.factory('dialogCacheManager', ['dialogCache', function(cache){
     return {
       put: function(key, value) {
-        $cacheFactory('dialogManagerCache').put(key, value === undefined ? null : value);
+        cache.put(key, value === undefined ? null : value);
       },
       get: function(key) {
-        return $cacheFactory('dialogManagerCache').get(key);
+        return cache.get(key);
       }
     }
   }]);
