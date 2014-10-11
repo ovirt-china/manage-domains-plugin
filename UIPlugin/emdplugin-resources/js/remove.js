@@ -8,8 +8,9 @@
 
    app.controller('CacheController', ['dialogCache', '$scope', function(cache, $scope){
     var namefromcache = cache.get('domainToRemove');
+    console.log('In the cache: ' + namefromcache);
     $scope.domain = namefromcache;
-  
+
    }]);
 
 })();
