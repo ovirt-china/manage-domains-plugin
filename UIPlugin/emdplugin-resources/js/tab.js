@@ -24,23 +24,6 @@
 
   }]);
 
-  // Create the cache
-  app.factory('dialogCache', ['$cacheFactory', function($cacheFactory){
-    return $cacheFactory('dialogCache');
-  }]);
-
-  // Used to cache the information about the selected domain
-  app.factory('cacheManager', ['dialogCache', function(cache){
-    return {
-      put: function(key, value) {
-        cache.put(key, value === undefined ? null : value);
-      },
-      get: function(key) {
-        return cache.get(key);
-      }
-    }
-  }]);
-
 
    // Hold all the function to create the dialog windows
    app.factory('dialogManager', ['pluginApi', 'urlUtil', 'cacheManager', function (pluginApi, urlUtil, cache) {
