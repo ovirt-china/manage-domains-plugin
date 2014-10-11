@@ -1,23 +1,31 @@
 <!doctype html>
 <html ng-app="plugin.remove">
-   <head>
-      <meta charset="utf-8">
-      <link rel="stylesheet" href="dist/css/patternfly.min.css">
-      <link rel="stylesheet" href="css/customstyle.css">
-   </head>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="dist/css/patternfly.min.css">
+    <link rel="stylesheet" href="css/customstyle.css">
+  </head>
 
-   <body>
+  <body>
 
-      <div ng-controller="CacheController as cache">
-          Are you sure you want to remove {{domain.name}} ?
+    <div class="container" ng-controller="CacheController">
+      <div class="alert alert-danger">
+        <span class="pficon-layered">
+          <span class="pficon pficon-error-octagon"></span>
+          <span class="pficon pficon-error-exclamation"></span>
+        </span>
+        Are you sure you want to remove the following domain?
+          <ul>
+              <li><strong>{{domain.name}}</strong></li>
+          </ul>
       </div>
+    </div>
 
+    <script src="components/jquery/jquery.min.js"></script>
+    <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="lib/angular/js/angular.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/remove.js"></script>
 
-      <script src="components/jquery/jquery.min.js"></script>
-      <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
-      <script src="lib/angular/js/angular.js"></script>
-      <script src="js/common.js"></script>
-      <script src="js/remove.js"></script>
-
-   </body>
+  </body>
 </html>

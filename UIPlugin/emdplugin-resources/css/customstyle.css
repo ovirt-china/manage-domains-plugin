@@ -62,3 +62,9 @@ a.collapse-button:hover {
    font-weight: 600;
 
 }
+
+/*--------------------Small Dialog--------------------*/
+
+.container>.alert {
+  margin-top: 20px;
+}

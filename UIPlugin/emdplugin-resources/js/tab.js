@@ -78,7 +78,7 @@
 
             cache.setData('domainToRemove',domain);
 
-            pluginApi.showDialog( dialogName, 'remove-dialog', urlUtil.relativeUrl('remove.html'), '300px', '300px',
+            pluginApi.showDialog( dialogName, 'remove-dialog', urlUtil.relativeUrl('remove.html'), '450px', '300px',
                {
                   buttons: [
                      {
