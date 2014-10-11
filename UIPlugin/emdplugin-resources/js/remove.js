@@ -6,13 +6,9 @@
 
    var app = angular.module('plugin.remove', ['plugin.common']);
 
+   // Get the information about the domain from the local storage
    app.controller('CacheController', ['cacheService', '$scope', function(cache, $scope){
     $scope.domain = cache.getData('domainToRemove');
-
-    $scope.testcache = function(){
-      var namefromcache = cache.getData('domainToRemove');
-      console.log('In the cache: ' + namefromcache);
-    };
    }]);
 
 })();

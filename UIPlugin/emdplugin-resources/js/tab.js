@@ -52,7 +52,7 @@
          showEditDialog: function (domain) {
             var dialogName = "Edit " + domain.name;
 
-            cache.setData('domainToEdit', domain.name);
+            cache.setData('domainToEdit', domain);
 
             pluginApi.showDialog( dialogName, 'edit-dialog', urlUtil.relativeUrl('edit.html'), '300px', '300px',
                {
@@ -75,11 +75,8 @@
          showRemoveDialog: function (domain) {
             var dialogName = "Remove " + domain.name;
 
-            cache.setData('domainToRemove',domain.name);
 
-            var namefromcache = cache.getData('domainToRemove');
-
-            console.log('Just cache:' + namefromcache );
+            cache.setData('domainToRemove',domain);
 
             pluginApi.showDialog( dialogName, 'remove-dialog', urlUtil.relativeUrl('remove.html'), '300px', '300px',
                {

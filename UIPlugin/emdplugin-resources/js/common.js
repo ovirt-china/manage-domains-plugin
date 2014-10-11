@@ -21,12 +21,8 @@
       };
    }]);
 
-
-
-
-
-   //Access to the local Storage
-   app.factory('storageService', function () {
+  // Service to communicate with the local Storage
+  app.factory('storageService', function () {
 
     return {
 
@@ -46,10 +42,10 @@
             localStorage.clear();
         }
     };
-});
+  });
 
-
-app.factory('cacheService', ['storageService', function(storageService) {
+  // Mid Layer Factory to manage the local storage
+  app.factory('cacheService', ['storageService', function(storageService) {
 
     return {
 
@@ -65,7 +61,7 @@ app.factory('cacheService', ['storageService', function(storageService) {
             storageService.remove(key);
         }
     };
-}]);
+  }]);
 
    // Send a message to WebAdmin
    app.factory('messageUtil', ['$window', 'pluginName', function ($window, pluginName) {
