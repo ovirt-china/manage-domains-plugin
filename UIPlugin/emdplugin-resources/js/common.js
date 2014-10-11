@@ -31,7 +31,7 @@
         },
 
         save: function (key, data) {
-           localStorage.setItem(key, JSON.stringify(data));
+           localStorage.setItem(key, data);
         },
 
         remove: function (key) {
@@ -50,11 +50,11 @@
     return {
 
         getData: function (key) {
-            return storageService.get(key);
+            return JSON.parse(storageService.get(key));
         },
 
         setData: function (key,data) {
-            storageService.save(key, data);
+            storageService.save(key, JSON.stringify(data));
         },
 
         removeData: function (key) {
