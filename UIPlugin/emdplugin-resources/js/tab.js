@@ -30,7 +30,7 @@
   }]);
 
   // Used to cache the information about the selected domain
-  app.factory('dialogCacheManager', ['dialogCache', function(cache){
+  app.factory('cacheManager', ['dialogCache', function(cache){
     return {
       put: function(key, value) {
         cache.put(key, value === undefined ? null : value);
@@ -43,7 +43,7 @@
 
 
    // Hold all the function to create the dialog windows
-   app.factory('dialogManager', ['pluginApi', 'urlUtil', 'dialogManagerCache', function (pluginApi, urlUtil, cache) {
+   app.factory('dialogManager', ['pluginApi', 'urlUtil', 'cacheManager', function (pluginApi, urlUtil, cache) {
 
       return {
          // Show the Add Dialog Window
