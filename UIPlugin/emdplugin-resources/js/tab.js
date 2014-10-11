@@ -26,7 +26,7 @@
 
 
    // Hold all the function to create the dialog windows
-   app.factory('dialogManager', ['pluginApi', 'urlUtil', 'dialogCache', function (pluginApi, urlUtil, cache) {
+   app.factory('dialogManager', ['pluginApi', 'urlUtil', 'cacheService', function (pluginApi, urlUtil, cache) {
 
       return {
          // Show the Add Dialog Window
@@ -52,7 +52,7 @@
          showEditDialog: function (domain) {
             var dialogName = "Edit " + domain.name;
 
-            cache.put('domainToEdit', domain.name);
+            cache.setData('domainToEdit', domain.name);
 
             pluginApi.showDialog( dialogName, 'edit-dialog', urlUtil.relativeUrl('edit.html'), '300px', '300px',
                {
@@ -77,7 +77,7 @@
 
             cache.put('domainToRemove',domain.name);
 
-            var namefromcache = cache.get('domainToRemove');
+            var namefromcache = cache.setData('domainToRemove');
 
             console.log('Just cache:' + namefromcache );
             console.log(cache.info());

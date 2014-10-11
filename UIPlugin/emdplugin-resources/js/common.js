@@ -21,10 +21,51 @@
       };
    }]);
 
-   // Create the cache
-   app.factory('dialogCache', ['$cacheFactory', function($cacheFactory){
-     return $cacheFactory('dialogCache');
-   }]);
+
+
+
+
+   //Access to the local Storage
+   app.factory('storageService', function () {
+
+    return {
+
+        get: function (key) {
+           return localStorage.getItem(key);
+        },
+
+        save: function (key, data) {
+           localStorage.setItem(key, JSON.stringify(data));
+        },
+
+        remove: function (key) {
+            localStorage.removeItem(key);
+        },
+
+        clearAll : function () {
+            localStorage.clear();
+        }
+    };
+});
+
+
+app.factory('cacheService', ['storageService', function(storageService) {
+
+    return {
+
+        getData: function (key) {
+            return storageService.get(key);
+        },
+
+        setData: function (key,data) {
+            storageService.save(key, data);
+        },
+
+        removeData: function (key) {
+            storageService.remove(key);
+        }
+    };
+}]);
 
    // Send a message to WebAdmin
    app.factory('messageUtil', ['$window', 'pluginName', function ($window, pluginName) {
