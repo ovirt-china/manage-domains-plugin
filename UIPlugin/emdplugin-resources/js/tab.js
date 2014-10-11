@@ -80,6 +80,7 @@
             var namefromcache = cache.get('domainToRemove');
 
             console.log('Just cache:' + namefromcache );
+            console.log(cache.info());
 
             pluginApi.showDialog( dialogName, 'remove-dialog', urlUtil.relativeUrl('remove.html'), '300px', '300px',
                {

@@ -7,14 +7,12 @@
    var app = angular.module('plugin.remove', ['plugin.common']);
 
    app.controller('CacheController', ['dialogCache', '$scope', function(cache, $scope){
-    var namefromcache = cache.get('domainToRemove');
-    console.log('In the cache: ' + namefromcache);
-    // $scope.domain = namefromcache;
     $scope.domain = cache.get('domainToRemove');
 
     $scope.testcache = function(){
       var namefromcache = cache.get('domainToRemove');
       console.log('In the cache: ' + namefromcache);
+      console.log(cache.info());
     };
    }]);
 
