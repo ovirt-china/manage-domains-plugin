@@ -6,4 +6,8 @@
 
    var app = angular.module('plugin.remove', ['plugin.common']);
 
+   app.controller('CacheController', ['cacheManager', '$scope', function(cache, $scope){
+     $scope.domain = cache.get('domainToRemove');
+   }]);
+
 })();
