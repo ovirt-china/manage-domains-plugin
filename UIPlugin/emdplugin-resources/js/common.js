@@ -21,25 +21,10 @@
       };
    }]);
 
-
    // Create the cache
    app.factory('dialogCache', ['$cacheFactory', function($cacheFactory){
      return $cacheFactory('dialogCache');
    }]);
-
-   // Used to cache the information about the selected domain
-   app.factory('cacheManager', ['dialogCache', function(cache){
-     return {
-       put: function(key, value) {
-         cache.put(key, value === undefined ? null : value);
-       },
-       get: function(key) {
-         return cache.get(key);
-       }
-     }
-   }]);
-
-
 
    // Send a message to WebAdmin
    app.factory('messageUtil', ['$window', 'pluginName', function ($window, pluginName) {
