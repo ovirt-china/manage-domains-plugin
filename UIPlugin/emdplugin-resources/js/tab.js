@@ -61,6 +61,7 @@
                         label: 'Cancel',
                         onClick: function() {
                            pluginApi.closeDialog('edit-dialog');
+                           cache.removeData('domainToEdit');
                         }
                      }
                   ],
@@ -75,7 +76,6 @@
          showRemoveDialog: function (domain) {
             var dialogName = "Remove " + domain.name;
 
-
             cache.setData('domainToRemove',domain);
 
             pluginApi.showDialog( dialogName, 'remove-dialog', urlUtil.relativeUrl('remove.html'), '300px', '300px',
@@ -85,6 +85,7 @@
                         label: 'Cancel',
                         onClick: function() {
                            pluginApi.closeDialog('remove-dialog');
+                           cache.removeData('domainToRemove');
                         }
                      }
                   ],
