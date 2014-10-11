@@ -75,12 +75,11 @@
          showRemoveDialog: function (domain) {
             var dialogName = "Remove " + domain.name;
 
-            cache.put('domainToRemove',domain.name);
+            cache.setData('domainToRemove',domain.name);
 
-            var namefromcache = cache.setData('domainToRemove');
+            var namefromcache = cache.getData('domainToRemove');
 
             console.log('Just cache:' + namefromcache );
-            console.log(cache.info());
 
             pluginApi.showDialog( dialogName, 'remove-dialog', urlUtil.relativeUrl('remove.html'), '300px', '300px',
                {
