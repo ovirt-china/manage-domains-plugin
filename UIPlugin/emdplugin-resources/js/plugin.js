@@ -4,7 +4,18 @@
 
 (function() {
 
-   var app = angular.module('plugin.init', ['plugin.common']);
+  var app = angular.module('plugin.init', ['plugin.common']);
+
+  app.factory('contentWindowService', ['$scope', function($scope){
+    return {
+      set: function (contentWindow){
+        $scope.contentWindow = contentWindow;
+      },
+      get: function(){
+        return $scope.contentWindow;
+      }
+    }
+  }]);
 
    var ContentWindow = null; // Reference to game Window object
 
@@ -17,7 +28,7 @@
    }]);
 
    // Define event handler functions for later invocation by UI plugin infrastructure
-   app.factory('pluginEventHandlers', ['pluginName', 'tabManager', function (pluginName, tabManager) {
+   app.factory('pluginEventHandlers', ['pluginName', 'tabManager', 'contentWindowService', function (pluginName, tabManager, contentWindow) {
       return {
          UiInit: function () {
             tabManager.addTab();
@@ -31,7 +42,7 @@
                 switch (data.action) {
                   // When a dialog open, it notify the plugin to acquire the ContentWindow
                   case (justOpen):
-                    ContentWindow = sourceWindow; // Reference to Window object
+                    ContentWindow.set(sourceWindow); // Reference to Window object
                     console.info('EMDPlugin just acquired source window');
                     break;
                   // When the 'Ok' button is press this trigger the submission of the form
@@ -45,40 +56,6 @@
                     pluginApi.closeDialog(data.target);
                     break;
                 }
-
-
-
-
-
-                switch (true) {
-            			case (intScore >= 10):
-            				rank = 'Laser Master';
-            				rankColor = 'green';
-            				break;
-            			case (intScore >= 3):
-            				rank = 'Veteran';
-            				rankColor = 'orange';
-            				break;
-            			case (intScore >= 1):
-            				rank = 'Survivor';
-            				rankColor = 'red';
-            				break;
-            			default:
-            				rank = 'Newbie';
-            				rankColor = 'gray';
-            				break;
-            		}
-
-
-
-
-
-
-
-
-
-
-
               //    if (data.action === 'GetTabData') {
               //       tabManager.setTabWindow(sourceWindow);
               //       tabManager.updateTab();
