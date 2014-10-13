@@ -75,18 +75,8 @@
             $window.parent.postMessage(JSON.stringify(data), '*');
 
             console.info('Send Message from [' + pluginName + '] to [$window.parent]' + '\n' +'Action: ' + action);
-         },
-         sendMessageToParent: function (action, target) {
-            var data = {
-               sender: pluginName,
-               action: action
-               target: target
-            };
-
-            $window.parent.postMessage(JSON.stringify(data), '*');
-
-            console.info('Send Message from [' + pluginName + '] to [$window.parent]' + '\n' +'Action: ' + action + 'Target: ' + target);
          }
       };
    }]);
+
 })();
