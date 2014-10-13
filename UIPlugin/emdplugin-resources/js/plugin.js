@@ -17,8 +17,6 @@
     }
   }]);
 
-   var ContentWindow = null; // Reference to game Window object
-
    app.factory('tabManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
       return {
          addTab: function () {
