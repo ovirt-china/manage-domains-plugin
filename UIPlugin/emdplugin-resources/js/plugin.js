@@ -6,16 +6,17 @@
 
   var app = angular.module('plugin.init', ['plugin.common']);
 
-  app.factory('contentWindowService', ['$scope', function($scope){
-    return {
-      set: function (contentWindow){
-        $scope.contentWindow = contentWindow;
-      },
-      get: function(){
-        return $scope.contentWindow;
-      }
-    }
-  }]);
+  app.service('contentWindowService', function(){
+    var contentWindow = null ;
+        return {
+            set : function(contentWindow) {
+                this.contentWindow = contentWindow;
+            },
+            get : function() {
+                return this.contentWindow;
+            }
+        };
+  });
 
    app.factory('tabManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
       return {
@@ -40,13 +41,13 @@
                 switch (data.action) {
                   // When a dialog open, it notify the plugin to acquire the ContentWindow
                   case (justOpen):
-                    contentWindow.set(sourceWindow); // Reference to Window object
+                  contentWindow.set(sourceWindow); // Reference to Window object
                     console.info('EMDPlugin just acquired source window');
                     break;
                   // When the 'Ok' button is press this trigger the submission of the form
                   case (submit):
                     console.info('EMDPlugin just trigger submit in the source window');
-                    contentWindow.submit();
+                    contentWindow.get().submit();
                     break;
                   // If the work of the dialog is over, this close it.
                   case (close):
