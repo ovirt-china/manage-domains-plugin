@@ -14,7 +14,7 @@
      $scope.submit = function() {
         $window.alert('You pressed on the right button !');
       };
-   });
+   }]);
 
    // Allow the chevron to change state when the Advanced Parameters are collapsed or not.
    app.controller('collapseWatcher', ['$scope', function($scope) {
