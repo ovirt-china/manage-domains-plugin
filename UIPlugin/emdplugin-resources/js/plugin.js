@@ -40,20 +40,22 @@
 
                 switch (data.action) {
                   // When a dialog open, it notify the plugin to acquire the ContentWindow
-                  case (justOpen):
-                  contentWindow.set(sourceWindow); // Reference to Window object
+                  case ('justOpen'):
+                    contentWindow.set(sourceWindow); // Reference to Window object
                     console.info('EMDPlugin just acquired source window');
                     break;
                   // When the 'Ok' button is press this trigger the submission of the form
-                  case (submit):
+                  case ('submit'):
                     console.info('EMDPlugin just trigger submit in the source window');
                     contentWindow.get().submit();
                     break;
                   // If the work of the dialog is over, this close it.
-                  case (close):
+                  case ('close'):
                     console.info('EMDPlugin just receive order to close target:' + data.target);
                     pluginApi.closeDialog(data.target);
                     break;
+                  default:
+                    console.warn('EMDPlugin just receive a message with an undefined action: ' + data.action);
                 }
               //    if (data.action === 'GetTabData') {
               //       tabManager.setTabWindow(sourceWindow);
