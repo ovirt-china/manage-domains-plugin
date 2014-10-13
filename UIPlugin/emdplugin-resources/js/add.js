@@ -10,8 +10,10 @@
       messageUtil.sendMessageToParent('The Add Dialog has been opened.');
    }]);
 
-   app.controller('AddFormController',function(){
-     
+   app.controller('AddFormController',['$scope', '$window', function($scope, $window){
+     $scope.displayForm = function() {
+        $window.alert(domain | json);
+      };
    });
 
    // Allow the chevron to change state when the Advanced Parameters are collapsed or not.

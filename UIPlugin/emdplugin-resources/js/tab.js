@@ -2,7 +2,7 @@
 
 (function() {
 
-   var app = angular.module('plugin.tab', ['plugin.common']);
+   var app = angular.module('plugin.tab', ['plugin.common', 'plugin.add']);
 
    app.run(function() {
     // Nothing here for the moment but the time to get the list of servers will come sooner or later.
@@ -26,7 +26,7 @@
 
 
    // Hold all the function to create the dialog windows
-   app.factory('dialogManager', ['pluginApi', 'urlUtil', 'cacheService', function (pluginApi, urlUtil, cache) {
+   app.factory('dialogManager', ['pluginApi', 'urlUtil', 'cacheService', 'AddFormController', function (pluginApi, urlUtil, cache, addDialog) {
 
       return {
          // Show the Add Dialog Window
@@ -39,7 +39,13 @@
                         onClick: function() {
                            pluginApi.closeDialog('add-dialog');
                         }
-                     }
+                     },
+                     {
+                        label: 'Ok',
+                        onClick: function() {
+                          addDialog.displayForm();
+                        }
+                      }
                   ],
                   resizeEnabled: true,
                   closeIconVisible: false,
