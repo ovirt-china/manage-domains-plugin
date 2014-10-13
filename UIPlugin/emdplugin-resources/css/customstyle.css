@@ -37,6 +37,11 @@
    padding-right:20px;
 }
 
+.help-block-form-control {
+   padding-left:20px;
+   padding-right:20px;
+}
+
 .form-group .input-group-addon {
    color: #737373;
 }
