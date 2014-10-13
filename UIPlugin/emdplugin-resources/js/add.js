@@ -7,11 +7,11 @@
    var app = angular.module('plugin.add', ['plugin.common']);
 
    app.run(['messageUtil', function (messageUtil) {
-      messageUtil.sendMessageToParent('The Add Dialog has been opened.');
+      messageUtil.sendMessageToParent('justOpen');
    }]);
 
    app.controller('AddFormController',['$scope', '$window', function($scope, $window){
-     $scope.displayForm = function() {
+     $scope.submit = function() {
         $window.alert(domain | json);
       };
    });

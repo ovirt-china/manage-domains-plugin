@@ -6,6 +6,8 @@
 
    var app = angular.module('plugin.init', ['plugin.common']);
 
+   var ContentWindow = null; // Reference to game Window object
+
    app.factory('tabManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
       return {
          addTab: function () {
@@ -21,17 +23,68 @@
             tabManager.addTab();
          },
          MessageReceived: function (dataString, sourceWindow) {
-            if (dataString) {
-              console.log(dataString);
               var data = JSON.parse(dataString);
-              if (data.sender === pluginName) {
-                console.info('Message received from ' + sourceWindow + ' Message is ' + data.action);
+
+              if (data.action && data.sender === pluginName) {
+                console.info('Message received by EMDPlugin:'+ '\n' + dataString);
+
+                switch (data.action) {
+                  // When a dialog open, it notify the plugin to acquire the ContentWindow
+                  case (justOpen):
+                    ContentWindow = sourceWindow; // Reference to Window object
+                    console.info('EMDPlugin just acquired source window');
+                    break;
+                  // When the 'Ok' button is press this trigger the submission of the form
+                  case (submit):
+                    console.info('EMDPlugin just trigger submit in the source window');
+                    contentWindow.submit();
+                    break;
+                  // If the work of the dialog is over, this close it.
+                  case (close):
+                    console.info('EMDPlugin just receive order to close target:' + data.target);
+                    pluginApi.closeDialog(data.target);
+                    break;
+                }
+
+
+
+
+
+                switch (true) {
+            			case (intScore >= 10):
+            				rank = 'Laser Master';
+            				rankColor = 'green';
+            				break;
+            			case (intScore >= 3):
+            				rank = 'Veteran';
+            				rankColor = 'orange';
+            				break;
+            			case (intScore >= 1):
+            				rank = 'Survivor';
+            				rankColor = 'red';
+            				break;
+            			default:
+            				rank = 'Newbie';
+            				rankColor = 'gray';
+            				break;
+            		}
+
+
+
+
+
+
+
+
+
+
+
               //    if (data.action === 'GetTabData') {
               //       tabManager.setTabWindow(sourceWindow);
               //       tabManager.updateTab();
               //    }
               }
-            }
+
           },
       };
    }]);
