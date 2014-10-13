@@ -54,7 +54,7 @@
 
             cache.setData('domainToEdit', domain);
 
-            pluginApi.showDialog( dialogName, 'edit-dialog', urlUtil.relativeUrl('edit.html'), '300px', '300px',
+            pluginApi.showDialog( dialogName, 'edit-dialog', urlUtil.relativeUrl('edit.html'), '780px', '650px',
                {
                   buttons: [
                      {
