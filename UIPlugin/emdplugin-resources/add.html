@@ -8,7 +8,7 @@
 
    <body>
 
-      <div class="container">
+      <div class="container" ng-controller="AddFormController">
       <form class="form-horizontal">
 
          <!-- Domain -->
@@ -123,10 +123,10 @@
             </div> <!-- End of collapse block -->
 
          </div> <!-- End of ng-Controller collapseWatcher -->
+         <pre>form = {{domain | json}}</pre>
 
-      </div>
       </form>
-
+    </div>
 
       <script src="components/jquery/jquery.min.js"></script>
       <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
