@@ -4,11 +4,27 @@
 
 (function() {
 
-   var app = angular.module('plugin.add', ['plugin.common']);
+  var app = angular.module('plugin.add', ['plugin.common']);
 
-   app.run(['messageUtil', function (messageUtil) {
-      messageUtil.sendMessageToParent('justOpen');
-   }]);
+  app.run(['addMessageUtil', function (messager) {
+
+    messager.sendMessage('justOpen', null);
+  }]);
+
+  // Redefine MessageUtil specially for the add-dialog
+  app.factory('addMessageUtil', ['messageUtil', function(messageUtil){
+    return {
+      sendMessage: function(action, target){
+        var message = {
+           source: 'add-dialog',
+           action: action,
+           target: target
+        };
+
+        messageUtil.sendMessageToParent(message);
+      }
+    };
+  }]);
 
    app.controller('AddFormController',['$scope', '$window', function($scope, $window){
      $scope.submit = function() {
