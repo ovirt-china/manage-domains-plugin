@@ -77,7 +77,7 @@
             $window.parent.postMessage(JSON.stringify(data), '*');
 
             console.info('MESSAGE SEND' + '\n'
-                          + '   From: ' + pluginName + '>' + message.source '\n'
+                          + '   From: ' + pluginName + '>' + message.source + '\n'
                           + '   To: WebAdmin' + '\n'
                           + '   Action: ' + message.action + '\n'
                           + '   Target: ' + message.target );
