@@ -52,14 +52,13 @@
                      {
                         label: 'Cancel',
                         onClick: function() {
-                           //pluginApi.closeDialog('add-dialog');
-                            messager.sendMessage('close','add-dialog');
+                          pluginApi.closeDialog('add-dialog');
                         }
                      },
                      {
                         label: 'Ok',
                         onClick: function() {
-                          addDialog.displayForm();
+                          messager.sendMessage('submit','add-dialog');
                         }
                       }
                   ],

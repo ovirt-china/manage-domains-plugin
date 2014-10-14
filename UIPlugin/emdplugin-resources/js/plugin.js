@@ -36,28 +36,32 @@
               var data = JSON.parse(dataString);
 
               if (data.action && data.sender === pluginName) {
-                console.info('--Message Received--' + '\n'
-                              + '   From: WebAdmin > ' + pluginName + ' > ' + data.source + '\n'
-                              + '   To: ' + pluginName + '\n'
-                              + '   Action: ' + data.action + '\n'
-                              + '   Target: ' + data.target );
+                // console.info('--Message Received--' + '\n'
+                //               + '   From: WebAdmin > ' + pluginName + ' > ' + data.source + '\n'
+                //               + '   To: ' + pluginName + '\n'
+                //               + '   Action: ' + data.action + '\n'
+                //               + '   Target: ' + data.target );
 
                 switch (data.action) {
+
                   // When a dialog open, it notify the plugin to acquire the ContentWindow
                   case ('justOpen'):
                     contentWindow.set(sourceWindow); // Reference to Window object
                     console.info('EMDPlugin just acquired source window' + '\n' + contentWindow.get());
                     break;
+
                   // When the 'Ok' button is press this trigger the submission of the form
                   case ('submit'):
                     console.info('EMDPlugin just trigger submit in the source window');
                     contentWindow.get().submit();
                     break;
+
                   // If the work of the dialog is over, this close it.
                   case ('close'):
                     console.info('EMDPlugin just receive order to close target:' + data.target);
                     pluginApi.closeDialog(data.target);
                     break;
+
                   default:
                     console.warn('EMDPlugin just receive a message with an undefined action: ' + data.action);
                 }
