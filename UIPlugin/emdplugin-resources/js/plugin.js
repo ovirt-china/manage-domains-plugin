@@ -47,7 +47,7 @@
                   // When a dialog open, it notify the plugin to acquire the ContentWindow
                   case ('justOpen'):
                     contentWindow.set(sourceWindow); // Reference to Window object
-                    console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Just acquired source window from opening Dialog.');
+                    console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Acquired source window from opening dialog [' + data.source + '].');
                     break;
 
                   // When the 'Ok' button is press this trigger the submission of the form
@@ -55,12 +55,13 @@
                     console.info('EMDPlugin just trigger submit in the source window');
                     var formDialog = contentWindow.get();
                     formDialog.submit();
+                    console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Triggered Form Submit in dialog [' + data.target + '].');
                     break;
 
                   // If the work of the dialog is over, this close it.
                   case ('close'):
                     pluginApi.closeDialog(data.target);
-                    console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Closed dialog [' + data.target + ']');
+                    console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Closed dialog [' + data.target + '].');
                     break;
 
                   default:
