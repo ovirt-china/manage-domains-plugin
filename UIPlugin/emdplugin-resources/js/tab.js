@@ -24,9 +24,24 @@
 
   }]);
 
+  // Redefine MessageUtil specially for the main tab
+  app.factory('tabMessageUtil', ['messageUtil', function(messageUtil){
+    return {
+      sendMessage: function(action, target){
+        var message = {
+           source: 'emd-tab',
+           action: action,
+           target: target
+        };
+
+        messageUtil.sendMessageToParent(message);
+      }
+    };
+  }]);
+
 
    // Hold all the function to create the dialog windows
-   app.factory('dialogManager', ['pluginApi', 'urlUtil', 'cacheService', function (pluginApi, urlUtil, cache) {
+   app.factory('dialogManager', ['pluginApi', 'urlUtil', 'cacheService','tabMessageUtil', function (pluginApi, urlUtil, cache, messager) {
 
       return {
          // Show the Add Dialog Window
@@ -38,7 +53,7 @@
                         label: 'Cancel',
                         onClick: function() {
                            //pluginApi.closeDialog('add-dialog');
-                           messageUtil.sendMessageToParent('close','add-dialog');
+                            messager.sendMessage('close','add-dialog');
                         }
                      },
                      {
