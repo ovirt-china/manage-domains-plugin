@@ -58,8 +58,9 @@
                     var formContainer = formDialog.angular.element("form-container");
                     console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Angular Element Container [' + formContainer + '].');
 
-                    formContainer.scope().submit();
+                    formContainer.controller("AddFormController").submit();
                     console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Triggered Form Submit in dialog [' + data.target + '].');
+
                     break;
 
                   // If the work of the dialog is over, this close it.
