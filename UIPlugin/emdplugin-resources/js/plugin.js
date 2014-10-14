@@ -37,7 +37,7 @@
 
               if (data.action && data.sender === pluginName) {
                 console.info('--Message Received--' + '\n'
-                              + '   From: WebAdmin > ' + pluginName + ' > ' + message.source + '\n'
+                              + '   From: WebAdmin > ' + pluginName + ' > ' + data.source + '\n'
                               + '   To: ' + pluginName + '\n'
                               + '   Action: ' + data.action + '\n'
                               + '   Target: ' + data.target );
