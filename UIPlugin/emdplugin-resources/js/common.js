@@ -66,15 +66,21 @@
    // Send a message to WebAdmin
    app.factory('messageUtil', ['$window', 'pluginName', function ($window, pluginName) {
       return {
-         sendMessageToParent: function (action) {
+         sendMessageToParent: function (message) {
             var data = {
                sender: pluginName,
-               action: action
+               source: message.source,
+               action: message.action,
+               target: message.target
             };
 
             $window.parent.postMessage(JSON.stringify(data), '*');
 
-            console.info('Send Message from [' + pluginName + '] to [$window.parent]' + '\n' +'Action: ' + action);
+            console.info('MESSAGE SEND' + '\n'
+                          + '   From: ' + pluginName + '>' + message.source '\n'
+                          + '   To: WebAdmin' + '\n'
+                          + '   Action: ' + message.action + '\n'
+                          + '   Target: ' + message.target );
          }
       };
    }]);
