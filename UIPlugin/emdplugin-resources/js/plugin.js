@@ -46,7 +46,7 @@
                   // When a dialog open, it notify the plugin to acquire the ContentWindow
                   case ('justOpen'):
                     contentWindow.set(sourceWindow); // Reference to Window object
-                    console.info('EMDPlugin just acquired source window');
+                    console.info('EMDPlugin just acquired source window' + '\n' + contentWindow.get());
                     break;
                   // When the 'Ok' button is press this trigger the submission of the form
                   case ('submit'):
