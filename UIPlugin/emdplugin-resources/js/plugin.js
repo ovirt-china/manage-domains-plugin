@@ -54,7 +54,7 @@
                   case ('submit'):
                     console.info('EMDPlugin just trigger submit in the source window');
                     var formDialog = contentWindow.get();
-                    formDialog.angular.getElementById("form-container").scope().submit();
+                    formDialog.angular.element("form-container").scope().submit();
                     console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Triggered Form Submit in dialog [' + data.target + '].');
                     break;
 
