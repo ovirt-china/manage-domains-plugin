@@ -36,7 +36,11 @@
               var data = JSON.parse(dataString);
 
               if (data.action && data.sender === pluginName) {
-                console.info('Message received by EMDPlugin:'+ '\n' + dataString);
+                console.info('--Message Received--' + '\n'
+                              + '   From: WebAdmin > ' + pluginName + ' > ' + message.source + '\n'
+                              + '   To: ' + pluginName + '\n'
+                              + '   Action: ' + data.action + '\n'
+                              + '   Target: ' + data.target );
 
                 switch (data.action) {
                   // When a dialog open, it notify the plugin to acquire the ContentWindow
