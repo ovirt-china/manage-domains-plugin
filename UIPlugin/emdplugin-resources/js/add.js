@@ -27,7 +27,7 @@
   }]);
 
    app.controller('AddFormController',['$scope', '$window', function($scope, $window){
-     var submit = function() {
+     this.submit = function() {
         $window.alert('You pressed on the right button !');
       };
    }]);
