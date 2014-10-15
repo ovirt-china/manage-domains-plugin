@@ -53,20 +53,11 @@
                   // When the 'Ok' button is press this trigger the submission of the form
                   case ('submit'):
                     var formDialog = contentWindow.get();
-                    console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> ContentWindow formDialog is [' + formDialog + '].');
-
-                    var formDialogDoc = null;
-                    if (formDialog.document) formDialogDoc = formDialog.document;
-                    formDialogDoc.body.style.backgroundColor = "red";
-
                     var formContainer = formDialog.angular.element("#form-container");
-                    console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Angular Element Container [' + formContainer + '].');
+                    var formScope = formContainer.scope();
 
-                    // var formController = formContainer.controller("AddFormController");
-                    var formController = formContainer.scope();
-                    console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Form Controller [' + formController + '].');
-
-                    formController.submit();
+                    // Trigger the function in the Dialog
+                    formScope.submit();
                     console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Triggered Form Submit in dialog [' + data.target + '].');
 
                     break;
