@@ -26,10 +26,12 @@
     };
   }]);
 
-   app.controller('AddFormController',['$scope', '$window', function($scope, $window){
+   app.controller('AddFormController',['$scope', '$window', 'addMessageUtil', function($scope, $window, messager){
      $scope.submit = function() {
         // $window.alert('You pressed on the right button !');
+        if($scope.domain.name){
         console.log('The name of the domain to add is ' + $scope.domain.name);
+        }
 
         if($scope.addForm.$valid){
           console.log('[EMDPlugin > add.js > AddFormController]' + '\n' + '--> The form is valid.');
