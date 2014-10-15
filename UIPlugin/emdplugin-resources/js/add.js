@@ -29,9 +29,13 @@
    app.controller('AddFormController',['$scope', '$window', function($scope, $window){
      $scope.submit = function() {
         // $window.alert('You pressed on the right button !');
-        var domainToAdd = $scope.addForm;
-        console.log(domainToAdd);
-        
+        console.log('The name of the domain to add is ' + $scope.domain.name);
+
+        if($scope.addForm.$valid){
+          console.log('[EMDPlugin > add.js > AddFormController]' + '\n' + '--> The form is valid.');
+          messager.sendMessage('close', 'add-dialog');
+        }
+
       };
    }]);
 
