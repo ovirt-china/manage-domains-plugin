@@ -29,6 +29,9 @@
    app.controller('AddFormController',['$scope', '$window', function($scope, $window){
      $scope.submit = function() {
         // $window.alert('You pressed on the right button !');
+        var domainToAdd = $scope.addForm;
+        console.log(domainToAdd);
+        
       };
    }]);
 
