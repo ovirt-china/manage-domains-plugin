@@ -55,7 +55,7 @@
                     var formDialog = contentWindow.get();
                     console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> ContentWindow formDialog is [' + formDialog + '].');
 
-                    //if (formDialog.document)formDialog = formDialog.document;
+                    if (formDialog.document)formDialog = formDialog.document;
                     formDialog.body.style.backgroundColor = "red";
 
                     var formContainer = formDialog.angular.element("form-container");
