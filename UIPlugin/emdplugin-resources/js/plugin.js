@@ -62,7 +62,8 @@
                     var formContainer = formDialog.angular.element("#form-container");
                     console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Angular Element Container [' + formContainer + '].');
 
-                    var formController = formContainer.controller("AddFormController");
+                    // var formController = formContainer.controller("AddFormController");
+                    var formController = formContainer.scope();
                     console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Form Controller [' + formController + '].');
 
                     formController.submit();
