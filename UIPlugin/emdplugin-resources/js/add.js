@@ -6,15 +6,11 @@
 
   var app = angular.module('plugin.add', ['plugin.common']);
 
-  app.factory('dialogInfo', function(){
-    return {
-      name: 'add-dialog';
-    }
-  })
+  app.value('dialogName', 'add-dialog');
 
-  app.run(['messager', 'dialogInfo', function (messager, dialog) {
+  app.run(['messager', 'dialogName', function (messager, dialogName) {
 
-    messager.sendActionMessage(dialog.name, 'justOpen', null);
+    messager.sendActionMessage(dialogName, 'justOpen', null);
   }]);
 
   // Redefine MessageUtil specially for the add-dialog
