@@ -31,7 +31,7 @@
      $scope.submit = function() {
         // $window.alert('You pressed on the right button !');
         if($scope.domain){
-        console.log('The domain to add is ' + $scope.domain);
+        console.log('The domain to add is ' + angular.toJson($scope.domain));
         }
 
         // if($scope.addForm.$valid){
