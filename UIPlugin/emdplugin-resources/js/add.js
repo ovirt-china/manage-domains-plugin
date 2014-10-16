@@ -28,12 +28,10 @@
 
    app.controller('AddFormController',['$scope', '$window', 'addMessageUtil', function($scope, $window, messager){
 
-     $scope.addForm.domain = {};
-
      $scope.submit = function() {
         // $window.alert('You pressed on the right button !');
-        if($scope.addForm.domain.name){
-        console.log('The name of the domain to add is ' + $scope.addForm.domain.name);
+        if($scope.domain){
+        console.log('The domain to add is ' + $scope.domain);
         }
 
         if($scope.addForm.$valid){
