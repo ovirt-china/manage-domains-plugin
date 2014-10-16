@@ -29,15 +29,19 @@
    app.controller('AddFormController',['$scope', '$window', 'addMessageUtil', function($scope, $window, messager){
 
      $scope.submit = function() {
-        // $window.alert('You pressed on the right button !');
-        if($scope.domain){
-        console.log('The domain to add is ' + angular.toJson($scope.domain));
-        }
+        // First verify the form
 
-        // if($scope.addForm.$valid){
-        //   console.log('[EMDPlugin > add.js > AddFormController]' + '\n' + '--> The form is valid.');
-        //   messager.sendMessage('close', 'add-dialog');
-        // }
+
+          // Test if the domain object is define
+          if($scope.domain){
+            $scope.domainJSON = angular.toJson($scope.domain);
+            console.log('The domain to add is ' + angular.toJson($scope.domain));
+          }
+
+        if($scope.addForm.$valid){
+          console.log('[EMDPlugin > add.js > AddFormController]' + '\n' + '--> The form is valid.');
+          messager.sendMessage('close', 'add-dialog');
+        }
 
       };
    }]);
