@@ -114,7 +114,7 @@
                            pluginApi.closeDialog('remove-dialog');
                            cache.removeData('domainToRemove');
                         }
-                     };
+                     },
                      {
                         label: 'Ok',
                         onClick: function() {
