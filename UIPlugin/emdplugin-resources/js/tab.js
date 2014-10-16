@@ -84,7 +84,13 @@
                            pluginApi.closeDialog('edit-dialog');
                            cache.removeData('domainToEdit');
                         }
-                     }
+                     },
+                     {
+                        label: 'Ok',
+                        onClick: function() {
+                          messager.sendMessage('submit','edit-dialog');
+                        }
+                      }
                   ],
                   resizeEnabled: true,
                   closeIconVisible: false,
