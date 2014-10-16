@@ -17,7 +17,7 @@
 
      $scope.submit = function() {
         // First verify the form
-        if($scope.addForm.$valid){
+        if($scope.editForm.$valid){
           console.log('[EMDPlugin > edit.js > EditFormController]' + '\n' + '--> The form is valid.');
 
           // Test if the domain object is define
@@ -34,7 +34,7 @@
 
           // Close the window is evrything went well.
           messager.sendActionMessage(dialogName, 'close', dialogName);
-          
+
 
         } else {
            $window.alert("Your form is not correct ! (Sorry, I don't know what to say to help you :( )");
