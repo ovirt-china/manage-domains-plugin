@@ -63,6 +63,21 @@
     };
   }]);
 
+  // Factory to simplify the action to send a message
+  app.factory('messager', ['messageUtil' function(messageUtil){
+    return {
+      sendActionMessage: function (source, action, target) {
+        var message = {
+           source: source,
+           action: action,
+           target: target
+        };
+
+        messageUtil.sendMessageToParent(message);
+      }
+    };
+  }]);
+
    // Send a message to WebAdmin
    app.factory('messageUtil', ['$window', 'pluginName', function ($window, pluginName) {
       return {
