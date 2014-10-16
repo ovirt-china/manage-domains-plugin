@@ -27,6 +27,9 @@
   }]);
 
    app.controller('AddFormController',['$scope', '$window', 'addMessageUtil', function($scope, $window, messager){
+
+     $scope.addForm.domain = {};
+
      $scope.submit = function() {
         // $window.alert('You pressed on the right button !');
         if($scope.addForm.domain.name){
