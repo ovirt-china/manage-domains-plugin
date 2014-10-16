@@ -34,6 +34,7 @@
 
           // Close the window is evrything went well.
           messager.sendActionMessage(dialogName, 'close', dialogName);
+          
 
         } else {
            $window.alert("Your form is not correct ! (Sorry, I don't know what to say to help you :( )");
