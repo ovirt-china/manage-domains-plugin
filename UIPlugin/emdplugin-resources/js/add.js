@@ -13,22 +13,7 @@
     messager.sendActionMessage(dialogName, 'justOpen', null);
   }]);
 
-  // Redefine MessageUtil specially for the add-dialog
-  app.factory('addMessageUtil', ['messageUtil', function(messageUtil){
-    return {
-      sendMessage: function(action, target){
-        var message = {
-           source: 'add-dialog',
-           action: action,
-           target: target
-        };
-
-        messageUtil.sendMessageToParent(message);
-      }
-    };
-  }]);
-
-   app.controller('AddFormController',['$scope', '$window', 'addMessageUtil', function($scope, $window, messager){
+   app.controller('AddFormController',['$scope', '$window', 'messager', 'dialogName', function($scope, $window, messager, dialogName){
 
      $scope.submit = function() {
         // First verify the form
@@ -48,7 +33,7 @@
           //////////////////////////////////////////////////////////////////////
 
           // Close the window is evrything went well.
-          messager.sendMessage('close', 'add-dialog');
+          messager.sendActionMessage(dialogName, 'close', 'add-dialog');
 
         } else {
            $window.alert("Domain, Provider and User are requiered input. Please fill them correctly !");
