@@ -8,17 +8,26 @@
 
   <body>
 
-    <div class="container" ng-controller="CacheController">
-      <div class="alert alert-danger">
-        <span class="pficon-layered">
-          <span class="pficon pficon-error-octagon"></span>
-          <span class="pficon pficon-error-exclamation"></span>
-        </span>
-        Are you sure you want to remove the following domain?
+    <div class="container">
+
+      <div id="info-container" ng-controller="RemoveController">
+
+        <div class="alert alert-danger">
+          <span class="pficon-layered">
+            <span class="pficon pficon-error-octagon"></span>
+            <span class="pficon pficon-error-exclamation"></span>
+          </span>
+
+          Are you sure you want to remove the following domain?
+
           <ul>
-              <li><strong>{{domain.name}}</strong></li>
+            <li><strong>{{domain.name}}</strong></li>
           </ul>
+
+        </div>
+
       </div>
+
     </div>
 
     <script src="components/jquery/jquery.min.js"></script>

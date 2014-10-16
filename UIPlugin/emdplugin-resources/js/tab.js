@@ -114,7 +114,13 @@
                            pluginApi.closeDialog('remove-dialog');
                            cache.removeData('domainToRemove');
                         }
-                     }
+                     };
+                     {
+                        label: 'Ok',
+                        onClick: function() {
+                          messager.sendMessage('remove','remove-dialog');
+                        }
+                      }
                   ],
                   resizeEnabled: true,
                   closeIconVisible: false,

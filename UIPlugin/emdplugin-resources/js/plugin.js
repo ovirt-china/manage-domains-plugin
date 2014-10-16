@@ -62,6 +62,15 @@
 
                     break;
 
+                  case ('remove'):
+                    var infoDialog = contentWindow.get();
+                    var infoContainer = formDialog.angular.element("#info-container");
+                    var infoScope = formContainer.scope();
+
+                    // Trigger the function in the Dialog
+                    infoScope.remove();
+                    console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Triggered Removing of the selected domain.');
+
                   // If the work of the dialog is over, this close it.
                   case ('close'):
                     pluginApi.closeDialog(data.target);
