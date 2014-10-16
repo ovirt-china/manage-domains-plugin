@@ -30,17 +30,26 @@
 
      $scope.submit = function() {
         // First verify the form
-
+        if($scope.addForm.$valid){
+          console.log('[EMDPlugin > add.js > AddFormController]' + '\n' + '--> The form is valid.');
 
           // Test if the domain object is define
           if($scope.domain){
             $scope.domainJSON = angular.toJson($scope.domain);
-            console.log('The domain to add is ' + angular.toJson($scope.domain));
+            console.log('[EMDPlugin > add.js > AddFormController]' + '\n' + '--> Information from the form ' + angular.toJson($scope.domain));
           }
 
-        if($scope.addForm.$valid){
-          console.log('[EMDPlugin > add.js > AddFormController]' + '\n' + '--> The form is valid.');
+          //////////////////////////////////////////////////////////////////////
+          //                                                                  //
+          //                  SEND THE REQUEST TO THE API                     //
+          //                                                                  //
+          //////////////////////////////////////////////////////////////////////
+
+          // Close the window is evrything went well.
           messager.sendMessage('close', 'add-dialog');
+
+        } else {
+           $window.alert("Domain, Provider and User are requiered input. Please fill them correctly !");
         }
 
       };
