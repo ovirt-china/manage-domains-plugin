@@ -34,10 +34,10 @@
         console.log('The domain to add is ' + $scope.domain);
         }
 
-        if($scope.addForm.$valid){
-          console.log('[EMDPlugin > add.js > AddFormController]' + '\n' + '--> The form is valid.');
-          messager.sendMessage('close', 'add-dialog');
-        }
+        // if($scope.addForm.$valid){
+        //   console.log('[EMDPlugin > add.js > AddFormController]' + '\n' + '--> The form is valid.');
+        //   messager.sendMessage('close', 'add-dialog');
+        // }
 
       };
    }]);
