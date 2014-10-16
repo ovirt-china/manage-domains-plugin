@@ -64,8 +64,8 @@
 
                   case ('remove'):
                     var infoDialog = contentWindow.get();
-                    var infoContainer = formDialog.angular.element("#info-container");
-                    var infoScope = formContainer.scope();
+                    var infoContainer = infoDialog.angular.element("#info-container");
+                    var infoScope = infoContainer.scope();
 
                     // Trigger the function in the Dialog
                     infoScope.remove();
