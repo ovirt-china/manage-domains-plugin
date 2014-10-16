@@ -33,7 +33,7 @@
           //////////////////////////////////////////////////////////////////////
 
           // Close the window is evrything went well.
-          messager.sendActionMessage(dialogName, 'close', 'add-dialog');
+          messager.sendActionMessage(dialogName, 'close', dialogName);
 
         } else {
            $window.alert("Domain, Provider and User are requiered input. Please fill them correctly !");
