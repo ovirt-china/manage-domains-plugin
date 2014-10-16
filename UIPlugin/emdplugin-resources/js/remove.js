@@ -14,7 +14,7 @@
 
   }]);
 
-  app.controller('RemoveController', ['$scope', 'messager', 'dialogName', function($scope, messager, dialogName){
+  app.controller('RemoveController', ['cacheService', '$scope', 'messager', 'dialogName', function(cache, $scope, messager, dialogName){
 
     $scope.domain = cache.getData('domainToRemove');
 
