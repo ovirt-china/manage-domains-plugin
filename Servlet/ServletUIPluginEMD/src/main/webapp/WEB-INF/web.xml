@@ -8,16 +8,18 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
-        </welcome-file-list>
-        <servlet>
-  <servlet-name>ServletUIPluginEMD</servlet-name>
-  <servlet-class>servlet.uiplugin.emd</servlet-class>
-</servlet>
+        <welcome-file>HelloWorld.java</welcome-file>
+    </welcome-file-list>
+    
+    <servlet>
+  		<servlet-name>ServletUIPluginEMD</servlet-name>
+  		<servlet-class>com.servlet.uiplugin.emd</servlet-class>
+	</servlet>
 
-<servlet-mapping>
-  <servlet-name>ServletUIPluginEMD</servlet-name>
-  <url-pattern>/servletuipluginemd/*</url-pattern>
-</servlet-mapping>
+	<servlet-mapping>
+  		<servlet-name>ServletUIPluginEMD</servlet-name>
+  		<url-pattern>/helloworld/*</url-pattern>
+	</servlet-mapping>
         
     </web-app>
     
