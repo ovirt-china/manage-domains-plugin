@@ -35,7 +35,9 @@ public class DomainResource {
   @Consumes(MediaType.APPLICATION_JSON)
   public Response consumeJSON ( Domain domain ) {
 
-    return Response.status(200).entity(domain).build();
+    String output = domain.toString();
+
+    return Response.status(200).entity(output).build();
   }
 
 
