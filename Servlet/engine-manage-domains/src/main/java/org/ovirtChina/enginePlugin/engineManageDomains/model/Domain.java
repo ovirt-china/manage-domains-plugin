@@ -19,4 +19,11 @@ public class Domain {
   public String getUsername() {
     return username;
   }
+
+  @Override
+	public String toString() {
+		return new StringBuffer(" Domain Name : ").append(this.name)
+				.append(" Username : ").append(this.username).toString();
+	}
+
 }
