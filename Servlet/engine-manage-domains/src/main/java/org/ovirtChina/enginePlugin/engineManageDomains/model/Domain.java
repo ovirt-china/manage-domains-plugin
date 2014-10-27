@@ -2,19 +2,19 @@ package org.ovirtChina.enginePlugin.engineManageDomains.model;
 
 public class Domain {
 
-  private String name;
+  private String domain;
   private String username;
 
   public Domain(){
-    this.name="";
+    this.domain="";
     this.username="";
   }
-  public Domain(String name,String username){
-    this.name=name;
+  public Domain(String domain,String username){
+    this.domain=domain;
     this.username=username;
   }
-  public String getName() {
-    return name;
+  public String getDomain() {
+    return domain;
   }
   public String getUsername() {
     return username;
@@ -22,7 +22,7 @@ public class Domain {
 
   @Override
 	public String toString() {
-		return new StringBuffer(" Domain Name : ").append(this.name)
+		return new StringBuffer(" Domain : ").append(this.name)
 				.append(" Username : ").append(this.username).toString();
 	}
 
