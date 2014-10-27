@@ -23,7 +23,7 @@ public class Domain {
     return username;
   }
   public Boolean getStatus() {
-
+    return status;
   }
 
   @Override
