@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -33,7 +33,7 @@ public class DomainResource {
     //return Response.status(200).setContentType("application/json").
   }
 
-  @POST
+  @PUT
   @Path("/add")
   @Consumes(MediaType.APPLICATION_JSON)
   public Response addDomain( Domain domain ) {
@@ -67,20 +67,20 @@ public class DomainResource {
   @PUT
   @Path("/{domain}/edit")
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response editDomain(@PathParam("domain") String domain, Domain domain) {
+  public Response editDomain(@PathParam("domain") String domain, EditRequest editRequest) {
 
     //Test purpose
-    String testName = "domain";
+    String testName = "domain_test";
 
     if(domain == testName){
 
-      String output = "The domain " + domain + " has been edit correctly.";
+      String output = editRequest.toString();;
 
       return Response.status(204).entity(output).build();
 
     }else{
 
-      String output = "Impossible to remove the domain " + domain + ". This domain doesn't exist.";
+      String output = "Impossible to edit the domain " + domain + ". This domain doesn't exist.";
 
       return Response.status(404).entity(output).build();
     }
