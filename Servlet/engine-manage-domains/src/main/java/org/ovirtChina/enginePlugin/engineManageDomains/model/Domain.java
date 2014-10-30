@@ -11,6 +11,11 @@ public class Domain {
     this.username="";
     this.status=false;
   }
+  public Domain(String domain,String username){
+    this.domain=domain;
+    this.username=username;
+    this.status=false;
+  }
   public Domain(String domain,String username, Boolean status){
     this.domain=domain;
     this.username=username;
@@ -28,7 +33,7 @@ public class Domain {
 
   @Override
 	public String toString() {
-		return new StringBuffer(" Domain : ").append(this.name)
+		return new StringBuffer(" Domain : ").append(this.domain)
 				.append(" Username : ").append(this.username)
         .append(" Status : ").append(this.status).toString();
 	}
