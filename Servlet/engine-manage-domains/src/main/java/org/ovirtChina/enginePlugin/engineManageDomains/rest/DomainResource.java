@@ -64,4 +64,25 @@ public class DomainResource {
     }
   }
 
+  @PUT
+  @Path("/{domain}/edit")
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Response editDomain(@PathParam("domain") String domain, Domain domain) {
+
+    //Test purpose
+    String testName = "domain";
+
+    if(domain == testName){
+
+      String output = "The domain " + domain + " has been edit correctly.";
+
+      return Response.status(204).entity(output).build();
+
+    }else{
+
+      String output = "Impossible to remove the domain " + domain + ". This domain doesn't exist.";
+
+      return Response.status(404).entity(output).build();
+    }
+  }
 }
