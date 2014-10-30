@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 
 
 import org.ovirtChina.enginePlugin.engineManageDomains.model.Domain;
+import org.ovirtChina.enginePlugin.engineManageDomains.model.EditRequest;
 
 @Path("/domains")
 public class DomainResource {
