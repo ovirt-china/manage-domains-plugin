@@ -55,7 +55,7 @@ public class DomainResource {
 
       String output = "The domain " + domain + " has been removed correctly.";
 
-      return Response.status(204).entity(output).build();
+      return Response.status(204).build();
 
     }else{
 
@@ -77,7 +77,7 @@ public class DomainResource {
 
       String output = editRequest.toString();;
 
-      return Response.status(204).entity(output).build();
+      return Response.status(200).entity(output).build();
 
     }else{
 
