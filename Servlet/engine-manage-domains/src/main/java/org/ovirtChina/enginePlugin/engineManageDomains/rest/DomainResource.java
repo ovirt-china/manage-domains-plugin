@@ -51,7 +51,7 @@ public class DomainResource {
     //Test purpose
     String testName = "domain_test";
 
-    if(domain == testName){
+    if(domain.equals(testName)){
 
       String output = "The domain " + domain + " has been removed correctly.";
 
@@ -73,7 +73,7 @@ public class DomainResource {
     //Test purpose
     String testName = "domain_test";
 
-    if(domain == testName){
+    if(domain.equals(testName)){
 
       String output = editRequest.toString();;
 
