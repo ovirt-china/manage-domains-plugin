@@ -16,22 +16,32 @@ import javax.ws.rs.core.Response;
 
 import org.ovirtChina.enginePlugin.engineManageDomains.model.Domain;
 import org.ovirtChina.enginePlugin.engineManageDomains.model.EditRequest;
+import org.ovirtChina.enginePlugin.engineManageDomains.process.ListCLI;
 
 @Path("/domains")
 public class DomainResource {
 
   @GET
   @Path("/list")
-  @Produces(MediaType.APPLICATION_JSON)
-  public List<Domain> printDomain() {
-    List<Domain> domainList = new ArrayList<Domain>();
-    String[] domains = {"AD_DOMAIN","auth-server"};
-    String username = "admin";
-    for(String domain:domains){
-      domainList.add(new Domain(domain,username));
-    }
-    return domainList;
-    //return Response.status(200).setContentType("application/json").
+  // @Produces(MediaType.APPLICATION_JSON)
+  // public List<Domain> printDomain() {
+  //   List<Domain> domainList = new ArrayList<Domain>();
+  //   String[] domains = {"AD_DOMAIN","auth-server"};
+  //   String username = "admin";
+  //   for(String domain:domains){
+  //     domainList.add(new Domain(domain,username));
+  //   }
+  //   return domainList;
+  //   //return Response.status(200).setContentType("application/json").
+  // }
+
+  public Response printDomain() {
+
+    ListCLI listDomains = new ListCLI();
+
+    String output = listDomains.getResult();
+
+    return Response.status(200).entity(output).build();
   }
 
   @PUT
