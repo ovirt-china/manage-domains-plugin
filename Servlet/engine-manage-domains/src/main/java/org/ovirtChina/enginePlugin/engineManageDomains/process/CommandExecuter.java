@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 
 import javax.ws.rs.core.Response;
 
+import org.ovirtChina.enginePlugin.engineManageDomains.process.List2Domain;
+
 public class CommandExecuter {
 
   private String result;
@@ -32,11 +34,12 @@ public class CommandExecuter {
     //---!DEBUG---
 
     if (output.substring(msgSize).equals(successSentence)){
-      // TODO convert the answer in a collection of JSON objects.
+      List2Domain listParser = new List2Domain(output.substring(0, msgSize));
 
-      String outputSuccess = output.substring(0, msgSize);
+      // String outputSuccess = output.substring(0, msgSize);
 
-      return Response.status(200).entity(outputSuccess).build();
+      // return Response.status(200).entity(listParser.parse()).setContentType("application/json").build();
+      return Response.status(200).entity(listParser.parse()).build();
 
     }else{
       return Response.status(500).entity(output).build();

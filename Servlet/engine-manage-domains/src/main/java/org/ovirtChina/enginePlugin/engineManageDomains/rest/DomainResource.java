@@ -37,6 +37,7 @@ public class DomainResource {
 
   @GET
   @Path("/list")
+  @Produces(MediaType.APPLICATION_JSON)
   public Response printDomain() {
 
     CommandExecuter cmdExec = new CommandExecuter();
