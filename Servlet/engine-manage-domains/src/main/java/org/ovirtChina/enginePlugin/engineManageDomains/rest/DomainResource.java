@@ -21,20 +21,6 @@ import org.ovirtChina.enginePlugin.engineManageDomains.process.CommandExecuter;
 @Path("/domains")
 public class DomainResource {
 
-  // @GET
-  // @Path("/list")
-  // @Produces(MediaType.APPLICATION_JSON)
-  // public List<Domain> printDomain() {
-  //   List<Domain> domainList = new ArrayList<Domain>();
-  //   String[] domains = {"AD_DOMAIN","auth-server"};
-  //   String username = "admin";
-  //   for(String domain:domains){
-  //     domainList.add(new Domain(domain,username));
-  //   }
-  //   return domainList;
-  //   //return Response.status(200).setContentType("application/json").
-  // }
-
   @GET
   @Path("/list")
   @Produces(MediaType.APPLICATION_JSON)
