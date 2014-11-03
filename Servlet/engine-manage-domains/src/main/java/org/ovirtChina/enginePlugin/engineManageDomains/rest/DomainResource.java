@@ -31,6 +31,15 @@ public class DomainResource {
     return cmdExec.list();
   }
 
+  @DELETE
+  @Path("/{domain}/delete")
+  public Response removeDomain(@PathParam("domain") String domainName) {
+
+    CommandExecuter cmdExec = new CommandExecuter();
+
+    return cmdExec.delete(domainName);
+  }
+
   @PUT
   @Path("/add")
   @Consumes(MediaType.APPLICATION_JSON)
@@ -39,27 +48,6 @@ public class DomainResource {
     String output = domain.toString();
 
     return Response.status(200).entity(output).build();
-  }
-
-  @DELETE
-  @Path("/{domain}/remove")
-  public Response removeDomain(@PathParam("domain") String domain) {
-
-    //Test purpose
-    String testName = "domain_test";
-
-    if(domain.equals(testName)){
-
-      String output = "The domain " + domain + " has been removed correctly.";
-
-      return Response.status(204).build();
-
-    }else{
-
-      String output = "Impossible to remove the domain " + domain + ". This domain doesn't exist.";
-
-      return Response.status(404).entity(output).build();
-    }
   }
 
   @PUT

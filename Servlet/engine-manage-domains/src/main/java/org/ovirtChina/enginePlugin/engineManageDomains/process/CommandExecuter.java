@@ -10,6 +10,7 @@ import org.ovirtChina.enginePlugin.engineManageDomains.process.List2Domain;
 public class CommandExecuter {
 
   private String result;
+  private String successSentence = "Manage Domains completed successfully\n";
 
 	public CommandExecuter() {
     //---DEBUG---
@@ -23,26 +24,33 @@ public class CommandExecuter {
     String command = "engine-manage-domains list";
     String output = executeCommand(command);
 
-    // Test if the command is successful
-    String successSentence = "Manage Domains completed successfully\n";
-    int msgSize = output.length() - successSentence.length();
-
-    //---DEBUG---
-    System.out.println("Success Sentence  : " + successSentence);
-    System.out.println("Extracted Sentence: " + output.substring(msgSize));
-    System.out.println("Is the command successful?: " + output.substring(msgSize).equals(successSentence));
-    //---!DEBUG---
-
-    if (output.substring(msgSize).equals(successSentence)){
-      List2Domain listParser = new List2Domain(output.substring(0, msgSize));
-
-      // String outputSuccess = output.substring(0, msgSize);
-
-      // return Response.status(200).entity(listParser.parse()).setContentType("application/json").build();
+    /**
+    * We admit that if the command is successful the output will contain successSentence
+    * and if not it means the command failed.
+    */
+    if (output.contains(successSentence)){
+      List2Domain listParser = new List2Domain(output.replace(successSentence,""));
       return Response.status(200).entity(listParser.parse()).build();
 
     }else{
       return Response.status(500).entity(output).build();
+
+    }
+  }
+
+  public Response delete(String domainName){
+    //TODO Be sure that the domainName is really a domain name and that it is not going to try to do something else.
+    //Remove everything after first espace and look for separator.
+
+    // Execute the command in the linux shell
+    String command = "engine-manage-domains delete --domain=" + domainName + " --force";
+    String output = executeCommand(command);
+
+    if (output.contains(successSentence)){
+      return Response.status(204).build();
+
+    }else{
+      return Response.status(404).entity(output).build();
 
     }
   }
