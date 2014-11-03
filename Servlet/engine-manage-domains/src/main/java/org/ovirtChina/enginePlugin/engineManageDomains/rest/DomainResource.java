@@ -16,13 +16,13 @@ import javax.ws.rs.core.Response;
 
 import org.ovirtChina.enginePlugin.engineManageDomains.model.Domain;
 import org.ovirtChina.enginePlugin.engineManageDomains.model.EditRequest;
-import org.ovirtChina.enginePlugin.engineManageDomains.process.ListCLI;
+import org.ovirtChina.enginePlugin.engineManageDomains.process.CommandExecuter;
 
 @Path("/domains")
 public class DomainResource {
 
-  @GET
-  @Path("/list")
+  // @GET
+  // @Path("/list")
   // @Produces(MediaType.APPLICATION_JSON)
   // public List<Domain> printDomain() {
   //   List<Domain> domainList = new ArrayList<Domain>();
@@ -35,13 +35,13 @@ public class DomainResource {
   //   //return Response.status(200).setContentType("application/json").
   // }
 
+  @GET
+  @Path("/list")
   public Response printDomain() {
 
-    ListCLI listDomains = new ListCLI();
+    CommandExecuter cmdExec = new CommandExecuter();
 
-    String output = listDomains.getResult();
-
-    return Response.status(200).entity(output).build();
+    return cmdExec.list();
   }
 
   @PUT
