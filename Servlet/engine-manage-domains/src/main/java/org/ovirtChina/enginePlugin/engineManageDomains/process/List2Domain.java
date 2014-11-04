@@ -25,6 +25,7 @@ public class List2Domain {
   /**
   * Returns a List of the Domains from the String text2parse.
   * A Domain is add to the list only if the it have a name and a user.
+  *
   * @return    List of Domains object (Empty list if there is no Domain).
   */
   public List<Domain> parse(){
@@ -58,6 +59,7 @@ public class List2Domain {
   /**
   * Returns the value of the field describe on this line according to what is needed to create a domain (waiting4domain).
   * Otherwise return an empty String.
+  *
   * @param  aLine  line to parse
   * @return        value on the line
   */
