@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import javax.ws.rs.core.Response;
 
 import org.ovirtChina.enginePlugin.engineManageDomains.model.Domain;
+import org.ovirtChina.enginePlugin.engineManageDomains.model.Domain2Add;
 import org.ovirtChina.enginePlugin.engineManageDomains.process.List2Domain;
 
 public class CommandExecuter {
@@ -75,6 +76,10 @@ public class CommandExecuter {
       return Response.status(500).entity(output).build();
 
     }
+  }
+
+  public Response add(Domain2Add domain){
+    return Response.status(418).entity("Nothing ready yet to add a new domain.").build();
   }
 
 	private String executeCommand(String command) {
