@@ -8,12 +8,14 @@ import java.io.InputStreamReader;
 
 import javax.ws.rs.core.Response;
 
+import org.ovirtChina.enginePlugin.engineManageDomains.model.Domain;
 import org.ovirtChina.enginePlugin.engineManageDomains.process.List2Domain;
 
 public class CommandExecuter {
 
   private String result;
   private String successSentence = "Manage Domains completed successfully\n";
+  private String domainNotFoundPattern = "Domain\\s.*?\\sdoesn't exist in the configuration[.]\\n";
 
 	public CommandExecuter() {
     //---DEBUG---
@@ -60,11 +62,17 @@ public class CommandExecuter {
     String command = "engine-manage-domains delete --domain=" + domainName + " --force";
     String output = executeCommand(command);
 
+    //If the deletion is successful
     if (output.contains(successSentence)){
       return Response.status(204).build();
 
-    }else{
+    //If the domain name has not been found
+    }else if(output.matches(domainNotFoundPattern)){
       return Response.status(404).entity(output).build();
+
+    //Default answer
+    } else {
+      return Response.status(500).entity(output).build();
 
     }
   }
