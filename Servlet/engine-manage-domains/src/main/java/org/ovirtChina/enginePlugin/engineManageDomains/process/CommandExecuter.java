@@ -1,5 +1,8 @@
 package org.ovirtChina.enginePlugin.engineManageDomains.process;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -30,7 +33,18 @@ public class CommandExecuter {
     */
     if (output.contains(successSentence)){
       List2Domain listParser = new List2Domain(output.replace(successSentence,""));
-      return Response.status(200).entity(listParser.parse()).build();
+
+      List<Domain> domainList = listParser.parse();
+
+      /**
+      * Test is the list is empty qnd return a 204 answer if so.
+      * Otherwise return the list.
+      */
+      if (domainList.isEmpty()){
+        return Response.status(204).build();
+      }else{
+        return Response.status(200).entity(domainList).build();
+      }
 
     }else{
       return Response.status(500).entity(output).build();
