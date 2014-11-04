@@ -21,12 +21,25 @@ public class Domain2Add {
   private Boolean resolveKdc = null;
   private String passwordFile = null;
 
-  public Domain2Add(String domain, String provider, String user){
+  private String allowedProviderPattern = "\\A(ad|ipa|rhds|itds|olap)\\Z";
+
+  public Domain2Add(String domain, String user){
+    // TODO verify that the entry are not arming the server.
     this.domain=domain;
-    this.provider=provider;
     this.user=user;
   }
 
+  public boolean setProvider(String provider) {
+    // If the provider is one of the allowed provider set it and return true.
+    if (provider.matches(allowedProviderPattern)){
+      this.provider = provider;
+      return true;
+
+    // Otherwise do nothing and return false.
+    }else{
+      return false;
+    }
+  }
   public void setAddPermissions(boolean addPermissions) {
     this.addPermissions = addPermissions;
   }
