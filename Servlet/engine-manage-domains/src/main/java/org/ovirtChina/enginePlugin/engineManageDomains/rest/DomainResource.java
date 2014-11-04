@@ -21,6 +21,13 @@ import org.ovirtChina.enginePlugin.engineManageDomains.process.CommandExecuter;
 @Path("/domains")
 public class DomainResource {
 
+  /**
+  * Returns the a collection of JSON objects describing the domain linked to the engine.
+  * Because the list command doesn't give us more information than the domain and the username,
+  * we don't give more information.
+  *
+  * @return a Response containing a JSON collection of the domains' informations.
+  */
   @GET
   @Path("/list")
   @Produces(MediaType.APPLICATION_JSON)
@@ -31,6 +38,12 @@ public class DomainResource {
     return cmdExec.list();
   }
 
+  /**
+  * Delete the domain indicate in the url.
+  *
+  * @param   the name of the domain to delete
+  * @return  an HTTP Status Code accroding to the success or not of the action.
+  */
   @DELETE
   @Path("/{domain}/delete")
   public Response removeDomain(@PathParam("domain") String domainName) {
@@ -44,6 +57,10 @@ public class DomainResource {
   @Path("/add")
   @Consumes(MediaType.APPLICATION_JSON)
   public Response addDomain( Domain domain ) {
+
+    // CommandExecuter cmdExec = new CommandExecuter();
+    //
+    // return cmdExec.add();
 
     String output = domain.toString();
 
