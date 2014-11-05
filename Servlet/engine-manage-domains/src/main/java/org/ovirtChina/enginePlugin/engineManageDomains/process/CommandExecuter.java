@@ -79,7 +79,59 @@ public class CommandExecuter {
   }
 
   public Response add(Domain2Add domain){
-    return Response.status(418).entity("Nothing ready yet to add a new domain.").build();
+
+    if (domain.isRequestCorrect()){
+      String command = createAddCommand(domain);
+      String output = executeCommand(command);
+
+      String domainName = domain.getDomain();
+
+      //If the addition is successful
+      if (output.contains(successSentence)){
+        String outputSuccess = "The domain " + domainName + " has been added successfully.";
+
+        return Response.status(201).entity(outputSuccess).build();
+
+      } else {
+        return Response.status(500).entity(output).build();
+
+      }
+    } else {
+      return Response.status(400).entity(domain.getRequestErrors()).build();
+    }
+  }
+
+  private String createAddCommand(Domain2Add domain){
+    String command = "engine-manage-domains add --domain=" + domain.getDomain()
+                      + " --provider=" + domain.getProvider()
+                      + " --user=" + domain.getUser();
+
+    String configFile = domain.getConfigFile();
+    String ldapServers = domain.getLdapServers();
+    String passwordFile = domain.getPasswordFile();
+
+    if (domain.getAddPermissions()){
+      command += " --add-permissions";
+    }
+
+    if (!configFile.isEmpty()){
+      command += " --config-file=" + configFile;
+    }
+
+    if (!ldapServers.isEmpty()){
+      command += " --ldap-servers=" + ldapServers;
+    }
+
+    if (domain.getResolveKdc()){
+      command += "--resolve-kdc";
+    }
+
+    if (!passwordFile.isEmpty()){
+      command += " --password-file=" + passwordFile;
+    }
+
+    return command;
+
   }
 
 	private String executeCommand(String command) {

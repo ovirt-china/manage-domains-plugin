@@ -1,5 +1,7 @@
 package org.ovirtChina.enginePlugin.engineManageDomains.model;
 
+import java.io.File;
+
 public class Domain2Add {
 
   /*
@@ -52,7 +54,7 @@ public class Domain2Add {
     this.addPermissions = addPermissions;
     this.resolveKdc = resolveKdc;
 
-    if (testOptionalField("ConfigFile", configFile, allowedPathPattern)){
+    if (testFile("ConfigFile", configFile)){
       this.configFile = configFile;
     }
 
@@ -60,12 +62,16 @@ public class Domain2Add {
       this.ldapServers = ldapServers;
     }
 
-    if (testRequieredField("PasswordFile", passwordFile, allowedPathPattern)){
-    // PasswordFile is a requiered field as it not possible to use password yet.
-    //if (testOptionalField("PasswordFile", passwordFile, allowedPathPattern)){
-      this.passwordFile = passwordFile;
+    // Because the normal password is still not allowed, the user must use the password file.
+    if (passwordFile != null || !passwordFile.isEmpty()) {
+      if (testFile("PasswordFile", passwordFile)){
+      // PasswordFile is a requiered field as it not possible to use password yet.
+        this.passwordFile = passwordFile;
+      }
+    } else {
+            requestErrors += " - PasswordFile can't be empty." + newline;
+      requestCorrect = false;
     }
-
   }
 
   /**
@@ -73,7 +79,7 @@ public class Domain2Add {
   */
   private boolean testRequieredField(String fieldName, String field, String pattern){
     // First, test if the field is empty or null
-    if (provider = null || provider.isEmpty()){
+    if (provider == null || provider.isEmpty()){
       requestErrors += " - " + fieldName + " can't be empty." + newline;
       requestCorrect = false;
       return false;
@@ -81,7 +87,7 @@ public class Domain2Add {
       if (field.matches(pattern)){
         return true;
       } else {
-        requestErrors += " - " + field + " is not a valid " + fieldName.lowerCase() + "." + newline;
+        requestErrors += " - " + field + " is not a valid " + fieldName.toLowerCase() + "." + newline;
         requestCorrect = false;
         return false;
       }
@@ -94,15 +100,34 @@ public class Domain2Add {
   private boolean testOptionalField(String fieldName, String field, String pattern){
     // First, test if the field is empty or null
     // because it is optional nothing doesn't mean false
-    if (provider = null || provider.isEmpty()){
+    if (provider == null || provider.isEmpty()){
       return true;
     } else {
       if (field.matches(pattern)){
         return true;
       } else {
-        requestErrors += " - " + field + " is not a valid " + fieldName.lowerCase() + "." + newline;
+        requestErrors += " - " + field + " is not a valid " + fieldName.toLowerCase() + "." + newline;
         requestCorrect = false;
         return false;
+      }
+    }
+  }
+
+  private boolean testFile(String fileName, String path){
+    if (path == null || path.isEmpty()){
+      return true;
+
+    } else {
+      File file = new File(path);
+
+      if(file.isFile()){
+        return true;
+
+      } else {
+        requestErrors += " - " + path + " is not a valid path for the " + fileName.toLowerCase() + "." + newline;
+        requestCorrect = false;
+        return false;
+
       }
     }
   }
@@ -110,14 +135,14 @@ public class Domain2Add {
   /**
   * Return is all the
   */
-  public boolean isRequestCorrect (){
+  public boolean isRequestCorrect(){
     return requestCorrect;
   }
 
   /**
   * TODO
   */
-  public String getRequestErrors (){
+  public String getRequestErrors(){
     return requestErrors;
   }
 
@@ -133,19 +158,19 @@ public class Domain2Add {
   public String getUser() {
     return user;
   }
-  public Boolean getAddPermissions() {
+  public boolean getAddPermissions() {
     return addPermissions;
   }
-  public String configFile() {
+  public String getConfigFile() {
     return configFile;
   }
-  public String ldapServers() {
+  public String getLdapServers() {
     return ldapServers;
   }
-  public Boolean resolveKdc() {
+  public boolean getResolveKdc() {
     return resolveKdc;
   }
-  public String passwordFile() {
+  public String getPasswordFile() {
     return passwordFile;
   }
 

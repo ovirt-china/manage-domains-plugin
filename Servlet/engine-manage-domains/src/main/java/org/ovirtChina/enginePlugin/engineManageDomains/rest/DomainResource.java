@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 
 
 import org.ovirtChina.enginePlugin.engineManageDomains.model.Domain;
+import org.ovirtChina.enginePlugin.engineManageDomains.model.Domain2Add;
 import org.ovirtChina.enginePlugin.engineManageDomains.model.EditRequest;
 import org.ovirtChina.enginePlugin.engineManageDomains.process.CommandExecuter;
 
@@ -56,15 +57,15 @@ public class DomainResource {
   @PUT
   @Path("/add")
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response addDomain( Domain domain ) {
+  public Response addDomain( Domain2Add domain) {
 
-    // CommandExecuter cmdExec = new CommandExecuter();
+    CommandExecuter cmdExec = new CommandExecuter();
+
+    return cmdExec.add(domain);
+
+    // String output = domain.toString();
     //
-    // return cmdExec.add();
-
-    String output = domain.toString();
-
-    return Response.status(200).entity(output).build();
+    // return Response.status(200).entity(output).build();
   }
 
   @PUT
