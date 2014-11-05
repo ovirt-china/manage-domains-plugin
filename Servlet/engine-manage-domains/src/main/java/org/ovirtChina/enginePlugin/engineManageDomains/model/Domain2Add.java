@@ -2,7 +2,8 @@ package org.ovirtChina.enginePlugin.engineManageDomains.model;
 
 public class Domain2Add {
 
-  /** engine-manage-domains add
+  /*
+  * engine-manage-domains add
   * --domain=DOMAIN
   * --provider=PROVIDER
   * --user=USER
@@ -13,56 +14,116 @@ public class Domain2Add {
   * [--password-file=PASS_FILE]
   */
   private String domain;
-  private String provider;
   private String user;
-  private Boolean addPermissions = null;
-  private String configFile = null;
-  private String ldapServers = null;
-  private Boolean resolveKdc = null;
-  private String passwordFile = null;
+  private String provider;
+  private boolean addPermissions = false;
+  private String configFile = "";
+  private String ldapServers = "";
+  private boolean resolveKdc = false;
+  private String passwordFile = "";
 
-  private String allowedProviderPattern = "\\A(ad|ipa|rhds|itds|olap)\\Z";
+  private final String allowedDomainPattern = "";
+  private final String allowedUserPattern = "";
+  private final String allowedProviderPattern = "\\A(ad|ipa|rhds|itds|olap)\\Z";
+  private final String allowedPathPattern = "";
+  private final String allowedLdapServersPattern = "";
 
-  public Domain2Add(String domain, String user){
-    // TODO verify that the entry are not arming the server.
-    this.domain=domain;
-    this.user=user;
+  private boolean requestCorrect = true;
+  private String requestErrors = "";
+
+  private String newline;
+
+  public Domain2Add(String domain, String provider, String user, boolean addPermissions, String configFile, String ldapServers, boolean resolveKdc, String passwordFile){
+
+    newline = System.getProperty("line.separator");
+
+    if (testRequieredField("Domain", domain, allowedDomainPattern)){
+      this.domain = domain;
+    }
+
+    if (testRequieredField("Provider", provider, allowedProviderPattern)){
+      this.provider = provider;
+    }
+
+    if (testRequieredField("User", user, allowedUserPattern)){
+      this.user = user;
+    }
+
+    this.addPermissions = addPermissions;
+    this.resolveKdc = resolveKdc;
+
+    if (testOptionalField("ConfigFile", configFile, allowedPathPattern)){
+      this.configFile = configFile;
+    }
+
+    if (testOptionalField("LdapServers", ldapServers, allowedLdapServersPattern)){
+      this.ldapServers = ldapServers;
+    }
+
+    if (testRequieredField("PasswordFile", passwordFile, allowedPathPattern)){
+    // PasswordFile is a requiered field as it not possible to use password yet.
+    //if (testOptionalField("PasswordFile", passwordFile, allowedPathPattern)){
+      this.passwordFile = passwordFile;
+    }
+
   }
 
-  public boolean setProvider(String provider) {
-    // If the provider is one of the allowed provider set it and return true.
-    if (provider.matches(allowedProviderPattern)){
-      this.provider = provider;
-      return true;
-
-    // Otherwise do nothing and return false.
-    }else{
+  /**
+  * Returns the result of the test proceeded on the field.
+  */
+  private boolean testRequieredField(String fieldName, String field, String pattern){
+    // First, test if the field is empty or null
+    if (provider = null || provider.isEmpty()){
+      requestErrors += " - " + fieldName + " can't be empty." + newline;
+      requestCorrect = false;
       return false;
+    } else {
+      if (field.matches(pattern)){
+        return true;
+      } else {
+        requestErrors += " - " + field + " is not a valid " + fieldName.lowerCase() + "." + newline;
+        requestCorrect = false;
+        return false;
+      }
     }
   }
-  public void setAddPermissions(boolean addPermissions) {
-    this.addPermissions = addPermissions;
-  }
-  public boolean setConfigFile(String configFile) {
-    //TODO test if the path is a good path (return false otherwise)
-    this.configFile = configFile;
-    return true;
-  }
-  public boolean setLdapServers(String ldapServers) {
-    //TODO test if the list is properly formatted (return false otherwise)
-    this.ldapServers = ldapServers;
-    return true;
-  }
-  public void setResolveKdc(boolean resolveKdc) {
-    this.resolveKdc = resolveKdc;
-  }
-  public boolean setPasswordFile(String passwordFile) {
-    //TODO test if the path is a good path (return false otherwise)
-    this.passwordFile = passwordFile;
-    return true;
+
+  /**
+  * Returns the result of the test proceeded on the field.
+  */
+  private boolean testOptionalField(String fieldName, String field, String pattern){
+    // First, test if the field is empty or null
+    // because it is optional nothing doesn't mean false
+    if (provider = null || provider.isEmpty()){
+      return true;
+    } else {
+      if (field.matches(pattern)){
+        return true;
+      } else {
+        requestErrors += " - " + field + " is not a valid " + fieldName.lowerCase() + "." + newline;
+        requestCorrect = false;
+        return false;
+      }
+    }
   }
 
+  /**
+  * Return is all the
+  */
+  public boolean isRequestCorrect (){
+    return requestCorrect;
+  }
 
+  /**
+  * TODO
+  */
+  public String getRequestErrors (){
+    return requestErrors;
+  }
+
+  /*
+  * Basics getters for the variable of the domain to add
+  */
   public String getDomain() {
     return domain;
   }
@@ -87,12 +148,5 @@ public class Domain2Add {
   public String passwordFile() {
     return passwordFile;
   }
-
-  // @Override
-  // public String toString() {
-  //   return new StringBuffer(" Domain : ").append(this.domain)
-  //       .append(" Username : ").append(this.username)
-  //       .append(" Status : ").append(this.status).toString();
-  // }
 
 }
