@@ -30,7 +30,6 @@ public class DomainResource {
   * @return a Response containing a JSON collection of the domains' informations.
   */
   @GET
-  @Path("/list")
   @Produces(MediaType.APPLICATION_JSON)
   public Response printDomain() {
 
@@ -46,8 +45,8 @@ public class DomainResource {
   * @return  an HTTP Status Code accroding to the success or not of the action.
   */
   @DELETE
-  @Path("/{domain}/delete")
-  public Response removeDomain(@PathParam("domain") String domainName) {
+  @Path("/{domainName}")
+  public Response removeDomain(@PathParam("domainName") String domainName) {
 
     CommandExecuter cmdExec = new CommandExecuter();
 
@@ -61,13 +60,19 @@ public class DomainResource {
   * @return  an HTTP Status Code accroding to the success or not of the action and a message.
   */
   @PUT
-  @Path("/add")
+  @Path("/{domainName}")
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response addDomain(DomainRequest domain) {
+  public Response addDomain(@PathParam("domainName") String domainName, DomainRequest domain2add) {
 
-    CommandExecuter cmdExec = new CommandExecuter();
+    CommandExecuter cmdExec = new CommandExecuter();    
 
-    return cmdExec.add(domain);
+    if (domainName.equals(domain2add.getDomain())){
+      return cmdExec.add(domain2add);
+
+    } else {
+      return Response.status(400).entity("The domain in the url and the JSON object are not matching.").build();
+
+    }
   }
 
   /**
@@ -77,9 +82,9 @@ public class DomainResource {
   * @return  an HTTP Status Code accroding to the success or not of the action and a message.
   */
   @PUT
-  @Path("/{domain}/edit")
+  @Path("/{domainName}/edit")
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response editDomain(@PathParam("domain") String domainName, DomainRequest domain2edit) {
+  public Response editDomain(@PathParam("domainName") String domainName, DomainRequest domain2edit) {
 
     CommandExecuter cmdExec = new CommandExecuter();
 
