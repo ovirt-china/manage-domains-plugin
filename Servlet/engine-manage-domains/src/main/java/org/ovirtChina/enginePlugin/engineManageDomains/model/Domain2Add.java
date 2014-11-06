@@ -35,6 +35,17 @@ public class Domain2Add {
 
   private String newline;
 
+  public Domain2Add(){
+    this.domain = "";
+    this.user = "";
+    this.provider = "";
+    this.addPermissions = false;
+    this.configFile = "";
+    this.ldapServers = "";
+    this.resolveKdc = false;
+    this.passwordFile = "";
+  }
+
   public Domain2Add(String domain, String provider, String user, boolean addPermissions, String configFile, String ldapServers, boolean resolveKdc, String passwordFile){
 
     newline = System.getProperty("line.separator");
