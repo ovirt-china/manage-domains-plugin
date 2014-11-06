@@ -24,6 +24,10 @@ public class CommandExecuter {
     //---!DEBUG---
 	}
 
+
+  /**
+  * Execute and return a Response for the command /list
+  */
   public Response list(){
 
     // Execute the command in the linux shell
@@ -55,6 +59,9 @@ public class CommandExecuter {
     }
   }
 
+  /**
+  * Execute and return a Response for the command /delete
+  */
   public Response delete(String domainName){
     //TODO Be sure that the domainName is really a domain name and that it is not going to try to do something else.
     //Remove everything after first espace and look for separator.
@@ -78,6 +85,9 @@ public class CommandExecuter {
     }
   }
 
+  /**
+  * Execute and return a Response for the command /add
+  */
   public Response add(DomainRequest domain){
 
     domain.validate4Add();
@@ -103,6 +113,9 @@ public class CommandExecuter {
     }
   }
 
+  /**
+  * Create the command to add a domain
+  */
   private String createAddCommand(DomainRequest domain){
     String command = "engine-manage-domains add --domain=" + domain.getDomain()
                       + " --provider=" + domain.getProvider()
@@ -137,7 +150,9 @@ public class CommandExecuter {
   }
 
 
-
+  /**
+  * Execute and return a Response for the command /edit
+  */
   public Response edit(DomainRequest domain){
 
     domain.validate4Edit();
@@ -163,6 +178,9 @@ public class CommandExecuter {
     }
   }
 
+  /**
+  * Create the command to edit a domain
+  */
   private String createEditCommand(DomainRequest domain){
     String command = "engine-manage-domains edit --domain=" + domain.getDomain();
 
@@ -204,6 +222,9 @@ public class CommandExecuter {
 
   }
 
+  /**
+  * Execute command
+  */
 	private String executeCommand(String command) {
 
     System.out.println("Executing command: " + command);

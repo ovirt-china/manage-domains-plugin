@@ -70,6 +70,12 @@ public class DomainResource {
     return cmdExec.add(domain);
   }
 
+  /**
+  * Edit a domain according to the information given in the JSON object with the request and the path param
+  *
+  * @param   all the information needed to edit a domain.
+  * @return  an HTTP Status Code accroding to the success or not of the action and a message.
+  */
   @PUT
   @Path("/{domain}/edit")
   @Consumes(MediaType.APPLICATION_JSON)
