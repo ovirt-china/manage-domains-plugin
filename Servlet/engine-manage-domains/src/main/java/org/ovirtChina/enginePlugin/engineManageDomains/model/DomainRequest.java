@@ -2,7 +2,7 @@ package org.ovirtChina.enginePlugin.engineManageDomains.model;
 
 import java.io.File;
 
-public class Domain2Add {
+public class DomainRequest {
 
   /*
   * engine-manage-domains add
@@ -16,8 +16,8 @@ public class Domain2Add {
   * [--password-file=PASS_FILE]
   */
   private String domain;
-  private String user;
-  private String provider;
+  private String user="";
+  private String provider="";
   private boolean addPermissions = false;
   private String configFile = "";
   private String ldapServers = "";
@@ -35,7 +35,8 @@ public class Domain2Add {
 
   private String newline;
 
-  public Domain2Add(){
+  public DomainRequest(){
+    newline = System.getProperty("line.separator");
     this.domain = "";
     this.user = "";
     this.provider = "";
@@ -46,7 +47,10 @@ public class Domain2Add {
     this.passwordFile = "";
   }
 
-  public Domain2Add(String domain, String provider, String user, boolean addPermissions, String configFile, String ldapServers, boolean resolveKdc, String passwordFile){
+  /**
+  * Constructor use to add a domain
+  */
+  public DomainRequest(String domain, String provider, String user, boolean addPermissions, String configFile, String ldapServers, boolean resolveKdc, String passwordFile){
 
     newline = System.getProperty("line.separator");
 
@@ -59,6 +63,44 @@ public class Domain2Add {
     }
 
     if (testRequieredField("User", user, allowedUserPattern)){
+      this.user = user;
+    }
+
+    this.addPermissions = addPermissions;
+    this.resolveKdc = resolveKdc;
+
+    if (testFile("ConfigFile", configFile)){
+      this.configFile = configFile;
+    }
+
+    if (testOptionalField("LdapServers", ldapServers, allowedLdapServersPattern)){
+      this.ldapServers = ldapServers;
+    }
+
+    // Because the normal password is still not allowed, the user must use the password file.
+    if (passwordFile != null || !passwordFile.isEmpty()) {
+      if (testFile("PasswordFile", passwordFile)){
+      // PasswordFile is a requiered field as it not possible to use password yet.
+        this.passwordFile = passwordFile;
+      }
+    } else {
+            requestErrors += " - PasswordFile can't be empty." + newline;
+      requestCorrect = false;
+    }
+  }
+
+  /**
+  * Constructor used to Edit a domain
+  */
+  public DomainRequest(String provider, String user, boolean addPermissions, String configFile, String ldapServers, boolean resolveKdc, String passwordFile){
+
+    newline = System.getProperty("line.separator");
+
+    if (testOptionalField("Provider", provider, allowedProviderPattern)){
+      this.provider = provider;
+    }
+
+    if (testOptionalField("User", user, allowedUserPattern)){
       this.user = user;
     }
 
@@ -155,6 +197,12 @@ public class Domain2Add {
   */
   public String getRequestErrors(){
     return requestErrors;
+  }
+
+  public void setDomain(String domainName) {
+    if (testRequieredField("Domain", domain, allowedDomainPattern)){
+      this.domain = domainName;
+    }
   }
 
   /*

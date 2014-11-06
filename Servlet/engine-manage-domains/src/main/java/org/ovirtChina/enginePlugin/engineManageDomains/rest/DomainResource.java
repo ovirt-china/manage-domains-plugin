@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 
 
 import org.ovirtChina.enginePlugin.engineManageDomains.model.Domain;
-import org.ovirtChina.enginePlugin.engineManageDomains.model.Domain2Add;
+import org.ovirtChina.enginePlugin.engineManageDomains.model.DomainRequest;
 import org.ovirtChina.enginePlugin.engineManageDomains.model.EditRequest;
 import org.ovirtChina.enginePlugin.engineManageDomains.process.CommandExecuter;
 
@@ -63,7 +63,7 @@ public class DomainResource {
   @PUT
   @Path("/add")
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response addDomain( Domain2Add domain) {
+  public Response addDomain( DomainRequest domain) {
 
     CommandExecuter cmdExec = new CommandExecuter();
 
@@ -73,22 +73,27 @@ public class DomainResource {
   @PUT
   @Path("/{domain}/edit")
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response editDomain(@PathParam("domain") String domain, EditRequest editRequest) {
+  public Response editDomain(@PathParam("domain") String domainName, DomainRequest domain2edit) {
 
-    //Test purpose
-    String testName = "domain_test";
+    CommandExecuter cmdExec = new CommandExecuter();
 
-    if(domain.equals(testName)){
+    return cmdExec.edit(domainName, domain2edit);
 
-      String output = editRequest.toString();;
 
-      return Response.status(200).entity(output).build();
-
-    }else{
-
-      String output = "Impossible to edit the domain " + domain + ". This domain doesn't exist.";
-
-      return Response.status(404).entity(output).build();
-    }
+    // //Test purpose
+    // String testName = "domain_test";
+    //
+    // if(domain.equals(testName)){
+    //
+    //   String output = editRequest.toString();;
+    //
+    //   return Response.status(200).entity(output).build();
+    //
+    // }else{
+    //
+    //   String output = "Impossible to edit the domain " + domain + ". This domain doesn't exist.";
+    //
+    //   return Response.status(404).entity(output).build();
+    // }
   }
 }

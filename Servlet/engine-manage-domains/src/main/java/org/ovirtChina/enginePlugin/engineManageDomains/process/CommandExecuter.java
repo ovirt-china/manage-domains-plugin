@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import javax.ws.rs.core.Response;
 
 import org.ovirtChina.enginePlugin.engineManageDomains.model.Domain;
-import org.ovirtChina.enginePlugin.engineManageDomains.model.Domain2Add;
+import org.ovirtChina.enginePlugin.engineManageDomains.model.DomainRequest;
 import org.ovirtChina.enginePlugin.engineManageDomains.process.List2Domain;
 
 public class CommandExecuter {
@@ -78,7 +78,7 @@ public class CommandExecuter {
     }
   }
 
-  public Response add(Domain2Add domain){
+  public Response add(DomainRequest domain){
 
     if (domain.isRequestCorrect()){
       String command = createAddCommand(domain);
@@ -101,7 +101,7 @@ public class CommandExecuter {
     }
   }
 
-  private String createAddCommand(Domain2Add domain){
+  private String createAddCommand(DomainRequest domain){
     String command = "engine-manage-domains add --domain=" + domain.getDomain()
                       + " --provider=" + domain.getProvider()
                       + " --user=" + domain.getUser();
@@ -134,7 +134,77 @@ public class CommandExecuter {
 
   }
 
+
+
+  public Response edit(String domainNameReq, DomainRequest domain){
+
+    domain.setDomain(domainNameReq);
+
+    if (domain.isRequestCorrect()){
+      String command = createEditCommand(domain);
+      String output = executeCommand(command);
+
+      String domainName = domain.getDomain();
+
+      //If the addition is successful
+      if (output.contains(successSentence)){
+        String outputSuccess = "The domain " + domainName + " has been edit successfully.";
+
+        return Response.status(201).entity(outputSuccess).build();
+
+      } else {
+        return Response.status(500).entity(output).build();
+
+      }
+    } else {
+      return Response.status(400).entity(domain.getRequestErrors()).build();
+    }
+  }
+
+  private String createEditCommand(DomainRequest domain){
+    String command = "engine-manage-domains edit --domain=" + domain.getDomain();
+
+    String provider = domain.getProvider();
+    String user = domain.getUser();
+    String configFile = domain.getConfigFile();
+    String ldapServers = domain.getLdapServers();
+    String passwordFile = domain.getPasswordFile();
+
+    if (!provider.isEmpty()){
+      command += " --provider=" + provider;
+    }
+
+    if (!user.isEmpty()){
+      command += " --user=" + user;
+    }
+
+    if (domain.getAddPermissions()){
+      command += " --add-permissions";
+    }
+
+    if (!configFile.isEmpty()){
+      command += " --config-file=" + configFile;
+    }
+
+    if (!ldapServers.isEmpty()){
+      command += " --ldap-servers=" + ldapServers;
+    }
+
+    if (domain.getResolveKdc()){
+      command += "--resolve-kdc";
+    }
+
+    if (!passwordFile.isEmpty()){
+      command += " --password-file=" + passwordFile;
+    }
+
+    return command;
+
+  }
+
 	private String executeCommand(String command) {
+
+    System.out.println("Executing command: " + command);
 
 		StringBuffer output = new StringBuffer();
 
