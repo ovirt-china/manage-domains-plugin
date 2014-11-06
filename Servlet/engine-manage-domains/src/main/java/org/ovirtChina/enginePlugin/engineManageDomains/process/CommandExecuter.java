@@ -80,6 +80,8 @@ public class CommandExecuter {
 
   public Response add(DomainRequest domain){
 
+    domain.validate4Add();
+
     if (domain.isRequestCorrect()){
       String command = createAddCommand(domain);
       String output = executeCommand(command);
@@ -136,9 +138,9 @@ public class CommandExecuter {
 
 
 
-  public Response edit(String domainNameReq, DomainRequest domain){
+  public Response edit(DomainRequest domain){
 
-    domain.setDomain(domainNameReq);
+    domain.validate4Edit();
 
     if (domain.isRequestCorrect()){
       String command = createEditCommand(domain);

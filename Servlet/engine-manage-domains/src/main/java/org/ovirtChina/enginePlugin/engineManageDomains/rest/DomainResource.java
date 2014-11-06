@@ -63,7 +63,7 @@ public class DomainResource {
   @PUT
   @Path("/add")
   @Consumes(MediaType.APPLICATION_JSON)
-  public Response addDomain( DomainRequest domain) {
+  public Response addDomain(DomainRequest domain) {
 
     CommandExecuter cmdExec = new CommandExecuter();
 
@@ -77,23 +77,12 @@ public class DomainResource {
 
     CommandExecuter cmdExec = new CommandExecuter();
 
-    return cmdExec.edit(domainName, domain2edit);
+    if (domainName.equals(domain2edit.getDomain())){
+      return cmdExec.edit(domain2edit);
 
+    } else {
+      return Response.status(400).entity("The domain in the url and the JSON object are not matching.").build();
 
-    // //Test purpose
-    // String testName = "domain_test";
-    //
-    // if(domain.equals(testName)){
-    //
-    //   String output = editRequest.toString();;
-    //
-    //   return Response.status(200).entity(output).build();
-    //
-    // }else{
-    //
-    //   String output = "Impossible to edit the domain " + domain + ". This domain doesn't exist.";
-    //
-    //   return Response.status(404).entity(output).build();
-    // }
+    }
   }
 }

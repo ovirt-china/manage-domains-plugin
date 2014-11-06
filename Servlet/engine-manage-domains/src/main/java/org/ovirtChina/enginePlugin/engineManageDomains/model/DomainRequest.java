@@ -24,11 +24,11 @@ public class DomainRequest {
   private boolean resolveKdc = false;
   private String passwordFile = "";
 
-  private final String allowedDomainPattern = "";
-  private final String allowedUserPattern = "";
+  private final String allowedDomainPattern = "^.*$";
+  private final String allowedUserPattern = "^.*$";
   private final String allowedProviderPattern = "\\A(ad|ipa|rhds|itds|olap)\\Z";
-  private final String allowedPathPattern = "";
-  private final String allowedLdapServersPattern = "";
+  private final String allowedPathPattern = "^.*$";
+  private final String allowedLdapServersPattern = "^.*$";
 
   private boolean requestCorrect = true;
   private String requestErrors = "";
@@ -36,6 +36,7 @@ public class DomainRequest {
   private String newline;
 
   public DomainRequest(){
+    System.out.println("Default Constructor used.");
     newline = System.getProperty("line.separator");
     this.domain = "";
     this.user = "";
@@ -47,24 +48,18 @@ public class DomainRequest {
     this.passwordFile = "";
   }
 
-  /**
-  * Constructor use to add a domain
-  */
   public DomainRequest(String domain, String provider, String user, boolean addPermissions, String configFile, String ldapServers, boolean resolveKdc, String passwordFile){
 
     newline = System.getProperty("line.separator");
+
+    System.out.println("The domain is : " + domain);
 
     if (testRequieredField("Domain", domain, allowedDomainPattern)){
       this.domain = domain;
     }
 
-    if (testRequieredField("Provider", provider, allowedProviderPattern)){
-      this.provider = provider;
-    }
-
-    if (testRequieredField("User", user, allowedUserPattern)){
-      this.user = user;
-    }
+    this.provider = provider;
+    this.user = user;
 
     this.addPermissions = addPermissions;
     this.resolveKdc = resolveKdc;
@@ -89,41 +84,31 @@ public class DomainRequest {
     }
   }
 
-  /**
-  * Constructor used to Edit a domain
-  */
-  public DomainRequest(String provider, String user, boolean addPermissions, String configFile, String ldapServers, boolean resolveKdc, String passwordFile){
+  public void validate4Add(){
 
-    newline = System.getProperty("line.separator");
+    boolean isProviderCorrect = testRequieredField("Provider", provider, allowedProviderPattern);
+    boolean isUserCorrect = testRequieredField("User", user, allowedUserPattern);
 
-    if (testOptionalField("Provider", provider, allowedProviderPattern)){
-      this.provider = provider;
+    if (!isProviderCorrect){
+      this.provider = "";
     }
 
-    if (testOptionalField("User", user, allowedUserPattern)){
-      this.user = user;
+    if (!isUserCorrect){
+      this.user = "";
+    }
+  }
+
+  public void validate4Edit(){
+
+    boolean isProviderCorrect = testOptionalField("Provider", provider, allowedProviderPattern);
+    boolean isUserCorrect = testOptionalField("User", user, allowedUserPattern);
+
+    if (!isProviderCorrect){
+      this.provider = "";
     }
 
-    this.addPermissions = addPermissions;
-    this.resolveKdc = resolveKdc;
-
-    if (testFile("ConfigFile", configFile)){
-      this.configFile = configFile;
-    }
-
-    if (testOptionalField("LdapServers", ldapServers, allowedLdapServersPattern)){
-      this.ldapServers = ldapServers;
-    }
-
-    // Because the normal password is still not allowed, the user must use the password file.
-    if (passwordFile != null || !passwordFile.isEmpty()) {
-      if (testFile("PasswordFile", passwordFile)){
-      // PasswordFile is a requiered field as it not possible to use password yet.
-        this.passwordFile = passwordFile;
-      }
-    } else {
-            requestErrors += " - PasswordFile can't be empty." + newline;
-      requestCorrect = false;
+    if (!isUserCorrect){
+      this.user = "";
     }
   }
 
@@ -132,7 +117,7 @@ public class DomainRequest {
   */
   private boolean testRequieredField(String fieldName, String field, String pattern){
     // First, test if the field is empty or null
-    if (provider == null || provider.isEmpty()){
+    if (field == null || field.isEmpty()){
       requestErrors += " - " + fieldName + " can't be empty." + newline;
       requestCorrect = false;
       return false;
@@ -153,7 +138,7 @@ public class DomainRequest {
   private boolean testOptionalField(String fieldName, String field, String pattern){
     // First, test if the field is empty or null
     // because it is optional nothing doesn't mean false
-    if (provider == null || provider.isEmpty()){
+    if (field == null || field.isEmpty()){
       return true;
     } else {
       if (field.matches(pattern)){
@@ -199,11 +184,11 @@ public class DomainRequest {
     return requestErrors;
   }
 
-  public void setDomain(String domainName) {
-    if (testRequieredField("Domain", domain, allowedDomainPattern)){
-      this.domain = domainName;
-    }
-  }
+  // public void setDomain(String domainName) {
+  //   if (testRequieredField("Domain", domain, allowedDomainPattern)){
+  //     this.domain = domainName;
+  //   }
+  // }
 
   /*
   * Basics getters for the variable of the domain to add
