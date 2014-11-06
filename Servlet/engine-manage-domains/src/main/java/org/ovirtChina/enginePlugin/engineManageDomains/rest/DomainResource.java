@@ -54,6 +54,12 @@ public class DomainResource {
     return cmdExec.delete(domainName);
   }
 
+  /**
+  * Add a domain according to the information given in the JSON object with the request.
+  *
+  * @param   all the information needed to add a domain.
+  * @return  an HTTP Status Code accroding to the success or not of the action and a message.
+  */
   @PUT
   @Path("/add")
   @Consumes(MediaType.APPLICATION_JSON)
@@ -62,10 +68,6 @@ public class DomainResource {
     CommandExecuter cmdExec = new CommandExecuter();
 
     return cmdExec.add(domain);
-
-    // String output = domain.toString();
-    //
-    // return Response.status(200).entity(output).build();
   }
 
   @PUT
