@@ -24,7 +24,7 @@
 
   }]);
 
-  app.factory('RefreshController', ['$scope', 'request', function($scope, request){
+  app.factory('RefreshManager', ['$scope', 'request', function($scope, request){
     return {
       getDomains: function(){
         var listDomains = request.list();
