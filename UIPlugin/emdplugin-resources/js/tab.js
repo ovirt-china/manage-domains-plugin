@@ -25,7 +25,7 @@
   }]);
 
   app.factory('RefreshController', ['$scope', 'request', function($scope, request){
-    retunr {
+    return {
       getDomains: function(){
         var listDomains = request.list();
         console.info('Response from the Servlet about the /list/ request: ' + listDomains);
