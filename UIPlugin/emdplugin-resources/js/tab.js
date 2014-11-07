@@ -2,7 +2,7 @@
 
 (function() {
 
-  var app = angular.module('plugin.tab', ['plugin.common']);
+  var app = angular.module('plugin.tab', ['plugin.common', 'plugin.ajax']);
 
    app.run(function() {
     // Nothing here for the moment but the time to get the list of servers will come sooner or later.
@@ -22,6 +22,15 @@
         }
     ];
 
+  }]);
+
+  app.factory('RefreshController', ['$scope', 'request' function($scope, request){
+    retunr {
+      getDomains: function(){
+        var listDomains = request.list();
+        console.info('Response from the Servlet about the /list/ request: ' + listDomains);
+      }
+    };
   }]);
 
   // Redefine MessageUtil specially for the main tab
@@ -133,7 +142,7 @@
    }]);
 
    // Controller to provide the functions to open the dialogs
-   app.controller('dialogController', ['$scope', 'dialogManager', function ($scope, dialogManager){
+   app.controller('menuController', ['$scope', 'dialogManager', 'RefreshManager' function ($scope, dialogManager, refreshManager){
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
       };
@@ -145,6 +154,10 @@
       $scope.openRemoveDialog = function(domain) {
          dialogManager.showRemoveDialog(domain);
       };
+
+      $scope.refreshTable = function() {
+        refreshManager.getDomains();
+      }
    }]);
 
 })();
