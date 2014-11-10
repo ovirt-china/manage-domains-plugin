@@ -156,7 +156,7 @@
       };
 
       $scope.isAnimated = false;
-      $scope.isDisabled = true;
+      $scope.isDisabled = false;
 
       $scope.refreshTable = function() {
         refreshManager.getDomains();
@@ -164,7 +164,7 @@
       };
 
       $scope.refreshWaiting = function(){
-        $scope.isAnimated = true;
+        $scope.isAnimated = false;
         $scope.isDisabled = false;
       }
 
