@@ -67,25 +67,27 @@
    app.factory('messageUtil', ['$window', 'pluginName', function ($window, pluginName) {
       return {
          sendMessageToParent: function (message) {
-            var data = {
+            var data2send = {
                sender: pluginName,
                source: message.source,
                action: message.action,
-               target: message.target
+               target: message.target,
+               data: message.data
             };
 
-            $window.parent.postMessage(JSON.stringify(data), '*');
+            $window.parent.postMessage(JSON.stringify(data2send), '*');
 
             console.info('--Message Sent--' + '\n'
                           + '   From: ' + pluginName + ' > ' + message.source + '\n'
                           + '   To: WebAdmin' + '\n'
                           + '   Action: ' + message.action + '\n'
-                          + '   Target: ' + message.target );
+                          + '   Target: ' + message.target + '\n'
+                          + '   Data: ' + message.data);
          }
       };
    }]);
 
-   
+
    // Factory to simplify the action to send a message
    app.factory('messager', ['messageUtil', function(messageUtil){
      return {
@@ -93,10 +95,21 @@
          var message = {
             source: source,
             action: action,
-            target: target
+            target: target,
+            data: null
          };
 
          messageUtil.sendMessageToParent(message);
+       },
+       sendDataMessage: function(source, action, target, data){
+        var message = {
+           source: source,
+           action: action,
+           target: target,
+           data: data
+        };
+
+        messageUtil.sendMessageToParent(message);
        }
      };
    }]);
