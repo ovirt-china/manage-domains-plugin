@@ -15,7 +15,7 @@
             url: URL + '/domains/'
 
         }).success(function(data, status) {
-            return data;
+            return JSON.stringify(data);
         });
       }
     };
