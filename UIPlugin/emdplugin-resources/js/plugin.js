@@ -78,15 +78,13 @@
                     break;
 
                   case ('updateTableFailed'):
-
-
                     var menuContainer = sourceWindow.angular.element("#menu");
-                    console.log('var menuContainer = menuDialog.angular.element("#menu"); --> OK');
                     var menuScope = menuContainer.scope();
-                    console.log('var menuScope = menuContainer.scope(); --> OK');
 
-                    // Trigger the function in the Dialog
+                    // Change the state of the refreshing button
                     menuScope.reqRefreshisOver();
+                    // Trigger the message to notify it failed.
+
                     break;
 
                   default:
