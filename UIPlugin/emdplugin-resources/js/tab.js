@@ -163,6 +163,7 @@
       };
 
       $scope.reqRefreshisOver = function() {
+        console.log('Refreshing is over, time re-enable the button.');
         $scope.isAnimated = false;
       }
 
