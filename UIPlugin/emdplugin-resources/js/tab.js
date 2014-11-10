@@ -162,6 +162,10 @@
         $scope.isAnimated = true;
       };
 
+      $scope.reqRefreshisOver = function() {
+        $scope.isAnimated = false;
+      }
+
 
    }]);
 

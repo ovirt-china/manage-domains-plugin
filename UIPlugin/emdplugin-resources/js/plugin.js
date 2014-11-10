@@ -86,7 +86,7 @@
                     console.log('var menuScope = menuContainer.scope(); --> OK');
 
                     // Trigger the function in the Dialog
-                    menuScope.isAnimated = false;
+                    menuScope.reqRefreshisOver();
                     break;
 
                   default:
