@@ -78,7 +78,9 @@
                     break;
 
                   case ('updateTableFailed'):
-                    var menuContainer = sourceWindow.angular.element("#menu");
+
+                    var menuContainer = angular.element(sourceWindow.querySelector('#menu'))
+                    // var menuContainer = sourceWindow.angular.element("#menu");
                     console.log('var menuContainer = menuDialog.angular.element("#menu"); --> OK');
                     var menuScope = menuContainer.scope();
                     console.log('var menuScope = menuContainer.scope(); --> OK');
