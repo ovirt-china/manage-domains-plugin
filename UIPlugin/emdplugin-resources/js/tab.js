@@ -156,11 +156,17 @@
       };
 
       $scope.isAnimated = false;
+      $scope.isDisabled = true;
 
       $scope.refreshTable = function() {
         refreshManager.getDomains();
-        $scope.isAnimated = true;
+        $scope.refreshWaiting();
       };
+
+      $scope.refreshWaiting = function(){
+        $scope.isAnimated = true;
+        $scope.isDisabled = false;
+      }
 
 
    }]);
