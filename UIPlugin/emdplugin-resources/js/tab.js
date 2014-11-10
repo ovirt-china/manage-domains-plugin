@@ -27,8 +27,8 @@
   app.factory('RefreshManager', ['request', function(request){
     return {
       getDomains: function(){
-        var listDomains = request.list();
-        console.info('Response from the Servlet about the /list/ request: ' + listDomains);
+        request.list();
+
       }
     };
   }]);
@@ -155,9 +155,14 @@
          dialogManager.showRemoveDialog(domain);
       };
 
+      $scope.isAnimated = false;
+
       $scope.refreshTable = function() {
         refreshManager.getDomains();
-      }
+        $scope.isAnimated = true;
+      };
+
+
    }]);
 
 })();
