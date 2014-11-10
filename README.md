@@ -1,5 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/eayun/UIPlugin-Engine-Manage-Domains.png?label=ready&title=Ready)](https://waffle.io/eayun/UIPlugin-Engine-Manage-Domains)
-Description
+Description [![Stories in Ready](https://badge.waffle.io/eayun/UIPlugin-Engine-Manage-Domains.png?label=ready&title=Ready)](https://waffle.io/eayun/UIPlugin-Engine-Manage-Domains)
 =============================
 
 **[WORK IN PROGRESS] See the [Roadmap](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Roadmap) for more informations.**
