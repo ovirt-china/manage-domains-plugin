@@ -79,8 +79,11 @@
 
                   case ('updateTableFailed'):
                     var menuDialog = sourceWindow.get();
+                    console.log('var menuDialog = sourceWindow.get(); --> OK');
                     var menuContainer = menuDialog.angular.element("#menu");
+                    console.log('var menuContainer = menuDialog.angular.element("#menu"); --> OK');
                     var menuScope = menuContainer.scope();
+                    console.log('var menuScope = menuContainer.scope(); --> OK');
 
                     // Trigger the function in the Dialog
                     menuScope.isAnimated = false;
