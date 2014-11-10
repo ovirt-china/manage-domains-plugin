@@ -78,6 +78,7 @@
                     break;
 
                   case ('updateTableFailed'):
+                    console.log('sourceWindow = ' + sourceWindow);
                     var menuDialog = sourceWindow.get();
                     console.log('var menuDialog = sourceWindow.get(); --> OK');
                     var menuContainer = menuDialog.angular.element("#menu");
