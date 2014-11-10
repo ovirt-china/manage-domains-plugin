@@ -8,7 +8,7 @@
   app.value('URL', 'https://192.168.3.237:8080/engineManageDomains');
   app.value('sourceName', 'API Controller');
 
-  app.factory('request',['$http', 'URL', 'sourceName', 'messager' function($http, URL, sourceName, messager){
+  app.factory('request',['$http', 'URL', 'sourceName', 'messager', function($http, URL, sourceName, messager){
     return {
       list: function(){
         var httpRequest = $http({
