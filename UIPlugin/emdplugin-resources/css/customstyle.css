@@ -78,10 +78,10 @@ a.collapse-button:hover {
 /*--------------------Animation Refresh Button--------------------*/
 
 .icon-refresh-animate {
-  animation-name: rotateThis;
-  animation-duration: .5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+  -moz-animation-name: rotateThis;
+  -moz-animation-duration: .5s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
 
   -webkit-animation-name: rotateThis;
   -webkit-animation-duration: .5s;
@@ -89,7 +89,12 @@ a.collapse-button:hover {
   -webkit-animation-timing-function: linear;
 }
 
-@keyframes rotateThis {
+@-moz-keyframes rotateThis {
+  from { transform: scale( 1 ) rotate( 0deg );   }
+  to   { transform: scale( 1 ) rotate( 360deg ); }
+}
+
+@-webkit-keyframes rotateThis {
   from { transform: scale( 1 ) rotate( 0deg );   }
   to   { transform: scale( 1 ) rotate( 360deg ); }
 }
