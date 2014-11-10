@@ -77,6 +77,15 @@
                     console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Closed dialog [' + data.target + '].');
                     break;
 
+                  case ('updateTableFailed'):
+                    var menuDialog = contentWindow.get();
+                    var menuContainer = menuDialog.angular.element("#menu");
+                    var menuScope = menuContainer.scope();
+
+                    // Trigger the function in the Dialog
+                    menuScope.isAnimated = false;
+                    break;
+
                   default:
                     console.warn('EMDPlugin just receive a message with an undefined action: ' + data.action);
                 }
