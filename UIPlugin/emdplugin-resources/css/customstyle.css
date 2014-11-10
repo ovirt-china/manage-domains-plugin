@@ -82,6 +82,11 @@ a.collapse-button:hover {
   animation-duration: .5s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+
+  -webkit-animation-name: rotateThis;
+  -webkit-animation-duration: .5s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
 }
 
 @keyframes rotateThis {
