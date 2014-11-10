@@ -18,6 +18,10 @@
             console.log(data);
             console.log(status);
             return JSON.stringify(data);
+        }).error(function(data, status, headers, config) {
+            console.log(data);
+            console.log(status);
+            return 'Failed !!!';
         });
       }
     };
