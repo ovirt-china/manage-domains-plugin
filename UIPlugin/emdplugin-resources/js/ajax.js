@@ -15,10 +15,12 @@
             url: URL + '/domains/'
 
         }).success(function(data, status) {
+            console.info('List request was successful.');
             console.log(data);
             console.log(status);
             return 'I received something';
         }).error(function(data, status, headers, config) {
+            console.info('List request failed.');
             console.log(data);
             console.log(status);
             return 'Failed !!!';
