@@ -159,12 +159,8 @@
 
       $scope.refreshTable = function() {
         refreshManager.getDomains();
-        $scope.refreshWaiting();
-      };
-
-      $scope.refreshWaiting = function(){
         $scope.isAnimated = true;
-      }
+      };
 
 
    }]);
