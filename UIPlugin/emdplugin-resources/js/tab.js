@@ -155,6 +155,7 @@
          dialogManager.showRemoveDialog(domain);
       };
 
+      // This part control the refresh button
       $scope.isAnimated = false;
 
       $scope.refreshTable = function() {
@@ -166,7 +167,6 @@
         $scope.isAnimated = false;
         $scope.$apply();
       }
-
 
    }]);
 
