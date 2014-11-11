@@ -142,7 +142,7 @@
    }]);
 
    // Controller to provide the functions to open the dialogs
-   app.controller('menuController', ['$scope', 'dialogManager', 'RefreshManager', 'animationService', function ($scope, dialogManager, refreshManager, animationState){
+   app.controller('menuController', ['$scope', '$rootScope', 'dialogManager', 'RefreshManager', 'animationService', function ($scope, $rootScope, dialogManager, refreshManager, animationState){
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
       };
@@ -155,20 +155,23 @@
          dialogManager.showRemoveDialog(domain);
       };
 
-      $scope.isAnimated = animationState.get;
+      // $scope.isAnimated = animationState.get;
       // $scope.isAnimated = false;
+      $rootScope.isAnimated = false;
 
       $scope.refreshTable = function() {
         refreshManager.getDomains();
-        animationState.set(true);
+        // animationState.set(true);
         // $scope.isAnimated = true;
+        $rootScope.isAnimated = true;
       };
 
       $scope.reqRefreshisOver = function() {
         console.log('Refreshing is over, time re-enable the button.');
-        animationState.set(false);
-        console.log('animationState.get = ' + animationState.get);
+        // animationState.set(false);
+        // console.log('animationState.get = ' + animationState.get);
         // $scope.isAnimated = false;
+        $rootScope.isAnimated = false;
       }
 
 
