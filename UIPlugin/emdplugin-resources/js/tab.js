@@ -167,6 +167,10 @@
         console.log($scope);
       };
 
+      $scope.setAnimatedState = function(newState) {
+        $scope.isAnimated.state = newState;
+      };
+
       $scope.reqRefreshisOver = function() {
         console.log('Refreshing is over, time re-enable the button.');
         // animationState.set(false);
