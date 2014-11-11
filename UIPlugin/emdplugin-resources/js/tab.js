@@ -155,29 +155,19 @@
          dialogManager.showRemoveDialog(domain);
       };
 
-      // $scope.isAnimated = animationState.get;
-      $scope.isAnimated = {state:false};
-      // $rootScope.isAnimated = false;
+      $scope.isAnimated = animationState.get;
+      // $scope.isAnimated = {state:false};
 
       $scope.refreshTable = function() {
         refreshManager.getDomains();
-        // animationState.set(true);
-        $scope.isAnimated.state = true;
-        // $rootScope.isAnimated = true;
-        console.log($scope);
-      };
-
-      $scope.setAnimatedState = function(newState) {
-        $scope.isAnimated.state = newState;
-        $scope.$apply();
+        animationState.set(true);
+        // $scope.isAnimated.state = true;
       };
 
       $scope.reqRefreshisOver = function() {
-        // animationState.set(false);
-        // console.log('animationState.get = ' + animationState.get);
-        $scope.isAnimated.state = false;
+        animationState.set(false);
+        // $scope.isAnimated.state = false;
         $scope.$apply();
-        // $rootScope.isAnimated = false;
       }
 
 

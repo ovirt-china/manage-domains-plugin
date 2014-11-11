@@ -82,7 +82,6 @@
                     var menuScope = menuContainer.scope();
                     // Change the state of the refreshing button
                     menuScope.reqRefreshisOver();
-                    // menuScope.setAnimatedState(false);
                     // Trigger the message to notify it failed.
 
                     break;
