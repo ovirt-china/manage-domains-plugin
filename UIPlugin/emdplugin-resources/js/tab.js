@@ -200,8 +200,8 @@
   });
 
   app.controller('alertController', ['$scope', 'alertService', function($scope, alertService) {
-    $scope.type = alertService.getType();
-    $scope.msg = alertService.getMsg();
+    $scope.type = 'alert-info';
+    $scope.msg = 'No information to display at the moment.';
   }]);
 
 
