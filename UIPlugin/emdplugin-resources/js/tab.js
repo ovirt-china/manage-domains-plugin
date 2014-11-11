@@ -169,6 +169,7 @@
 
       $scope.setAnimatedState = function(newState) {
         $scope.isAnimated.state = newState;
+        $scope.$apply();
       };
 
       $scope.reqRefreshisOver = function() {
