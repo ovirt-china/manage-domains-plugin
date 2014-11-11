@@ -156,32 +156,19 @@
       };
 
       $scope.isAnimated = false;
-      // $scope.isAnimated = {state:false};
 
       $scope.refreshTable = function() {
         refreshManager.getDomains();
-        // $scope.isAnimated.state = true;
         $scope.isAnimated = true;
       };
 
       $scope.reqRefreshisOver = function() {
-        // $scope.isAnimated.state = false;
         $scope.isAnimated = false;
         $scope.$apply();
       }
 
 
    }]);
-
-   app.service('animationService', function(){
-      var isAnimated = false ;
-      return {
-        set : function(isAnimated) {
-           this.isAnimated = isAnimated;
-        },
-        get : this.isAnimated
-         };
-   });
 
   app.service('alertService', function () {
     var type = 'info';
