@@ -166,14 +166,22 @@
       $scope.reqRefreshisOver = function() {
         $scope.isAnimated = false;
         $scope.$apply();
-      }
+      };
 
    }]);
 
-  app.service('alertService', function () {
-    var type = 'info';
-    var msg = 'No information at the the moment.';
-    var icon = '';
+  app.controller('alertController', ['$scope', 'iconService', function($scope, iconService) {
+    $scope.alert = {type:'alert-info', msg:'No information to display at the moment.'};
+    $scope.alertIcon = iconService.get($scope.alert.type);
+
+    $scope.newMessage = new function(alert){
+      $scope.alert = alert;
+      $scope.$apply();
+    };
+
+  }]);
+
+  app.service('iconService', function () {
 
     var iconDanger = '<span class="pficon-layered">' +
                         '<span class="pficon pficon-error-octagon"></span>' +
@@ -190,52 +198,31 @@
     var iconInfo = '<span class="pficon pficon-info"></span>';
 
     return {
-      set : function(type, msg) {
-        this.msg = msg;
+      get : function(type) {
         switch (type) {
-          case ('danger'):
-            this.type = 'alert-danger';
-            this.icon = this.iconDanger;
+          case ('alert-danger'):
+            return this.iconDanger;
             break;
 
-          case ('warning'):
-            this.type = 'alert-warning';
-            this.icon = this.iconWarning;
+          case ('alert-warning'):
+            return this.iconWarning;
             break;
 
-          case ('success'):
-            this.type = 'alert-success';
-            this.icon =  this.iconSuccess;
+          case ('alert-success'):
+            return this.iconSuccess;
             break;
 
           case ('info'):
-            this.type = 'alert-info';
-            this.icon =  this.iconInfo;
+            return this.iconInfo;
             break;
 
           default:
             console.warn(type + ' is not a valid type for the alerts.');
-            this.type = 'alert-info';
-            this.icon = '';
+            return this.iconInfo;
         }
-      },
-      getType : function() {
-        return this.type;
-      },
-      getMsg : function() {
-        return this.msg;
-      },
-      getIcon : function() {
-        return this.icon;
       }
     }
   });
-
-  app.controller('alertController', ['$scope', 'alertService', function($scope, alertService) {
-    $scope.alertType = 'alert-info';
-    $scope.alertMsg = 'No information to display at the moment.';
-    $scope.alertIcon = '';
-  }]);
 
 
 })();
