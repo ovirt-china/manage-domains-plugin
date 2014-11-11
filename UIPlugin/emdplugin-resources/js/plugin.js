@@ -81,6 +81,7 @@
                     var menuContainer = sourceWindow.angular.element("#menu");
                     var menuScope = menuContainer.scope();
 
+                    console.log('menuScope.isAnimated = ' + menuScope.isAnimated);
                     // Change the state of the refreshing button
                     menuScope.reqRefreshisOver();
                     // Trigger the message to notify it failed.
