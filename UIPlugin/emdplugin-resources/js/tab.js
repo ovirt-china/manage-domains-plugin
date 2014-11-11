@@ -173,11 +173,10 @@
       };
 
       $scope.reqRefreshisOver = function() {
-        console.log('Refreshing is over, time re-enable the button.');
         // animationState.set(false);
         // console.log('animationState.get = ' + animationState.get);
         $scope.isAnimated.state = false;
-        console.log($scope);
+        $scope.$apply();
         // $rootScope.isAnimated = false;
       }
 
