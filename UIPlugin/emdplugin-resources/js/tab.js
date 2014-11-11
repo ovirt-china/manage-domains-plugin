@@ -207,7 +207,7 @@
             return this.iconSuccess;
             break;
 
-          case ('info'):
+          case ('alert-info'):
             return this.iconInfo;
             break;
 
