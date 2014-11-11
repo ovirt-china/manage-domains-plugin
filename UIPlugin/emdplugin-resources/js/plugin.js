@@ -80,12 +80,14 @@
                   case ('updateTableFailed'):
                     var menuContainer = sourceWindow.angular.element("#menu");
                     var menuScope = menuContainer.scope();
-                    console.log('menuContainer.scope() : ' + menuContainer.scope());
+                    console.log('menuContainer.scope() : ');
+                    console.log(menuContainer.scope());
                     console.log('menuScope.isAnimated = ' + menuScope.isAnimated);
                     // Change the state of the refreshing button
                     menuScope.reqRefreshisOver();
                     console.log('menuScope.isAnimated = ' + menuScope.isAnimated);
-                    console.log('menuScope : ' + menuScope);
+                    console.log('menuScope : ');
+                    console.log(menuScope);
                     // Trigger the message to notify it failed.
 
                     break;

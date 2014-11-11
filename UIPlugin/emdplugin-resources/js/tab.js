@@ -164,7 +164,8 @@
         // animationState.set(true);
         // $scope.isAnimated = true;
         $rootScope.isAnimated = true;
-        console.log('$rootScope : ' + $rootScope);
+        console.log('$rootScope : ');
+        console.log($rootScope);
       };
 
       $scope.reqRefreshisOver = function() {
