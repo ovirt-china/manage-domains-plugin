@@ -83,7 +83,7 @@
                     // Change the state of the refreshing button
                     // menuScope.reqRefreshisOver();
                     menuScope.setAnimatedState(false);
-                    // console.log(menuScope);
+                    console.log(menuScope);
                     // Trigger the message to notify it failed.
 
                     break;
