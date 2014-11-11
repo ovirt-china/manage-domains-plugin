@@ -194,7 +194,7 @@
     }
   });
 
-  app.controller('alertController', ['$scope', 'alertService', function(scope, alertService) {
+  app.controller('alertController', ['$scope', 'alertService', function($scope, alertService) {
     $scope.alert = alertService.get();
   }]);
 
