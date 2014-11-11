@@ -172,6 +172,7 @@
         // animationState.set(false);
         // console.log('animationState.get = ' + animationState.get);
         $scope.isAnimated.state = false;
+        console.log($scope);
         // $rootScope.isAnimated = false;
       }
 
