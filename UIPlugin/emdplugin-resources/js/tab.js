@@ -156,24 +156,23 @@
       };
 
       // $scope.isAnimated = animationState.get;
-      // $scope.isAnimated = false;
-      $rootScope.isAnimated = false;
+      $scope.isAnimated = {state:false};
+      // $rootScope.isAnimated = false;
 
       $scope.refreshTable = function() {
         refreshManager.getDomains();
         // animationState.set(true);
-        // $scope.isAnimated = true;
-        $rootScope.isAnimated = true;
-        console.log('$rootScope : ');
-        console.log($rootScope);
+        $scope.isAnimated.state = true;
+        // $rootScope.isAnimated = true;
+        console.log($scope);
       };
 
       $scope.reqRefreshisOver = function() {
         console.log('Refreshing is over, time re-enable the button.');
         // animationState.set(false);
         // console.log('animationState.get = ' + animationState.get);
-        // $scope.isAnimated = false;
-        $rootScope.isAnimated = false;
+        $scope.isAnimated.state = false;
+        // $rootScope.isAnimated = false;
       }
 
 
