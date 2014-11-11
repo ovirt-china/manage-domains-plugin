@@ -174,11 +174,6 @@
     $scope.alert = {type:'alert-info', msg:'No information to display at the moment.'};
     $scope.alertIcon = iconService.get($scope.alert.type);
 
-    $scope.newMessage = new function(alert){
-      $scope.alert = alert;
-      $scope.$apply();
-    };
-
   }]);
 
   app.service('iconService', function () {
