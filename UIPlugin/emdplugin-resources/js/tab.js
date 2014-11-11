@@ -163,7 +163,9 @@
         refreshManager.getDomains();
         // animationState.set(true);
         // $scope.isAnimated = true;
+        console.log($rootScope.isAnimated);
         $rootScope.isAnimated = true;
+        console.log($rootScope.isAnimated);
       };
 
       $scope.reqRefreshisOver = function() {
