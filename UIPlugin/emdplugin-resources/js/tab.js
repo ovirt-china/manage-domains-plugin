@@ -142,7 +142,7 @@
    }]);
 
    // Controller to provide the functions to open the dialogs
-   app.controller('menuController', ['$scope', '$rootScope', 'dialogManager', 'RefreshManager', 'animationService', function ($scope, $rootScope, dialogManager, refreshManager, animationState){
+   app.controller('menuController', ['$scope', '$rootScope', 'dialogManager', 'RefreshManager', function ($scope, $rootScope, dialogManager, refreshManager){
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
       };
