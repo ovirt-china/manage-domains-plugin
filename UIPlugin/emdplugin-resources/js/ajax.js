@@ -22,9 +22,7 @@
             messager.sendDataMessage(sourceName, 'updateTable', null, data);
 
         }).error(function(data, status, headers, config) {
-            console.info('List request failed.');
-            console.log(data);
-            console.log(status);
+            console.warn('List request failed.' + headers);
             messager.sendDataMessage(sourceName, 'updateTableFailed', null, data);
         });
       }
