@@ -183,28 +183,19 @@
    });
 
   app.service('alertService', function () {
-    var alert = {type:'info', msg:'No information at the the moment.'}
+    var alert = {type:'alert-info', msg:'No information at the the moment.'}
     return {
-      set : function(type, msg) {
-        this.type = type;
-        this.msg = msg;
+      set : function(alert) {
+        this.alert = alert;
       },
       get : function() {
         return this.alert;
-      },
-      getMsg : function() {
-        return this.msg;
-      },
-      getHTMLClass : function() {
-        var htmlClass = 'alert-' + this.type;
-        return htmlClass;
       }
     }
   });
 
-  app.controller('alertController', ['$scope', 'alertService', function(scope, alert) {
-    $scope.msg = alert.getMsg();
-    $scope.htmlClass = alert.getHTMLClass();
+  app.controller('alertController', ['$scope', 'alertService', function(scope, alertService) {
+    $scope.alert = alertService.get();
   }]);
 
 
