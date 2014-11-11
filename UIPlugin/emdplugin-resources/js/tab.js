@@ -229,7 +229,7 @@
             console.warn(type + ' is not a valid type for the alerts.');
             this.type = 'alert-info';
             this.icon = '';
-
+        }
       },
       getType : function() {
         return this.type;
