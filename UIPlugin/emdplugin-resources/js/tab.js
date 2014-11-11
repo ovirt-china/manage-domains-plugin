@@ -161,6 +161,7 @@
       $scope.refreshTable = function() {
         refreshManager.getDomains();
         animationState.set(true);
+        $scope.$apply();
         // $scope.isAnimated.state = true;
       };
 
