@@ -183,25 +183,70 @@
    });
 
   app.service('alertService', function () {
-    var type = 'alert-info';
+    var type = 'info';
     var msg = 'No information at the the moment.';
+    var icon = '';
+
+    var iconDanger = '<span class="pficon-layered">
+                        <span class="pficon pficon-error-octagon"></span>
+                        <span class="pficon pficon-error-exclamation"></span>
+                      </span>';
+
+    var iconWarning = '<span class="pficon-layered">
+                        <span class="pficon pficon-warning-triangle"></span>
+                        <span class="pficon pficon-warning-exclamation"></span>
+                      </span>';
+
+    var iconSuccess = '<span class="pficon pficon-ok"></span>';
+
+    var iconInfo = '<span class="pficon pficon-info"></span>';
+
     return {
       set : function(type, msg) {
-        this.type = type;
         this.msg = msg;
+        switch (type) {
+          case ('danger'):
+            this.type = 'alert-danger';
+            this.icon = this.iconDanger;
+            break;
+
+          case ('warning'):
+            this.type = 'alert-warning';
+            this.icon = this.iconWarning;
+            break;
+
+          case ('success'):
+            this.type = 'alert-success';
+            this.icon =  this.iconSuccess;
+            break;
+
+          case ('info'):
+            this.type = 'alert-info';
+            this.icon =  this.iconInfo;
+            break;
+
+          default:
+            console.warn(type + ' is not a valid type for the alerts.');
+            this.type = 'alert-info';
+            this.icon = '';
+
       },
       getType : function() {
         return this.type;
       },
       getMsg : function() {
         return this.msg;
+      },
+      getIcon : function() {
+        return this.icon;
       }
     }
   });
 
   app.controller('alertController', ['$scope', 'alertService', function($scope, alertService) {
-    $scope.type = 'alert-info';
-    $scope.msg = 'No information to display at the moment.';
+    $scope.alertType = 'alert-info';
+    $scope.alertMsg = 'No information to display at the moment.';
+    $scope.alertIcon = '';
   }]);
 
 

@@ -18,12 +18,9 @@
    </p>
 
   <div class="container" ng-controller="alertController as alertCtrl">
-    <div class="alert {{type}}">
-      <span class="pficon-layered">
-        <span class="pficon pficon-error-octagon"></span>
-        <span class="pficon pficon-error-exclamation"></span>
-      </span>
-      {{msg}}
+    <div class="alert {{alertType}}">
+      {{alertIcon}}
+      {{alertMsg}}
     </div>
   </div>
 
