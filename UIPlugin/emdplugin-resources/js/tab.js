@@ -187,15 +187,15 @@
     var msg = 'No information at the the moment.';
     var icon = '';
 
-    var iconDanger = '<span class="pficon-layered">
-                        <span class="pficon pficon-error-octagon"></span>
-                        <span class="pficon pficon-error-exclamation"></span>
-                      </span>';
+    var iconDanger = '<span class="pficon-layered">' +
+                        '<span class="pficon pficon-error-octagon"></span>' +
+                        '<span class="pficon pficon-error-exclamation"></span>' +
+                      '</span>';
 
-    var iconWarning = '<span class="pficon-layered">
-                        <span class="pficon pficon-warning-triangle"></span>
-                        <span class="pficon pficon-warning-exclamation"></span>
-                      </span>';
+    var iconWarning = '<span class="pficon-layered">' +
+                        '<span class="pficon pficon-warning-triangle"></span>' +
+                        '<span class="pficon pficon-warning-exclamation"></span>' +
+                      '</span>';
 
     var iconSuccess = '<span class="pficon pficon-ok"></span>';
 
