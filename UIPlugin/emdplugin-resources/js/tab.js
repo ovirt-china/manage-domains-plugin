@@ -161,13 +161,13 @@
       $scope.refreshTable = function() {
         refreshManager.getDomains();
         // animationState.set(true);
-        isAnimated = true;
+        $scope.isAnimated = true;
       };
 
       $scope.reqRefreshisOver = function() {
         console.log('Refreshing is over, time re-enable the button.');
         // animationState.set(false);
-        isAnimated = false;
+        $scope.isAnimated = false;
       }
 
 
