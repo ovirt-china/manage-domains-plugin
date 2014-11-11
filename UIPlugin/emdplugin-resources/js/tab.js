@@ -155,16 +155,19 @@
          dialogManager.showRemoveDialog(domain);
       };
 
-      $scope.isAnimated = animationState.get();
+      // $scope.isAnimated = animationState.get();
+      $scope.isAnimated = false;
 
       $scope.refreshTable = function() {
         refreshManager.getDomains();
-        animationState.set(true);
+        // animationState.set(true);
+        isAnimated = true;
       };
 
       $scope.reqRefreshisOver = function() {
         console.log('Refreshing is over, time re-enable the button.');
-        animationState.set(false);
+        // animationState.set(false);
+        isAnimated = false;
       }
 
 
