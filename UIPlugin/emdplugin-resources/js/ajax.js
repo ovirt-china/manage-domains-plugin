@@ -22,8 +22,25 @@
             messager.sendDataMessage(sourceName, 'updateTable', null, data);
 
         }).error(function(data, status, headers, config) {
-            console.warn('List request failed.' + headers);
+            console.warn('List request failed.');
             messager.sendDataMessage(sourceName, 'updateTableFailed', null, data);
+        });
+      };
+
+      delete: function(domain2delete){
+        var httpRequest = $http({
+            method: 'DELETE',
+            url: URL + '/domains/' + domain2delete
+
+        }).success(function(data, status) {
+            console.info(domain2delete + 'has been successfully delete.');
+            console.log(data);
+            console.log(status);
+            messager.sendDataMessage(sourceName, 'deleteSuccessful', null, data);
+
+        }).error(function(data, status, headers, config) {
+            console.warn('Delete request of the domain ' + domain2delete + ' failed.');
+            messager.sendDataMessage(sourceName, 'deleteFailed', null, data);
         });
       }
     };
