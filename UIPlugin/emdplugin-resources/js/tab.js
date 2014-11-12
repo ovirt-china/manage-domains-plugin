@@ -4,6 +4,8 @@
 
   var app = angular.module('plugin.tab', ['plugin.common', 'plugin.ajax']);
 
+   app.value('sourceName', {type:'alert-info', msg:'No information to display at the moment.'});
+
    app.run(function() {
     // Nothing here for the moment but the time to get the list of servers will come sooner or later.
    });
@@ -170,54 +172,40 @@
 
    }]);
 
-  app.controller('alertController', ['$scope', 'iconService', function($scope, iconService) {
-    $scope.alert = {type:'alert-info', msg:'No information to display at the moment.'};
-    $scope.alertIcon = iconService.get($scope.alert.type);
+  app.controller('alertController', ['$scope', function($scope) {
+
+    $scope.alert = {type:'', msg:'', icon:''};
+
+    $scope.alertInfo = function (alertMsg){
+      $scope.alert.msg = alertMsg;
+      $scope.alert.type = 'alert-info';
+      $scope.alert.icon = '<span class="pficon pficon-info"></span>';
+    };
+
+    $scope.alertSuccess = function (alertMsg){
+      $scope.alert.msg = alertMsg;
+      $scope.alert.type = 'alert-success';
+      $scope.alert.icon = '<span class="pficon pficon-ok"></span>';
+    };
+
+    $scope.alertWarning = function (alertMsg){
+      $scope.alert.msg = alertMsg;
+      $scope.alert.type = 'alert-warning';
+      $scope.alert.icon = '<span class="pficon-layered">' +
+                            '<span class="pficon pficon-warning-triangle"></span>' +
+                            '<span class="pficon pficon-warning-exclamation"></span>' +
+                          '</span>';
+    };
+
+    $scope.alertDanger = function (alertMsg){
+      $scope.alert.msg = alertMsg;
+      $scope.alert.type = 'alert-danger';
+      $scope.alert.icon = '<span class="pficon-layered">' +
+                            '<span class="pficon pficon-error-octagon"></span>' +
+                            '<span class="pficon pficon-error-exclamation"></span>' +
+                          '</span>';
+    };
 
   }]);
-
-  app.service('iconService', function () {
-
-    var iconDanger = '<span class="pficon-layered">' +
-                        '<span class="pficon pficon-error-octagon"></span>' +
-                        '<span class="pficon pficon-error-exclamation"></span>' +
-                      '</span>';
-
-    var iconWarning = '<span class="pficon-layered">' +
-                        '<span class="pficon pficon-warning-triangle"></span>' +
-                        '<span class="pficon pficon-warning-exclamation"></span>' +
-                      '</span>';
-
-    var iconSuccess = '<span class="pficon pficon-ok"></span>';
-
-    var iconInfo = '<span class="pficon pficon-info"></span>';
-
-    return {
-      get : function(type) {
-        switch (type) {
-          case ('alert-danger'):
-            return this.iconDanger;
-            break;
-
-          case ('alert-warning'):
-            return this.iconWarning;
-            break;
-
-          case ('alert-success'):
-            return this.iconSuccess;
-            break;
-
-          case ('alert-info'):
-            return this.iconInfo;
-            break;
-
-          default:
-            console.warn(type + ' is not a valid type for the alerts.');
-            return this.iconInfo;
-        }
-      }
-    }
-  });
-
 
 })();
