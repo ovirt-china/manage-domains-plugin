@@ -4,11 +4,10 @@
 
   var app = angular.module('plugin.tab', ['plugin.common', 'plugin.ajax']);
 
-   app.value('sourceName', {type:'alert-info', msg:'No information to display at the moment.'});
-
-   app.run(function() {
+   app.run(['menuController', function(menuCtrl) {
     // Nothing here for the moment but the time to get the list of servers will come sooner or later.
-   });
+    menuCtrl.refreshTable();
+  }]);
 
   app.controller('TableController', ['$scope', function($scope){
     this.domains = [
@@ -172,6 +171,9 @@
 
    }]);
 
+  /*
+  * Controle the message above the table.
+  */
   app.controller('alertController', ['$scope', function($scope) {
 
     $scope.alert = {type:'', msg:'', icon:''};
