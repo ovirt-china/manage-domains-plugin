@@ -11,20 +11,33 @@
   app.factory('request',['$http', 'URL', 'sourceName', 'messager', function($http, URL, sourceName, messager){
     return {
       list: function(){
-        var httpRequest = $http({
-            method: 'GET',
-            url: URL + '/domains/'
 
-        }).success(function(data, status) {
-            console.info('List request was successful.');
-            console.log(data);
-            console.log(status);
-            messager.sendDataMessage(sourceName, 'updateTable', null, data);
-
-        }).error(function(data, status, headers, config) {
-            console.warn('List request failed.');
-            messager.sendDataMessage(sourceName, 'updateTableFailed', null, data);
+        $http.get('/someUrl').
+        success(function(data, status, headers, config) {
+          console.info('List request was successful.(' + status + ')');
+          console.log(data);
+          messager.sendDataMessage(sourceName, 'updateTable', null, data);
+        }).
+        error(function(data, status, headers, config) {
+          console.warn('List request failed.(' + status + ')');
+          messager.sendDataMessage(sourceName, 'updateTableFailed', null, data);
         });
+
+        // var httpRequest = $http({
+        //     method: 'GET',
+        //     url: URL + '/domains/'
+        //
+        // }).success(function(data, status) {
+        //     console.info('List request was successful.');
+        //     console.log(data);
+        //     console.log(status);
+        //     messager.sendDataMessage(sourceName, 'updateTable', null, data);
+        //
+        // }).error(function(data, status, headers, config) {
+        //     console.warn('List request failed.');
+        //     messager.sendDataMessage(sourceName, 'updateTableFailed', null, data);
+        // });
+
       };
 
       delete: function(domain2delete){
@@ -33,7 +46,7 @@
             url: URL + '/domains/' + domain2delete
 
         }).success(function(data, status) {
-            console.info(domain2delete + 'has been successfully delete.');
+            console.info(domain2delete + 'has been successfully deleted.');
             console.log(data);
             console.log(status);
             messager.sendDataMessage(sourceName, 'deleteSuccessful', null, data);
@@ -42,7 +55,26 @@
             console.warn('Delete request of the domain ' + domain2delete + ' failed.');
             messager.sendDataMessage(sourceName, 'deleteFailed', null, data);
         });
-      }
+      },
+
+      add: function(domain2add){
+        var httpRequest = $http({
+            method: 'PUT',
+            url: URL + '/domains/'
+
+        }).success(function(data, status) {
+            console.info(domain2add.domain + 'has been successfully added.');
+            console.log(data);
+            console.log(status);
+            messager.sendDataMessage(sourceName, 'addSuccessful', null, data);
+
+        }).error(function(data, status, headers, config) {
+            console.warn('Delete request of the domain ' + domain2delete + ' failed.');
+            messager.sendDataMessage(sourceName, 'deleteFailed', null, data);
+        });
+      },
+
+
     };
   }]);
 
