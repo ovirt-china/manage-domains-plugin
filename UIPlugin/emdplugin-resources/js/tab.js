@@ -4,9 +4,11 @@
 
   var app = angular.module('plugin.tab', ['plugin.common', 'plugin.ajax']);
 
-   app.run(['menuController', function(menuCtrl) {
+   app.run(['menuController', 'alertController', function(menuCtrl, alertCtrl) {
     // Nothing here for the moment but the time to get the list of servers will come sooner or later.
+    alertCtrl.alertInfo('Thanks for using this plugin. You can access the all code <a href="https://github.com/eayun/UIPlugin-Engine-Manage-Domains">here</a>. If you have any suggestion please use <a href="https://github.com/eayun/UIPlugin-Engine-Manage-Domains/issues">this</a>.');
     menuCtrl.refreshTable();
+
   }]);
 
   app.controller('TableController', ['$scope', function($scope){
