@@ -11,11 +11,12 @@
   app.factory('request',['$http', 'URL', 'sourceName', 'messager', function($http, URL, sourceName, messager){
     return {
       list: function(){
+
         var urlList = URL + '/domains/';
+
         $http.get(urlList).
         success(function(data, status, headers, config) {
           console.info('List request was successful.(' + status + ')');
-          console.log(data);
           messager.sendDataMessage(sourceName, 'updateTable', null, data);
         }).
         error(function(data, status, headers, config) {
@@ -41,20 +42,34 @@
       };
 
       delete: function(domain2delete){
-        var httpRequest = $http({
-            method: 'DELETE',
-            url: URL + '/domains/' + domain2delete
 
-        }).success(function(data, status) {
-            console.info(domain2delete + 'has been successfully deleted.');
-            console.log(data);
-            console.log(status);
-            messager.sendDataMessage(sourceName, 'deleteSuccessful', null, data);
+        var urlDelete = URL + '/domains/' + domain2delete;
 
-        }).error(function(data, status, headers, config) {
-            console.warn('Delete request of the domain ' + domain2delete + ' failed.');
-            messager.sendDataMessage(sourceName, 'deleteFailed', null, data);
+        $http.get(urlDelete).
+        success(function(data, status, headers, config) {
+          console.info(domain2delete + 'has been successfully deleted.(' + status + ')');
+          messager.sendDataMessage(sourceName, 'requestSuccessful', null, data);
+        }).
+        error(function(data, status, headers, config) {
+          console.warn('Delete request of the domain ' + domain2delete + ' failed.(' + status + ')');
+          messager.sendDataMessage(sourceName, 'requestFailed', null, data);
         });
+
+        // var httpRequest = $http({
+        //     method: 'DELETE',
+        //     url: URL + '/domains/' + domain2delete
+        //
+        // }).success(function(data, status) {
+        //     console.info(domain2delete + 'has been successfully deleted.');
+        //     console.log(data);
+        //     console.log(status);
+        //     messager.sendDataMessage(sourceName, 'deleteSuccessful', null, data);
+        //
+        // }).error(function(data, status, headers, config) {
+        //     console.warn('Delete request of the domain ' + domain2delete + ' failed.');
+        //     messager.sendDataMessage(sourceName, 'deleteFailed', null, data);
+        // });
+
       },
 
       add: function(domain2add){
