@@ -11,8 +11,8 @@
   app.factory('request',['$http', 'URL', 'sourceName', 'messager', function($http, URL, sourceName, messager){
     return {
       list: function(){
-
-        $http.get('/someUrl').
+        var urlList = URL + '/domains/';
+        $http.get(urlList).
         success(function(data, status, headers, config) {
           console.info('List request was successful.(' + status + ')');
           console.log(data);
