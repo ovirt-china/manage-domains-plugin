@@ -145,7 +145,7 @@
    }]);
 
    // Controller to provide the functions to open the dialogs
-   app.controller('menuController', ['$scope', '$rootScope', 'dialogManager', 'RefreshManager', function ($scope, $rootScope, dialogManager, refreshManager){
+   app.controller('menuController', ['$scope', '$rootScope', 'dialogManager', 'RefreshManager','alertController', function ($scope, $rootScope, dialogManager, refreshManager, alertCtrl){
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
       };
@@ -166,8 +166,12 @@
         $scope.isAnimated = true;
       };
 
-      $scope.reqRefreshisOver = function() {
+      $scope.reqRefreshisOver = function(isSuccessful) {
         $scope.isAnimated = false;
+        if(!isSuccessful){
+          alertCtrl.alertDanger('Impossible to refresh the list of Domains.');
+        }
+
         $scope.$apply();
       };
 
