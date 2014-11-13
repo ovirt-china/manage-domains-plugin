@@ -11,10 +11,10 @@
   //
   // }]);
 
-  app.run(['RefreshManager', function(refreshManager) {
-   refreshManager.getDomains();
-
- }]);
+ //  app.run(['RefreshManager', function(refreshManager) {
+ //   refreshManager.getDomains();
+ //
+ // }]);
 
   app.controller('TableController', ['$scope', function($scope){
     this.domains = [
@@ -149,7 +149,7 @@
    }]);
 
    // Controller to provide the functions to open the dialogs
-   app.controller('menuController', ['$scope', '$rootScope', 'dialogManager', 'RefreshManager','alertController', function ($scope, $rootScope, dialogManager, refreshManager, alertCtrl){
+   app.controller('menuController', ['$scope', 'dialogManager', 'RefreshManager','alertController', function ($scope, dialogManager, refreshManager, alertCtrl){
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
       };
