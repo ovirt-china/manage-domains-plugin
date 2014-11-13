@@ -18,9 +18,7 @@
    </p>
 
   <div class="container" ng-controller="alertController">
-    <div class="alert {{alert.type}}">
-      <div ng-bind-html="alert.icon | unsafe"></div>
-      <div ng-bind-html="alert.msg | unsafe"></div>
+    <div class="alert {{alert.type}}" ng-bind-html="alert.content | unsafe">
     </div>
   </div>
 

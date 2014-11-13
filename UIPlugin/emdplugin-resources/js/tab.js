@@ -190,7 +190,7 @@
 
 
   app.factory('alertManager', function(){
-    var alert = {type:' ', msg:' ', icon:' '};
+    var alert = {type:'', content:''};
 
     return {
       get : function(){
@@ -198,30 +198,23 @@
       },
 
       alertInfo : function (alertMsg){
-        alert.msg = alertMsg;
         alert.type = 'alert-info';
-        alert.icon = '<span class="pficon pficon-info"></span>';
+        alert.content = '<span class="pficon pficon-info"></span>\n' + alertMsg;
       },
 
       alertSuccess : function (alertMsg){
-        alert.msg = alertMsg;
         alert.type = 'alert-success';
-        alert.icon = '<span class="pficon pficon-ok"></span>';
+        alert.content = '<span class="pficon pficon-ok"></span>\n' + alertMsg;
       },
 
       alertWarning : function (alertMsg){
-        alert.msg = alertMsg;
         alert.type = 'alert-warning';
-        alert.icon = '<span class="pficon-layered">' +
-                              '<span class="pficon pficon-warning-triangle"></span>' +
-                              '<span class="pficon pficon-warning-exclamation"></span>' +
-                            '</span>';
+        alert.content = '<span class="pficon-layered">\n   <span class="pficon pficon-warning-triangle"></span>\n   <span class="pficon pficon-warning-exclamation"></span>\n</span>' + alertMsg;
       },
 
       alertDanger : function (alertMsg){
-        alert.msg = alertMsg;
         alert.type = 'alert-danger';
-        alert.icon = '<span class="pficon-layered">\n   <span class="pficon pficon-error-octagon"></span>\n   <span class="pficon pficon-error-exclamation"></span>\n<span>';
+        alert.content = '<span class="pficon-layered">\n   <span class="pficon pficon-error-octagon"></span>\n   <span class="pficon pficon-error-exclamation"></span>\n<span>' + alertMsg;
       }
     };
   });
