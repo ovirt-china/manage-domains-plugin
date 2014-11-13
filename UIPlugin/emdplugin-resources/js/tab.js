@@ -11,10 +11,10 @@
   //
   // }]);
 
- //  app.run(['RefreshManager', function(refreshManager) {
- //   refreshManager.getDomains();
- //
- // }]);
+  app.run(['alertManager', function(alertMan) {
+   alertMan.alertInfo('Thanks for using this plugin. You can access the all code <a href="https://github.com/eayun/UIPlugin-Engine-Manage-Domains">here</a>. If you have any suggestion please use <a href="https://github.com/eayun/UIPlugin-Engine-Manage-Domains/issues">this</a>.');
+
+ }]);
 
   app.controller('TableController', ['$scope', function($scope){
     this.domains = [
@@ -221,8 +221,6 @@
       }
     };
   });
-
-
 
   /*
   * Controle the message above the table.
