@@ -149,7 +149,7 @@
    }]);
 
    // Controller to provide the functions to open the dialogs
-   app.controller('menuController', ['$scope', 'dialogManager', 'RefreshManager','notificationCtrl', function ($scope, dialogManager, refreshManager, notifCtrl){
+   app.controller('menuController', ['$scope', 'dialogManager', 'RefreshManager','alertManager', function ($scope, dialogManager, refreshManager, alertMan){
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
       };
@@ -173,7 +173,7 @@
       $scope.reqRefreshisOver = function(isSuccessful) {
         $scope.isAnimated = false;
         if(!isSuccessful){
-          notifCtrl.alertDanger('Impossible to refresh the list of Domains.');
+          alertMan.alertDanger('Impossible to refresh the list of Domains.');
         }
 
         $scope.$apply();
@@ -181,41 +181,74 @@
 
    }]);
 
+
+  app.service('alertManager', function(){
+    var alert = {type:'', msg:'', icon:''};
+
+    return {
+      get : function(){
+        return this.alert;
+      },
+
+      alertInfo : function (alertMsg){
+        this.alert.msg = alertMsg;
+        this.alert.type = 'alert-info';
+        this.alert.icon = '<span class="pficon pficon-info"></span>';
+      },
+
+      alertSuccess : function (alertMsg){
+        this.alert.msg = alertMsg;
+        this.alert.type = 'alert-success';
+        this.alert.icon = '<span class="pficon pficon-ok"></span>';
+      },
+
+      alertWarning : function (alertMsg){
+        this.alert.msg = alertMsg;
+        this.alert.type = 'alert-warning';
+        this.alert.icon = '<span class="pficon-layered">' +
+                              '<span class="pficon pficon-warning-triangle"></span>' +
+                              '<span class="pficon pficon-warning-exclamation"></span>' +
+                            '</span>';
+      },
+
+      alertDanger : function (alertMsg){
+        this.alert.msg = alertMsg;
+        this.alert.type = 'alert-danger';
+        this.alert.icon = '<span class="pficon-layered">' +
+                              '<span class="pficon pficon-error-octagon"></span>' +
+                              '<span class="pficon pficon-error-exclamation"></span>' +
+                            '</span>';
+      }
+    };
+  }]);
+
+
+
   /*
   * Controle the message above the table.
   */
-  app.controller('notificationCtrl', ['$scope', function($scope) {
+  app.controller('alertController', ['$scope', 'alertManager', function($scope, alertMan) {
 
     $scope.alert = {type:'', msg:'', icon:''};
 
     $scope.alertInfo = function (alertMsg){
-      $scope.alert.msg = alertMsg;
-      $scope.alert.type = 'alert-info';
-      $scope.alert.icon = '<span class="pficon pficon-info"></span>';
+      alertMan.alertInfo(alertMsg);
+      $scope.alert = alertMan.get();
     };
 
     $scope.alertSuccess = function (alertMsg){
-      $scope.alert.msg = alertMsg;
-      $scope.alert.type = 'alert-success';
-      $scope.alert.icon = '<span class="pficon pficon-ok"></span>';
+      alertMan.alertSuccess(alertMsg);
+      $scope.alert = alertMan.get();
     };
 
     $scope.alertWarning = function (alertMsg){
-      $scope.alert.msg = alertMsg;
-      $scope.alert.type = 'alert-warning';
-      $scope.alert.icon = '<span class="pficon-layered">' +
-                            '<span class="pficon pficon-warning-triangle"></span>' +
-                            '<span class="pficon pficon-warning-exclamation"></span>' +
-                          '</span>';
+      alertMan.alertWarning(alertMsg);
+      $scope.alert = alertMan.get();
     };
 
     $scope.alertDanger = function (alertMsg){
-      $scope.alert.msg = alertMsg;
-      $scope.alert.type = 'alert-danger';
-      $scope.alert.icon = '<span class="pficon-layered">' +
-                            '<span class="pficon pficon-error-octagon"></span>' +
-                            '<span class="pficon pficon-error-exclamation"></span>' +
-                          '</span>';
+      alertMan.alertDanger(alertMsg);
+      $scope.alert = alertMan.get();
     };
   }]);
 
