@@ -8,6 +8,27 @@
 
   <body>
 
+    <div ng-controller='dialogController as dialogCtrl'>
+      <button ng-click='toggleModal()'>Open Modal Dialog</button>
+      <div class='ng-modal' ng-show='modalShown'>
+        <div class='ng-modal-overlay'></div>
+        <div class='ng-modal-dialog'>
+          <div class='ng-modal-dialog-content'>
+
+              <div class="media">
+                  <div class="pull-left">
+                    <div class="spinner spinner-lg"></div>
+                  </div>
+                  <div class="media-body">
+                    <h1 class="processing-descr">Processing...</h1>
+                  </div>
+                </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container">
 
       <div id="info-container" ng-controller="RemoveController">
