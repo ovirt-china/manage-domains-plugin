@@ -38,7 +38,7 @@
         //     messager.sendDataMessage(sourceName, 'updateTableFailed', null, data);
         // });
 
-      };
+      },
 
       delete: function(domain2delete){
         var urlDelete = URL + '/domains/' + domain2delete;
