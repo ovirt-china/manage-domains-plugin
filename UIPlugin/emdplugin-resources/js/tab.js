@@ -182,7 +182,7 @@
    }]);
 
 
-  app.service('alertManager', function(){
+  app.factory('alertManager', function(){
     var alert = {type:'', msg:'', icon:''};
 
     return {
@@ -229,10 +229,9 @@
     $scope.alert = alertMan.get();
 
     $scope.alertInfo = function (alertMsg){
-      alertMan.alertInfo(alertMsg).then(function(){
-        $scope.alert = alertMan.get();
-      });
-      
+      alertMan.alertInfo(alertMsg);
+      $scope.alert = alertMan.get();
+
     };
 
     $scope.alertSuccess = function (alertMsg){
