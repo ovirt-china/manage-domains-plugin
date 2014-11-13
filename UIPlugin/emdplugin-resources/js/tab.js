@@ -164,6 +164,7 @@
 
       // This part control the refresh button
       $scope.isAnimated = false;
+      $scope.lastRefreshSuccess = true;
 
       $scope.refreshTable = function() {
         refreshManager.getDomains();
@@ -174,6 +175,10 @@
         $scope.isAnimated = false;
         if(!isSuccessful){
           alertMan.alertDanger('Impossible to refresh the list of Domains.');
+          $scope.lastRefreshSuccess = false;
+        }else if(!lastRefreshSuccess){
+          alertMan.alertSuccess('The list of Domains has just been refreshed.');
+          $scope.lastRefreshSuccess = true;
         }
 
         $scope.$apply();
@@ -181,14 +186,14 @@
 
    }]);
 
+  // Filter the HTML to be able to insert it in a webpage
   app.filter('unsafe', function($sce) {
      return function(val) {
       return $sce.trustAsHtml(val);
     };
   });
 
-
-
+  // Create the alert content and type.
   app.factory('alertManager', function(){
     var alert = {type:'', content:''};
 
@@ -215,7 +220,7 @@
       alertDanger : function (alertMsg){
         alert.type = 'alert-danger';
         alert.content = '<span class="pficon-layered">\n   <span class="pficon pficon-error-octagon"></span>\n   <span class="pficon pficon-error-exclamation"></span>\n</span>' + alertMsg;
-      }
+      },
     };
   });
 
