@@ -183,7 +183,7 @@
 
 
   app.factory('alertManager', function(){
-    var alert = {type:'', msg:'', icon:''};
+    var alert = {type:' ', msg:' ', icon:' '};
 
     return {
       get : function(){
