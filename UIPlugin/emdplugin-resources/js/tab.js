@@ -149,7 +149,7 @@
    }]);
 
    // Controller to provide the functions to open the dialogs
-   app.controller('menuController', ['$scope', 'dialogManager', 'RefreshManager','alertController', function ($scope, dialogManager, refreshManager, alertCtrl){
+   app.controller('menuController', ['$scope', 'dialogManager', 'RefreshManager','notificationCtrl', function ($scope, dialogManager, refreshManager, notifCtrl){
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
       };
@@ -173,7 +173,7 @@
       $scope.reqRefreshisOver = function(isSuccessful) {
         $scope.isAnimated = false;
         if(!isSuccessful){
-          alertCtrl.alertDanger('Impossible to refresh the list of Domains.');
+          notifCtrl.alertDanger('Impossible to refresh the list of Domains.');
         }
 
         $scope.$apply();
@@ -184,7 +184,7 @@
   /*
   * Controle the message above the table.
   */
-  app.controller('alertController', ['$scope', function($scope) {
+  app.controller('notificationCtrl', ['$scope', function($scope) {
 
     $scope.alert = {type:'', msg:'', icon:''};
 
@@ -217,7 +217,6 @@
                             '<span class="pficon pficon-error-exclamation"></span>' +
                           '</span>';
     };
-
   }]);
 
 })();
