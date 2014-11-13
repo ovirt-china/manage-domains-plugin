@@ -226,8 +226,7 @@
   * Controle the message above the table.
   */
   app.controller('alertController', ['$scope', 'alertManager', function($scope, alertMan) {
-
-    $scope.alert = {type:'', msg:'', icon:''};
+    $scope.alert = alertMan.get();
 
     $scope.alertInfo = function (alertMsg){
       alertMan.alertInfo(alertMsg);
