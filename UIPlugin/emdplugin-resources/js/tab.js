@@ -187,35 +187,35 @@
 
     return {
       get : function(){
-        return this.alert;
+        return alert;
       },
 
       alertInfo : function (alertMsg){
-        this.alert.msg = alertMsg;
-        this.alert.type = 'alert-info';
-        this.alert.icon = '<span class="pficon pficon-info"></span>';
+        alert.msg = alertMsg;
+        alert.type = 'alert-info';
+        alert.icon = '<span class="pficon pficon-info"></span>';
       },
 
       alertSuccess : function (alertMsg){
-        this.alert.msg = alertMsg;
-        this.alert.type = 'alert-success';
-        this.alert.icon = '<span class="pficon pficon-ok"></span>';
+        alert.msg = alertMsg;
+        alert.type = 'alert-success';
+        alert.icon = '<span class="pficon pficon-ok"></span>';
       },
 
       alertWarning : function (alertMsg){
-        this.alert.msg = alertMsg;
-        this.alert.type = 'alert-warning';
-        this.alert.icon = '<span class="pficon-layered">' +
+        alert.msg = alertMsg;
+        alert.type = 'alert-warning';
+        alert.icon = '<span class="pficon-layered">' +
                               '<span class="pficon pficon-warning-triangle"></span>' +
                               '<span class="pficon pficon-warning-exclamation"></span>' +
                             '</span>';
       },
 
       alertDanger : function (alertMsg){
-        this.alert.msg = alertMsg;
-        this.alert.type = 'alert-danger';
-        this.alert.icon = '<span class="pficon-layered">' +
-                              '<span class="pficon pficon-error-octagon"></span>' +
+        alert.msg = alertMsg;
+        alert.type = 'alert-danger';
+        alert.icon = '<span class="pficon-layered">' +
+                    '<span class="pficon pficon-error-octagon"></span>' +
                               '<span class="pficon pficon-error-exclamation"></span>' +
                             '</span>';
       }
