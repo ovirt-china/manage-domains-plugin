@@ -181,6 +181,13 @@
 
    }]);
 
+  app.filter('unsafe', function($sce) {
+     return function(val) {
+      return $sce.trustAsHtml(val);
+    };
+  });
+
+
 
   app.factory('alertManager', function(){
     var alert = {type:' ', msg:' ', icon:' '};
@@ -214,10 +221,7 @@
       alertDanger : function (alertMsg){
         alert.msg = alertMsg;
         alert.type = 'alert-danger';
-        alert.icon = '<span class="pficon-layered">' +
-                    '<span class="pficon pficon-error-octagon"></span>' +
-                              '<span class="pficon pficon-error-exclamation"></span>' +
-                            '</span>';
+        alert.icon = '<span class="pficon-layered">\n   <span class="pficon pficon-error-octagon"></span>\n   <span class="pficon pficon-error-exclamation"></span>\n<span>';
       }
     };
   });
