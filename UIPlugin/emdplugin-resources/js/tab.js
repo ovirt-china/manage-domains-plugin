@@ -214,7 +214,7 @@
 
       alertDanger : function (alertMsg){
         alert.type = 'alert-danger';
-        alert.content = '<span class="pficon-layered">\n   <span class="pficon pficon-error-octagon"></span>\n   <span class="pficon pficon-error-exclamation"></span>\n<span>' + alertMsg;
+        alert.content = '<span class="pficon-layered">\n   <span class="pficon pficon-error-octagon"></span>\n   <span class="pficon pficon-error-exclamation"></span>\n</span>' + alertMsg;
       }
     };
   });
