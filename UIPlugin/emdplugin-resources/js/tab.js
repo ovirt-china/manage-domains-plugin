@@ -229,8 +229,10 @@
     $scope.alert = alertMan.get();
 
     $scope.alertInfo = function (alertMsg){
-      alertMan.alertInfo(alertMsg);
-      $scope.alert = alertMan.get();
+      alertMan.alertInfo(alertMsg).then(function(){
+        $scope.alert = alertMan.get();
+      });
+      
     };
 
     $scope.alertSuccess = function (alertMsg){
