@@ -27,14 +27,14 @@
          <thead>
             <tr>
                <th>Domain</th>
-               <th>User</th>
+               <th>Username</th>
                <th>Actions</th>
             </tr>
          </thead>
          <tbody>
-            <tr ng-repeat="domain in table.domains">
-               <td>{{ domain.name }}</td>
-               <td>{{ domain.user }}</td>
+            <tr ng-repeat="domain in domains">
+               <td>{{ domain.domain }}</td>
+               <td>{{ domain.username }}</td>
                <td>
                   <div class="action-table" ng-controller="menuController">
                     <button class="btn btn-default" type="button" ng-click="openEditDialog($parent.domain)">
