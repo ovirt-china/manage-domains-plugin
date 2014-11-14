@@ -17,7 +17,7 @@
 
     $scope.setDomains = function(domains){
       domainMan.setDomains(domains);
-      $scope.$apply();
+      $scope.domains = domainMan.getDomains();
     };
 
   }]);
