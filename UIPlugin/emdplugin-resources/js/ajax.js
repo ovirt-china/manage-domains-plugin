@@ -16,7 +16,7 @@
         console.log(urlList);
         $http.get(urlList).
         success(function(data, status, headers, config) {
-          console.info('List request was successful.(' + status + ')');
+          console.info('List request was successful.(' + status + ') ' + data);
           messager.sendDataMessage(sourceName, 'updateTable', null, data);
         }).
         error(function(data, status, headers, config) {

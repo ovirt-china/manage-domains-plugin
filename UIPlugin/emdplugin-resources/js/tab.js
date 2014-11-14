@@ -20,6 +20,7 @@
     $scope.domains = {};
 
     $scope.refreshTable = function(domains){
+      console.log(domains);
       $scope.domains = domains;
       $scope.$apply();
     };
