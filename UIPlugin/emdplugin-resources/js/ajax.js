@@ -13,7 +13,7 @@
 
       list: function(){
         var urlList = URL + '/domains/';
-        console.log('API Request: GET - 'urlList);
+        console.log('API Request: GET - ' + urlList);
         $http.get(urlList).
         success(function(data, status, headers, config) {
           console.info('List request was successful.(' + status + ')');
@@ -45,7 +45,7 @@
 
       delete: function(domain2delete){
         var urlDelete = URL + '/domains/' + domain2delete;
-        console.log('API Request: DELETE - 'urlList);
+        console.log('API Request: DELETE - ' + urlList);
         $http.delete(urlDelete).
         success(function(data, status, headers, config) {
           console.info(domain2delete + 'has been successfully deleted.(' + status + ')');
