@@ -157,7 +157,6 @@
 
       // This part control the refresh button
       $scope.isAnimated = false;
-      $scope.lastRefreshSuccess = true;
 
       $scope.refreshTable = function() {
         refreshManager.getDomains();
@@ -167,11 +166,7 @@
       $scope.reqRefreshisOver = function(isSuccessful) {
         $scope.isAnimated = false;
         if(!isSuccessful){
-          alertMan.alertDanger('Impossible to refresh the list of Domains.');
-          $scope.lastRefreshSuccess = false;
-        }else if(!lastRefreshSuccess){
-          alertMan.alertSuccess('The list of Domains has just been refreshed.');
-          $scope.lastRefreshSuccess = true;
+          alertMan.alertDanger('Impossible to refresh the list of Domains.');  
         }
 
         $scope.$apply();
