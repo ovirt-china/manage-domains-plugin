@@ -13,14 +13,16 @@
 
       list: function(){
         var urlList = URL + '/domains/';
-        console.log(urlList);
+        console.log('API Request: GET - 'urlList);
         $http.get(urlList).
         success(function(data, status, headers, config) {
-          console.info('List request was successful.(' + status + ') ' + data);
+          console.info('List request was successful.(' + status + ')');
+          console.log(data);
           messager.sendDataMessage(sourceName, 'updateTable', null, data);
         }).
         error(function(data, status, headers, config) {
-          console.warn('List request failed.(' + status + ')');
+          console.error('List request failed.(' + status + ')');
+          console.log(data);
           messager.sendDataMessage(sourceName, 'updateTableFailed', null, data);
         });
 
@@ -43,6 +45,7 @@
 
       delete: function(domain2delete){
         var urlDelete = URL + '/domains/' + domain2delete;
+        console.log('API Request: DELETE - 'urlList);
         $http.delete(urlDelete).
         success(function(data, status, headers, config) {
           console.info(domain2delete + 'has been successfully deleted.(' + status + ')');
@@ -51,7 +54,8 @@
           messager.sendActionMessage('remove-dialog', 'close', 'remove-dialog');
         }).
         error(function(data, status, headers, config) {
-          console.warn('Delete request for the domain ' + domain2delete + ' failed.(' + status + ')');
+          console.error('Delete request for the domain ' + domain2delete + ' failed.(' + status + ')');
+          console.log(data);
           messager.sendDataMessage(sourceName, 'requestFailed', null, data);
           // Close the window
           messager.sendActionMessage('remove-dialog', 'close', 'remove-dialog');
