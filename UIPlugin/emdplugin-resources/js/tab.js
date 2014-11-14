@@ -21,6 +21,7 @@
 
     $scope.refreshTable = function(domains){
       $scope.domains = domains;
+      $scope.$apply();
     };
 
   }]);
@@ -166,7 +167,7 @@
       $scope.reqRefreshisOver = function(isSuccessful) {
         $scope.isAnimated = false;
         if(!isSuccessful){
-          alertMan.alertDanger('Impossible to refresh the list of Domains.');  
+          alertMan.alertDanger('Impossible to refresh the list of Domains.');
         }
 
         $scope.$apply();
