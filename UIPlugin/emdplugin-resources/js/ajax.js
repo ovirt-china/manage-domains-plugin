@@ -5,7 +5,7 @@
   var app = angular.module('plugin.ajax', ['plugin.common']);
 
   // Set the URL for the request
-  app.value('URL', 'http://192.168.3.237:8080/engineManageDomains');
+  app.value('URL', 'https://192.168.3.237:8443/engineManageDomains');
   app.value('sourceName', 'API Controller');
 
   app.factory('request',['$http', 'URL', 'sourceName', 'messager', function($http, URL, sourceName, messager){
@@ -47,10 +47,14 @@
         success(function(data, status, headers, config) {
           console.info(domain2delete + 'has been successfully deleted.(' + status + ')');
           messager.sendDataMessage(sourceName, 'requestSuccessful', null, data);
+          // Close the window is evrything went well.
+          messager.sendActionMessage(dialogName, 'close', dialogName);
         }).
         error(function(data, status, headers, config) {
           console.warn('Delete request for the domain ' + domain2delete + ' failed.(' + status + ')');
           messager.sendDataMessage(sourceName, 'requestFailed', null, data);
+          // Close the window
+          messager.sendActionMessage(dialogName, 'close', dialogName);
         });
       },
 
