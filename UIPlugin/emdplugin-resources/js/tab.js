@@ -4,28 +4,36 @@
 
   var app = angular.module('plugin.tab', ['plugin.common', 'plugin.ajax']);
 
-  app.run(['alertManager', 'menuController', function(alertMan, menuCtrl) {
+  app.run(['alertManager', 'domainsListManager', function(alertMan, domainsMan) {
 
     alertMan.alertInfo('Thanks for using this plugin. You can access the all code <a href="https://github.com/eayun/UIPlugin-Engine-Manage-Domains">here</a>. If you have any suggestion please use <a href="https://github.com/eayun/UIPlugin-Engine-Manage-Domains/issues">this</a>.');
 
-    menuCtrl.refreshDomains();
+    domainsMan.refreshDomains();
 
  }]);
 
-  app.controller('TableController', ['$scope', function($scope){
-    $scope.domains = {};
+  app.controller('TableController', ['$scope', 'domainsListManager', function($scope, domainMan){
+    $scope.domains = domainMan.getDomains();
 
-    $scope.refreshDomains = function(domains){
-      $scope.domains = domains;
+    $scope.setDomains = function(domains){
+      domainMan.setDomains(domains);
       $scope.$apply();
     };
 
   }]);
 
   app.factory('domainsListManager', ['request', function(request){
+    var domains = {};
+
     return {
       refreshDomains: function() {
         request.list();
+      },
+      setDomains: function(domains2set) {
+        domains = domains2set;
+      },
+      getDomains: function() {
+        return domains;
       }
     };
   }]);
@@ -153,7 +161,7 @@
       };
 
       // This part control the refresh button
-      $scope.isAnimated = false;
+      $scope.isAnimated = true;
 
       $scope.refreshDomains = function() {
         domainsMan.refreshDomains();

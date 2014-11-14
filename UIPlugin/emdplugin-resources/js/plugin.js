@@ -77,11 +77,12 @@
                     console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Closed dialog [' + data.target + '].');
                     break;
 
-                  case ('updateTable'):
+                  case ('updateDomains'):
+
                     var tableContainer = sourceWindow.angular.element("#domainTable");
                     var tableScope = tableContainer.scope();
                     // Change the content of the table.
-                    tableScope.refreshTable(data.data);
+                    tableScope.setDomains(data.data);
 
                     var menuContainer = sourceWindow.angular.element("#menu");
                     var menuScope = menuContainer.scope();
@@ -90,7 +91,7 @@
 
                     break;
 
-                  case ('updateTableFailed'):
+                  case ('updateDomainsFailed'):
                     var menuContainer = sourceWindow.angular.element("#menu");
                     var menuScope = menuContainer.scope();
                     // Change the state of the refreshing button
