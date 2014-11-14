@@ -81,7 +81,7 @@
                     var tableContainer = sourceWindow.angular.element("#domainTable");
                     var tableScope = tableContainer.scope();
                     // Change the content of the table.
-                    tableScope.refreshTable(data);
+                    tableScope.refreshTable(data.data);
 
                     var menuContainer = sourceWindow.angular.element("#menu");
                     var menuScope = menuContainer.scope();
