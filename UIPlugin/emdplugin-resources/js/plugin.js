@@ -79,9 +79,9 @@
 
                   case ('updateTable'):
                     var tableContainer = sourceWindow.angular.element("#domainTable");
-                    var tableScope = menuContainer.scope();
+                    var tableScope = tableContainer.scope();
                     // Change the content of the table.
-                    menuScope.refreshTable(data);
+                    tableScope.refreshTable(data);
 
                     var menuContainer = sourceWindow.angular.element("#menu");
                     var menuScope = menuContainer.scope();
