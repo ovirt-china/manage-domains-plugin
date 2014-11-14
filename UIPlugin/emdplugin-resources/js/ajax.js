@@ -12,9 +12,9 @@
     return {
 
       list: function(){
-        var urlList = URL + '/domains/';
-        console.log('API Request: GET - ' + urlList);
-        $http.get(urlList).
+        var urlReq = URL + '/domains/';
+        console.log('API Request: GET - ' + urlReq);
+        $http.get(urlReq).
         success(function(data, status, headers, config) {
           console.info('List request was successful.(' + status + ')');
           console.log(data);
@@ -44,9 +44,9 @@
       },
 
       delete: function(domain2delete){
-        var urlDelete = URL + '/domains/' + domain2delete;
-        console.log('API Request: DELETE - ' + urlList);
-        $http.delete(urlDelete).
+        var urlReq = URL + '/domains/' + domain2delete;
+        console.log('API Request: DELETE - ' + urlReq);
+        $http.delete(urlReq).
         success(function(data, status, headers, config) {
           console.info(domain2delete + 'has been successfully deleted.(' + status + ')');
           messager.sendDataMessage(sourceName, 'requestSuccessful', null, data);
@@ -63,8 +63,9 @@
       },
 
       add: function(domain2add){
-        var urlAdd = URL + '/domains/' + domain2add.domain;
-        $http.put(urlAdd, domain2add).
+        var urlReq = URL + '/domains/' + domain2add.domain;
+        console.log('API Request: PUT - ' + urlReq);
+        $http.put(urlReq, domain2add).
         success(function(data, status, headers, config) {
           console.info(domain2add.domain + 'has been successfully added.(' + status + ')');
           messager.sendDataMessage(sourceName, 'requestSuccessful', null, data);
@@ -76,8 +77,9 @@
       },
 
       edit: function(domain2edit){
-        var urlEdit = URL + '/domains/' + domain2edit.domain + '/edit';
-        $http.put(urlEdit, domain2edit).
+        var urlReq = URL + '/domains/' + domain2edit.domain + '/edit';
+        console.log('API Request: PUT - ' + urlReq);
+        $http.put(urlReq, domain2edit).
         success(function(data, status, headers, config) {
           console.info(domain2edit.domain + 'has been successfully edited.(' + status + ')');
           messager.sendDataMessage(sourceName, 'requestSuccessful', null, data);
