@@ -4,7 +4,7 @@
 
 (function() {
 
-  var app = angular.module('plugin.remove', ['plugin.common']);
+  var app = angular.module('plugin.remove', ['plugin.common', 'plugin.ajax']);
 
   app.value('dialogName', 'remove-dialog');
 
@@ -14,12 +14,19 @@
 
   }]);
 
-  app.controller('RemoveController', ['cacheService', '$scope', 'messager', 'dialogName', function(cache, $scope, messager, dialogName){
+  app.controller('RemoveController', ['cacheService', '$scope', 'messager', 'dialogName', 'request', function(cache, $scope, messager, dialogName, request){
 
     $scope.domain = cache.getData('domainToRemove');
 
+    $scope.modalShown = false;
+
+    $scope.toggleModal = function() {
+      $scope.modalShown = !$scope.modalShown;
+    };
+
     $scope.remove = function() {
 
+      $scope.toggleModal();
       console.log('[EMDPlugin > remove.js > RemoveController]' + '\n' + '--> Information about the domain to remove ' + angular.toJson($scope.domain));
 
       //////////////////////////////////////////////////////////////////////
@@ -27,6 +34,8 @@
       //                  SEND THE REQUEST TO THE API                     //
       //                                                                  //
       //////////////////////////////////////////////////////////////////////
+      
+      request.delete($scope.domain.name);
 
       // Close the window is evrything went well.
       messager.sendActionMessage(dialogName, 'close', dialogName);
