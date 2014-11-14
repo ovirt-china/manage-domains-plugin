@@ -17,18 +17,11 @@
  }]);
 
   app.controller('TableController', ['$scope', function($scope){
-    this.domains = [
-        {
-          name: "AD_DOMAIN",
-          provider: "Active Directory",
-          status: "Validate"
-        },
-        {
-          name: "auth-server",
-          provider: "free-ipa",
-          status: "Validate"
-        }
-    ];
+    $scope.domains = {};
+
+    $scope.refreshTable = function(domains){
+      $scope.domains = domains;
+    };
 
   }]);
 

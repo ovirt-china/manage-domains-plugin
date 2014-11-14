@@ -77,12 +77,24 @@
                     console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Closed dialog [' + data.target + '].');
                     break;
 
+                  case ('updateTable'):
+                    var tableContainer = sourceWindow.angular.element("#domainTable");
+                    var tableScope = menuContainer.scope();
+                    // Change the content of the table.
+                    menuScope.refreshTable(data);
+
+                    var menuContainer = sourceWindow.angular.element("#menu");
+                    var menuScope = menuContainer.scope();
+                    // Change the state of the refreshing button
+                    menuScope.reqRefreshisOver(true);
+
+                    break;
+
                   case ('updateTableFailed'):
                     var menuContainer = sourceWindow.angular.element("#menu");
                     var menuScope = menuContainer.scope();
                     // Change the state of the refreshing button
                     menuScope.reqRefreshisOver(false);
-                    // Trigger the message to notify it failed.
 
                     break;
 
