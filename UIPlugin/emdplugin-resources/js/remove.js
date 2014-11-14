@@ -20,26 +20,18 @@
 
     $scope.modalShown = false;
 
-    $scope.toggleModal = function() {
+    $scope.toggleLoadingModal = function() {
       $scope.modalShown = !$scope.modalShown;
     };
 
     $scope.remove = function() {
 
-      $scope.toggleModal();
+      $scope.toggleLoadingModal();
       console.log('[EMDPlugin > remove.js > RemoveController]' + '\n' + '--> Information about the domain to remove ' + angular.toJson($scope.domain));
-
-      //////////////////////////////////////////////////////////////////////
-      //                                                                  //
-      //                  SEND THE REQUEST TO THE API                     //
-      //                                                                  //
-      //////////////////////////////////////////////////////////////////////
 
       request.delete($scope.domain.domain);
 
-      // Close the window is evrything went well.
-      //messager.sendActionMessage(dialogName, 'close', dialogName);
-
+      // Now the ajax.js will take care of the following steps.
     }
 
   }]);

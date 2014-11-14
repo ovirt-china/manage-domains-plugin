@@ -25,22 +25,6 @@
           console.log(data);
           messager.sendDataMessage(sourceName, 'updateTableFailed', null, data);
         });
-
-        // var httpRequest = $http({
-        //     method: 'GET',
-        //     url: URL + '/domains/'
-        //
-        // }).success(function(data, status) {
-        //     console.info('List request was successful.');
-        //     console.log(data);
-        //     console.log(status);
-        //     messager.sendDataMessage(sourceName, 'updateTable', null, data);
-        //
-        // }).error(function(data, status, headers, config) {
-        //     console.warn('List request failed.');
-        //     messager.sendDataMessage(sourceName, 'updateTableFailed', null, data);
-        // });
-
       },
 
       delete: function(domain2delete){

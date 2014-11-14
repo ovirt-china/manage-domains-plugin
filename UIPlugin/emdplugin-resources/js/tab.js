@@ -4,32 +4,27 @@
 
   var app = angular.module('plugin.tab', ['plugin.common', 'plugin.ajax']);
 
-  //  app.run(['menuController', 'alertController', function(menuCtrl, alertCtrl) {
-  //   // Nothing here for the moment but the time to get the list of servers will come sooner or later.
-  //   alertCtrl.alertInfo('Thanks for using this plugin. You can access the all code <a href="https://github.com/eayun/UIPlugin-Engine-Manage-Domains">here</a>. If you have any suggestion please use <a href="https://github.com/eayun/UIPlugin-Engine-Manage-Domains/issues">this</a>.');
-  //   menuCtrl.refreshTable();
-  //
-  // }]);
+  app.run(['alertManager', 'menuController', function(alertMan, menuCtrl) {
 
-  app.run(['alertManager', function(alertMan) {
-   alertMan.alertInfo('Thanks for using this plugin. You can access the all code <a href="https://github.com/eayun/UIPlugin-Engine-Manage-Domains">here</a>. If you have any suggestion please use <a href="https://github.com/eayun/UIPlugin-Engine-Manage-Domains/issues">this</a>.');
+    alertMan.alertInfo('Thanks for using this plugin. You can access the all code <a href="https://github.com/eayun/UIPlugin-Engine-Manage-Domains">here</a>. If you have any suggestion please use <a href="https://github.com/eayun/UIPlugin-Engine-Manage-Domains/issues">this</a>.');
+
+    menuCtrl.refreshDomains();
 
  }]);
 
   app.controller('TableController', ['$scope', function($scope){
     $scope.domains = {};
 
-    $scope.refreshTable = function(domains){
-      console.log(domains);
+    $scope.refreshDomains = function(domains){
       $scope.domains = domains;
       $scope.$apply();
     };
 
   }]);
 
-  app.factory('RefreshManager', ['request', function(request){
+  app.factory('domainsListManager', ['request', function(request){
     return {
-      getDomains: function(){
+      refreshDomains: function() {
         request.list();
       }
     };
@@ -144,7 +139,7 @@
    }]);
 
    // Controller to provide the functions to open the dialogs
-   app.controller('menuController', ['$scope', 'dialogManager', 'RefreshManager','alertManager', function ($scope, dialogManager, refreshManager, alertMan){
+   app.controller('menuController', ['$scope', 'dialogManager', 'domainsListManager','alertManager', function ($scope, dialogManager, domainsMan, alertMan){
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
       };
@@ -160,8 +155,8 @@
       // This part control the refresh button
       $scope.isAnimated = false;
 
-      $scope.refreshTable = function() {
-        refreshManager.getDomains();
+      $scope.refreshDomains = function() {
+        domainsMan.refreshDomains();
         $scope.isAnimated = true;
       };
 
