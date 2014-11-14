@@ -35,7 +35,7 @@
       //                                                                  //
       //////////////////////////////////////////////////////////////////////
 
-      request.delete($scope.domain.name);
+      request.delete($scope.domain.domain);
 
       // Close the window is evrything went well.
       //messager.sendActionMessage(dialogName, 'close', dialogName);

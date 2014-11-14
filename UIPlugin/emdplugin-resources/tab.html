@@ -33,8 +33,8 @@
          </thead>
          <tbody>
             <tr ng-repeat="domain in domains">
-               <td>{{ domain.domain }}</td>
-               <td>{{ domain.username }}</td>
+               <td class="text-cell">{{ domain.domain }}</td>
+               <td class="text-cell">{{ domain.username }}</td>
                <td>
                   <div class="action-table" ng-controller="menuController">
                     <button class="btn btn-default" type="button" ng-click="openEditDialog($parent.domain)">

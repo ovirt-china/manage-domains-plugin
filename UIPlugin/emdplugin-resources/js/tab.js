@@ -112,7 +112,7 @@
 
          // Show the Remove Dialog Window
          showRemoveDialog: function (domain) {
-            var dialogName = "Remove " + domain.name;
+            var dialogName = "Remove " + domain.domain;
 
             cache.setData('domainToRemove',domain);
 
