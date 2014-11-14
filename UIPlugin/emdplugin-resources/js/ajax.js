@@ -48,13 +48,13 @@
           console.info(domain2delete + 'has been successfully deleted.(' + status + ')');
           messager.sendDataMessage(sourceName, 'requestSuccessful', null, data);
           // Close the window is evrything went well.
-          messager.sendActionMessage(dialogName, 'close', dialogName);
+          messager.sendActionMessage('remove-dialog', 'close', 'remove-dialog');
         }).
         error(function(data, status, headers, config) {
           console.warn('Delete request for the domain ' + domain2delete + ' failed.(' + status + ')');
           messager.sendDataMessage(sourceName, 'requestFailed', null, data);
           // Close the window
-          messager.sendActionMessage(dialogName, 'close', dialogName);
+          messager.sendActionMessage('remove-dialog', 'close', 'remove-dialog');
         });
       },
 

@@ -34,11 +34,11 @@
       //                  SEND THE REQUEST TO THE API                     //
       //                                                                  //
       //////////////////////////////////////////////////////////////////////
-      
+
       request.delete($scope.domain.name);
 
       // Close the window is evrything went well.
-      messager.sendActionMessage(dialogName, 'close', dialogName);
+      //messager.sendActionMessage(dialogName, 'close', dialogName);
 
     }
 
