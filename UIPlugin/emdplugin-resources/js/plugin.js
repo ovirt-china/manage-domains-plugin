@@ -12,6 +12,7 @@
 
     var menuScope = null;
     var alertScope = null;
+    var tableScope = null;
 
         return {
             set : function(contentWindow) {
@@ -37,6 +38,12 @@
             },
             getAlertScope : function() {
                 return this.alertScope;
+            },
+            setTableScope : function(tableScope) {
+                this.tableScope = tableScope;
+            },
+            getTableScope : function() {
+                return this.tableScope;
             }
         };
   });
@@ -80,6 +87,7 @@
 
                     contentWindow.setMenuScope(tabWindow.angular.element("#menu").scope());
                     contentWindow.setAlertScope(tabWindow.angular.element("#alert").scope());
+                    contentWindow.setTableScope(tabWindow.angular.element("#domainTable").scope());
 
                     console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Acquired source window of tab from opening tab [' + data.source + '].');
                     break;
@@ -112,42 +120,25 @@
                     break;
 
                   case ('updateDomains'):
-
-                    var tableContainer = sourceWindow.angular.element("#domainTable");
-                    var tableScope = tableContainer.scope();
-                    // Change the content of the table.
-                    tableScope.setDomains(data.data);
-
-
+                    contentWindow.getTableScope().setDomains(data.data);
                     contentWindow.getMenuScope().reqRefreshisOver(true);
-
-                    // var menuContainer = sourceWindow.angular.element("#menu");
-                    // var menuScope = menuContainer.scope();
-                    // // Change the state of the refreshing button
-                    // menuScope.reqRefreshisOver(true);
-
                     break;
 
                   case ('updateDomainsFailed'):
-                    var menuContainer = sourceWindow.angular.element("#menu");
-                    var menuScope = menuContainer.scope();
-                    // Change the state of the refreshing button
-                    menuScope.reqRefreshisOver(false);
-
+                    contentWindow.getMenuScope().reqRefreshisOver(false);
                     break;
 
                   case ('requestFailed'):
                     contentWindow.getAlertScope().alertDanger(data.data);
+                    break;
 
+                  case ('requestSuccessful'):
+                    contentWindow.getAlertScope().alertSuccess(data.data);
                     break;
 
                   default:
                     console.warn('EMDPlugin just receive a message with an undefined action: ' + data.action);
                 }
-              //    if (data.action === 'GetTabData') {
-              //       tabManager.setTabWindow(sourceWindow);
-              //       tabManager.updateTab();
-              //    }
               }
 
           }
