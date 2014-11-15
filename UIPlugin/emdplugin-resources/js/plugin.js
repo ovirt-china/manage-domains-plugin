@@ -119,7 +119,7 @@
                     tableScope.setDomains(data.data);
 
 
-                    contentWindow.getMenuScope.reqRefreshisOver(true);
+                    contentWindow.getMenuScope().reqRefreshisOver(true);
 
                     // var menuContainer = sourceWindow.angular.element("#menu");
                     // var menuScope = menuContainer.scope();
