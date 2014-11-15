@@ -6,7 +6,7 @@
 
   app.value('dialogName', 'emd-tab');
 
-  app.run(['messager', 'alertManager', 'domainsListManager', function(messager, alertMan, domainsMan) {
+  app.run(['messager', 'dialogName', 'alertManager', 'domainsListManager', function(messager, dialogName, alertMan, domainsMan) {
 
     messager.sendActionMessage(dialogName, 'justLaunch', null);
 
