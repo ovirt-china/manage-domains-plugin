@@ -74,7 +74,9 @@
                     break;
 
                     case ('justLaunch'):
-                      contentWindow.setTabWindow(sourceWindow);
+                      var tabWindow = sourceWindow
+
+                      contentWindow.setTabWindow(tabWindow);
 
                       contentWindow.setMenuScope(tabWindow.angular.element("#menu").scope());
                       contentWindow.setAlertScope(tabWindow.angular.element("#alert").scope());
