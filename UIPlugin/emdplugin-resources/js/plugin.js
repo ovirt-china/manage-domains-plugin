@@ -137,7 +137,7 @@
                     break;
 
                   case ('requestFailed'):
-                    contentWindow.getAlertScope().alertInfo(data.data);
+                    contentWindow.getAlertScope().alertDanger(data.data);
 
                     break;
 
