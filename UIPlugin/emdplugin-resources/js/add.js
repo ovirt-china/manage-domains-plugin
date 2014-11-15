@@ -24,13 +24,14 @@
                      "passwordFile": ""
                     };
 
-      $scope.modalShown = false;
+
 
       $scope.toggleLoadingModal = function() {
         $scope.modalShown = !$scope.modalShown;
-        console.log('modalShown = ' + modalShown);
+        $scope.$apply();
       };
 
+      $scope.modalShown = false;
 
      $scope.submit = function() {
         // First verify the form
