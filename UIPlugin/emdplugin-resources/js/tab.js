@@ -230,22 +230,26 @@
     $scope.alertInfo = function (alertMsg){
       alertMan.alertInfo(alertMsg);
       $scope.alert = alertMan.get();
+      $scope.$apply();
 
     };
 
     $scope.alertSuccess = function (alertMsg){
       alertMan.alertSuccess(alertMsg);
       $scope.alert = alertMan.get();
+      $scope.$apply();
     };
 
     $scope.alertWarning = function (alertMsg){
       alertMan.alertWarning(alertMsg);
       $scope.alert = alertMan.get();
+      $scope.$apply();
     };
 
     $scope.alertDanger = function (alertMsg){
       alertMan.alertDanger(alertMsg);
       $scope.alert = alertMan.get();
+      $scope.$apply();
     };
   }]);
 
