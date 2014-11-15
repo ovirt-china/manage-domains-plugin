@@ -34,7 +34,9 @@
      $scope.submit = function() {
         // First verify the form
         if($scope.addForm.$valid){
+
           $scope.toggleLoadingModal();
+
           console.log('[EMDPlugin > add.js > AddFormController]' + '\n' + '--> The form is valid.');
 
           // Test if the domain object is define
