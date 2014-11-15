@@ -39,6 +39,9 @@
         }).
         error(function(data, status, headers, config) {
           console.error('Delete request for the domain ' + domain2delete + ' failed.(' + status + ')');
+          if(!data){
+            data = 'Impossible to delete the domain <strong>' + domain2delete + '</strong>.';
+          }
           console.log(data);
           messager.sendDataMessage(sourceName, 'requestFailed', null, data);
           // Close the window
