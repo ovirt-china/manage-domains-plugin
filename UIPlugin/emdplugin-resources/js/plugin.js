@@ -73,16 +73,16 @@
                     console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Acquired source window from opening dialog [' + data.source + '].');
                     break;
 
-                    case ('justLaunch'):
-                      var tabWindow = sourceWindow
+                  case ('justLaunch'):
+                    var tabWindow = sourceWindow
 
-                      contentWindow.setTabWindow(tabWindow);
+                    contentWindow.setTabWindow(tabWindow);
 
-                      contentWindow.setMenuScope(tabWindow.angular.element("#menu").scope());
-                      contentWindow.setAlertScope(tabWindow.angular.element("#alert").scope());
+                    contentWindow.setMenuScope(tabWindow.angular.element("#menu").scope());
+                    contentWindow.setAlertScope(tabWindow.angular.element("#alert").scope());
 
-                      console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Acquired source window of tab from opening tab [' + data.source + '].');
-                      break;
+                    console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Acquired source window of tab from opening tab [' + data.source + '].');
+                    break;
 
                   // When the 'Ok' button is press this trigger the submission of the form
                   case ('submit'):
@@ -133,6 +133,11 @@
                     var menuScope = menuContainer.scope();
                     // Change the state of the refreshing button
                     menuScope.reqRefreshisOver(false);
+
+                    break;
+
+                  case ('requestFailed'):
+                    contentWindow.getAlertScope().alertInfo(data.data);
 
                     break;
 

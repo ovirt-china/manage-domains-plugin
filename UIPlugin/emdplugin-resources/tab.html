@@ -17,7 +17,7 @@
       </button>
    </p>
 
-  <div class="container" ng-controller="alertController">
+  <div class="container" id="alert" ng-controller="alertController">
     <div class="alert {{alert.type}}" ng-bind-html="alert.content | unsafe">
     </div>
   </div>
