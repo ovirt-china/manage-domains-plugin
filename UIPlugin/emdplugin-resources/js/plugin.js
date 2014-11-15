@@ -8,12 +8,35 @@
 
   app.service('contentWindowService', function(){
     var contentWindow = null ;
+    var tabWindow = null;
+
+    var menuScope = null;
+    var alertScope = null;
+
         return {
             set : function(contentWindow) {
                 this.contentWindow = contentWindow;
             },
             get : function() {
                 return this.contentWindow;
+            },
+            setTabWindow : function(tabWindow) {
+                this.tabWindow = tabWindow;
+            },
+            getTabWindow : function() {
+                return this.tabWindow;
+            }
+            setMenuScope : function(menuScope) {
+                this.menuScope = menuScope;
+            },
+            getMenuScope : function() {
+                return this.menuScope;
+            }
+            setAlertScope : function(alertScope) {
+                this.alertScope = alertScope;
+            },
+            getAlertScope : function() {
+                return this.alertScope;
             }
         };
   });
@@ -50,6 +73,15 @@
                     console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Acquired source window from opening dialog [' + data.source + '].');
                     break;
 
+                    case ('justLaunch'):
+                      contentWindow.setTabWindow(sourceWindow);
+
+                      contentWindow.setMenuScope(tabWindow.angular.element("#menu").scope());
+                      contentWindow.setAlertScope(tabWindow.angular.element("#alert").scope());
+
+                      console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Acquired source window of tab from opening tab [' + data.source + '].');
+                      break;
+
                   // When the 'Ok' button is press this trigger the submission of the form
                   case ('submit'):
                     var formDialog = contentWindow.get();
@@ -84,10 +116,13 @@
                     // Change the content of the table.
                     tableScope.setDomains(data.data);
 
-                    var menuContainer = sourceWindow.angular.element("#menu");
-                    var menuScope = menuContainer.scope();
-                    // Change the state of the refreshing button
-                    menuScope.reqRefreshisOver(true);
+
+                    contentWindow.getMenuScope.reqRefreshisOver(true);
+
+                    // var menuContainer = sourceWindow.angular.element("#menu");
+                    // var menuScope = menuContainer.scope();
+                    // // Change the state of the refreshing button
+                    // menuScope.reqRefreshisOver(true);
 
                     break;
 
