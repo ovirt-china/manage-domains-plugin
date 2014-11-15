@@ -55,10 +55,13 @@
         $http.put(urlReq, domain2add).
         success(function(data, status, headers, config) {
           console.info(domain2add.domain + 'has been successfully added.(' + status + ')');
+          console.log(data);
           messager.sendDataMessage(sourceName, 'requestSuccessful', null, data);
+          messager.sendActionMessage('add-dialog', 'close', 'add-dialog');
         }).
         error(function(data, status, headers, config) {
           console.warn('Add request for the domain ' + domain2add.domain + ' failed.(' + status + ')');
+          console.log(data);
           messager.sendDataMessage(sourceName, 'requestFailed', null, data);
         });
       },

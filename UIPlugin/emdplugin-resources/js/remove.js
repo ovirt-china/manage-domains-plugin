@@ -47,6 +47,7 @@
     $scope.modalShown = false;
     $scope.toggleModal = function() {
       $scope.modalShown = !$scope.modalShown;
+      $scope.$apply();
     };
   }]);
 

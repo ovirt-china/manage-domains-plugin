@@ -43,16 +43,12 @@
 
           // Test if the domain object is define
           if($scope.domain){
-            $scope.domainJSON = angular.toJson($scope.domain);
+             var domainJSON = angular.toJson($scope.domain);
             console.log('[EMDPlugin > add.js > AddFormController]' + '\n' + '--> Information from the form ' + angular.toJson($scope.domain));
+
+            request.add($scope.domain);
+
           }
-
-          //////////////////////////////////////////////////////////////////////
-          //                                                                  //
-          //                  SEND THE REQUEST TO THE API                     //
-          //                                                                  //
-          //////////////////////////////////////////////////////////////////////
-
         } else {
            $window.alert("Domain, Provider, User and PasswordFile are requiered input. Please fill them correctly !");
         }
