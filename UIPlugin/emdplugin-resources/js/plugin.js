@@ -135,7 +135,7 @@
                   case ('requestSuccessful'):
                     if (data.target){
                       contentWindow.getMenuScope().refreshDomains();
-                      messager.sendActionMessage('add-dialog', 'close', 'add-dialog');
+                      pluginApi.closeDialog(data.target);
                     }
                     contentWindow.getAlertScope().alertSuccess(data.data);
                     break;
