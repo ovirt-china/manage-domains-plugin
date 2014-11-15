@@ -28,6 +28,7 @@
 
       $scope.toggleLoadingModal = function() {
         $scope.modalShown = !$scope.modalShown;
+        console.log('modalShown = ' + modalShown);
       };
 
 
