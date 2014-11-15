@@ -86,7 +86,7 @@ a.collapse-button:hover {
 
 /*--------------------Small Dialog--------------------*/
 
-.container>.info-container>.alert {
+#info-container {
   margin-top: 20px;
 }
 
