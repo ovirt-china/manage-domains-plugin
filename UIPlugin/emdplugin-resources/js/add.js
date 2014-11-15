@@ -4,7 +4,7 @@
 
 (function() {
 
-  var app = angular.module('plugin.add', ['plugin.common']);
+  var app = angular.module('plugin.add', ['plugin.common', 'plugin.ajax']);
 
   app.value('dialogName', 'add-dialog');
 
@@ -13,7 +13,7 @@
     messager.sendActionMessage(dialogName, 'justOpen', null);
   }]);
 
-   app.controller('AddFormController',['$scope', '$window', 'messager', 'dialogName', function($scope, $window, messager, dialogName){
+   app.controller('AddFormController',['$scope', '$window', 'messager', 'dialogName', 'request', function($scope, $window, messager, dialogName, request){
      $scope.domain ={"domain": "",
                      "provider": "",
                      "user": "",
@@ -24,10 +24,17 @@
                      "passwordFile": ""
                     };
 
+      $scope.modalShown = false;
+
+      $scope.toggleLoadingModal = function() {
+        $scope.modalShown = !$scope.modalShown;
+      };
+
 
      $scope.submit = function() {
         // First verify the form
         if($scope.addForm.$valid){
+          $scope.toggleLoadingModal();
           console.log('[EMDPlugin > add.js > AddFormController]' + '\n' + '--> The form is valid.');
 
           // Test if the domain object is define
@@ -42,11 +49,8 @@
           //                                                                  //
           //////////////////////////////////////////////////////////////////////
 
-          // Close the window is evrything went well.
-          messager.sendActionMessage(dialogName, 'close', dialogName);
-
         } else {
-           $window.alert("Domain, Provider and User are requiered input. Please fill them correctly !");
+           $window.alert("Domain, Provider, User and PasswordFile are requiered input. Please fill them correctly !");
         }
 
       };
