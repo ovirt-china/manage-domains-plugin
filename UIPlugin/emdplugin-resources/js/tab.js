@@ -166,6 +166,13 @@
 
       // This part control the refresh button
       $scope.isAnimated = true;
+      var requestFromBtn = false;
+
+      $scope.refreshDomainsFromBtn = function() {
+        requestFromBtn = true;
+        domainsMan.refreshDomains();
+        $scope.isAnimated = true;
+      };
 
       $scope.refreshDomains = function() {
         domainsMan.refreshDomains();
@@ -176,6 +183,8 @@
         $scope.isAnimated = false;
         if(!isSuccessful){
           alertMan.alertDanger('Impossible to refresh the list of Domains.');
+        } else if (requestFromBtn) {
+          alertMan.alertSuccess('The list of Domains has been refreshed successfully.');
         }
 
         $scope.$apply();

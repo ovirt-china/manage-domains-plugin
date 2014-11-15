@@ -61,7 +61,7 @@
         error(function(data, status, headers, config) {
           console.warn('Add request for the domain ' + domain2add.domain + ' failed.(' + status + ')');
           console.log(data);
-          messager.sendDataMessage(sourceName, 'requestFailed', null, data);
+          messager.sendDataMessage(sourceName, 'requestFailed', 'add-dialog', data);
         });
       },
 
