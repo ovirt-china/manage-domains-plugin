@@ -14,6 +14,16 @@
   }]);
 
    app.controller('AddFormController',['$scope', '$window', 'messager', 'dialogName', function($scope, $window, messager, dialogName){
+     $scope.domain ={"domain": "",
+                     "provider": "",
+                     "user": "",
+                     "addPermissions": false,
+                     "configFile": "",
+                     "ldapServers": "",
+                     "resolveKdc": false,
+                     "passwordFile": ""
+                    };
+
 
      $scope.submit = function() {
         // First verify the form
