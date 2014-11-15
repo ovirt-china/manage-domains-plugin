@@ -25,13 +25,13 @@
             },
             getTabWindow : function() {
                 return this.tabWindow;
-            }
+            },
             setMenuScope : function(menuScope) {
                 this.menuScope = menuScope;
             },
             getMenuScope : function() {
                 return this.menuScope;
-            }
+            },
             setAlertScope : function(alertScope) {
                 this.alertScope = alertScope;
             },
