@@ -52,7 +52,7 @@
           request.edit($scope.domain);
           }
         } else {
-           $window.alert("Your form is not correct ! (Sorry, I don't know what to say to help you :( )");
+           $window.alert("Your form is not correct ! Please precise a valid absolute path to the file containing the password.");
         }
 
       };
