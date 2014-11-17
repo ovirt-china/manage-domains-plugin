@@ -130,6 +130,7 @@
 
                   case ('requestFailed'):
                     contentWindow.getAlertScope().alertDanger(data.data);
+                    pluginApi.closeDialog(data.target);
                     break;
 
                   case ('requestSuccessful'):

@@ -185,6 +185,7 @@
           alertMan.alertDanger('Impossible to refresh the list of Domains.');
         } else if (requestFromBtn) {
           alertMan.alertSuccess('The list of Domains has been refreshed successfully.');
+          requestFromBtn = false;
         }
 
         $scope.$apply();
