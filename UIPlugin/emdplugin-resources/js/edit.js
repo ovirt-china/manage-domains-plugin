@@ -4,7 +4,7 @@
 
 (function() {
 
-  var app = angular.module('plugin.edit', ['plugin.common']);
+  var app = angular.module('plugin.edit', ['plugin.common', 'plugin.ajax']);
 
   app.value('dialogName', 'edit-dialog');
 
@@ -13,43 +13,49 @@
     messager.sendActionMessage(dialogName, 'justOpen', null);
   }]);
 
-   app.controller('EditFormController',['$scope', '$window', 'messager', 'dialogName', function($scope, $window, messager, dialogName){
+   app.controller('EditFormController',['$scope', '$window', 'messager', 'dialogName', 'cacheService', 'request', function($scope, $window, messager, dialogName, cache, request){
+
+     // initiate the Default domain2edit JSON object to be send to the API.
+     $scope.domain ={"domain": "",
+                     "provider": "",
+                     "user": "",
+                     "addPermissions": false,
+                     "configFile": "",
+                     "ldapServers": "",
+                     "resolveKdc": false,
+                     "passwordFile": ""
+                    };
+      // Get the name of the domain from the cache
+      $scope.domain.domain = cache.getData('domainToEdit').domain;
+
+    // functions to control the Loading Modal
+    $scope.modalShown = false;
+
+    $scope.toggleLoadingModal = function() {
+      $scope.modalShown = !$scope.modalShown;
+      $scope.$apply();
+    };
 
      $scope.submit = function() {
         // First verify the form
         if($scope.editForm.$valid){
+
+          $scope.toggleLoadingModal();
+
           console.log('[EMDPlugin > edit.js > EditFormController]' + '\n' + '--> The form is valid.');
+
 
           // Test if the domain object is define
           if($scope.domain){
             $scope.domainJSON = angular.toJson($scope.domain);
             console.log('[EMDPlugin > edit.js > EditFormController]' + '\n' + '--> Information from the form ' + angular.toJson($scope.domain));
+          request.edit($scope.domain);
           }
-
-          //////////////////////////////////////////////////////////////////////
-          //                                                                  //
-          //                  SEND THE REQUEST TO THE API                     //
-          //                                                                  //
-          //////////////////////////////////////////////////////////////////////
-
-          // Close the window is evrything went well.
-          messager.sendActionMessage(dialogName, 'close', dialogName);
-
-
         } else {
            $window.alert("Your form is not correct ! (Sorry, I don't know what to say to help you :( )");
         }
 
       };
    }]);
-
-
-
-  // Get the information about the domain from the local storage
-  app.controller('CacheController', ['cacheService', '$scope', function(cache, $scope){
-
-    $scope.domain = cache.getData('domainToEdit');
-
-  }]);
 
 })();

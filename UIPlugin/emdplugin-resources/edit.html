@@ -6,16 +6,36 @@
     <link rel="stylesheet" href="css/customstyle.css">
   </head>
 
-  <body>
+  <body ng-controller="EditFormController">
 
-    <div class="container" ng-controller="CacheController">
+    <!-- Loading Modal -->
+    <div class="ng-modal" ng-show="modalShown">
+      <div class="ng-modal-overlay"></div>
+      <div class="ng-modal-dialog">
+        <div class="ng-modal-dialog-content">
+
+            <div class="media">
+                <div class="pull-left">
+                  <div class="spinner spinner-lg"></div>
+                </div>
+                <div class="media-body">
+                  <h1 class="processing-descr">Processing...</h1>
+                </div>
+              </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- End of the Loading Modal -->
+
+    <div class="container">
 
       <div class="alert alert-info">
         <span class="pficon pficon-info"></span>
-        To edit <strong>{{domain.name}}</strong> please fill only the fields you want to modify.
+        To edit <strong>{{domain.domain}}</strong> please fill only the fields you want to modify.
       </div>
 
-      <form class="form-horizontal" id="form-container" name="editForm" action="#" ng-controller="EditFormController" ng-submit="submit()">
+      <form class="form-horizontal" id="form-container" name="editForm" action="#" ng-submit="submit()">
 
          <!-- Provider -->
          <div class="form-group">
@@ -43,8 +63,9 @@
             </div>
          </div>
 
+         <!-- DO NOT USE (NOT SUPPORTED BY THE API YET) -->
          <!-- Password -->
-         <div class="form-group">
+         <!-- <div class="form-group">
             <label class="col-sm-2 control-label" for="inputError-markup">Password</label>
             <div class="col-sm-10">
                <div class="input-group">
@@ -56,6 +77,15 @@
                   </span>
                </div>
                <span class="help-block">If you want to use a file containing the password use the Advanced Parameters.</span>
+            </div>
+         </div> -->
+
+         <!-- Password File -->
+         <div class="form-group">
+            <label class="col-sm-2 control-label" for="inputError-markup">Password File</label>
+            <div class="col-sm-10">
+               <input type="text" id="inputError-markup" class="form-control" ng-model="domain.passwordfile" required>
+               <span class="help-block">A file containing the password.[Use the absolute path of the file on the machine]</span>
             </div>
          </div>
 
@@ -97,15 +127,6 @@
                   </div>
                </div>
 
-               <!-- Password File -->
-               <div class="form-group">
-                  <label class="col-sm-2 control-label" for="inputError-markup">Password File</label>
-                  <div class="col-sm-10">
-                     <input type="text" id="inputError-markup" class="form-control" ng-model="domain.passwordfile">
-                     <span class="help-block">A file containing the password.[Use the absolute path of the file on the machine]</span>
-                  </div>
-               </div>
-
       </div>
       </form>
 
@@ -113,6 +134,7 @@
       <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
       <script src="lib/angular/js/angular.js"></script>
       <script src="js/common.js"></script>
+      <script src="js/ajax.js"></script>
       <script src="js/edit.js"></script>
 
    </body>
