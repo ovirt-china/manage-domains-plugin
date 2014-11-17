@@ -71,11 +71,13 @@
         $http.put(urlReq, domain2edit).
         success(function(data, status, headers, config) {
           console.info(domain2edit.domain + 'has been successfully edited.(' + status + ')');
-          messager.sendDataMessage(sourceName, 'requestSuccessful', null, data);
+          console.log(data);
+          messager.sendDataMessage(sourceName, 'requestSuccessful', 'edit-dialog', data);
         }).
         error(function(data, status, headers, config) {
           console.warn('Edit request for the domain ' + domain2edit.domain + ' failed.(' + status + ')');
-          messager.sendDataMessage(sourceName, 'requestFailed', null, data);
+          console.log(data);
+          messager.sendDataMessage(sourceName, 'requestFailed', 'edit-dialog', data);
         });
       }
 
