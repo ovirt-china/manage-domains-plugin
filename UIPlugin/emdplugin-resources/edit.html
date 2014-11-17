@@ -84,8 +84,8 @@
          <div class="form-group">
             <label class="col-sm-2 control-label" for="inputError-markup">Password File</label>
             <div class="col-sm-10">
-               <input type="text" id="inputError-markup" class="form-control" ng-model="domain.passwordfile" required>
-               <span class="help-block">A file containing the password.[Use the absolute path of the file on the machine]</span>
+               <input type="text" id="inputError-markup" class="form-control" ng-model="domain.passwordFile" required>
+               <span class="help-block">A file containing the password. [Use the absolute path of the file on the machine]</span>
             </div>
          </div>
 
@@ -94,7 +94,7 @@
                   <label class="col-sm-2 control-label" for="inputError-markup">Add Permission</label>
                   <div class="col-sm-10">
                      <label class="checkbox-selection">
-                        <input type="checkbox" ng-model="domain.permission"> Add engine superuser permissions to the user.
+                        <input type="checkbox" ng-model="domain.addPermissions"> Add engine superuser permissions to the user.
                      </label>
                   </div>
                </div>
@@ -103,7 +103,7 @@
                <div class="form-group">
                   <label class="col-sm-2 control-label" for="inputError-markup">Config File</label>
                   <div class="col-sm-10">
-                     <input type="text" id="inputError-markup" class="form-control" ng-model="domain.configfile">
+                     <input type="text" id="inputError-markup" class="form-control" ng-model="domain.configFile">
                      <span class="help-block">Use the given alternate configuration file.[Use the absolute path of the file on the machine]</span>
                   </div>
                </div>
@@ -112,7 +112,7 @@
                <div class="form-group">
                   <label class="col-sm-2 control-label" for="inputError-markup">LDAP Servers</label>
                   <div class="col-sm-10">
-                     <input type="text" id="inputError-markup" class="form-control" ng-model="domain.ldapservers">
+                     <input type="text" id="inputError-markup" class="form-control" ng-model="domain.ldapServers">
                      <span class="help-block">A comma delimited list of LDAP servers to be set to the domain.</span>
                   </div>
                </div>
@@ -122,7 +122,7 @@
                   <label class="col-sm-2 control-label" for="inputError-markup">Resolve KDC</label>
                   <div class="col-sm-10">
                      <label class="checkbox-selection">
-                        <input type="checkbox" ng-model="domain.resolvekdc"> Resolve KDC servers using DNS (don't assume they are the same as LDAP servers).
+                        <input type="checkbox" ng-model="domain.resolveKdc"> Resolve KDC servers using DNS (don't assume they are the same as LDAP servers).
                      </label>
                   </div>
                </div>
