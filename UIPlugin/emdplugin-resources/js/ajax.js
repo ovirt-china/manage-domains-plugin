@@ -34,9 +34,7 @@
         $http.delete(urlReq).
         success(function(data, status, headers, config) {
           console.info(domain2delete + 'has been successfully deleted.(' + status + ')');
-          messager.sendDataMessage(sourceName, 'requestSuccessful', null, data);
-          // Close the window is evrything went well.
-          messager.sendActionMessage('remove-dialog', 'close', 'remove-dialog');
+          messager.sendDataMessage(sourceName, 'requestSuccessful', 'remove-dialog', data);
         }).
         error(function(data, status, headers, config) {
           console.error('Delete request for the domain ' + domain2delete + ' failed.(' + status + ')');
@@ -44,9 +42,7 @@
             data = 'Impossible to delete the domain <strong>' + domain2delete + '</strong>.';
           }
           console.log(data);
-          messager.sendDataMessage(sourceName, 'requestFailed', null, data);
-          // Close the window
-          messager.sendActionMessage('remove-dialog', 'close', 'remove-dialog');
+          messager.sendDataMessage(sourceName, 'requestFailed', 'remove-dialog', data);
         });
       },
 
