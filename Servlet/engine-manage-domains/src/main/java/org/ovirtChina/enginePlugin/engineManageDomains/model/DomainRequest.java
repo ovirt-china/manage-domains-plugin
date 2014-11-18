@@ -2,6 +2,10 @@ package org.ovirtChina.enginePlugin.engineManageDomains.model;
 
 import java.io.File;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+
 public class DomainRequest {
 
   /*
@@ -24,11 +28,11 @@ public class DomainRequest {
   private boolean resolveKdc = false;
   private String passwordFile = "";
 
-  private final String allowedDomainPattern = "^.*$";
-  private final String allowedUserPattern = "^.*$";
+  private final String allowedDomainPattern = "^(http:\\/\\/www\\.|https:\\/\\/www\\.|www\\.|)[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$";
+  private final String allowedUserPattern = "^[^;|&]+$";
   private final String allowedProviderPattern = "\\A(ad|ipa|rhds|itds|olap)\\Z";
   private final String allowedPathPattern = "^.*$";
-  private final String allowedLdapServersPattern = "^.*$";
+  private final String allowedLdapServersPattern = "^(http:\\/\\/www\\.|https:\\/\\/www\\.|www\\.|)[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$";
 
   private boolean requestCorrect = true;
   private String requestErrors = "";
@@ -67,9 +71,7 @@ public class DomainRequest {
       this.configFile = configFile;
     }
 
-    if (testOptionalField("LdapServers", ldapServers, allowedLdapServersPattern)){
-      this.ldapServers = ldapServers;
-    }
+    this.ldapServers = sanitizeListServers(ldapServers);
 
     // Because the normal password is still not allowed, the user must use the password file.
     if (passwordFile != null || !passwordFile.isEmpty()) {
@@ -78,7 +80,7 @@ public class DomainRequest {
         this.passwordFile = passwordFile;
       }
     } else {
-            requestErrors += " - PasswordFile can't be empty." + newline;
+      requestErrors += " - PasswordFile can't be empty." + newline;
       requestCorrect = false;
     }
   }
@@ -167,6 +169,44 @@ public class DomainRequest {
 
       }
     }
+  }
+
+  /**
+  * Test each domain in the list and return a String containing each valid domain.
+  */
+  private String sanitizeListServers(String serversList){
+    String serversListSanitize = "";
+
+    // Because it is an optional field, we should check if it is not null or empty first
+    if (serversList != null || !serversList.isEmpty()){
+
+      // Parse the String in a list of String
+      List<String> servers = Arrays.asList(serversList.split("\\s*,\\s*"));
+
+      // If the list is empty, this means that the list is not well formatted.
+      if (servers.isEmpty()){
+        requestErrors += " - The LDAP servers list is not well formatted." + newline;
+        requestCorrect = false;
+
+      } else {
+        // Iterate over each server address to be sure they are correct.
+        for (String server : servers) {
+          if(server.matches(allowedLdapServersPattern)){
+            serversListSanitize += server + ",";
+          } else {
+            requestErrors += " - " + server + " is not a valid LDAP server address." + newline;
+            requestCorrect = false;
+          }
+        }
+
+        // remove the last coma in the String (test if the string is no empty first)
+        if (!serversListSanitize.isEmpty()){
+          serversListSanitize = serversListSanitize.substring(0, serversListSanitize.length()-1);
+        }
+      }
+    }
+
+    return serversListSanitize;
   }
 
   /**

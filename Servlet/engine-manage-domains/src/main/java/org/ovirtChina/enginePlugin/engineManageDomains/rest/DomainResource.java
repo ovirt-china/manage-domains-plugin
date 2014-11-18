@@ -33,6 +33,7 @@ public class DomainResource {
   @Produces(MediaType.APPLICATION_JSON)
   public Response printDomain() {
 
+    System.out.println("----- New Request -----");
     System.out.println("New Request: GET - /domains");
 
     CommandExecuter cmdExec = new CommandExecuter();
@@ -50,6 +51,7 @@ public class DomainResource {
   @Path("/{domainName}")
   public Response removeDomain(@PathParam("domainName") String domainName) {
 
+    System.out.println("----- New Request -----");
     System.out.println("New Request: DELETE - /" + domainName);
 
     CommandExecuter cmdExec = new CommandExecuter();
@@ -68,6 +70,7 @@ public class DomainResource {
   @Consumes(MediaType.APPLICATION_JSON)
   public Response addDomain(@PathParam("domainName") String domainName, DomainRequest domain2add) {
 
+    System.out.println("----- New Request -----");
     System.out.println("New Request: PUT - /" + domainName);
 
     CommandExecuter cmdExec = new CommandExecuter();
@@ -92,6 +95,7 @@ public class DomainResource {
   @Consumes(MediaType.APPLICATION_JSON)
   public Response editDomain(@PathParam("domainName") String domainName, DomainRequest domain2edit) {
 
+    System.out.println("----- New Request -----");
     System.out.println("New Request: PUT - /" + domainName + "/edit");
 
     CommandExecuter cmdExec = new CommandExecuter();

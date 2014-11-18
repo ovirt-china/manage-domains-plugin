@@ -46,14 +46,17 @@ public class CommandExecuter {
       */
       if (domainList.isEmpty()){
         System.out.println("Request Answer: (204)");
+        System.out.println("-x-x- End Request -x-x-");
         return Response.status(204).build();
       }else{
         System.out.println("Request Answer: (200) " + domainList);
+        System.out.println("-x-x- End Request -x-x-");
         return Response.status(200).entity(domainList).build();
       }
 
     }else{
       System.out.println("Request Answer: (500) " + output);
+      System.out.println("-x-x- End Request -x-x-");
       return Response.status(500).entity(output).build();
 
     }
@@ -73,16 +76,19 @@ public class CommandExecuter {
     //If the deletion is successful
     if (output.contains(successSentence)){
       System.out.println("Request Answer: (204)");
+      System.out.println("-x-x- End Request -x-x-");
       return Response.status(204).build();
 
     //If the domain name has not been found
     }else if(output.matches(domainNotFoundPattern)){
       System.out.println("Request Answer: (404) " + output);
+      System.out.println("-x-x- End Request -x-x-");
       return Response.status(404).entity(output).build();
 
     //Default answer
     } else {
       System.out.println("Request Answer: (500) " + output);
+      System.out.println("-x-x- End Request -x-x-");
       return Response.status(500).entity(output).build();
 
     }
@@ -106,15 +112,18 @@ public class CommandExecuter {
         String outputSuccess = "The domain <strong>" + domainName + "</strong> has been added successfully.";
 
         System.out.println("Request Answer: (201) " + outputSuccess);
+        System.out.println("-x-x- End Request -x-x-");
         return Response.status(201).entity(outputSuccess).build();
 
       } else {
         System.out.println("Request Answer: (500) " + output);
+        System.out.println("-x-x- End Request -x-x-");
         return Response.status(500).entity(output).build();
 
       }
     } else {
       System.out.println("Request Answer: (400) " + domain.getRequestErrors());
+      System.out.println("-x-x- End Request -x-x-");
       return Response.status(400).entity(domain.getRequestErrors()).build();
     }
   }
@@ -174,15 +183,18 @@ public class CommandExecuter {
         String outputSuccess = "The domain <strong>" + domainName + "</strong> has been edit successfully.";
 
         System.out.println("Request Answer: (201) " + outputSuccess);
+        System.out.println("-x-x- End Request -x-x-");
         return Response.status(201).entity(outputSuccess).build();
 
       } else {
         System.out.println("Request Answer: (500) " + output);
+        System.out.println("-x-x- End Request -x-x-");
         return Response.status(500).entity(output).build();
 
       }
     } else {
       System.out.println("Request Answer: (400) " + domain.getRequestErrors());
+      System.out.println("-x-x- End Request -x-x-");
       return Response.status(400).entity(domain.getRequestErrors()).build();
     }
   }
