@@ -15,8 +15,8 @@ import org.ovirtChina.enginePlugin.engineManageDomains.process.List2Domain;
 public class CommandExecuter {
 
   private String result;
-  private String successSentence = "Manage Domains completed successfully\n";
-  private String domainNotFoundPattern = "Domain\\s.*?\\sdoesn't exist in the configuration[.]\\n";
+  private String successSentence = "Manage Domains completed successfully";
+  private String domainNotFoundPattern = "Domain\\s.*?\\sdoesn't exist in the configuration[.]";
 
 	public CommandExecuter() {
 	}
@@ -268,8 +268,8 @@ public class CommandExecuter {
 			e.printStackTrace();
 		}
 
-    System.out.println("Output: " + output.toString());
-		return output.toString();
+    System.out.println("Output: " + output.toString().trim());
+		return output.toString().trim();
 
 	}
 
