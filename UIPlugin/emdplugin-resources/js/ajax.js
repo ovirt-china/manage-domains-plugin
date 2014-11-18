@@ -31,7 +31,10 @@
       delete: function(domain2delete){
         var urlReq = URL + '/domains/' + domain2delete;
         console.log('API Request: DELETE - ' + urlReq);
-        $http.delete(urlReq, 'test').
+
+        var config= {"method": "DELETE"};
+
+        $http.delete(urlReq, test).
         success(function(data, status, headers, config) {
           console.info(domain2delete + 'has been successfully deleted.(' + status + ')');
           messager.sendDataMessage(sourceName, 'requestSuccessful', 'remove-dialog', data);
