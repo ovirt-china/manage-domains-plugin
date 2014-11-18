@@ -164,7 +164,7 @@
           // });
 
             var apiOptions = {
-               allowedMessageOrigins: ['https://192.168.3.40']
+               allowedMessageOrigins: ['https://192.168.3.46']
             };
             pluginApi.options(apiOptions);
 
