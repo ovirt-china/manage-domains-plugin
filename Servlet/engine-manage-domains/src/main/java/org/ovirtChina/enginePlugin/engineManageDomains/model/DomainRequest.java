@@ -36,7 +36,6 @@ public class DomainRequest {
   private String newline;
 
   public DomainRequest(){
-    System.out.println("Default Constructor used.");
     newline = System.getProperty("line.separator");
     this.domain = "";
     this.user = "";
