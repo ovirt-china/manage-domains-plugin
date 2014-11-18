@@ -257,4 +257,19 @@ public class DomainRequest {
     return passwordFile;
   }
 
+  /**
+  * @ovewrite
+  */
+  public String toString(){
+    String domain2Str = "{\"domain\":\"" + domain + "\", "
+                        + "\"provider\":\"" + provider + "\", "
+                        + "\"user\":\"" + user + "\", "
+                        + "\"addPermissions\":" + addPermissions + ", "
+                        + "\"configFile\":\"" + configFile + "\", "
+                        + "\"ldapServers\":\"" + ldapServers + "\", "
+                        + "\"resolveKdc\":" + resolveKdc + ", "
+                        + "\"passwordFile\":\"" + passwordFile + "\"}";
+    return domain2Str;
+  }
+
 }

@@ -71,7 +71,7 @@ public class DomainResource {
   public Response addDomain(@PathParam("domainName") String domainName, DomainRequest domain2add) {
 
     System.out.println("----- New Request -----");
-    System.out.println("New Request: PUT - /" + domainName);
+    System.out.println("New Request: PUT - /" + domainName + " - " + domain2add.toString());
 
     CommandExecuter cmdExec = new CommandExecuter();
 
@@ -96,7 +96,7 @@ public class DomainResource {
   public Response editDomain(@PathParam("domainName") String domainName, DomainRequest domain2edit) {
 
     System.out.println("----- New Request -----");
-    System.out.println("New Request: PUT - /" + domainName + "/edit");
+    System.out.println("New Request: PUT - /" + domainName + "/edit - " + domain2edit.toString());
 
     CommandExecuter cmdExec = new CommandExecuter();
 
