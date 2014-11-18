@@ -5,7 +5,7 @@
   var app = angular.module('plugin.ajax', ['plugin.common']);
 
   // Set the URL for the request
-  app.value('URL', 'https://192.168.3.237:8443/engineManageDomains');
+  app.value('URL', 'https://192.168.3.40:8443/engineManageDomains');
   app.value('sourceName', 'API Controller');
 
   app.factory('request',['$http', 'URL', 'sourceName', 'messager', function($http, URL, sourceName, messager){
