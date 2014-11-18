@@ -144,7 +144,7 @@ public class CommandExecuter {
     }
 
     if (domain.getResolveKdc()){
-      command += "--resolve-kdc";
+      command += " --resolve-kdc";
     }
 
     if (!passwordFile.isEmpty()){
@@ -220,7 +220,7 @@ public class CommandExecuter {
     }
 
     if (domain.getResolveKdc()){
-      command += "--resolve-kdc";
+      command += " --resolve-kdc";
     }
 
     if (!passwordFile.isEmpty()){
