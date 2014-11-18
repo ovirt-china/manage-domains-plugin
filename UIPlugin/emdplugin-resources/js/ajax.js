@@ -44,7 +44,8 @@
           console.log('data = ' + data);
           console.log('status = ' + status);
           console.log('headers = ' + headers);
-          console.log('config = ' + config);
+          console.log('config = ');
+          console.log(config);
           messager.sendDataMessage(sourceName, 'requestFailed', 'remove-dialog', data);
         });
       },
