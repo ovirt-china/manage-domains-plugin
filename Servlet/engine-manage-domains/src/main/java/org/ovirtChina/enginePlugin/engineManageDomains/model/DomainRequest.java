@@ -30,8 +30,8 @@ public class DomainRequest {
 
   private final String allowedDomainPattern = "^(http:\\/\\/www\\.|https:\\/\\/www\\.|www\\.|)[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$";
   private final String allowedUserPattern = "^[^;|&]+$";
-  private final String allowedProviderPattern = "\\A(ad|ipa|rhds|itds|olap)\\Z";
-  private final String allowedPathPattern = "^.*$";
+  private final String allowedProviderPattern = "^(ad|ipa|rhds|itds|olap)$";
+  private final String allowedPathPattern = "^(\\/[\\w-]+)+(.[a-zA-Z]+?)$";
   private final String allowedLdapServersPattern = "^(http:\\/\\/www\\.|https:\\/\\/www\\.|www\\.|)[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$";
 
   private boolean requestCorrect = true;
@@ -52,32 +52,37 @@ public class DomainRequest {
   }
 
   public DomainRequest(String domain, String provider, String user, boolean addPermissions, String configFile, String ldapServers, boolean resolveKdc, String passwordFile){
-
     newline = System.getProperty("line.separator");
-
-    System.out.println("The domain is : " + domain);
-
-    if (testRequieredField("Domain", domain, allowedDomainPattern)){
-      this.domain = domain;
-    }
-
+    this.domain = domain;
     this.provider = provider;
     this.user = user;
-
     this.addPermissions = addPermissions;
     this.resolveKdc = resolveKdc;
+    this.configFile = configFile;
+    this.passwordFile = passwordFile;
+    this.ldapServers = ldapServers;
+  }
 
-    if (testFile("ConfigFile", configFile)){
-      this.configFile = configFile;
+  private void generalValidation(){
+
+    boolean isDomainCorrect = testRequieredField("Domain", domain, allowedDomainPattern);
+    boolean isConfigFileCorrect = testFile("ConfigFile", configFile);
+    boolean isPasswordFileCorrect = testFile("PasswordFile", passwordFile);
+
+    ldapServers = sanitizeListServers(ldapServers);
+
+    if (!isDomainCorrect){
+      domain = "";
     }
 
-    this.ldapServers = sanitizeListServers(ldapServers);
+    if (!isConfigFileCorrect){
+      configFile = "";
+    }
 
-    // Because the normal password is still not allowed, the user must use the password file.
+    // Because the normal password is not allowed, the user must use the password file.
     if (passwordFile != null || !passwordFile.isEmpty()) {
-      if (testFile("PasswordFile", passwordFile)){
-      // PasswordFile is a requiered field as it not possible to use password yet.
-        this.passwordFile = passwordFile;
+      if (!isPasswordFileCorrect){
+        passwordFile = "";
       }
     } else {
       requestErrors += " - PasswordFile can't be empty." + newline;
@@ -86,6 +91,8 @@ public class DomainRequest {
   }
 
   public void validate4Add(){
+
+    generalValidation();
 
     boolean isProviderCorrect = testRequieredField("Provider", provider, allowedProviderPattern);
     boolean isUserCorrect = testRequieredField("User", user, allowedUserPattern);
@@ -100,6 +107,8 @@ public class DomainRequest {
   }
 
   public void validate4Edit(){
+
+    generalValidation();
 
     boolean isProviderCorrect = testOptionalField("Provider", provider, allowedProviderPattern);
     boolean isUserCorrect = testOptionalField("User", user, allowedUserPattern);
@@ -157,16 +166,24 @@ public class DomainRequest {
       return true;
 
     } else {
-      File file = new File(path);
 
-      if(file.isFile()){
-        return true;
+      if (path.matches(allowedPathPattern)){
+        System.out.println("path.matches(allowedPathPattern) is " + path.matches(allowedPathPattern));
+        File file = new File(path);
 
+        if(file.exists() && file.isFile() && file.canRead()){
+          return true;
+
+        } else {
+          requestErrors += " - Can't read " + fileName.toLowerCase() + " at " + path + "." + newline;
+          requestCorrect = false;
+          return false;
+
+        }
       } else {
         requestErrors += " - " + path + " is not a valid path for the " + fileName.toLowerCase() + "." + newline;
         requestCorrect = false;
         return false;
-
       }
     }
   }
@@ -178,7 +195,7 @@ public class DomainRequest {
     String serversListSanitize = "";
 
     // Because it is an optional field, we should check if it is not null or empty first
-    if (serversList != null || !serversList.isEmpty()){
+    if (serversList != null && !serversList.isEmpty()){
 
       // Parse the String in a list of String
       List<String> servers = Arrays.asList(serversList.split("\\s*,\\s*"));
