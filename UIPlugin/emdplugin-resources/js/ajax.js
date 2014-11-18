@@ -34,7 +34,7 @@
 
         var config= {"method": "DELETE"};
 
-        $http.delete(urlReq, test).
+        $http.delete(urlReq, config).
         success(function(data, status, headers, config) {
           console.info(domain2delete + 'has been successfully deleted.(' + status + ')');
           messager.sendDataMessage(sourceName, 'requestSuccessful', 'remove-dialog', data);
