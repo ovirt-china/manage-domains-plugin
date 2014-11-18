@@ -41,7 +41,10 @@
           if(!data){
             data = 'Impossible to delete the domain <strong>' + domain2delete + '</strong>.';
           }
-          console.log(data);
+          console.log('data = ' + data);
+          console.log('status = ' + status);
+          console.log('headers = ' + headers);
+          console.log('config = ' + config);
           messager.sendDataMessage(sourceName, 'requestFailed', 'remove-dialog', data);
         });
       },
