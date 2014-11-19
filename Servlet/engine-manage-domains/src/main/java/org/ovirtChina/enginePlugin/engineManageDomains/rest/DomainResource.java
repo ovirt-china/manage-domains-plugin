@@ -61,6 +61,7 @@ public class DomainResource {
 
   /**
   * Delete the domain indicate in the url.
+  * This function was created because the one using DELETE was not working from the browser
   *
   * @param   the name of the domain to delete
   * @return  an HTTP Status Code accroding to the success or not of the action.
