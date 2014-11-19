@@ -169,8 +169,8 @@
       // functions to control the Loading Modal
       $scope.isProcessing = false;
 
-      $scope.toggleLoadingStatus = function() {
-        $scope.isProcessing = !$scope.isProcessing;
+      $scope.setLoadingStatus = function(state) {
+        $scope.isProcessing = state;
         $scope.$apply();
       };
 
@@ -180,7 +180,7 @@
 
         if($window.confirm(textAlert)) {
           //Put the delete button in processing mode
-          $scope.toggleLoadingStatus();
+          $scope.isProcessing = true;
 
           //Trigger Delete Action
           request.delete(domain.domain);

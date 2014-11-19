@@ -134,14 +134,14 @@
                     break;
 
                   case ('requestFailed'):
-                    contentWindow.getMenuScope().toggleLoadingStatus();
+                    contentWindow.getMenuScope().setLoadingStatus(false);
                     contentWindow.getAlertScope().alertDanger(data.data);
                     pluginApi.closeDialog(data.target);
                     break;
 
                   case ('requestSuccessful'):
                     if (data.target){
-                      contentWindow.getMenuScope().toggleLoadingStatus();
+                      contentWindow.getMenuScope().setLoadingStatus(false);
                       contentWindow.getMenuScope().refreshDomains();
                       pluginApi.closeDialog(data.target);
                     }
