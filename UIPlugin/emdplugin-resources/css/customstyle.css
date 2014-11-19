@@ -94,6 +94,17 @@ a.collapse-button:hover {
   margin-top: 20px;
 }
 
+/*--------------------Menu--------------------*/
+
+#menu {
+  display: -webkit-box;
+  display: -moz-box;
+}
+
+#processingStatus {
+  
+}
+
 /*--------------------Animation Refresh Button--------------------*/
 
 .icon-refresh-animate {

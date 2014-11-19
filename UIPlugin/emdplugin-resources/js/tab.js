@@ -171,7 +171,7 @@
       };
 
       //This part control the status of the delete button
-      $scope.isDeleteAnimated = deleteAlertMan.isAnimated();
+      $scope.isProcessing = deleteAlertMan.isAnimated();
 
       $scope.setDeleteBtnState = function (isAnimated){
         deleteAlertMan.setIfDeleteIsAnimated(isAnimated);
@@ -216,7 +216,7 @@
 
          if($window.confirm(textAlert)) {
            //Put the delete button in processing mode
-
+           isDeleteBtnAnimated = true;
            //Trigger Delete Action
            request.delete(domain.domain);
          } else {

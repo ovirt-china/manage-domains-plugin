@@ -15,11 +15,16 @@
       <button class="btn btn-default" type="button" ng-click="refreshDomainsFromBtn()" ng-disabled="isAnimated">
           <span class="glyphicon glyphicon-refresh" ng-class="{'icon-refresh-animate': isAnimated}"></span> Refresh
       </button>
-      <p class="navbar-text">
-        <div class="spinner spinner-sm"></div> Loading...
-      </p>
 
-      {{ isDeleteAnimated }}
+      <div class="media" id="processingStatus" ng-show="isProcessing">
+        <div class="pull-left">
+          <div class="spinner spinner-sm"></div>
+        </div>
+        <div class="media-body">
+          <div class="processing-descr">Processing...</div>
+        </div>
+      </div>
+
    </p>
 
   <div class="container" id="alert" ng-controller="alertController">
