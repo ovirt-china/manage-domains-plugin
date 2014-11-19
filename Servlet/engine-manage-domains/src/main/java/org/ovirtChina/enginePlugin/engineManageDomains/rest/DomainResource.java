@@ -52,7 +52,25 @@ public class DomainResource {
   public Response removeDomain(@PathParam("domainName") String domainName) {
 
     System.out.println("----- New Request -----");
-    System.out.println("New Request: DELETE - /" + domainName);
+    System.out.println("New Request: DELETE - /domains/" + domainName);
+
+    CommandExecuter cmdExec = new CommandExecuter();
+
+    return cmdExec.delete(domainName);
+  }
+
+  /**
+  * Delete the domain indicate in the url.
+  *
+  * @param   the name of the domain to delete
+  * @return  an HTTP Status Code accroding to the success or not of the action.
+  */
+  @PUT
+  @Path("/{domainName}/delete")
+  public Response put2RemoveDomain(@PathParam("domainName") String domainName) {
+
+    System.out.println("----- New Request -----");
+    System.out.println("New Request: PUT - /domains/" + domainName + "/delete");
 
     CommandExecuter cmdExec = new CommandExecuter();
 
@@ -71,7 +89,7 @@ public class DomainResource {
   public Response addDomain(@PathParam("domainName") String domainName, DomainRequest domain2add) {
 
     System.out.println("----- New Request -----");
-    System.out.println("New Request: PUT - /" + domainName + " - " + domain2add.toString());
+    System.out.println("New Request: PUT - /domains/" + domainName + " - " + domain2add.toString());
 
     CommandExecuter cmdExec = new CommandExecuter();
 
@@ -96,7 +114,7 @@ public class DomainResource {
   public Response editDomain(@PathParam("domainName") String domainName, DomainRequest domain2edit) {
 
     System.out.println("----- New Request -----");
-    System.out.println("New Request: PUT - /" + domainName + "/edit - " + domain2edit.toString());
+    System.out.println("New Request: PUT - /domains/" + domainName + "/edit - " + domain2edit.toString());
 
     CommandExecuter cmdExec = new CommandExecuter();
 
