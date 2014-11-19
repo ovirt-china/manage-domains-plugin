@@ -29,7 +29,8 @@
       $scope.toggleLoadingModal();
       console.log('[EMDPlugin > remove.js > RemoveController]' + '\n' + '--> Information about the domain to remove ' + angular.toJson($scope.domain));
 
-      request.delete($scope.domain.domain);
+      //request.delete($scope.domain.domain);
+      request.put2delete($scope.domain.domain);
 
       // Now the ajax.js will take care of the following steps.
     }
