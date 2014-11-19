@@ -151,7 +151,7 @@
    }]);
 
    // Controller to provide the functions to open the dialogs
-   app.controller('menuController', ['$scope', 'dialogManager', 'domainsListManager','alertManager', function ($scope, dialogManager, domainsMan, alertMan){
+   app.controller('menuController', ['$scope', 'dialogManager', 'domainsListManager','alertManager', 'deleteAlertManager', function ($scope, dialogManager, domainsMan, alertMan, deleteAlertMan){
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
       };
@@ -163,6 +163,11 @@
       $scope.openRemoveDialog = function(domain) {
          dialogManager.showRemoveDialog(domain);
       };
+
+      // Use to replace the non-working Remove Dialog
+      $scope.deleteAlert = function(domain) {
+        deleteAlertMan.deleteByAlert(domain);
+      }
 
       // This part control the refresh button
       $scope.isAnimated = true;
@@ -191,6 +196,23 @@
         $scope.$apply();
       };
 
+   }]);
+
+   app.factory('deleteAlertManager', ['$window', function($window){
+     return {
+       deleteByAlert: function(domain) {
+         var textAlert = 'Are you sure you want to delete the domain ' + domain.domain + ' ?';
+
+         if($window.confirm(textAlert)) {
+           //Put the delete button in processing mode
+
+           //Trigger Delete Action
+
+         } else {
+           // Nothing to do here.
+         }
+       }
+     }
    }]);
 
   // Filter the HTML to be able to insert it in a webpage
