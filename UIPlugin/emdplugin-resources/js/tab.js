@@ -184,10 +184,6 @@
         }
       };
 
-      $scope.isAnimatedOrProcessing = function() {
-        return ($scope.isAnimated || $scope.isReqProcessing);
-      };
-
       // This part control the refresh button
       $scope.isAnimated = true;
       var requestFromBtn = false;
