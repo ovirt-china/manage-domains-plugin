@@ -50,8 +50,7 @@
             $scope.domainJSON = angular.toJson($scope.domain);
             console.log('[EMDPlugin > edit.js > EditFormController]' + '\n' + '--> Information from the form ' + angular.toJson($scope.domain));
 
-          // request.edit($scope.domain);
-          request.delete($scope.domain.domain);
+          request.edit($scope.domain);
 
           }
         } else {

@@ -53,29 +53,6 @@
         });
       },
 
-      put2delete: function(domain2delete){
-        var urlReq = URL + '/domains/' + domain2delete + '/delete';
-        console.log('API Request: PUT - ' + urlReq);
-        var data = {};
-        $http.put(urlReq, data).
-        success(function(data, status, headers, config) {
-          console.info(domain2delete + 'has been successfully deleted.(' + status + ')');
-          messager.sendDataMessage(sourceName, 'requestSuccessful', 'remove-dialog', data);
-        }).
-        error(function(data, status, headers, config) {
-          console.error('Delete request for the domain ' + domain2delete + ' failed.(' + status + ')');
-          if(!data){
-            data = 'Impossible to delete the domain <strong>' + domain2delete + '</strong>.';
-          }
-          console.log('data = ' + data);
-          console.log('status = ' + status);
-          console.log('headers = ' + headers);
-          console.log('config = ');
-          console.log(config);
-          messager.sendDataMessage(sourceName, 'requestFailed', 'remove-dialog', data);
-        });
-      },
-
       add: function(domain2add){
         var urlReq = URL + '/domains/' + domain2add.domain;
         console.log('API Request: PUT - ' + urlReq);
