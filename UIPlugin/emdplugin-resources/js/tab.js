@@ -151,7 +151,7 @@
    }]);
 
    // Controller to provide the functions to open the dialogs
-   app.controller('menuController', ['$scope', 'dialogManager', 'domainsListManager','alertManager', 'deleteAlertManager', function ($scope, dialogManager, domainsMan, alertMan, deleteAlertMan){
+   app.controller('menuController', ['$scope', '$window', 'dialogManager', 'domainsListManager','alertManager', 'request', function ($scope, $window, dialogManager, domainsMan, alertMan, request){
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
       };
@@ -164,20 +164,25 @@
          dialogManager.showRemoveDialog(domain);
       };
 
+      $scope.isProcessing = false;
+
+      $scope.setProcessingState(state){
+        $scope.isProcessing = state;
+      }
+
       // Use to replace the non-working Remove Dialog
       $scope.deleteAlert = function(domain) {
-        deleteAlertMan.deleteByAlert(domain);
-        // $scope.$apply();
+        var textAlert = 'Are you sure you want to delete the domain ' + domain.domain + ' ?';
+
+        if($window.confirm(textAlert)) {
+          //Put the delete button in processing mode
+          $scope.isProcessing = true;
+
+          //Trigger Delete Action
+          request.delete(domain.domain, );
+        }
       };
 
-      //This part control the status of the delete button
-      // $scope.isProcessing = deleteAlertMan.isAnimated();
-      $scope.isProcessing = true;
-
-      $scope.setDeleteBtnState = function (isAnimated){
-        deleteAlertMan.setIfDeleteIsAnimated(isAnimated);
-        $scope.$apply();
-      };
 
       // This part control the refresh button
       $scope.isAnimated = true;
@@ -206,31 +211,6 @@
         $scope.$apply();
       };
 
-   }]);
-
-   app.factory('deleteAlertManager', ['$window', 'request', function($window, request){
-     var isDeleteBtnAnimated = false;
-
-     return {
-       deleteByAlert: function(domain) {
-         var textAlert = 'Are you sure you want to delete the domain ' + domain.domain + ' ?';
-
-         if($window.confirm(textAlert)) {
-           //Put the delete button in processing mode
-           isDeleteBtnAnimated = true;
-           //Trigger Delete Action
-           request.delete(domain.domain);
-         } else {
-           // Nothing to do here.
-         }
-       },
-       isAnimated: function() {
-         return isDeleteBtnAnimated;
-       },
-       setIfDeleteIsAnimated: function (isAnimated) {
-         isDeleteBtnAnimated = isAnimated;
-       }
-     }
    }]);
 
   // Filter the HTML to be able to insert it in a webpage
