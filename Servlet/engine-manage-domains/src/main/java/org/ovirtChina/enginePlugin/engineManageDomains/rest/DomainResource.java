@@ -60,25 +60,6 @@ public class DomainResource {
   }
 
   /**
-  * Delete the domain indicate in the url.
-  * This function was created because the one using DELETE was not working from the browser
-  *
-  * @param   the name of the domain to delete
-  * @return  an HTTP Status Code accroding to the success or not of the action.
-  */
-  @PUT
-  @Path("/{domainName}/delete")
-  public Response put2RemoveDomain(@PathParam("domainName") String domainName) {
-
-    System.out.println("----- New Request -----");
-    System.out.println("New Request: PUT - /domains/" + domainName + "/delete");
-
-    CommandExecuter cmdExec = new CommandExecuter();
-
-    return cmdExec.delete(domainName);
-  }
-
-  /**
   * Add a domain according to the information given in the JSON object with the request.
   *
   * @param   all the information needed to add a domain.
