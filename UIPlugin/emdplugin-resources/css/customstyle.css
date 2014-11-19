@@ -101,8 +101,19 @@ a.collapse-button:hover {
   display: -moz-box;
 }
 
-#processingStatus {
-  
+#processing-status {
+  margin: 0px;
+  color: #969696;
+  font-weight: 600;
+}
+
+#processing-status>.spinner-container {
+  margin-top: 4px;
+  margin-right: 5px;
+}
+
+#processing-status>.media-body {
+  padding-top: 1px;
 }
 
 /*--------------------Animation Refresh Button--------------------*/
