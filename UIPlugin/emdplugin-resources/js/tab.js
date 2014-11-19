@@ -198,16 +198,16 @@
 
    }]);
 
-   app.factory('deleteAlertManager', ['$window', function($window){
+   app.factory('deleteAlertManager', ['$window', 'request', function($window, request){
      return {
        deleteByAlert: function(domain) {
-         var textAlert = 'Are you sure you want to delete the domain <strong>' + domain.domain + '</strong> ?';
+         var textAlert = 'Are you sure you want to delete the domain ' + domain.domain + ' ?';
 
          if($window.confirm(textAlert)) {
            //Put the delete button in processing mode
 
            //Trigger Delete Action
-
+           request.delete(domain.domain);
          } else {
            // Nothing to do here.
          }
