@@ -38,7 +38,7 @@
 
         $http.delete(urlReq, config).
         success(function(data, status, headers, config) {
-          var successDeleteText = '<strong>'domain2delete + '</strong> has been successfully deleted.\n' + msgRemoveUsers + '\n' + msgRestartEngine;
+          var successDeleteText = '<strong>' + domain2delete + '</strong> has been successfully deleted.\n' + msgRemoveUsers + '\n' + msgRestartEngine;
           console.info(domain2delete + 'has been successfully deleted.(' + status + ')');
           messager.sendDataMessage(sourceName, 'requestSuccessful', nameOrigin, successDeleteText);
         }).
