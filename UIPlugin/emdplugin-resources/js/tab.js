@@ -171,7 +171,8 @@
       };
 
       //This part control the status of the delete button
-      $scope.isProcessing = deleteAlertMan.isAnimated();
+      // $scope.isProcessing = deleteAlertMan.isAnimated();
+      $scope.isProcessing = true;
 
       $scope.setDeleteBtnState = function (isAnimated){
         deleteAlertMan.setIfDeleteIsAnimated(isAnimated);
