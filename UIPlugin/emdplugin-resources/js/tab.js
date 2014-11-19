@@ -165,11 +165,13 @@
       };
 
       // This part control the processing status indicator
+
+      // functions to control the Loading Modal
       $scope.isProcessing = false;
 
-      $scope.setProcessingState = function(state) {
-        $scope.isProcessing = state;
-        console.log($scope.isProcessing);
+      $scope.toggleLoadingStatus = function() {
+        $scope.isProcessing = !$scope.isProcessing;
+        $scope.$apply();
       };
 
       // Use to replace the non-working Remove Dialog
@@ -178,9 +180,7 @@
 
         if($window.confirm(textAlert)) {
           //Put the delete button in processing mode
-          $scope.isProcessing = true;
-
-          console.log($scope.isProcessing);
+          $scope.toggleLoadingStatus();
 
           //Trigger Delete Action
           request.delete(domain.domain);
