@@ -38,8 +38,8 @@
 
         $http.delete(urlReq, config).
         success(function(data, status, headers, config) {
-          var successDeleteText = '<strong>' + domain2delete + '</strong> has been successfully deleted.\n' + msgRemoveUsers + '\n' + msgRestartEngine;
-          console.info(domain2delete + 'has been successfully deleted.(' + status + ')');
+          var successDeleteText = '<strong>' + domain2delete + '</strong> has been successfully deleted.<ul><li>' + msgRemoveUsers + '</li><li>' + msgRestartEngine + '</li></ul>';
+          console.info(domain2delete + ' has been successfully deleted.(' + status + ')');
           messager.sendDataMessage(sourceName, 'requestSuccessful', nameOrigin, successDeleteText);
         }).
         error(function(data, status, headers, config) {

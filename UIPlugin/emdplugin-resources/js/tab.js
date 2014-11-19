@@ -175,7 +175,7 @@
 
       $scope.setDeleteBtnState = function (isAnimated){
         deleteAlertMan.setIfDeleteIsAnimated(isAnimated);
-        $scope.$apply();
+        // $scope.$apply();
       };
 
       // This part control the refresh button
