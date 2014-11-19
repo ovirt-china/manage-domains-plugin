@@ -31,6 +31,9 @@
       },
 
       delete: function(domain2delete){
+        // Activate the Spinner on the main tab
+        messager.sendActionMessage(sourceName, 'activateLoadingStatus', null);
+
         var urlReq = URL + '/domains/' + domain2delete;
         console.log('API Request: DELETE - ' + urlReq);
 

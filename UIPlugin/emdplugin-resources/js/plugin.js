@@ -148,6 +148,10 @@
                     contentWindow.getAlertScope().alertSuccess(data.data);
                     break;
 
+                  case ('activateLoadingStatus'):
+                      contentWindow.getMenuScope().setLoadingStatus(true);
+                    break;
+
                   default:
                     console.warn('EMDPlugin just receive a message with an undefined action: ' + data.action);
                 }

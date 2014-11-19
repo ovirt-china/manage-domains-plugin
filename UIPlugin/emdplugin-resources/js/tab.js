@@ -174,18 +174,11 @@
         $scope.$apply();
       };
 
-      $scope.activateLoadingStatus = function() {
-        $scope.isReqProcessing = true;
-      };
-
       // Use to replace the non-working Remove Dialog
       $scope.deleteAlert = function(domain) {
         var textAlert = 'Are you sure you want to delete the domain ' + domain.domain + ' ?';
 
         if($window.confirm(textAlert)) {
-
-          $scope.activateLoadingStatus();
-
           //Trigger Delete Action
           request.delete(domain.domain);
         }
