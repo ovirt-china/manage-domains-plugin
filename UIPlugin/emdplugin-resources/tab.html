@@ -9,10 +9,10 @@
 <body>
 
    <div class="navbar-tab" id="menu" ng-controller="menuController">
-      <button class="btn btn-primary" type="button" ng-click="openAddDialog()">
+      <button class="btn btn-primary" type="button" ng-click="openAddDialog()" ng-disabled="isReqProcessing">
           <span class="glyphicon glyphicon-plus"></span> Add
       </button>
-      <button class="btn btn-default" type="button" ng-click="refreshDomainsFromBtn()" ng-disabled="isAnimated">
+      <button class="btn btn-default" type="button" ng-click="refreshDomainsFromBtn()" ng-disabled="isAnimatedOrProcessing()">
           <span class="glyphicon glyphicon-refresh" ng-class="{'icon-refresh-animate': isAnimated}"></span> Refresh
       </button>
 
@@ -24,7 +24,6 @@
           <div class="processing-descr">Processing...</div>
         </div>
       </div>
-      {{isReqProcessing}}
    </div>
 
   <div class="container" id="alert" ng-controller="alertController">
@@ -47,10 +46,10 @@
                <td class="text-cell">{{ domain.username }}</td>
                <td>
                   <div class="action-table" ng-controller="menuController">
-                    <button class="btn btn-default" type="button" ng-click="openEditDialog($parent.domain)">
+                    <button class="btn btn-default" type="button" ng-click="openEditDialog($parent.domain)" ng-disabled="isReqProcessing">
                        <span class="glyphicon glyphicon-pencil"></span> Edit
                     </button>
-                    <button class="btn btn-danger" type="button" ng-click="deleteAlert($parent.domain)">
+                    <button class="btn btn-danger" type="button" ng-click="deleteAlert($parent.domain)" ng-disabled="isReqProcessing">
                        <span class="glyphicon glyphicon-trash"></span> Delete
                     </button>
                   </div>
