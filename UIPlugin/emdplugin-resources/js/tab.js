@@ -201,7 +201,7 @@
    app.factory('deleteAlertManager', ['$window', function($window){
      return {
        deleteByAlert: function(domain) {
-         var textAlert = 'Are you sure you want to delete the domain ' + domain.domain + ' ?';
+         var textAlert = 'Are you sure you want to delete the domain <strong>' + domain.domain + '</strong> ?';
 
          if($window.confirm(textAlert)) {
            //Put the delete button in processing mode
