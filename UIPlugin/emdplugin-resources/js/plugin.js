@@ -109,6 +109,9 @@
                     var infoContainer = infoDialog.angular.element("#info-container");
                     var infoScope = infoContainer.scope();
 
+                    console.log("infoScope =");
+                    console.log(infoScope);
+
                     // Trigger the function in the Dialog
                     infoScope.remove();
                     console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Triggered Removing of the selected domain.');
