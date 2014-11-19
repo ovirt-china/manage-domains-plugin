@@ -179,7 +179,7 @@
           $scope.isProcessing = true;
 
           //Trigger Delete Action
-          request.delete(domain.domain, );
+          request.delete(domain.domain);
         }
       };
 

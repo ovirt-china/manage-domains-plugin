@@ -30,7 +30,7 @@
         });
       },
 
-      delete: function(domain2delete, nameOrigin){
+      delete: function(domain2delete){
         var urlReq = URL + '/domains/' + domain2delete;
         console.log('API Request: DELETE - ' + urlReq);
 
@@ -40,7 +40,7 @@
         success(function(data, status, headers, config) {
           var successDeleteText = '<strong>' + domain2delete + '</strong> has been successfully deleted.<ul><li>' + msgRemoveUsers + '</li><li>' + msgRestartEngine + '</li></ul>';
           console.info(domain2delete + ' has been successfully deleted.(' + status + ')');
-          messager.sendDataMessage(sourceName, 'requestSuccessful', nameOrigin, successDeleteText);
+          messager.sendDataMessage(sourceName, 'requestSuccessful', 'remove-dialog', successDeleteText);
         }).
         error(function(data, status, headers, config) {
           console.error('Delete request for the domain ' + domain2delete + ' failed.(' + status + ')');
@@ -48,7 +48,7 @@
             data = 'Impossible to delete the domain <strong>' + domain2delete + '</strong>.';
           }
           console.log(data);
-          messager.sendDataMessage(sourceName, 'requestFailed', nameOrigin, data);
+          messager.sendDataMessage(sourceName, 'requestFailed', 'remove-dialog', data);
         });
       },
 
