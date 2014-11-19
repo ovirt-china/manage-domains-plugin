@@ -164,10 +164,12 @@
          dialogManager.showRemoveDialog(domain);
       };
 
+      // This part control the processing status indicator
       $scope.isProcessing = false;
 
       $scope.setProcessingState = function(state) {
         $scope.isProcessing = state;
+        console.log($scope.isProcessing);
       };
 
       // Use to replace the non-working Remove Dialog
@@ -177,6 +179,8 @@
         if($window.confirm(textAlert)) {
           //Put the delete button in processing mode
           $scope.isProcessing = true;
+
+          console.log($scope.isProcessing);
 
           //Trigger Delete Action
           request.delete(domain.domain);
