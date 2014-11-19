@@ -6,6 +6,8 @@
 
   var app = angular.module('plugin.init', ['plugin.common']);
 
+  app.value('apiOptions',{'allowedMessageOrigins': 'https://192.168.3.46'});
+
   app.service('contentWindowService', function(){
     var contentWindow = null ;
     var tabWindow = null;
@@ -154,7 +156,7 @@
    }]);
 
    // Register event handler functions and tell the API we are good to go.
-   app.factory('initService', ['pluginApi', 'pluginEventHandlers', function (pluginApi, pluginEventHandlers) {
+   app.factory('initService', ['pluginApi', 'pluginEventHandlers', 'apiOptions' function (pluginApi, pluginEventHandlers, apiOptions) {
       return {
          bootstrapPlugin: function () {
 
@@ -166,9 +168,6 @@
           // 	allowedMessageOrigins: config.allowedOrigins
           // });
 
-            var apiOptions = {
-               allowedMessageOrigins: ['https://192.168.3.46']
-            };
             pluginApi.options(apiOptions);
 
             pluginApi.register(pluginEventHandlers);
