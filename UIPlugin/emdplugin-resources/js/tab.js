@@ -177,13 +177,15 @@
       // Use to replace the non-working Remove Dialog
       $scope.deleteAlert = function(domain) {
         var textAlert = 'Are you sure you want to delete the domain ' + domain.domain + ' ?';
+        $scope.isProcessing = true;
 
         if($window.confirm(textAlert)) {
           //Put the delete button in processing mode
-          $scope.isProcessing = true;
 
           //Trigger Delete Action
           request.delete(domain.domain);
+        } else {
+          $scope.isProcessing = false;
         }
       };
 
