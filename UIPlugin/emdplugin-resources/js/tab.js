@@ -167,7 +167,16 @@
       // Use to replace the non-working Remove Dialog
       $scope.deleteAlert = function(domain) {
         deleteAlertMan.deleteByAlert(domain);
-      }
+        $scope.$apply();
+      };
+
+      //This part control the status of the delete button
+      $scope.isDeleteAnimated = deleteAlertMan.isAnimated();
+
+      $scope.setDeleteBtnState = function (isAnimated){
+        deleteAlertMan.setIfDeleteIsAnimated(isAnimated);
+        $scope.$apply();
+      };
 
       // This part control the refresh button
       $scope.isAnimated = true;
@@ -199,6 +208,8 @@
    }]);
 
    app.factory('deleteAlertManager', ['$window', 'request', function($window, request){
+     var isDeleteBtnAnimated = false;
+
      return {
        deleteByAlert: function(domain) {
          var textAlert = 'Are you sure you want to delete the domain ' + domain.domain + ' ?';
@@ -211,6 +222,12 @@
          } else {
            // Nothing to do here.
          }
+       },
+       isAnimated: function() {
+         return isDeleteBtnAnimated;
+       },
+       setIfDeleteIsAnimated: function (isAnimated) {
+         isDeleteBtnAnimated = isAnimated;
        }
      }
    }]);

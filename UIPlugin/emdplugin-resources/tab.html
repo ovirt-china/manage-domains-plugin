@@ -15,6 +15,8 @@
       <button class="btn btn-default" type="button" ng-click="refreshDomainsFromBtn()" ng-disabled="isAnimated">
           <span class="glyphicon glyphicon-refresh" ng-class="{'icon-refresh-animate': isAnimated}"></span> Refresh
       </button>
+
+      {{ isDeleteAnimated }}
    </p>
 
   <div class="container" id="alert" ng-controller="alertController">
@@ -53,6 +55,8 @@
         No domain to display.
       </div>
     </div>
+
+
 
     <script src="lib/jquery-1.11.1.min.js"></script>
     <script src="lib/angular/js/angular.js"></script>

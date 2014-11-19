@@ -134,12 +134,24 @@
                     break;
 
                   case ('requestFailed'):
+
+                    // Change the status of the delete button to stop the animation
+                    if(data.target == 'delete-alert') {
+                        contentWindow.getMenuScope().setDeleteBtnState(false);
+                    }
+
                     contentWindow.getAlertScope().alertDanger(data.data);
                     pluginApi.closeDialog(data.target);
                     break;
 
                   case ('requestSuccessful'):
                     if (data.target){
+
+                      // Change the status of the delete button to stop the animation
+                      if(data.target == 'delete-alert') {
+                          contentWindow.getMenuScope().setDeleteBtnState(false);
+                      }
+
                       contentWindow.getMenuScope().refreshDomains();
                       pluginApi.closeDialog(data.target);
                     }

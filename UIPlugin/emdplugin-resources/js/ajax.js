@@ -8,8 +8,10 @@
   // app.value('URL', 'https://192.168.3.40:8443/engineManageDomains');
   app.value('URL', '/engineManageDomains');
   app.value('sourceName', 'API Controller');
+  app.value('msgRemoveUsers', 'Please remove all users and groups of this domain using the Administration portal or the API.');
+  app.value('msgRestartEngine', 'oVirt Engine restart is required in order for the changes to take place (service ovirt-engine restart).');
 
-  app.factory('request',['$http', 'URL', 'sourceName', 'messager', function($http, URL, sourceName, messager){
+  app.factory('request',['$http', 'URL', 'sourceName', 'messager', 'msgRemoveUsers', 'msgRestartEngine', function($http, URL, sourceName, messager, msgRemoveUsers, msgRestartEngine){
     return {
 
       list: function(){
@@ -28,7 +30,7 @@
         });
       },
 
-      delete: function(domain2delete){
+      delete: function(domain2delete, nameOrigin){
         var urlReq = URL + '/domains/' + domain2delete;
         console.log('API Request: DELETE - ' + urlReq);
 
@@ -36,20 +38,17 @@
 
         $http.delete(urlReq, config).
         success(function(data, status, headers, config) {
+          var successDeleteText = '<strong>'domain2delete + '</strong> has been successfully deleted.\n' + msgRemoveUsers + '\n' + msgRestartEngine;
           console.info(domain2delete + 'has been successfully deleted.(' + status + ')');
-          messager.sendDataMessage(sourceName, 'requestSuccessful', 'remove-dialog', data);
+          messager.sendDataMessage(sourceName, 'requestSuccessful', nameOrigin, successDeleteText);
         }).
         error(function(data, status, headers, config) {
           console.error('Delete request for the domain ' + domain2delete + ' failed.(' + status + ')');
           if(!data){
             data = 'Impossible to delete the domain <strong>' + domain2delete + '</strong>.';
           }
-          console.log('data = ' + data);
-          console.log('status = ' + status);
-          console.log('headers = ' + headers);
-          console.log('config = ');
-          console.log(config);
-          messager.sendDataMessage(sourceName, 'requestFailed', 'remove-dialog', data);
+          console.log(data);
+          messager.sendDataMessage(sourceName, 'requestFailed', nameOrigin, data);
         });
       },
 
