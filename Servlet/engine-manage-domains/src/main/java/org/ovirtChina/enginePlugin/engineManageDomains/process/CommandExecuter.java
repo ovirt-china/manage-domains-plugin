@@ -17,6 +17,7 @@ public class CommandExecuter {
   private String result;
   private String successSentence = "Manage Domains completed successfully";
   private String domainNotFoundPattern = "Domain\\s.*?\\sdoesn't exist in the configuration[.]";
+  private String engineRestartRequiered = "oVirt Engine restart is required in order for the changes to take place (service ovirt-engine restart).";
 
 	public CommandExecuter() {
 	}
@@ -45,18 +46,15 @@ public class CommandExecuter {
       * Otherwise return the list.
       */
       if (domainList.isEmpty()){
-        System.out.println("Request Answer: (204)");
-        System.out.println("-x-x- End Request -x-x-");
+        writeRequestAnswer(204, "");
         return Response.status(204).build();
       }else{
-        System.out.println("Request Answer: (200) " + domainList);
-        System.out.println("-x-x- End Request -x-x-");
+        writeRequestAnswer(200, domainList.toString());
         return Response.status(200).entity(domainList).build();
       }
 
     }else{
-      System.out.println("Request Answer: (500) " + output);
-      System.out.println("-x-x- End Request -x-x-");
+      writeRequestAnswer(500, output);
       return Response.status(500).entity(output).build();
 
     }
@@ -75,20 +73,17 @@ public class CommandExecuter {
 
     //If the deletion is successful
     if (output.contains(successSentence)){
-      System.out.println("Request Answer: (204)");
-      System.out.println("-x-x- End Request -x-x-");
+      writeRequestAnswer(204, "");
       return Response.status(204).build();
 
     //If the domain name has not been found
     }else if(output.matches(domainNotFoundPattern)){
-      System.out.println("Request Answer: (404) " + output);
-      System.out.println("-x-x- End Request -x-x-");
+      writeRequestAnswer(404, output);
       return Response.status(404).entity(output).build();
 
     //Default answer
     } else {
-      System.out.println("Request Answer: (500) " + output);
-      System.out.println("-x-x- End Request -x-x-");
+      writeRequestAnswer(500, output);
       return Response.status(500).entity(output).build();
 
     }
@@ -111,19 +106,16 @@ public class CommandExecuter {
       if (output.contains(successSentence)){
         String outputSuccess = "The domain <strong>" + domainName + "</strong> has been added successfully.";
 
-        System.out.println("Request Answer: (201) " + outputSuccess);
-        System.out.println("-x-x- End Request -x-x-");
+        writeRequestAnswer(201, outputSuccess);
         return Response.status(201).entity(outputSuccess).build();
 
       } else {
-        System.out.println("Request Answer: (500) " + output);
-        System.out.println("-x-x- End Request -x-x-");
+        writeRequestAnswer(500, output);
         return Response.status(500).entity(output).build();
 
       }
     } else {
-      System.out.println("Request Answer: (400) " + domain.getRequestErrors());
-      System.out.println("-x-x- End Request -x-x-");
+      writeRequestAnswer(400, domain.getRequestErrors());
       return Response.status(400).entity(domain.getRequestErrors()).build();
     }
   }
@@ -182,19 +174,16 @@ public class CommandExecuter {
       if (output.contains(successSentence)){
         String outputSuccess = "The domain <strong>" + domainName + "</strong> has been edit successfully.";
 
-        System.out.println("Request Answer: (201) " + outputSuccess);
-        System.out.println("-x-x- End Request -x-x-");
+        writeRequestAnswer(201, outputSuccess);
         return Response.status(201).entity(outputSuccess).build();
 
       } else {
-        System.out.println("Request Answer: (500) " + output);
-        System.out.println("-x-x- End Request -x-x-");
+        writeRequestAnswer(500, output);
         return Response.status(500).entity(output).build();
 
       }
     } else {
-      System.out.println("Request Answer: (400) " + domain.getRequestErrors());
-      System.out.println("-x-x- End Request -x-x-");
+      writeRequestAnswer(400, domain.getRequestErrors());
       return Response.status(400).entity(domain.getRequestErrors()).build();
     }
   }
@@ -272,6 +261,11 @@ public class CommandExecuter {
 		return output.toString().trim();
 
 	}
+
+  private void writeRequestAnswer(int status, String msg){
+    System.out.println("Request Answer: (" + status + ") " + msg);
+    System.out.println("-x-x- End Request -x-x-");
+  }
 
   public String getResult() {
     return result;
