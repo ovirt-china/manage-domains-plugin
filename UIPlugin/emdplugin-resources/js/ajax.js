@@ -86,7 +86,7 @@
           messager.sendDataMessage(sourceName, 'requestSuccessful', 'add-dialog', data);
         }).
         error(function(data, status, headers, config) {
-          console.warn('Add request for the domain ' + domain2add.domain + ' failed.(' + status + ')');
+          console.error('Add request for the domain ' + domain2add.domain + ' failed.(' + status + ')');
           console.log(data);
           messager.sendDataMessage(sourceName, 'requestFailed', 'add-dialog', data);
         });
@@ -102,7 +102,7 @@
           messager.sendDataMessage(sourceName, 'requestSuccessful', 'edit-dialog', data);
         }).
         error(function(data, status, headers, config) {
-          console.warn('Edit request for the domain ' + domain2edit.domain + ' failed.(' + status + ')');
+          console.error('Edit request for the domain ' + domain2edit.domain + ' failed.(' + status + ')');
           console.log(data);
           messager.sendDataMessage(sourceName, 'requestFailed', 'edit-dialog', data);
         });
