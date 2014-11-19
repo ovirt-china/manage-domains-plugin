@@ -16,7 +16,7 @@
           <span class="glyphicon glyphicon-refresh" ng-class="{'icon-refresh-animate': isAnimated}"></span> Refresh
       </button>
 
-      <div class="media" id="processing-status" ng-show="isProcessing">
+      <div class="media" id="processing-status" ng-show="isReqProcessing">
         <div class="pull-left spinner-container">
           <div class="spinner spinner-sm"></div>
         </div>
@@ -24,7 +24,7 @@
           <div class="processing-descr">Processing...</div>
         </div>
       </div>
-
+      {{isReqProcessing}}
    </div>
 
   <div class="container" id="alert" ng-controller="alertController">

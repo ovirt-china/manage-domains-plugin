@@ -167,10 +167,10 @@
       // This part control the processing status indicator
 
       // functions to control the Loading Modal
-      $scope.isProcessing = false;
+      $scope.isReqProcessing = false;
 
       $scope.setLoadingStatus = function(state) {
-        $scope.isProcessing = state;
+        $scope.isReqProcessing = state;
         $scope.$apply();
       };
 
@@ -180,9 +180,7 @@
 
         if($window.confirm(textAlert)) {
 
-          $scope.isProcessing = true;
-          $scope.$digest()
-
+          $scope.isReqProcessing = true;
 
           //Trigger Delete Action
           request.delete(domain.domain);
