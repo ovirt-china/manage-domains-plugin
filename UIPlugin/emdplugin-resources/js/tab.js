@@ -168,7 +168,7 @@
 
       $scope.setProcessingState(state){
         $scope.isProcessing = state;
-      }
+      };
 
       // Use to replace the non-working Remove Dialog
       $scope.deleteAlert = function(domain) {
