@@ -166,7 +166,7 @@
 
       $scope.isProcessing = false;
 
-      $scope.setProcessingState(state){
+      $scope.setProcessingState = function(state) {
         $scope.isProcessing = state;
       };
 
