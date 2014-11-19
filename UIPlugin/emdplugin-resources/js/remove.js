@@ -22,11 +22,13 @@
 
     $scope.toggleLoadingModal = function() {
       $scope.modalShown = !$scope.modalShown;
+      $scope.$apply();
     };
 
     $scope.remove = function() {
 
       $scope.toggleLoadingModal();
+
       console.log('[EMDPlugin > remove.js > RemoveController]' + '\n' + '--> Information about the domain to remove ' + angular.toJson($scope.domain));
 
       //request.delete($scope.domain.domain);
@@ -42,14 +44,6 @@
 
     $scope.domain = cache.getData('domainToRemove');
 
-  }]);
-
-  app.controller('dialogController', ['$scope', function($scope) {
-    $scope.modalShown = false;
-    $scope.toggleModal = function() {
-      $scope.modalShown = !$scope.modalShown;
-      $scope.$apply();
-    };
   }]);
 
 })();

@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="css/customstyle.css">
   </head>
 
-  <body>
+  <body ng-controller="RemoveController">
 
-    <div ng-controller='dialogController as dialogCtrl'>
+    <div>
       <div class='ng-modal' ng-show='modalShown'>
         <div class='ng-modal-overlay'></div>
         <div class='ng-modal-dialog'>
@@ -30,7 +30,7 @@
 
     <div class="container">
 
-      <div id="info-container" ng-controller="RemoveController">
+      <div id="info-container">
 
         <div class="alert alert-danger">
           <span class="pficon-layered">
