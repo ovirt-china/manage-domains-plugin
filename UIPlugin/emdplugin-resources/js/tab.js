@@ -167,7 +167,7 @@
       // Use to replace the non-working Remove Dialog
       $scope.deleteAlert = function(domain) {
         deleteAlertMan.deleteByAlert(domain);
-        $scope.$apply();
+        // $scope.$apply();
       };
 
       //This part control the status of the delete button
@@ -175,7 +175,7 @@
 
       $scope.setDeleteBtnState = function (isAnimated){
         deleteAlertMan.setIfDeleteIsAnimated(isAnimated);
-        // $scope.$apply();
+        $scope.$apply();
       };
 
       // This part control the refresh button
