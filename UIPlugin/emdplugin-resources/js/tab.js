@@ -180,9 +180,9 @@
 
         if($window.confirm(textAlert)) {
 
-          $scope.$apply(function () {
-            $scope.isProcessing = true;
-          });
+          $scope.isProcessing = true;
+          $scope.$digest()
+
 
           //Trigger Delete Action
           request.delete(domain.domain);
