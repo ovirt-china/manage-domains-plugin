@@ -6,8 +6,8 @@
    "url": "plugin/EMDPlugin/plugin.html",
 
    // Path to plugin resource files relative to descriptor
-   "resourcePath": "emdplugin-resources"
+   "resourcePath": "emdplugin-resources",
 
    // Configuration
-   "config": { "allowedMessageOrigins": "https://192.168.3.46" }
+   "config": {"allowedMessageOrigins": "https://192.168.3.46"}
 }
