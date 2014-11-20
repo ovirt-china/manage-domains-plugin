@@ -171,7 +171,7 @@
 
           console.log(config.allowedMessageOrigins);
 
-          pluginApi.options(config.allowedMessageOrigins);
+          pluginApi.options(config);
 
           pluginApi.register(pluginEventHandlers);
           pluginApi.ready();
