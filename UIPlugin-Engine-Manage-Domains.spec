@@ -9,7 +9,7 @@ Summary:	Engine Domains Management UIPlugin for EayunOS
 Group:		EayunOS
 License:	GPL
 URL:		http://www.eayun.com
-Source0:	UIPlugin-Engine-Manage-Domains-%{_version}.%{_release}.tar.gz
+Source0:	UIPlugin-Engine-Manage-Domains-%{_version}.tar.gz
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
 BuildRequires:	/bin/bash
