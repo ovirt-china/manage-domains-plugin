@@ -7,4 +7,7 @@
 
    // Path to plugin resource files relative to descriptor
    "resourcePath": "emdplugin-resources"
+
+   // Configuration
+   "config": { "allowedMessageOrigins": "https://192.168.3.46" }
 }
