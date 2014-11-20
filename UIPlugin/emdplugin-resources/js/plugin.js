@@ -160,7 +160,7 @@
    }]);
 
    // Register event handler functions and tell the API we are good to go.
-   app.factory('initService', ['pluginApi', 'pluginEventHandlers', 'apiOptions', function (pluginApi, pluginEventHandlers, apiOptions) {
+   app.factory('initService', ['pluginApi', 'pluginEventHandlers', function (pluginApi, pluginEventHandlers) {
       return {
          bootstrapPlugin: function () {
 
