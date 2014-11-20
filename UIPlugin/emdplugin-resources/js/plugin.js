@@ -166,22 +166,13 @@
       return {
          bootstrapPlugin: function () {
 
-          // Get the config file and merge it with the default file.
-           var config = pluginApi.configObject();
+          // Get the config from the file to setup the api plugin
+          var config = pluginApi.configObject();
+          pluginApi.options(config.allowedMessageOrigins});
 
-           console.log(config);
-
-           pluginApi.options({
-           	// Note: "config.allowedOrigins" is JSON array
-           	'allowedMessageOrigins': config.allowedOrigins
-           });
-
-           console.log(pluginApi.options);
-            //pluginApi.options(apiOptions);
-
-            pluginApi.register(pluginEventHandlers);
-            pluginApi.ready();
-         }
+          pluginApi.register(pluginEventHandlers);
+          pluginApi.ready();
+        }
       };
    }]);
 
