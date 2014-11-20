@@ -6,8 +6,6 @@
 
   var app = angular.module('plugin.init', ['plugin.common']);
 
-  app.value('apiOptions',{'allowedMessageOrigins': 'https://192.168.3.46'});
-
   app.service('contentWindowService', function(){
     var contentWindow = null ;
     var tabWindow = null;
