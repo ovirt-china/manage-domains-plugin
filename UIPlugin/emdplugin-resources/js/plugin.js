@@ -168,6 +168,9 @@
 
           // Get the config from the file to setup the api plugin
           var config = pluginApi.configObject();
+
+          console.log(config.allowedMessageOrigins);
+
           pluginApi.options(config.allowedMessageOrigins);
 
           pluginApi.register(pluginEventHandlers);
