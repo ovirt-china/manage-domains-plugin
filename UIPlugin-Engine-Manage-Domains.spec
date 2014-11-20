@@ -42,10 +42,10 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc
-%dir /usr/share/ovirt-engine/ui-plugins/
 %dir /etc/httpd/conf.d/
-%dir /usr/share/ovirt-engine-jboss-as/standalone/deployments/
+%config /etc/httpd/conf.d/ovirt-plugin-emd.conf
+/usr/share/ovirt-engine/ui-plugins/
+/usr/share/ovirt-engine-jboss-as/standalone/deployments/
 
 
 %changelog
