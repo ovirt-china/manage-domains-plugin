@@ -9,5 +9,5 @@
    "resourcePath": "emdplugin-resources",
 
    // Configuration
-   "config": {"allowedMessageOrigins": "https://192.168.3.46"}
+   "config": {"allowedMessageOriginsJSON":{"allowedMessageOrigins": "https://192.168.3.46"}}
 }
