@@ -1,5 +1,5 @@
 %define _version 0.4
-%define _release 2
+%define _release 2-1
 
 Name:		UIPlugin-Engine-Manage-Domains
 Version:	%{_version}
