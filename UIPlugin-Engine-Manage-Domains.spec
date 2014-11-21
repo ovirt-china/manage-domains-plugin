@@ -51,7 +51,7 @@ rm -rf %{buildroot}
 %dir /etc/httpd/conf.d/
 %dir /etc/rc.d/init.d/
 %config /etc/httpd/conf.d/ovirt-plugin-emd.conf
-%config /etc/rc.d/init.d/oeja-standalone
+%config(0755,root,root) /etc/rc.d/init.d/oeja-standalone
 /usr/share/ovirt-engine/ui-plugins/
 /usr/share/ovirt-engine-jboss-as/standalone/deployments/
 
@@ -61,3 +61,5 @@ rm -rf %{buildroot}
 * Thu Nov 20 2014 MaZhe <zhe.ma@eayun.com> 0.4-2
 - First build
 
+* Fri Nov 21 2014 MaZhe <zhe.ma@eayun.com> 0.4-2-1
+- Add system service script
