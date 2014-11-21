@@ -1,5 +1,5 @@
 %define _version 0.4
-%define _release 2-1
+%define _release 2.1
 
 Name:		UIPlugin-Engine-Manage-Domains
 Version:	%{_version}
@@ -33,10 +33,12 @@ mkdir -p %{buildroot}/usr/share/ovirt-engine/ui-plugins/
 mkdir -p %{buildroot}/etc/httpd/conf.d/
 mkdir -p %{buildroot}/usr/share/ovirt-engine-jboss-as/standalone/deployments/
 mkdir -p %{buildroot}/etc/rc.d/init.d/
+mkdir -p %{buildroot}/usr/share/ovirt-engine-jboss-as/standalone/configuration
 cp -r UIPlugin/* %{buildroot}/usr/share/ovirt-engine/ui-plugins/
 cp ovirt-plugin-emd.conf %{buildroot}/etc/httpd/conf.d/
 cp Servlet/engine-manage-domains/target/engineManageDomains.war %{buildroot}/usr/share/ovirt-engine-jboss-as/standalone/deployments/
 cp oeja-standalone %{buildroot}/etc/rc.d/init.d/
+cp engine-manage-domains.xml %{buildroot}/usr/share/ovirt-engine-jboss-as/standalone/configuration
 
 %post
 sed -i '3i echo $$ > /var/run/oeja-standalone.pid' standalone.sh
@@ -52,6 +54,7 @@ rm -rf %{buildroot}
 %dir /etc/rc.d/init.d/
 %config /etc/httpd/conf.d/ovirt-plugin-emd.conf
 %config(0755,root,root) /etc/rc.d/init.d/oeja-standalone
+%config /usr/share/ovirt-engine-jboss-as/standalone/configuration/engine-manage-domains.xml
 /usr/share/ovirt-engine/ui-plugins/
 /usr/share/ovirt-engine-jboss-as/standalone/deployments/
 
@@ -61,5 +64,5 @@ rm -rf %{buildroot}
 * Thu Nov 20 2014 MaZhe <zhe.ma@eayun.com> 0.4-2
 - First build
 
-* Fri Nov 21 2014 MaZhe <zhe.ma@eayun.com> 0.4-2-1
+* Fri Nov 21 2014 MaZhe <zhe.ma@eayun.com> 0.4-2.1
 - Add system service script

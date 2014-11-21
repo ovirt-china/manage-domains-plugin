@@ -33,7 +33,7 @@ case "$1" in
 		touch "${PIDFILE}"
 		status -p "${PIDFILE}" "${NAME}" | grep -q "is running" 
 		if [ $? -ne 0 ]; then
-			/usr/share/ovirt-engine-jboss-as/bin/standalone.sh &> /var/log/oeja-standalone.log &
+			/usr/share/ovirt-engine-jboss-as/bin/standalone.sh -c engine-manage-domains.xml &> /var/log/oeja-standalone.log &
 			RETVAL=$?
 			[ $RETVAL -ne 0 -a ! -s "${PIDFILE}" ] && rm -f "${PIDFILE}"
 			sleep 1
