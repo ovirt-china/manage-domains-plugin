@@ -32,9 +32,15 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/ovirt-engine/ui-plugins/
 mkdir -p %{buildroot}/etc/httpd/conf.d/
 mkdir -p %{buildroot}/usr/share/ovirt-engine-jboss-as/standalone/deployments/
+mkdir -p %{buildroot}/etc/rc.d/init.d/
 cp -r UIPlugin/* %{buildroot}/usr/share/ovirt-engine/ui-plugins/
 cp ovirt-plugin-emd.conf %{buildroot}/etc/httpd/conf.d/
 cp Servlet/engine-manage-domains/target/engineManageDomains.war %{buildroot}/usr/share/ovirt-engine-jboss-as/standalone/deployments/
+cp oeja-standalone %{buildroot}/etc/rc.d/init.d/
+
+%post
+sed -i '3i echo $$ > /var/run/oeja-standalone.pid' standalone.sh
+chkconfig --add oeja-standalone
 
 %clean
 rm -rf %{buildroot}
@@ -43,7 +49,9 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %dir /etc/httpd/conf.d/
+%dir /etc/rc.d/init.d/
 %config /etc/httpd/conf.d/ovirt-plugin-emd.conf
+%config /etc/rc.d/init.d/oeja-standalone
 /usr/share/ovirt-engine/ui-plugins/
 /usr/share/ovirt-engine-jboss-as/standalone/deployments/
 
