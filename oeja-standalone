@@ -31,15 +31,15 @@ case "$1" in
 		echo -n $"Starting $PROG: "
 		ulimit -n ${FILENO:-65535}
 		touch "${PIDFILE}"
-		status -p "${PIDFILE}" "${NAME}" | grep -q "is running" 
+		status -p "${PIDFILE}" "${NAME}" | grep -q "is running\|正在运行" 
 		if [ $? -ne 0 ]; then
-			/usr/share/ovirt-engine-jboss-as/bin/standalone.sh -c engine-manage-domains.xml &> /var/log/oeja-standalone.log &
+			/usr/share/ovirt-engine-jboss-as/bin/standalone.sh -c engine-manage-domains.xml ${PIDFILE} &> /var/log/oeja-standalone.log &
 			RETVAL=$?
 			[ $RETVAL -ne 0 -a ! -s "${PIDFILE}" ] && rm -f "${PIDFILE}"
 			sleep 1
 		fi
 		echo -n "                "
-		status -p "${PIDFILE}" "${NAME}" | grep -q "is running" 
+		status -p "${PIDFILE}" "${NAME}" | grep -q "is running\|正在运行" 
 		if [ $? -eq 0 ]; then
 			echo -e "[  \033[32mOK\033[0m  ]"
 		else
@@ -55,6 +55,7 @@ case "$1" in
 		;;
 	status)
 		status -p "${PIDFILE}" "${NAME}"
+		/usr/share/ovirt-engine-jboss-as/bin/jboss-cli.sh --connect controller=127.0.0.1:10199 command=:shutdown
 		RETVAL=$?
 		;;
 	restart)

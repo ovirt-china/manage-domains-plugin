@@ -1,5 +1,5 @@
 %define _version 0.4
-%define _release 2.1
+%define _release 2.2
 
 Name:		UIPlugin-Engine-Manage-Domains
 Version:	%{_version}
@@ -41,7 +41,7 @@ cp oeja-standalone %{buildroot}/etc/rc.d/init.d/
 cp engine-manage-domains.xml %{buildroot}/usr/share/ovirt-engine-jboss-as/standalone/configuration
 
 %post
-sed -i '3i echo $$ > /var/run/oeja-standalone.pid' standalone.sh
+sed -i '3i echo $$ > $3' /usr/share/ovirt-engine-jboss-as/bin/standalone.sh
 chkconfig --add oeja-standalone
 
 %clean
@@ -60,6 +60,8 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Nov 24 2014 MaZhe <zhe.ma@eayun.com> 0.4-2.2
+- Fix service cannot check and terminate existing proccess
 
 * Fri Nov 21 2014 MaZhe <zhe.ma@eayun.com> 0.4-2.1
 - Add system service script
