@@ -48,6 +48,7 @@ case "$1" in
 		;;
 	stop)
 		echo -n $"Stopping $PROG: "
+		/usr/share/ovirt-engine-jboss-as/bin/jboss-cli.sh --connect controller=127.0.0.1:10199 command=:shutdown
 		killproc -p "${PIDFILE}" -d 60
 		RETVAL=$?
 		echo
@@ -55,7 +56,6 @@ case "$1" in
 		;;
 	status)
 		status -p "${PIDFILE}" "${NAME}"
-		/usr/share/ovirt-engine-jboss-as/bin/jboss-cli.sh --connect controller=127.0.0.1:10199 command=:shutdown
 		RETVAL=$?
 		;;
 	restart)
