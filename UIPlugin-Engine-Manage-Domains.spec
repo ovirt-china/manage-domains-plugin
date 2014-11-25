@@ -61,6 +61,7 @@ rm -rf %{buildroot}
 /usr/share/ovirt-engine/ui-plugins/
 /usr/share/engine-manage-domains/
 /var/log/engine-manage-domains/
+/etc/engine-manage-domains/
 
 
 %changelog
