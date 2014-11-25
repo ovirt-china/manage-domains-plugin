@@ -1,21 +1,21 @@
 #!/bin/sh
 #
-# Start/stop oVirt Engine JBoss As standalone
+# Start/stop Engine Manage Domains
 #
 # chkconfig: - 65 34
-# description: oVirt Engine JBoss As standalone
-# pidfile: /var/run/ovirt-engine-jboss-as-standalone.pid
+# description: Engine Manage Domains
+# pidfile: /var/run/engine-manage-domains.pid
 
 ### BEGIN INIT INFO
-# Provides: ovirt-engine-jboss-as-standalone
-# Short-Description: oVirt Engine JBoss As Standalone
+# Provides: engine-manage-domains
+# Short-Description: Engine Manage Domains
 ### END INIT INFO
 
 # Source function library.
 . /etc/rc.d/init.d/functions
 
-NAME="oeja-standalone"
-PROG="oVirt Engine JBoss As Standalone"
+NAME="engine-manage-domains"
+PROG="Engine Manage Domains"
 
 RETVAL=0
 LOCKFILE="/var/lock/subsys/${NAME}"
@@ -33,8 +33,9 @@ case "$1" in
 		touch "${PIDFILE}"
 		status -p "${PIDFILE}" "${NAME}" | grep -q "is running\|正在运行" 
 		if [ $? -ne 0 ]; then
-			/usr/share/ovirt-engine-jboss-as/bin/standalone.sh -c engine-manage-domains.xml ${PIDFILE} &> /var/log/oeja-standalone.log &
-			RETVAL=$?
+			java -server -XX:+TieredCompilation -Xms256m -Xmx512m -XX:PermSize=256m -XX:MaxPermSize=256m -Djava.net.preferIPv4Stack=true -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -Djava.awt.headless=true -Djava.util.logging.manager=org.jboss.logmanager -Dorg.jboss.resolver.warning=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djboss.modules.write-indexes=false -Djboss.server.default.config=engine-manage-domains -Djboss.home.dir=/usr/share/ovirt-engine-jboss-as -Djboss.server.base.dir=/usr/share/engine-manage-domains -Djboss.server.log.dir=/var/log/engine-manage-domains -Djboss.server.config.dir=/etc/engine-manage-domains -jar /usr/share/ovirt-engine-jboss-as/jboss-modules.jar -mp /usr/share/ovirt-engine-jboss-as/modules -jaxpmodule javax.xml.jaxp-provider org.jboss.as.standalone -c engine-manage-domains.xml &> /var/log/engine-manage-domains/engine-manage-domains.log &
+			RETVAL=$!
+			echo $! > ${PIDFILE}
 			[ $RETVAL -ne 0 -a ! -s "${PIDFILE}" ] && rm -f "${PIDFILE}"
 			sleep 1
 		fi

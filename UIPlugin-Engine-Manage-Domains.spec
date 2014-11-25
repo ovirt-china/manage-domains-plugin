@@ -1,5 +1,5 @@
 %define _version 0.4
-%define _release 2.2
+%define _release 2.3
 
 Name:		UIPlugin-Engine-Manage-Domains
 Version:	%{_version}
@@ -30,19 +30,21 @@ You can use it to management the engine domain.
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/ovirt-engine/ui-plugins/
+mkdir -p %{buildroot}/usr/share/engine-manage-domains/deployments/
 mkdir -p %{buildroot}/etc/httpd/conf.d/
-mkdir -p %{buildroot}/usr/share/ovirt-engine-jboss-as/standalone/deployments/
+mkdir -p %{buildroot}/etc/engine-manage-domains
 mkdir -p %{buildroot}/etc/rc.d/init.d/
-mkdir -p %{buildroot}/usr/share/ovirt-engine-jboss-as/standalone/configuration
+mkdir -p %{buildroot}/var/log/engine-manage-domains
 cp -r UIPlugin/* %{buildroot}/usr/share/ovirt-engine/ui-plugins/
+cp Servlet/engine-manage-domains/target/engineManageDomains.war %{buildroot}/usr/share/engine-manage-domains/deployments/
 cp ovirt-plugin-emd.conf %{buildroot}/etc/httpd/conf.d/
-cp Servlet/engine-manage-domains/target/engineManageDomains.war %{buildroot}/usr/share/ovirt-engine-jboss-as/standalone/deployments/
-cp oeja-standalone %{buildroot}/etc/rc.d/init.d/
-cp engine-manage-domains.xml %{buildroot}/usr/share/ovirt-engine-jboss-as/standalone/configuration
+cp engine-manage-domains %{buildroot}/etc/rc.d/init.d/
+cp engine-manage-domains.xml %{buildroot}/etc/engine-manage-domains/
+touch %{buildroot}/etc/engine-manage-domains/mgmt-users.properties
+touch %{buildroot}/etc/engine-manage-domains/application-users.properties
 
 %post
-sed -i '3i echo $$ > $3' /usr/share/ovirt-engine-jboss-as/bin/standalone.sh
-chkconfig --add oeja-standalone
+chkconfig --add engine-manage-domains
 
 %clean
 rm -rf %{buildroot}
@@ -52,14 +54,19 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %dir /etc/httpd/conf.d/
 %dir /etc/rc.d/init.d/
+%dir /etc/engine-manage-domains/
 %config /etc/httpd/conf.d/ovirt-plugin-emd.conf
-%config %attr(0755,root,root) /etc/rc.d/init.d/oeja-standalone
-%config /usr/share/ovirt-engine-jboss-as/standalone/configuration/engine-manage-domains.xml
+%config /etc/engine-manage-domains/engine-manage-domains.xml
+%config %attr(0755,root,root) /etc/rc.d/init.d/engine-manage-domains
 /usr/share/ovirt-engine/ui-plugins/
-/usr/share/ovirt-engine-jboss-as/standalone/deployments/
+/usr/share/engine-manage-domains/
+/var/log/engine-manage-domains/
 
 
 %changelog
+* Tue Nov 25 2014 MaZhe <zhe.ma@eayun.com> 0.4-2.3
+- Fix rewrite service run method
+
 * Mon Nov 24 2014 MaZhe <zhe.ma@eayun.com> 0.4-2.2
 - Fix service cannot check and terminate existing proccess
 
