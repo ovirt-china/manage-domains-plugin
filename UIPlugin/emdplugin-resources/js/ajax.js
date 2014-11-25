@@ -61,12 +61,14 @@
         success(function(data, status, headers, config) {
           console.info(domain2add.domain + 'has been successfully added.(' + status + ')');
           console.log(data);
+          // replace data by a phrase see translation
           var successMsg = data + '<ul><li>' + msgRestartEngine + '</li></ul>';
           messager.sendDataMessage(sourceName, 'requestSuccessful', 'add-dialog', successMsg);
         }).
         error(function(data, status, headers, config) {
           console.error('Add request for the domain ' + domain2add.domain + ' failed.(' + status + ')');
           console.log(data);
+          //replace data by a sentence before putting error message
           messager.sendDataMessage(sourceName, 'requestFailed', 'add-dialog', data);
         });
       },
@@ -78,12 +80,14 @@
         success(function(data, status, headers, config) {
           console.info(domain2edit.domain + 'has been successfully edited.(' + status + ')');
           console.log(data);
+          //change message edit
           var successMsg = data + '<ul><li>' + msgRestartEngine + '</li></ul>';
           messager.sendDataMessage(sourceName, 'requestSuccessful', 'edit-dialog', successMsg);
         }).
         error(function(data, status, headers, config) {
           console.error('Edit request for the domain ' + domain2edit.domain + ' failed.(' + status + ')');
           console.log(data);
+          //change message
           messager.sendDataMessage(sourceName, 'requestFailed', 'edit-dialog', data);
         });
       }
