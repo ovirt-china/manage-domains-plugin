@@ -2,7 +2,7 @@
 
 (function() {
 
-   var app = angular.module('plugin.common', []);
+   var app = angular.module('plugin.common', ['plugin.translations']);
 
    // Set the name of the plugin
    app.value('pluginName', 'EMDPlugin');
@@ -114,12 +114,9 @@
      };
    }]);
 
-  app.service('translateService', [$resources, function($resource){
-    this.getTranslation = function($scope, language) {
-            var languageFilePath = 'translations/translation_' + language + '.json';
-            $resource(languageFilePath).get(function (data) {
-                $scope.translation = data;
-            });
+  app.service('translationService', ['translateFactory', function(translateFactory){
+    this.getTranslation = function($scope) {
+            translateFactory.translate($scope, 'en');
         };
   }]);
 

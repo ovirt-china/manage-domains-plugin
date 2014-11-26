@@ -151,11 +151,11 @@
    }]);
 
    // Controller to provide the functions to open the dialogs
-   app.controller('menuController', ['$scope', '$window', 'dialogManager', 'domainsListManager','alertManager', 'request', function ($scope, $window, dialogManager, domainsMan, alertMan, request){
+   app.controller('menuController', ['$scope', '$window', 'dialogManager', 'domainsListManager','alertManager', 'request', 'translationService' function ($scope, $window, dialogManager, domainsMan, alertMan, request, translationService){
 
 
 
-     translationService.getTranslation($scope, 'en');  
+     translationService.getTranslation($scope);
 
 
 
