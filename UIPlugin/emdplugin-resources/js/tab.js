@@ -152,6 +152,13 @@
 
    // Controller to provide the functions to open the dialogs
    app.controller('menuController', ['$scope', '$window', 'dialogManager', 'domainsListManager','alertManager', 'request', function ($scope, $window, dialogManager, domainsMan, alertMan, request){
+
+
+
+     translationService.getTranslation($scope, 'en');  
+
+
+
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
       };
