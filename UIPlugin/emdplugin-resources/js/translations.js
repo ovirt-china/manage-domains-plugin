@@ -7,8 +7,8 @@
   // Define event handler functions for later invocation by UI plugin infrastructure
   app.factory('translationService', ['english', 'chinese', function (english, chinese) {
     return {
-      getTranslation: function ($scope, lang) {
-        switch (lang) {
+      getTranslation: function ($scope, langKey) {
+        switch (langKey) {
 
           case ('zh'):
             $scope.trans = chinese;
@@ -89,8 +89,8 @@
 
         // Edit Dialog
         "DIALOG_EDIT_TITLE" : "Edit ",
-        "DIALOG_EDIT_HELP_1" : "To edit <strong>",
-        "DIALOG_EDIT_HELP_2" : "</strong> please fill only the fields you want to modify.",
+        "DIALOG_EDIT_HELP_1" : "To edit ",
+        "DIALOG_EDIT_HELP_2" : " please fill only the fields you want to modify.",
         "DIALOG_EDIT_FORM_PROVIDER" : "Provider",
         "DIALOG_EDIT_FORM_PROVIDER_HELP" : "The LDAP provider type of server used for the domain.",
         "DIALOG_EDIT_FORM_USER" : "User",
@@ -184,8 +184,8 @@
 
         // Edit Dialog
         "DIALOG_EDIT_TITLE" : "Edit ",
-        "DIALOG_EDIT_HELP_1" : "编辑<strong>",
-        "DIALOG_EDIT_HELP_2" : "</strong>请只填写您要修改的字段。",
+        "DIALOG_EDIT_HELP_1" : "编辑",
+        "DIALOG_EDIT_HELP_2" : "请只填写您要修改的字段。",
         "DIALOG_EDIT_FORM_PROVIDER" : "提供商",
         "DIALOG_EDIT_FORM_PROVIDER_HELP" : "域所使用的域服务器的LDAP提供程序类型。",
         "DIALOG_EDIT_FORM_USER" : "用户",
