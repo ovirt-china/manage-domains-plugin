@@ -2,7 +2,7 @@
 
 (function() {
 
-  var app = angular.module('plugin.tab', ['plugin.common', 'plugin.ajax']);
+  var app = angular.module('plugin.tab', ['plugin.common', 'plugin.ajax', 'plugin.translations']);
 
   app.value('dialogName', 'emd-tab');
 
@@ -155,7 +155,7 @@
 
 
 
-     translationService.getTranslation($scope);
+     translationService.getTranslation($scope, 'en');
 
 
 

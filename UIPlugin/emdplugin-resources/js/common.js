@@ -2,7 +2,7 @@
 
 (function() {
 
-   var app = angular.module('plugin.common', ['plugin.translations']);
+   var app = angular.module('plugin.common', []);
 
    // Set the name of the plugin
    app.value('pluginName', 'EMDPlugin');
@@ -113,12 +113,6 @@
        }
      };
    }]);
-
-  app.service('translationService', ['translateFactory', function(translateFactory){
-    this.getTranslation = function($scope) {
-            translateFactory.translate($scope, 'en');
-        };
-  }]);
 
 
 
