@@ -11,11 +11,11 @@
         switch (lang) {
 
           case ('zh'):
-            $scope.translation = chinese;
+            $scope.trans = chinese;
             break;
 
           default:
-            $scope.translation = english;
+            $scope.trans = english;
         }
       }
     }
@@ -35,7 +35,7 @@
         "TABLE_DOMAIN_LABEL" : "Domain",
         "TABLE_USERNAME_LABEL" : "Username",
         "TABLE_ACTIONS_LABEL" : "Actions",
-        "TABLE_NO_DOMAINS" : "No domain to display",
+        "TABLE_NO_DOMAINS" : "No domain to display.",
         "TABLE_BTN_EDIT_LABEL" : "Edit",
         "TABLE_BTN_REMOVE_LABEL" : "Delete",
 
@@ -130,7 +130,7 @@
         "TABLE_DOMAIN_LABEL" : "域",
         "TABLE_USERNAME_LABEL" : "用户名",
         "TABLE_ACTIONS_LABEL" : "行动",
-        "TABLE_NO_DOMAINS" : "无域显示",
+        "TABLE_NO_DOMAINS" : "无域显示。",
         "TABLE_BTN_EDIT_LABEL" : "编辑",
         "TABLE_BTN_REMOVE_LABEL" : "删除",
 
