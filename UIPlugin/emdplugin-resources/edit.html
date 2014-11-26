@@ -19,7 +19,7 @@
                   <div class="spinner spinner-lg"></div>
                 </div>
                 <div class="media-body">
-                  <h1 class="processing-descr">Processing...</h1>
+                  <h1 class="processing-descr">{{trans.PROCESSING}}</h1>
                 </div>
               </div>
 
@@ -32,14 +32,14 @@
 
       <div class="alert alert-info">
         <span class="pficon pficon-info"></span>
-        To edit <strong>{{domain.domain}}</strong> please fill only the fields you want to modify.
+        {{trans.DIALOG_EDIT_HELP_1}}<strong>{{domain.domain}}</strong>{{trans.DIALOG_EDIT_HELP_2}}
       </div>
 
       <form class="form-horizontal" id="form-container" name="editForm" action="#" ng-submit="submit()">
 
          <!-- Provider -->
          <div class="form-group">
-            <label class="col-sm-2 control-label" for="textInputDisabled-markup">Provider</label>
+            <label class="col-sm-2 control-label" for="textInputDisabled-markup">{{trans.DIALOG_EDIT_FORM_PROVIDER}}</label>
             <div class="col-sm-4">
                <select class="form-control" ng-model="domain.provider">
                   <option>Microsoft Active Directory</option>
@@ -50,79 +50,79 @@
                </select>
             </div>
             <div class="col-sm6">
-               <span class="help-block-form-control">The LDAP provider type of server used for the domain.</span>
+               <span class="help-block-form-control">{{trans.DIALOG_EDIT_FORM_PROVIDER_HELP}}</span>
             </div>
          </div>
 
          <!-- User -->
          <div class="form-group">
-            <label class="col-sm-2 control-label" for="inputError-markup">User</label>
+            <label class="col-sm-2 control-label" for="inputError-markup">{{trans.DIALOG_EDIT_FORM_USER}}</label>
             <div class="col-sm-10">
                <input type="text" id="inputError-markup" class="form-control" ng-model="domain.user">
-               <span class="help-block">The domain user.</span>
+               <span class="help-block">{{trans.DIALOG_EDIT_FORM_USER_HELP}}</span>
             </div>
          </div>
 
          <!-- DO NOT USE (NOT SUPPORTED BY THE API YET) -->
          <!-- Password -->
          <!-- <div class="form-group">
-            <label class="col-sm-2 control-label" for="inputError-markup">Password</label>
+            <label class="col-sm-2 control-label" for="inputError-markup">{{trans.DIALOG_EDIT_FORM_PASSWORD}}</label>
             <div class="col-sm-10">
                <div class="input-group">
                   <input type="password" id="inputError-markup" class="form-control" ng-hide="showpassword" ng-model="password">
                   <input type="text" id="inputError-markup" class="form-control" ng-show="showpassword" ng-model="password">
                   <span class="input-group-addon">
                      <input type="checkbox" ng-model="showpassword" ng-checked="false">
-                     Show password
+                     {{trans.DIALOG_EDIT_FORM_PASSWORD_SHOW}}
                   </span>
                </div>
-               <span class="help-block">If you want to use a file containing the password use the Advanced Parameters.</span>
+               <span class="help-block">{{trans.DIALOG_EDIT_FORM_PASSWORD_HELP}}</span>
             </div>
          </div> -->
 
          <!-- Password File -->
          <div class="form-group">
-            <label class="col-sm-2 control-label" for="inputError-markup">Password File</label>
+            <label class="col-sm-2 control-label" for="inputError-markup">{{trans.DIALOG_EDIT_FORM_PASSWORDFILE}}</label>
             <div class="col-sm-10">
                <input type="text" id="inputError-markup" class="form-control" ng-model="domain.passwordFile" required>
-               <span class="help-block">A file containing the password. [Use the absolute path of the file on the machine]</span>
+               <span class="help-block">{{trans.DIALOG_EDIT_FORM_PASSWORDFILE_HELP}}</span>
             </div>
          </div>
 
                <!-- Add Permission -->
                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="inputError-markup">Add Permission</label>
+                  <label class="col-sm-2 control-label" for="inputError-markup">{{trans.DIALOG_EDIT_FORM_ADDPERMISSION}}</label>
                   <div class="col-sm-10">
                      <label class="checkbox-selection">
-                        <input type="checkbox" ng-model="domain.addPermissions"> Add engine superuser permissions to the user.
+                        <input type="checkbox" ng-model="domain.addPermissions"> {{trans.DIALOG_EDIT_FORM_ADDPERMISSION_HELP}}
                      </label>
                   </div>
                </div>
 
                <!-- Config File -->
                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="inputError-markup">Config File</label>
+                  <label class="col-sm-2 control-label" for="inputError-markup">{{trans.DIALOG_EDIT_FORM_CONFIGFILE}}</label>
                   <div class="col-sm-10">
                      <input type="text" id="inputError-markup" class="form-control" ng-model="domain.configFile">
-                     <span class="help-block">Use the given alternate configuration file.[Use the absolute path of the file on the machine]</span>
+                     <span class="help-block">{{trans.DIALOG_EDIT_FORM_CONFIGFILE_HELP}}</span>
                   </div>
                </div>
 
                <!-- LDAP Servers -->
                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="inputError-markup">LDAP Servers</label>
+                  <label class="col-sm-2 control-label" for="inputError-markup">{{trans.DIALOG_EDIT_FORM_LDAPSERVERS}}</label>
                   <div class="col-sm-10">
                      <input type="text" id="inputError-markup" class="form-control" ng-model="domain.ldapServers">
-                     <span class="help-block">A comma delimited list of LDAP servers to be set to the domain.</span>
+                     <span class="help-block">{{trans.DIALOG_EDIT_FORM_LDAPSERVERS_HELP}}</span>
                   </div>
                </div>
 
                <!-- Resolve KDC -->
                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="inputError-markup">Resolve KDC</label>
+                  <label class="col-sm-2 control-label" for="inputError-markup">{{trans.DIALOG_EDIT_FORM_RESOLVEKDC}}</label>
                   <div class="col-sm-10">
                      <label class="checkbox-selection">
-                        <input type="checkbox" ng-model="domain.resolveKdc"> Resolve KDC servers using DNS (don't assume they are the same as LDAP servers).
+                        <input type="checkbox" ng-model="domain.resolveKdc"> {{trans.DIALOG_EDIT_FORM_RESOLVEKDC_HELP}}
                      </label>
                   </div>
                </div>
