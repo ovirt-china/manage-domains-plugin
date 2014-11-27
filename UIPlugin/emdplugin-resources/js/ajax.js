@@ -43,17 +43,15 @@
 
         $http.delete(urlReq, config).
         success(function(data, status, headers, config) {
-          var successDeleteText = '<strong>' + domain2delete + '</strong> has been successfully deleted.<ul><li>' + msgRemoveUsers + '</li><li>' + msgRestartEngine + '</li></ul>';
+          var successDeleteText = '<strong>' + domain2delete + '</strong>' + tr.NOTIFICATION_DELETE_SUCCESS + '<ul><li>' + tr.NOTIFICATION_REMOVE_USERS + '</li><li>' + tr.NOTIFICATION_NEED_RESTART + '</li></ul>';
           console.info(domain2delete + ' has been successfully deleted.(' + status + ')');
           messager.sendDataMessage(sourceName, 'requestSuccessful', 'remove-dialog', successDeleteText);
         }).
         error(function(data, status, headers, config) {
           console.error('Delete request for the domain ' + domain2delete + ' failed.(' + status + ')');
-          if(!data){
-            data = 'Impossible to delete the domain <strong>' + domain2delete + '</strong>.';
-          }
           console.log(data);
-          messager.sendDataMessage(sourceName, 'requestFailed', 'remove-dialog', data);
+          var failedDeleteText = tr.NOTIFICATION_DELETE_FAILED + '<strong>' + domain2delete + '</strong>.';
+          messager.sendDataMessage(sourceName, 'requestFailed', 'remove-dialog', failedDeleteText);
         });
       },
 
@@ -106,8 +104,7 @@
     NOTIFICATION_REFRESH_FAILED : "Impossible to refresh the list of Domains.",
     NOTIFICATION_REFRESH_SUCCESS : "The list of Domains has been refreshed successfully.",
 
-    NOTIFICATION_DELETE_SUCCESS_1 : "<strong>",
-    NOTIFICATION_DELETE_SUCCESS_2 : "</strong> has been successfully deleted.",
+    NOTIFICATION_DELETE_SUCCESS : " has been successfully deleted.",
     NOTIFICATION_DELETE_FAILED_1 : "Impossible to delete the domain <strong>",
     NOTIFICATION_DELETE_FAILED_2 : "</strong>.",
 
@@ -129,8 +126,7 @@
     NOTIFICATION_REFRESH_FAILED : "无法刷新域的列表。",
     NOTIFICATION_REFRESH_SUCCESS : "域名列表中已成功刷新。",
 
-    NOTIFICATION_DELETE_SUCCESS_1 : "<strong>",
-    NOTIFICATION_DELETE_SUCCESS_2 : "</strong>已成功删除。",
+    NOTIFICATION_DELETE_SUCCESS : "已成功删除。",
     NOTIFICATION_DELETE_FAILED_1 : "无法删除域<strong>",
     NOTIFICATION_DELETE_FAILED_2 : "</strong>。",
 
