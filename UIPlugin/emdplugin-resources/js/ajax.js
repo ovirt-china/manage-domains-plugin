@@ -2,7 +2,7 @@
 
 (function() {
 
-  var app = angular.module('plugin.ajax', ['plugin.common', 'plugin,translations']);
+  var app = angular.module('plugin.ajax', ['plugin.common', 'plugin.translations']);
 
   // Set the URL for the request
   app.value('URL', '/engineManageDomains');
