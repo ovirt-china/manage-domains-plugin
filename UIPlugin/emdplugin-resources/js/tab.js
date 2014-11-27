@@ -160,7 +160,7 @@
    // Controller to provide the functions to open the dialogs
    app.controller('menuController', ['$scope', '$window', 'dialogManager', 'domainsListManager','alertManager', 'request', 'translationService', function ($scope, $window, dialogManager, domainsMan, alertMan, request, translationService){
 
-      translationService.getTranslation($scope, 'zh');
+      var tr = translationService.translate('zh');
 
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
@@ -186,7 +186,7 @@
 
       // Use to replace the non-working Remove Dialog
       $scope.deleteAlert = function(domain) {
-        var textAlert = $scope.$parent.DIALOG_DELETE_HELP_1 + domain.domain + $scope.$parent.DIALOG_DELETE_HELP_2;
+        var textAlert = tr.DIALOG_DELETE_HELP_1 + domain.domain + tr.DIALOG_DELETE_HELP_2;
 
         if($window.confirm(textAlert)) {
           //Trigger Delete Action
@@ -212,9 +212,9 @@
       $scope.reqRefreshisOver = function(isSuccessful) {
         $scope.isAnimated = false;
         if(!isSuccessful){
-          alertMan.alertDanger($scope.$parent.NOTIFICATION_REFRESH_FAILED);
+          alertMan.alertDanger(tr.NOTIFICATION_REFRESH_FAILED);
         } else if (requestFromBtn) {
-          alertMan.alertSuccess($scope.$parent.NOTIFICATION_REFRESH_SUCCESS);
+          alertMan.alertSuccess(tr.NOTIFICATION_REFRESH_SUCCESS);
           requestFromBtn = false;
         }
 
