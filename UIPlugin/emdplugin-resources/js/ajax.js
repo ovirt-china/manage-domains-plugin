@@ -10,12 +10,13 @@
   app.value('msgRemoveUsers', 'Please remove all users and groups of this domain using the Administration portal or the API.');
   app.value('msgRestartEngine', 'oVirt Engine restart is required in order for the changes to take place (service ovirt-engine restart).');
 
-  app.factory('request',['$http', 'URL', 'sourceName', 'messager', 'msgRemoveUsers', 'msgRestartEngine', 'translationService', function($http, URL, sourceName, messager, msgRemoveUsers, msgRestartEngine, translationService){
+  app.factory('request',['$http', 'URL', 'sourceName', 'messager', 'msgRemoveUsers', 'msgRestartEngine', 'translateService', function($http, URL, sourceName, messager, msgRemoveUsers, msgRestartEngine, translateService){
+
+    var tr = translateService.getTranslationJSON('zh');
 
     return {
 
       list: function(){
-        var tr = translationService.getTranslationJSON('zh');
         var urlReq = URL + '/domains/';
         console.log('API Request: GET - ' + urlReq);
         $http.get(urlReq).
