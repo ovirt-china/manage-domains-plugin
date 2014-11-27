@@ -6,11 +6,11 @@
 
   app.value('dialogName', 'emd-tab');
 
-  app.run(['messager', 'dialogName', 'alertManager', 'domainsListManager', function(messager, dialogName, alertMan, domainsMan) {
+  app.run(['messager', 'dialogName', 'alertManager', 'domainsListManager', 'translationService', function(messager, dialogName, alertMan, domainsMan, translationService) {
 
     messager.sendActionMessage(dialogName, 'justLaunch', null);
 
-    alertMan.alertInfo('Thanks for using this plugin. You can access the all code <a href="https://github.com/eayun/UIPlugin-Engine-Manage-Domains">here</a>. If you have any suggestion please use <a href="https://github.com/eayun/UIPlugin-Engine-Manage-Domains/issues">this</a>.');
+    alertMan.alertInfo(translationService.translate('zh').NOTIFICATION_WELCOME);
 
     domainsMan.refreshDomains();
 

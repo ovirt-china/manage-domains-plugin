@@ -17,6 +17,17 @@
           default:
             $scope.trans = english;
         }
+      },
+      translate: function (langKey) {
+        switch (langKey) {
+
+          case ('zh'):
+            return chinese;
+            break;
+
+          default:
+            return english;
+        }
       }
     };
   }]);
