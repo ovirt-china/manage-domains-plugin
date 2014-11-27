@@ -28,7 +28,7 @@
         error(function(data, status, headers, config) {
           console.error('List request failed.(' + status + ')');
           console.log(data);
-          messager.sendDataMessage(sourceName, 'updateDomainsFailed', null, data);
+          messager.sendDataMessage(sourceName, 'updateDomainsFailed', null, tr.NOTIFICATION_REFRESH_FAILED);
         });
       },
 
