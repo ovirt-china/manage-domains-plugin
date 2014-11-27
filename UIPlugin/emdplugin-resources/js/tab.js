@@ -16,9 +16,15 @@
 
  }]);
 
+ app.controller('translationController', ['$scope', 'translationService', function($scope, translationService){
+
+  translationService.getTranslation($scope, 'zh');
+
+ }]);
+
   app.controller('TableController', ['$scope', 'domainsListManager', 'translationService', function($scope, domainMan, translationService){
 
-    translationService.getTranslation($scope, 'zh');
+    //translationService.getTranslation($scope, 'zh');
 
     $scope.domains = domainMan.getDomains();
 
@@ -156,7 +162,7 @@
    // Controller to provide the functions to open the dialogs
    app.controller('menuController', ['$scope', '$window', 'dialogManager', 'domainsListManager','alertManager', 'request', 'translationService', function ($scope, $window, dialogManager, domainsMan, alertMan, request, translationService){
 
-     translationService.getTranslation($scope, 'en');
+     //translationService.getTranslation($scope, 'en');
 
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
