@@ -28,7 +28,7 @@
                      "passwordFile": ""
                     };
       // Get the name of the domain from the cache
-      $scope.domain.domain = cache.getData('domainToEdit').domain;
+      $scope.domain.domain = cache.getData('DOMAIN_TO_EDIT').domain;
 
     // functions to control the Loading Modal
     $scope.modalShown = false;

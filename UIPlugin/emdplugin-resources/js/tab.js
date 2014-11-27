@@ -96,9 +96,9 @@
 
          // Show the Edit Dialog Window
          showEditDialog: function (domain) {
-            var dialogName = "Edit " + domain.name;
+            var dialogName = "Edit " + domain.domain;
 
-            cache.setData('domainToEdit', domain);
+            cache.setData('DOMAIN_TO_EDIT', domain);
 
             pluginApi.showDialog( dialogName, 'edit-dialog', urlUtil.relativeUrl('edit.html'), '780px', '650px',
                {
@@ -107,7 +107,7 @@
                         label: 'Cancel',
                         onClick: function() {
                            pluginApi.closeDialog('edit-dialog');
-                           cache.removeData('domainToEdit');
+                           cache.removeData('DOMAIN_TO_EDIT');
                         }
                      },
                      {
