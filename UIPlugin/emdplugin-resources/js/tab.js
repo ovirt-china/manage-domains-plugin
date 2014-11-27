@@ -24,8 +24,6 @@
 
   app.controller('TableController', ['$scope', 'domainsListManager', 'translationService', function($scope, domainMan, translationService){
 
-    //translationService.getTranslation($scope, 'zh');
-
     $scope.domains = domainMan.getDomains();
 
     $scope.setDomains = function(domains){
@@ -161,8 +159,6 @@
 
    // Controller to provide the functions to open the dialogs
    app.controller('menuController', ['$scope', '$window', 'dialogManager', 'domainsListManager','alertManager', 'request', 'translationService', function ($scope, $window, dialogManager, domainsMan, alertMan, request, translationService){
-
-     //translationService.getTranslation($scope, 'en');
 
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
