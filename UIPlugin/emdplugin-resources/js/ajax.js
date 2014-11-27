@@ -143,7 +143,6 @@
     NOTIFICATION_EDIT_SUCCESS_2 : "</strong>已成功编辑。",
     NOTIFICATION_EDIT_FAILED_1 : "无法编辑域<strong>",
     NOTIFICATION_EDIT_FAILED_2 : "</strong>。"};
-  });
 
   return {
     getTranslationJSON: function (langKey) {
@@ -158,5 +157,6 @@
       }
     }
   };
+  });
 
 })();
