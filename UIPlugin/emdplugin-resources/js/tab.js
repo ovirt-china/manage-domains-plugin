@@ -128,7 +128,7 @@
          showRemoveDialog: function (domain) {
             var dialogName = "Remove " + domain.domain;
 
-            cache.setData('domainToRemove',domain);
+            cache.setData('DOMAIN_TO_REMOVE',domain);
 
             pluginApi.showDialog( dialogName, 'remove-dialog', urlUtil.relativeUrl('remove.html'), '450px', '170px',
                {
@@ -137,7 +137,7 @@
                         label: 'Cancel',
                         onClick: function() {
                            pluginApi.closeDialog('remove-dialog');
-                           cache.removeData('domainToRemove');
+                           cache.removeData('DOMAIN_TO_REMOVE');
                         }
                      },
                      {

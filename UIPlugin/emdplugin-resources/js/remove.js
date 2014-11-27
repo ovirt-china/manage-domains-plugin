@@ -16,7 +16,7 @@
 
   app.controller('RemoveController', ['cacheService', '$scope', 'messager', 'dialogName', 'request', function(cache, $scope, messager, dialogName, request){
 
-    $scope.domain = cache.getData('domainToRemove');
+    $scope.domain = cache.getData('DOMAIN_TO_REMOVE');
 
     $scope.modalShown = false;
 
@@ -41,7 +41,7 @@
   // Get the information about the domain from the local storage
   app.controller('CacheController', ['cacheService', '$scope', function(cache, $scope){
 
-    $scope.domain = cache.getData('domainToRemove');
+    $scope.domain = cache.getData('DOMAIN_TO_REMOVE');
 
   }]);
 
