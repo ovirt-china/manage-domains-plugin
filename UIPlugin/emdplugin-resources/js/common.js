@@ -24,7 +24,7 @@
   // Return the language used by the browser
   app.factory('languageUtil', function () {
     return {
-        langKey: 'zh';
+        langKey: 'zh'
      };
   });
 
