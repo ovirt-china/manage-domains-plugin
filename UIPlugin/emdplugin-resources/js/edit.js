@@ -4,7 +4,7 @@
 
 (function() {
 
-  var app = angular.module('plugin.edit', ['plugin.common', 'plugin.ajax']);
+  var app = angular.module('plugin.edit', ['plugin.common', 'plugin.ajax', 'plugin.translations']);
 
   app.value('dialogName', 'edit-dialog');
 
@@ -13,7 +13,9 @@
     messager.sendActionMessage(dialogName, 'justOpen', null);
   }]);
 
-   app.controller('EditFormController',['$scope', '$window', 'messager', 'dialogName', 'cacheService', 'request', function($scope, $window, messager, dialogName, cache, request){
+   app.controller('EditFormController',['$scope', '$window', 'messager', 'dialogName', 'cacheService', 'request', 'translationService', function($scope, $window, messager, dialogName, cache, request, translationService){
+
+     translationService.getTranslation($scope, 'zh');
 
      // initiate the Default domain2edit JSON object to be send to the API.
      $scope.domain ={"domain": "",
