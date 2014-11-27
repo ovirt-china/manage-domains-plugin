@@ -13,7 +13,7 @@
     messager.sendActionMessage(dialogName, 'justOpen', null);
   }]);
 
-   app.controller('AddFormController',['$scope', '$window', 'messager', 'dialogName', 'request', function($scope, $window, messager, dialogName, request){
+   app.controller('AddFormController',['$scope', '$window', 'messager', 'dialogName', 'request', 'translationService', function($scope, $window, messager, dialogName, request, translationService){
 
      translationService.getTranslation($scope, 'zh');
 
