@@ -158,7 +158,9 @@
    }]);
 
    // Controller to provide the functions to open the dialogs
-   app.controller('menuController', ['$scope', '$window', 'dialogManager', 'domainsListManager','alertManager', 'request', function ($scope, $window, dialogManager, domainsMan, alertMan, request){
+   app.controller('menuController', ['$scope', '$window', 'dialogManager', 'domainsListManager','alertManager', 'request', 'translationService', function ($scope, $window, dialogManager, domainsMan, alertMan, request, translationService){
+
+     translationService.getTranslation($scope, 'zh');
 
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
@@ -184,7 +186,7 @@
 
       // Use to replace the non-working Remove Dialog
       $scope.deleteAlert = function(domain) {
-        var textAlert = 'Are you sure you want to delete the domain ' + domain.domain + ' ?';
+        var textAlert = $scope.DIALOG_DELETE_HELP_1 + domain.domain + $scope.DIALOG_DELETE_HELP_2;
 
         if($window.confirm(textAlert)) {
           //Trigger Delete Action
@@ -210,9 +212,9 @@
       $scope.reqRefreshisOver = function(isSuccessful) {
         $scope.isAnimated = false;
         if(!isSuccessful){
-          alertMan.alertDanger('Impossible to refresh the list of Domains.');
+          alertMan.alertDanger($scope.NOTIFICATION_REFRESH_FAILED);
         } else if (requestFromBtn) {
-          alertMan.alertSuccess('The list of Domains has been refreshed successfully.');
+          alertMan.alertSuccess($scope.NOTIFICATION_REFRESH_SUCCESS);
           requestFromBtn = false;
         }
 
