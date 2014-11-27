@@ -22,7 +22,7 @@
 
  }]);
 
-  app.controller('TableController', ['$scope', 'domainsListManager', 'translationService', function($scope, domainMan, translationService){
+  app.controller('TableController', ['$scope', 'domainsListManager', function($scope, domainMan){
 
     $scope.domains = domainMan.getDomains();
 
@@ -158,7 +158,7 @@
    }]);
 
    // Controller to provide the functions to open the dialogs
-   app.controller('menuController', ['$scope', '$window', 'dialogManager', 'domainsListManager','alertManager', 'request', 'translationService', function ($scope, $window, dialogManager, domainsMan, alertMan, request, translationService){
+   app.controller('menuController', ['$scope', '$window', 'dialogManager', 'domainsListManager','alertManager', 'request', function ($scope, $window, dialogManager, domainsMan, alertMan, request){
 
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
