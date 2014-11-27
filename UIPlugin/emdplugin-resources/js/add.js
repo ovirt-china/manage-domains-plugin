@@ -4,7 +4,7 @@
 
 (function() {
 
-  var app = angular.module('plugin.add', ['plugin.common', 'plugin.ajax']);
+  var app = angular.module('plugin.add', ['plugin.common', 'plugin.ajax', 'plugin.translations']);
 
   app.value('dialogName', 'add-dialog');
 
@@ -14,6 +14,9 @@
   }]);
 
    app.controller('AddFormController',['$scope', '$window', 'messager', 'dialogName', 'request', function($scope, $window, messager, dialogName, request){
+
+     translationService.getTranslation($scope, 'zh');
+
      $scope.domain ={"domain": "",
                      "provider": "",
                      "user": "",
