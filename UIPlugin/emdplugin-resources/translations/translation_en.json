@@ -11,7 +11,7 @@
     "TABLE_DOMAIN_LABEL" : "Domain",
     "TABLE_USERNAME_LABEL" : "Username",
     "TABLE_ACTIONS_LABEL" : "Actions",
-    "TABLE_NO_DOMAINS" : "No domain to display",
+    "TABLE_NO_DOMAINS" : "No domain to display.",
     "TABLE_BTN_EDIT_LABEL" : "Edit",
     "TABLE_BTN_REMOVE_LABEL" : "Delete",
 
@@ -65,8 +65,8 @@
 
     // Edit Dialog
     "DIALOG_EDIT_TITLE" : "Edit ",
-    "DIALOG_EDIT_HELP_1" : "To edit <strong>",
-    "DIALOG_EDIT_HELP_2" : "</strong> please fill only the fields you want to modify.",
+    "DIALOG_EDIT_HELP_1" : "To edit",
+    "DIALOG_EDIT_HELP_2" : "please fill only the fields you want to modify.",
     "DIALOG_EDIT_FORM_PROVIDER" : "Provider",
     "DIALOG_EDIT_FORM_PROVIDER_HELP" : "The LDAP provider type of server used for the domain.",
     "DIALOG_EDIT_FORM_USER" : "User",
