@@ -2,7 +2,7 @@
 
 (function() {
 
-  var app = angular.module('plugin.ajax', ['plugin.common']);
+  var app = angular.module('plugin.ajax', ['plugin.common', 'plugin,translations']);
 
   // Set the URL for the request
   app.value('URL', '/engineManageDomains');
@@ -10,7 +10,14 @@
   app.value('msgRemoveUsers', 'Please remove all users and groups of this domain using the Administration portal or the API.');
   app.value('msgRestartEngine', 'oVirt Engine restart is required in order for the changes to take place (service ovirt-engine restart).');
 
+  app.factory('translate', ['translationService', function(translationService){
+    translationService.getTranslationJSON($scope, 'zh');
+  }]);
+
   app.factory('request',['$http', 'URL', 'sourceName', 'messager', 'msgRemoveUsers', 'msgRestartEngine', function($http, URL, sourceName, messager, msgRemoveUsers, msgRestartEngine){
+
+    var tr = translationService.getTranslationJSON('zh');
+
     return {
 
       list: function(){
@@ -20,7 +27,7 @@
         success(function(data, status, headers, config) {
           console.info('List request was successful.(' + status + ')');
           console.log(data);
-          messager.sendDataMessage(sourceName, 'updateDomains', null, data);
+          messager.sendDataMessage(sourceName, 'updateDomains', null, tr.NOTIFICATION_REFRESH_SUCCESS);
         }).
         error(function(data, status, headers, config) {
           console.error('List request failed.(' + status + ')');
