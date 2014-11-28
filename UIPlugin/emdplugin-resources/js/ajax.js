@@ -15,6 +15,12 @@
       list: function(){
         var urlReq = URL + '/domains/';
         console.log('API Request: GET - ' + urlReq);
+
+
+        // DEBUG
+        console.log(tr.get('zh'));
+
+
         $http.get(urlReq).
         success(function(data, status, headers, config) {
           console.info('List request was successful.(' + status + ')');
