@@ -7,27 +7,25 @@
   // Define event handler functions for later invocation by UI plugin infrastructure
   app.factory('translationService', ['$window', '$filter', 'english', 'chinese', function ($window, $filter, english, chinese) {
 
-    var language = $filter('limitTo')($window.navigator.userLanguage || $window.navigator.language, 2);
+    var langKey = $filter('limitTo')($window.navigator.userLanguage || $window.navigator.language, 2);
 
     return {
-      getTranslation: function ($scope, langKey) {
+      getTranslation: function ($scope) {
 
+        $scope.trans = translate();
 
-        console.log('language = ' + language);
-
-
-        switch (langKey) {
-
-          case ('zh'):
-            $scope.trans = chinese;
-            break;
-
-          default:
-            $scope.trans = english;
-        }
+        // switch (langKey) {
+        //
+        //   case ('zh'):
+        //     $scope.trans = chinese;
+        //     break;
+        //
+        //   default:
+        //     $scope.trans = english;
+        // }
       },
       translate: function () {
-        switch (language) {
+        switch (langKey) {
 
           case ('zh'):
             return chinese;
@@ -36,6 +34,9 @@
           default:
             return english;
         }
+      },
+      getLangKey: function () {
+        return langKey;
       }
     };
   }]);
