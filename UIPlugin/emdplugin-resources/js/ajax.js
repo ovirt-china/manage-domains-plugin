@@ -7,12 +7,8 @@
   // Set the URL for the request
   app.value('URL', '/engineManageDomains');
   app.value('sourceName', 'API Controller');
-  app.value('msgRemoveUsers', 'Please remove all users and groups of this domain using the Administration portal or the API.');
-  app.value('msgRestartEngine', 'oVirt Engine restart is required in order for the changes to take place (service ovirt-engine restart).');
 
-  app.factory('request',['$http', 'URL', 'sourceName', 'messager', 'msgRemoveUsers', 'msgRestartEngine', 'translateService', function($http, URL, sourceName, messager, msgRemoveUsers, msgRestartEngine, translateService){
-
-    var tr = translateService.getTranslationJSON('zh');
+  app.factory('request',['$http', 'URL', 'sourceName', 'messager', 'translateService', function($http, URL, sourceName, messager, tr){
 
     return {
 
@@ -23,12 +19,12 @@
         success(function(data, status, headers, config) {
           console.info('List request was successful.(' + status + ')');
           console.log(data);
-          messager.sendDataMessage(sourceName, 'updateDomains', null, tr.NOTIFICATION_REFRESH_SUCCESS);
+          messager.sendDataMessage(sourceName, 'updateDomains', null, tr.get('zh').NOTIFICATION_REFRESH_SUCCESS);
         }).
         error(function(data, status, headers, config) {
           console.error('List request failed.(' + status + ')');
           console.log(data);
-          messager.sendDataMessage(sourceName, 'updateDomainsFailed', null, tr.NOTIFICATION_REFRESH_FAILED);
+          messager.sendDataMessage(sourceName, 'updateDomainsFailed', null, tr.get('zh').NOTIFICATION_REFRESH_FAILED);
         });
       },
 
@@ -43,14 +39,14 @@
 
         $http.delete(urlReq, config).
         success(function(data, status, headers, config) {
-          var successDeleteText = '<strong>' + domain2delete + '</strong>' + tr.NOTIFICATION_DELETE_SUCCESS + '<ul><li>' + tr.NOTIFICATION_REMOVE_USERS + '</li><li>' + tr.NOTIFICATION_NEED_RESTART + '</li></ul>';
+          var successDeleteText = '<strong>' + domain2delete + '</strong>' + tr.get('zh').NOTIFICATION_DELETE_SUCCESS + '<ul><li>' + tr.get('zh').NOTIFICATION_REMOVE_USERS + '</li><li>' + tr.get('zh').NOTIFICATION_NEED_RESTART + '</li></ul>';
           console.info(domain2delete + ' has been successfully deleted.(' + status + ')');
           messager.sendDataMessage(sourceName, 'requestSuccessful', 'remove-dialog', successDeleteText);
         }).
         error(function(data, status, headers, config) {
           console.error('Delete request for the domain ' + domain2delete + ' failed.(' + status + ')');
           console.log(data);
-          var failedDeleteText = tr.NOTIFICATION_DELETE_FAILED + '<strong>' + domain2delete + '</strong>.';
+          var failedDeleteText = tr.get('zh').NOTIFICATION_DELETE_FAILED + '<strong>' + domain2delete + '</strong>.';
           messager.sendDataMessage(sourceName, 'requestFailed', 'remove-dialog', failedDeleteText);
         });
       },
@@ -141,7 +137,7 @@
     NOTIFICATION_EDIT_FAILED_2 : "</strong>。"};
 
   return {
-    getTranslationJSON: function (langKey) {
+    get: function (langKey) {
       switch (langKey) {
 
         case ('zh'):
