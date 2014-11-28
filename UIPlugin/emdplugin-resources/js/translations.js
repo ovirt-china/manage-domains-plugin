@@ -6,8 +6,16 @@
 
   // Define event handler functions for later invocation by UI plugin infrastructure
   app.factory('translationService', ['english', 'chinese', function (english, chinese) {
+
+    var language = $window.navigator.userLanguage || $window.navigator.language;
+
     return {
       getTranslation: function ($scope, langKey) {
+
+
+        console.log('language = ' + language);
+
+
         switch (langKey) {
 
           case ('zh'):
@@ -58,8 +66,7 @@
         "NOTIFICATION_REFRESH_FAILED" : "Impossible to refresh the list of Domains.",
         "NOTIFICATION_REFRESH_SUCCESS" : "The list of Domains has been refreshed successfully.",
 
-        "NOTIFICATION_DELETE_SUCCESS_1" : "<strong>",
-        "NOTIFICATION_DELETE_SUCCESS_2" : "</strong> has been successfully deleted.",
+        "NOTIFICATION_DELETE_SUCCESS" : " has been successfully deleted.",
         "NOTIFICATION_DELETE_FAILED_1" : "Impossible to delete the domain <strong>",
         "NOTIFICATION_DELETE_FAILED_2" : "</strong>.",
 
@@ -153,8 +160,7 @@
         "NOTIFICATION_REFRESH_FAILED" : "无法刷新域的列表。",
         "NOTIFICATION_REFRESH_SUCCESS" : "域名列表中已成功刷新。",
 
-        "NOTIFICATION_DELETE_SUCCESS_1" : "<strong>",
-        "NOTIFICATION_DELETE_SUCCESS_2" : "</strong>已成功删除。",
+        "NOTIFICATION_DELETE_SUCCESS" : "已成功删除。",
         "NOTIFICATION_DELETE_FAILED_1" : "无法删除域<strong>",
         "NOTIFICATION_DELETE_FAILED_2" : "</strong>。",
 
