@@ -12,6 +12,8 @@
 
     alertMan.alertInfo(translationService.translate().NOTIFICATION_WELCOME);
 
+    console.log('Language = ' + translationService.getLangKey());
+
     domainsMan.refreshDomains();
 
  }]);
