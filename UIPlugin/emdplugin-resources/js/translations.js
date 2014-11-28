@@ -5,7 +5,7 @@
   var app = angular.module('plugin.translations', []);
 
   // Define event handler functions for later invocation by UI plugin infrastructure
-  app.factory('translationService', ['english', 'chinese', function (english, chinese) {
+  app.factory('translationService', ['$window', 'english', 'chinese', function ($window, english, chinese) {
 
     var language = $window.navigator.userLanguage || $window.navigator.language;
 
