@@ -15,7 +15,7 @@
 
    app.controller('AddFormController',['$scope', '$window', 'messager', 'dialogName', 'request', 'translationService', function($scope, $window, messager, dialogName, request, translationService){
 
-     translationService.getTranslation($scope, 'zh');
+     translationService.getTranslation($scope);
 
      $scope.domain ={"domain": "",
                      "provider": "",

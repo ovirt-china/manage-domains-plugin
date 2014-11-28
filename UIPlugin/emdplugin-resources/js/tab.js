@@ -18,7 +18,7 @@
 
  app.controller('translationController', ['$scope', 'translationService', function($scope, translationService){
 
-  translationService.getTranslation($scope, 'zh');
+  translationService.getTranslation($scope);
 
  }]);
 

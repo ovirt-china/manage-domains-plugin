@@ -15,7 +15,7 @@
 
    app.controller('EditFormController',['$scope', '$window', 'messager', 'dialogName', 'cacheService', 'request', 'translationService', function($scope, $window, messager, dialogName, cache, request, translationService){
 
-     translationService.getTranslation($scope, 'zh');
+     translationService.getTranslation($scope);
 
      // initiate the Default domain2edit JSON object to be send to the API.
      $scope.domain ={"domain": "",
