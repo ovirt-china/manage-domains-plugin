@@ -10,7 +10,7 @@
 
     messager.sendActionMessage(dialogName, 'justLaunch', null);
 
-    alertMan.alertInfo(translationService.translate('zh').NOTIFICATION_WELCOME);
+    alertMan.alertInfo(translationService.translate().NOTIFICATION_WELCOME);
 
     domainsMan.refreshDomains();
 
@@ -160,7 +160,7 @@
    // Controller to provide the functions to open the dialogs
    app.controller('menuController', ['$scope', '$window', 'dialogManager', 'domainsListManager','alertManager', 'request', 'translationService', function ($scope, $window, dialogManager, domainsMan, alertMan, request, translationService){
 
-      var tr = translationService.translate('zh');
+      var tr = translationService.translate();
 
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();

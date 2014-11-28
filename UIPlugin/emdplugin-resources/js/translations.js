@@ -26,8 +26,8 @@
             $scope.trans = english;
         }
       },
-      translate: function (langKey) {
-        switch (langKey) {
+      translate: function () {
+        switch (language) {
 
           case ('zh'):
             return chinese;
