@@ -10,7 +10,7 @@
 
   app.factory('request',['$http', 'URL', 'sourceName', 'messager', 'translateService', function($http, URL, sourceName, messager, translateService){
 
-    var trans = translateService.get('zh');
+    var trans = translateService.get();
 
     return {
 
@@ -95,7 +95,6 @@
 
   app.factory('translateService', function(){
     var english = {
-      NOTIFICATION_WELCOME : "Thanks for using this plugin. All the code is on <a href=\"https://github.com/eayun/UIPlugin-Engine-Manage-Domains\"> GitHub</a>. If you have any suggestion please <a href=\"https://github.com/eayun/UIPlugin-Engine-Manage-Domains/issues\">open an issue on GitHub</a>.",
     NOTIFICATION_NEED_RESTART : "oVirt Engine restart is required in order for the changes to take place (service ovirt-engine restart).",
     NOTIFICATION_REMOVE_USERS : "Please remove all users and groups of this domain using the Administration portal or the API.",
 
@@ -107,8 +106,8 @@
     NOTIFICATION_DELETE_FAILED_2 : ".",
     NOTIFICATION_ADD_SUCCESS_1 : "The domain ",
     NOTIFICATION_ADD_SUCCESS_2 : " has been added successfully.",
-    NOTIFICATION_ADD_FAILED_1 : "Impossible to add the domain <strong>",
-    NOTIFICATION_ADD_FAILED_2 : "</strong>.",
+    NOTIFICATION_ADD_FAILED_1 : "Impossible to add the domain ",
+    NOTIFICATION_ADD_FAILED_2 : ".",
 
     NOTIFICATION_EDIT_SUCCESS_1 : "The domain ",
     NOTIFICATION_EDIT_SUCCESS_2 : " has been edited successfully.",
@@ -116,7 +115,6 @@
     NOTIFICATION_EDIT_FAILED_2 : "."};
 
     var chinese = {
-      NOTIFICATION_WELCOME : "感谢您使用这个插件。所有的代码是在<a href=\"https://github.com/eayun/UIPlugin-Engine-Manage-Domains\">GitHub</a>上。如果您有任何建议，请在<a href=\"https://github.com/eayun/UIPlugin-Engine-Manage-Domains/issues\">GitHub上提一个issue</a>。",
     NOTIFICATION_NEED_RESTART : "oVirt引擎需要重新启动，以更修改生效（service ovirt-engine restart）。",
     NOTIFICATION_REMOVE_USERS : "请删除所有使用了管理门户或API的域的用户和组。",
 
@@ -129,16 +127,18 @@
 
     NOTIFICATION_ADD_SUCCESS_1 : "域",
     NOTIFICATION_ADD_SUCCESS_2 : "已成功添加。",
-    NOTIFICATION_ADD_FAILED_1 : "无法添加域<strong>",
-    NOTIFICATION_ADD_FAILED_2 : "</strong>。",
+    NOTIFICATION_ADD_FAILED_1 : "无法添加域",
+    NOTIFICATION_ADD_FAILED_2 : "。",
 
     NOTIFICATION_EDIT_SUCCESS_1 : "域",
     NOTIFICATION_EDIT_SUCCESS_2 : "已成功编辑。",
     NOTIFICATION_EDIT_FAILED_1 : "无法编辑域",
     NOTIFICATION_EDIT_FAILED_2 : "。"};
 
+    var langKey = $filter('limitTo')($window.navigator.userLanguage || $window.navigator.language, 2);
+
   return {
-    get: function (langKey) {
+    get: function () {
       switch (langKey) {
 
         case ('zh'):
