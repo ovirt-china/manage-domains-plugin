@@ -16,11 +16,6 @@
         var urlReq = URL + '/domains/';
         console.log('API Request: GET - ' + urlReq);
 
-
-        // DEBUG
-        console.log(tr.get('zh'));
-
-
         $http.get(urlReq).
         success(function(data, status, headers, config) {
           console.info('List request was successful.(' + status + ')');
@@ -41,18 +36,23 @@
         var urlReq = URL + '/domains/' + domain2delete;
         console.log('API Request: DELETE - ' + urlReq);
 
+        var trans = tr.get('zh');
+
+        // DEBUG
+        console.log(trans);
+
         var config= {"method": "DELETE"};
 
         $http.delete(urlReq, config).
         success(function(data, status, headers, config) {
-          var successDeleteText = '<strong>' + domain2delete + '</strong>' + tr.get('zh').NOTIFICATION_DELETE_SUCCESS + '<ul><li>' + tr.get('zh').NOTIFICATION_REMOVE_USERS + '</li><li>' + tr.get('zh').NOTIFICATION_NEED_RESTART + '</li></ul>';
+          var successDeleteText = '<strong>' + domain2delete + '</strong>' + trans.NOTIFICATION_DELETE_SUCCESS + '<ul><li>' + trans.NOTIFICATION_REMOVE_USERS + '</li><li>' + trans.NOTIFICATION_NEED_RESTART + '</li></ul>';
           console.info(domain2delete + ' has been successfully deleted.(' + status + ')');
           messager.sendDataMessage(sourceName, 'requestSuccessful', 'remove-dialog', successDeleteText);
         }).
         error(function(data, status, headers, config) {
           console.error('Delete request for the domain ' + domain2delete + ' failed.(' + status + ')');
           console.log(data);
-          var failedDeleteText = tr.get('zh').NOTIFICATION_DELETE_FAILED + '<strong>' + domain2delete + '</strong>.';
+          var failedDeleteText = trans.NOTIFICATION_DELETE_FAILED + '<strong>' + domain2delete + '</strong>.';
           messager.sendDataMessage(sourceName, 'requestFailed', 'remove-dialog', failedDeleteText);
         });
       },
