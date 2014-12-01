@@ -1,5 +1,5 @@
 %define _version 0.4
-%define _release 2.4
+%define _release 2.5
 
 Name:		UIPlugin-Engine-Manage-Domains
 Version:	%{_version}
@@ -69,6 +69,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Dec  1 2014 MaZhe <zhe.ma@eayun.com> 0.4-2.5
+- Modify setup script
+
 * Mon Dec  1 2014 MaZhe <zhe.ma@eayun.com> 0.4-2.4
 - Add setup script
 

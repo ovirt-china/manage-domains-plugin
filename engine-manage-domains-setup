@@ -11,6 +11,7 @@ Configuration_System_Service(){
    /etc/init.d/httpd restart
    echo "Staring service..."
    /etc/rc.d/init.d/engine-manage-domains start
+   chkconfig engine-manage-domains on
 }
 
 Setup(){
