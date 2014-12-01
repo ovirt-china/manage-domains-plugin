@@ -31,6 +31,11 @@
     $scope.setDomains = function(domains){
       domainMan.setDomains(domains);
       $scope.domains = domainMan.getDomains();
+
+      // DEBUG
+        console.log('$scope.domains');
+        console.log($scope.domains);
+      // --DEBUG
     };
 
   }]);
