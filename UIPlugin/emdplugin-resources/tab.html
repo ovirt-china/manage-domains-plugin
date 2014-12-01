@@ -41,7 +41,7 @@
             </tr>
          </thead>
          <tbody>
-            <tr ng-repeat="domain in domains">
+            <tr ng-repeat="domain in domains track by $index">
                <td class="text-cell">{{ domain.domain }}</td>
                <td class="text-cell">{{ domain.username }}</td>
                <td>
