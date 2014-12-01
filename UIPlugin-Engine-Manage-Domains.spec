@@ -1,5 +1,5 @@
 %define _version 0.4
-%define _release 2.3
+%define _release 2.4
 
 Name:		UIPlugin-Engine-Manage-Domains
 Version:	%{_version}
@@ -35,11 +35,13 @@ mkdir -p %{buildroot}/etc/httpd/conf.d/
 mkdir -p %{buildroot}/etc/engine-manage-domains
 mkdir -p %{buildroot}/etc/rc.d/init.d/
 mkdir -p %{buildroot}/var/log/engine-manage-domains
+mkdir -p %{buildroot}/usr/sbin/
 cp -r UIPlugin/* %{buildroot}/usr/share/ovirt-engine/ui-plugins/
 cp Servlet/engine-manage-domains/target/engineManageDomains.war %{buildroot}/usr/share/engine-manage-domains/deployments/
 cp ovirt-plugin-emd.conf %{buildroot}/etc/httpd/conf.d/
 cp engine-manage-domains %{buildroot}/etc/rc.d/init.d/
 cp engine-manage-domains.xml %{buildroot}/etc/engine-manage-domains/
+cp engine-manage-domains-setup %{buildroot}/usr/sbin/
 touch %{buildroot}/etc/engine-manage-domains/mgmt-users.properties
 touch %{buildroot}/etc/engine-manage-domains/application-users.properties
 
@@ -55,9 +57,11 @@ rm -rf %{buildroot}
 %dir /etc/httpd/conf.d/
 %dir /etc/rc.d/init.d/
 %dir /etc/engine-manage-domains/
+%dir /usr/sbin/
 %config /etc/httpd/conf.d/ovirt-plugin-emd.conf
 %config /etc/engine-manage-domains/engine-manage-domains.xml
 %config %attr(0755,root,root) /etc/rc.d/init.d/engine-manage-domains
+%attr(0755,root,root) /usr/sbin/engine-manage-domains-setup
 /usr/share/ovirt-engine/ui-plugins/
 /usr/share/engine-manage-domains/
 /var/log/engine-manage-domains/
@@ -65,6 +69,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Mon Dec  1 2014 MaZhe <zhe.ma@eayun.com> 0.4-2.4
+- Add setup script
+
 * Tue Nov 25 2014 MaZhe <zhe.ma@eayun.com> 0.4-2.3
 - Fix rewrite service run method
 

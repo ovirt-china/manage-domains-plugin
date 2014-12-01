@@ -1,0 +1,24 @@
+#!/bin/bash
+# ovirt engine-manage-domains configuration script
+# this script dependent on net-tools package
+
+Get_IP(){
+   IPADDR=`ifconfig eth0 | grep inet | head -1 | awk '{print $2}' | cut -d ":" -f 2`
+}
+
+Configuration_System_Service(){
+   echo "Restarting httpd"
+   /etc/init.d/httpd restart
+   echo "Staring service..."
+   /etc/rc.d/init.d/engine-manage-domains start
+}
+
+Setup(){
+   Get_IP
+   echo "Modify configuration file ..."
+   sed -i "s/{\"allowedMessageOrigins\": \"https:.*\"}/{\"allowedMessageOrigins\": \"https:\/\/$IPADDR\"}/g" /usr/share/ovirt-engine/ui-plugins/emdplugin.json
+   Configuration_System_Service
+   echo "Setup proccess completed."
+}
+
+Setup
