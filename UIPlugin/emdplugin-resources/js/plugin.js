@@ -66,18 +66,19 @@
          },
          MessageReceived: function (dataString, sourceWindow) {
 
+              var data = null;
+
               try {
                     var data = JSON.parse(dataString); // verify that json is valid
-                    console.log(data)
-
                 }
                 catch (e) {
-                    console.log(e) // gets called when parse didn't work
+                    //console.log(e) // gets called when parse didn't work
+                    console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Impossible to parse the received message.');
                 }
 
               //var data = JSON.parse(dataString);
 
-              if (data.action && data.sender === pluginName) {
+              if (data!=null && datadata.action && data.sender === pluginName) {
                 // console.info('--Message Received--' + '\n'
                 //               + '   From: WebAdmin > ' + pluginName + ' > ' + data.source + '\n'
                 //               + '   To: ' + pluginName + '\n'
