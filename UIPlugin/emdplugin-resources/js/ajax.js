@@ -93,7 +93,7 @@
     };
   }]);
 
-  app.factory('translateService', ['$filter', function($filter){
+  app.factory('translateService', ['$filter', '$window', function($filter, $window){
     var english = {
     NOTIFICATION_NEED_RESTART : "oVirt Engine restart is required in order for the changes to take place (service ovirt-engine restart).",
     NOTIFICATION_REMOVE_USERS : "Please remove all users and groups of this domain using the Administration portal or the API.",
