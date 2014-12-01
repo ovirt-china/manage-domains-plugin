@@ -4,7 +4,7 @@
 
 (function() {
 
-  var app = angular.module('plugin.init', ['plugin.common']);
+  var app = angular.module('plugin.init', ['plugin.common', 'plugin.translations']);
 
   app.service('contentWindowService', function(){
     var contentWindow = null ;
@@ -48,10 +48,10 @@
         };
   });
 
-   app.factory('tabManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
+   app.factory('tabManager', ['pluginApi', 'urlUtil', 'translationService', function (pluginApi, urlUtil, trans) {
       return {
          addTab: function () {
-            pluginApi.addMainTab('Domains', 'emd-tab', urlUtil.relativeUrl('tab.html'));
+            pluginApi.addMainTab(trans.TAB_NAME, 'emd-tab', urlUtil.relativeUrl('tab.html'));
          }
       };
    }]);
