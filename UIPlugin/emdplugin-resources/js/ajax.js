@@ -22,7 +22,7 @@
         success(function(data, status, headers, config) {
           console.info('List request was successful.(' + status + ')');
           console.log(data);
-          messager.sendDataMessage(sourceName, 'updateDomains', null, trans.NOTIFICATION_REFRESH_SUCCESS);
+          messager.sendDataMessage(sourceName, 'updateDomains', null, data);
         }).
         error(function(data, status, headers, config) {
           console.error('List request failed.(' + status + ')');
