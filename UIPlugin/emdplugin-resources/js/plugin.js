@@ -51,13 +51,7 @@
    app.factory('tabManager', ['pluginApi', 'urlUtil', 'translationService', function (pluginApi, urlUtil, translationService) {
       return {
          addTab: function () {
-
             var  trans = translationService.translate();
-            //--DEBUG
-            console.log('trans.TAB_NAME');
-            console.log(trans.TAB_NAME);
-            //--DEBUG
-
 
             pluginApi.addMainTab(trans.TAB_NAME, 'emd-tab', urlUtil.relativeUrl('tab.html'));
          }
