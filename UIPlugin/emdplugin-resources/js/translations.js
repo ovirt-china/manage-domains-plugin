@@ -11,18 +11,15 @@
 
     return {
       getTranslation: function ($scope) {
+        switch (langKey) {
 
-        $scope.trans = translate();
+          case ('zh'):
+            $scope.trans = chinese;
+            break;
 
-        // switch (langKey) {
-        //
-        //   case ('zh'):
-        //     $scope.trans = chinese;
-        //     break;
-        //
-        //   default:
-        //     $scope.trans = english;
-        // }
+          default:
+            $scope.trans = english;
+        }
       },
       translate: function () {
         switch (langKey) {
