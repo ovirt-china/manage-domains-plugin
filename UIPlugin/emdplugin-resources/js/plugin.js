@@ -65,7 +65,17 @@
             tabManager.addTab();
          },
          MessageReceived: function (dataString, sourceWindow) {
-              var data = JSON.parse(dataString);
+
+              try {
+                    var data = JSON.parse(dataString); // verify that json is valid
+                    console.log(data)
+
+                }
+                catch (e) {
+                    console.log(e) // gets called when parse didn't work
+                }
+
+              //var data = JSON.parse(dataString);
 
               if (data.action && data.sender === pluginName) {
                 // console.info('--Message Received--' + '\n'
