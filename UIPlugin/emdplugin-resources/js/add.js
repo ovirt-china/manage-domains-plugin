@@ -13,7 +13,7 @@
     messager.sendActionMessage(dialogName, 'justOpen', null);
   }]);
 
-   app.controller('AddFormController',['$scope', '$window', 'messager', 'dialogName', 'request', 'translationService', function($scope, $window, messager, dialogName, request, translationService){
+   app.controller('AddFormController',['$scope', '$window', 'messager', 'dialogName', 'request', 'translationService', '$location','$anchorScroll', function($scope, $window, messager, dialogName, request, translationService, $location, $anchorScroll){
 
      translationService.getTranslation($scope);
 
@@ -30,6 +30,12 @@
 
 
       $scope.toggleLoadingModal = function() {
+
+        // Get back to the top of the page to display
+        $location.hash('top');
+        $anchorScroll();
+
+        // Display or make the Loading Overlay to appear or disappear
         $scope.modalShown = !$scope.modalShown;
         $scope.$apply();
       };
