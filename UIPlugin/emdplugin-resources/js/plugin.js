@@ -66,8 +66,6 @@
          },
          MessageReceived: function (dataString, sourceWindow) {
 
-              var data = null;
-
               try {
                     var data = JSON.parse(dataString); // verify that json is valid
                 }
@@ -75,7 +73,7 @@
                     console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Impossible to parse the received message. --> Message ignored.');
                 }
 
-              if (data!=null && data.action && data.sender === pluginName) {
+              if (data && data.action && data.sender === pluginName) {
                 // console.info('--Message Received--' + '\n'
                 //               + '   From: WebAdmin > ' + pluginName + ' > ' + data.source + '\n'
                 //               + '   To: ' + pluginName + '\n'
