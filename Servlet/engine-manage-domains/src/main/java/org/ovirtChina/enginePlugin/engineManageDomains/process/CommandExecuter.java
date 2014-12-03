@@ -111,7 +111,7 @@ public class CommandExecuter {
       String password = domain.getPassword();
       String output = "";
 
-      if (password != null) {
+      if (!password.isEmpty()) {
         output = executeCommandwithPassword(command, domain.getPassword());
       } else {
         output = executeCommand(writeCommand(command));
@@ -155,12 +155,13 @@ public class CommandExecuter {
     String configFile = domain.getConfigFile();
     String ldapServers = domain.getLdapServers();
     String passwordFile = domain.getPasswordFile();
+    String password = domain.getPassword();
 
-    if (configFile != null){
+    if (!configFile.isEmpty()){
       command.add("--config-file=" + configFile);
     }
 
-    if (ldapServers != null){
+    if (!ldapServers.isEmpty()){
       command.add("--ldap-servers=" + ldapServers);
     }
 
@@ -168,7 +169,8 @@ public class CommandExecuter {
       command.add("--resolve-kdc");
     }
 
-    if (passwordFile != null){
+    // If a password is define it is always the default authentification procedure
+    if (!passwordFile.isEmpty() && password.isEmpty()){
       command.add("--password-file=" + passwordFile);
     }
 
@@ -190,7 +192,7 @@ public class CommandExecuter {
       String password = domain.getPassword();
       String output = "";
 
-      if (password != null) {
+      if (!password.isEmpty()) {
         output = executeCommandwithPassword(command, domain.getPassword());
       } else {
         output = executeCommand(writeCommand(command));
@@ -231,12 +233,12 @@ public class CommandExecuter {
     String provider = domain.getProvider();
     String user = domain.getUser();
 
-    if (provider != null){
+    if (!provider.isEmpty()){
       command.add("--provider=" + provider);
     }
 
-    if (user != null){
-      command.add("--user=" + provider);
+    if (!user.isEmpty()){
+      command.add("--user=" + user);
     }
 
     if (domain.getAddPermissions()){
@@ -246,12 +248,13 @@ public class CommandExecuter {
     String configFile = domain.getConfigFile();
     String ldapServers = domain.getLdapServers();
     String passwordFile = domain.getPasswordFile();
+    String password = domain.getPassword();
 
-    if (configFile != null){
+    if (!configFile.isEmpty()){
       command.add("--config-file=" + configFile);
     }
 
-    if (ldapServers != null){
+    if (!ldapServers.isEmpty()){
       command.add("--ldap-servers=" + ldapServers);
     }
 
@@ -259,7 +262,8 @@ public class CommandExecuter {
       command.add("--resolve-kdc");
     }
 
-    if (passwordFile != null){
+    // If a password is define it is always the default authentification procedure
+    if (!passwordFile.isEmpty() && password.isEmpty()){
       command.add("--password-file=" + passwordFile);
     }
 

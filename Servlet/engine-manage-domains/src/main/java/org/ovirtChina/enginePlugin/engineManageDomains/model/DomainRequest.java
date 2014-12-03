@@ -86,32 +86,32 @@ public class DomainRequest {
     // Test the domain
     boolean isDomainCorrect = testRequieredField("Domain", domain, allowedDomainPattern);
     if (!isDomainCorrect){
-      domain = null;
+      domain = "";
     }
 
     // Test the config File
     boolean isConfigFileCorrect = testFile("ConfigFile", configFile);
     if (!isConfigFileCorrect){
-      configFile = null;
+      configFile = "";
     }
 
     // Test password and passwordFile if there is no password
     if (password == null || password.isEmpty()){
-      password = null;
+      password = "";
 
       if (passwordFile != null || !passwordFile.isEmpty()){
         // Test if the given passwordFile is correct
         boolean isPasswordFileCorrect = testFile("PasswordFile", passwordFile);
 
         if (!isPasswordFileCorrect){
-          passwordFile = null;
+          passwordFile = "";
         }
       } else {
-        passwordFile = null;
+        passwordFile = "";
         addError("Password can't be empty.");
       }
     } else {
-      passwordFile = null;
+      passwordFile = "";
     }
   }
 
@@ -127,11 +127,11 @@ public class DomainRequest {
     boolean isUserCorrect = testRequieredField("User", user, allowedUserPattern);
 
     if (!isProviderCorrect){
-      this.provider = null;
+      this.provider = "";
     }
 
     if (!isUserCorrect){
-      this.user = null;
+      this.user = "";
     }
   }
 
@@ -147,11 +147,11 @@ public class DomainRequest {
     boolean isUserCorrect = testOptionalField("User", user, allowedUserPattern);
 
     if (!isProviderCorrect){
-      this.provider = null;
+      this.provider = "";
     }
 
     if (!isUserCorrect){
-      this.user = null;
+      this.user = "";
     }
   }
 
@@ -260,7 +260,7 @@ public class DomainRequest {
   * @return String              List of servers ready to be used in the CLI
   */
   private String sanitizeListServers(String serversList){
-    String serversListSanitize = null;
+    String serversListSanitize = "";
 
     // Because it is an optional field, we should check if it is not null or empty first
     if (serversList != null && !serversList.isEmpty()){
