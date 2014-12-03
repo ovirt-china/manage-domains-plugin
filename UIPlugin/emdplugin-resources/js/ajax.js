@@ -61,7 +61,7 @@
         success(function(data, status, headers, config) {
           console.info(domain2add.domain + 'has been successfully added.(' + status + ')');
           console.log(data);
-          var successMsg = trans.NOTIFICATION_ADD_SUCCESS_1 + '<strong>' + domain2add.domain +'</strong>' + NOTIFICATION_ADD_SUCCESS_2 + '<ul><li>' + trans.NOTIFICATION_NEED_RESTART + '</li></ul>';
+          var successMsg = trans.NOTIFICATION_ADD_SUCCESS_1 + '<strong>' + domain2add.domain +'</strong>' + trans.NOTIFICATION_ADD_SUCCESS_2 + '<ul><li>' + trans.NOTIFICATION_NEED_RESTART + '</li></ul>';
           messager.sendDataMessage(sourceName, 'requestSuccessful', 'add-dialog', successMsg);
         }).
         error(function(data, status, headers, config) {
