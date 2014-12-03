@@ -4,7 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.Writer;
+import java.io.FileWriter;
+
+import java.util.Random;
 
 import javax.ws.rs.core.Response;
 
@@ -18,6 +26,7 @@ public class CommandExecuter {
   private String successSentence = "Manage Domains completed successfully";
   private String domainNotFoundPattern = "Domain\\s.*?\\sdoesn't exist in the configuration[.]";
   private String engineRestartRequiered = "oVirt Engine restart is required in order for the changes to take place (service ovirt-engine restart).";
+  private String promptPassword = "Enter password:";
 
 	public CommandExecuter() {
 	}
@@ -97,8 +106,16 @@ public class CommandExecuter {
     domain.validate4Add();
 
     if (domain.isRequestCorrect()){
-      String command = createAddCommand(domain);
-      String output = executeCommand(command);
+      List<String> command = createAddCommand(domain);
+
+      String password = domain.getPassword();
+      String output = "";
+
+      if (password != null) {
+        output = executeCommandwithPassword(command, domain.getPassword());
+      } else {
+        output = executeCommand(writeCommand(command));
+      }
 
       String domainName = domain.getDomain();
 
@@ -120,40 +137,42 @@ public class CommandExecuter {
     }
   }
 
-  /**
-  * Create the command to add a domain
-  */
-  private String createAddCommand(DomainRequest domain){
-    String command = "engine-manage-domains add --domain=" + domain.getDomain()
-                      + " --provider=" + domain.getProvider()
-                      + " --user=" + domain.getUser();
+  private List<String> createAddCommand(DomainRequest domain){
+
+    List<String> command = new ArrayList<String>();
+
+    command.add("engine-manage-domains");
+    command.add("add");
+
+    command.add("--domain=" + domain.getDomain());
+    command.add("--provider=" + domain.getProvider());
+    command.add("--user=" + domain.getUser());
+
+    if (domain.getAddPermissions()){
+      command.add("--add-permissions");
+    }
 
     String configFile = domain.getConfigFile();
     String ldapServers = domain.getLdapServers();
     String passwordFile = domain.getPasswordFile();
 
-    if (domain.getAddPermissions()){
-      command += " --add-permissions";
+    if (configFile != null){
+      command.add("--config-file=" + configFile);
     }
 
-    if (!configFile.isEmpty()){
-      command += " --config-file=" + configFile;
-    }
-
-    if (!ldapServers.isEmpty()){
-      command += " --ldap-servers=" + ldapServers;
+    if (ldapServers != null){
+      command.add("--ldap-servers=" + ldapServers);
     }
 
     if (domain.getResolveKdc()){
-      command += " --resolve-kdc";
+      command.add("--resolve-kdc");
     }
 
-    if (!passwordFile.isEmpty()){
-      command += " --password-file=" + passwordFile;
+    if (passwordFile != null){
+      command.add("--password-file=" + passwordFile);
     }
 
     return command;
-
   }
 
 
@@ -165,8 +184,17 @@ public class CommandExecuter {
     domain.validate4Edit();
 
     if (domain.isRequestCorrect()){
-      String command = createEditCommand(domain);
-      String output = executeCommand(command);
+
+      List<String> command = createEditCommand(domain);
+
+      String password = domain.getPassword();
+      String output = "";
+
+      if (password != null) {
+        output = executeCommandwithPassword(command, domain.getPassword());
+      } else {
+        output = executeCommand(writeCommand(command));
+      }
 
       String domainName = domain.getDomain();
 
@@ -191,46 +219,53 @@ public class CommandExecuter {
   /**
   * Create the command to edit a domain
   */
-  private String createEditCommand(DomainRequest domain){
-    String command = "engine-manage-domains edit --domain=" + domain.getDomain();
+  private List<String> createEditCommand(DomainRequest domain){
+
+    List<String> command = new ArrayList<String>();
+
+    command.add("engine-manage-domains");
+    command.add("edit");
+
+    command.add("--domain=" + domain.getDomain());
 
     String provider = domain.getProvider();
     String user = domain.getUser();
+
+    if (provider != null){
+      command.add("--provider=" + provider);
+    }
+
+    if (user != null){
+      command.add("--user=" + provider);
+    }
+
+    if (domain.getAddPermissions()){
+      command.add("--add-permissions");
+    }
+
     String configFile = domain.getConfigFile();
     String ldapServers = domain.getLdapServers();
     String passwordFile = domain.getPasswordFile();
 
-    if (!provider.isEmpty()){
-      command += " --provider=" + provider;
+    if (configFile != null){
+      command.add("--config-file=" + configFile);
     }
 
-    if (!user.isEmpty()){
-      command += " --user=" + user;
-    }
-
-    if (domain.getAddPermissions()){
-      command += " --add-permissions";
-    }
-
-    if (!configFile.isEmpty()){
-      command += " --config-file=" + configFile;
-    }
-
-    if (!ldapServers.isEmpty()){
-      command += " --ldap-servers=" + ldapServers;
+    if (ldapServers != null){
+      command.add("--ldap-servers=" + ldapServers);
     }
 
     if (domain.getResolveKdc()){
-      command += " --resolve-kdc";
+      command.add("--resolve-kdc");
     }
 
-    if (!passwordFile.isEmpty()){
-      command += " --password-file=" + passwordFile;
+    if (passwordFile != null){
+      command.add("--password-file=" + passwordFile);
     }
 
     return command;
-
   }
+
 
   /**
   * Execute command
@@ -245,10 +280,8 @@ public class CommandExecuter {
 		try {
 			p = Runtime.getRuntime().exec(command);
 			p.waitFor();
-			BufferedReader reader =
-                            new BufferedReader(new InputStreamReader(p.getInputStream()));
-
-                        String line = "";
+			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+      String line = "";
 			while ((line = reader.readLine())!= null) {
 				output.append(line + "\n");
 			}
@@ -262,9 +295,75 @@ public class CommandExecuter {
 
 	}
 
+  /**
+  * This function create a file with the password inside to allow the servlet to use a passwordFile to execute a command.
+  */
+  private String executeCommandwithPassword(List<String> command, String password) {
+
+    String outputCmd = "Error. Impossible to create the PasswordFile.";
+
+    try{
+      // Create a file with a random name
+      File passwordFile = new File(generateRandomFileName(10, ".txt"));
+
+      // Write the password in the new passwordFile
+      try {
+        BufferedWriter output = new BufferedWriter(new FileWriter(passwordFile));
+        output.write(password);
+        output.close();
+
+        command.add("--password-file=" + passwordFile.getAbsolutePath());
+
+        outputCmd = executeCommand(writeCommand(command));
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+
+      passwordFile.delete();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return outputCmd;
+  }
+
   private void writeRequestAnswer(int status, String msg){
     System.out.println("Request Answer: (" + status + ") " + msg);
     System.out.println("-x-x- End Request -x-x-");
+  }
+
+  /*
+  * Transform the List<String> in a single String command
+  */
+  private String writeCommand (List<String> commands){
+    String commandStr = "";
+
+    for (String command : commands) {
+      commandStr += command + " ";
+    }
+
+    return commandStr.trim();
+  }
+
+  /*
+  * Generate a random file name
+  */
+  private String generateRandomFileName (int fileNameSize, String extension){
+    String alphabet = "0123456789abcdefghijklmnopqrstuvwxyz";
+    int N = alphabet.length();
+
+    String fileName = "";
+
+    Random r = new Random();
+
+    for (int i = 0; i < (fileNameSize - 1); i++) {
+        fileName += alphabet.charAt(r.nextInt(N));
+    }
+
+    fileName += extension;
+
+    return fileName;
   }
 
   public String getResult() {
