@@ -21,6 +21,7 @@
      $scope.domain ={"domain": "",
                      "provider": "",
                      "user": "",
+                     "password": "",
                      "addPermissions": false,
                      "configFile": "",
                      "ldapServers": "",
@@ -62,7 +63,7 @@
 
           }
         } else {
-           $window.alert("Your form is not correct ! Please precise a valid absolute path to the file containing the password.");
+           $window.alert("Your form is not correct ! Please enter a password.");
         }
 
       };

@@ -65,14 +65,14 @@
             </div>
          </div>
 
-         <!-- DO NOT USE (NOT SUPPORTED BY THE API YET) -->
+
          <!-- Password -->
-         <!-- <div class="form-group">
+         <div class="form-group">
             <label class="col-sm-2 control-label" for="inputError-markup">{{trans.DIALOG_EDIT_FORM_PASSWORD}}</label>
             <div class="col-sm-10">
                <div class="input-group">
-                  <input type="password" id="inputError-markup" class="form-control" ng-hide="showpassword" ng-model="password">
-                  <input type="text" id="inputError-markup" class="form-control" ng-show="showpassword" ng-model="password">
+                  <input type="password" id="inputError-markup" class="form-control" ng-hide="showpassword" ng-model="password" required>
+                  <input type="text" id="inputError-markup" class="form-control" ng-show="showpassword" ng-model="password" required>
                   <span class="input-group-addon">
                      <input type="checkbox" ng-model="showpassword" ng-checked="false">
                      {{trans.DIALOG_EDIT_FORM_PASSWORD_SHOW}}
@@ -80,19 +80,10 @@
                </div>
                <span class="help-block">{{trans.DIALOG_EDIT_FORM_PASSWORD_HELP}}</span>
             </div>
-         </div> -->
-
-         <!-- Password File -->
-         <div class="form-group">
-            <label class="col-sm-2 control-label" for="inputError-markup">{{trans.DIALOG_EDIT_FORM_PASSWORDFILE}}</label>
-            <div class="col-sm-10">
-               <input type="text" id="inputError-markup" class="form-control" ng-model="domain.passwordFile" required>
-               <span class="help-block">{{trans.DIALOG_EDIT_FORM_PASSWORDFILE_HELP}}</span>
-            </div>
          </div>
 
-               <!-- Add Permission -->
-               <div class="form-group">
+         <!-- Add Permission -->
+         <div class="form-group">
                   <label class="col-sm-2 control-label" for="inputError-markup">{{trans.DIALOG_EDIT_FORM_ADDPERMISSION}}</label>
                   <div class="col-sm-10">
                      <label class="checkbox-selection">
@@ -126,6 +117,15 @@
                      <label class="checkbox-selection">
                         <input type="checkbox" ng-model="domain.resolveKdc"> {{trans.DIALOG_EDIT_FORM_RESOLVEKDC_HELP}}
                      </label>
+                  </div>
+               </div>
+
+               <!-- Password File -->
+               <div class="form-group">
+                  <label class="col-sm-2 control-label" for="inputError-markup">{{trans.DIALOG_EDIT_FORM_PASSWORDFILE}}</label>
+                  <div class="col-sm-10">
+                     <input type="text" id="inputError-markup" class="form-control" ng-model="domain.passwordFile">
+                     <span class="help-block">{{trans.DIALOG_EDIT_FORM_PASSWORDFILE_HELP}}</span>
                   </div>
                </div>
 

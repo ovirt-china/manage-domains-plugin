@@ -20,6 +20,7 @@
      $scope.domain ={"domain": "",
                      "provider": "",
                      "user": "",
+                     "password": "",
                      "addPermissions": false,
                      "configFile": "",
                      "ldapServers": "",
@@ -59,7 +60,7 @@
 
           }
         } else {
-           $window.alert("Domain, Provider, User and PasswordFile are requiered input. Please fill them correctly !");
+           $window.alert("Domain, Provider, User and Password are requiered input. Please fill them correctly !");
         }
 
       };
