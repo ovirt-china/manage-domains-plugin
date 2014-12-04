@@ -77,7 +77,7 @@
         console.log('API Request: PUT - ' + urlReq);
         $http.put(urlReq, domain2edit).
         success(function(data, status, headers, config) {
-          console.info(domain2edit.domain + 'has been successfully edited.(' + status + ')');
+          console.info(domain2edit.domain + ' has been successfully edited.(' + status + ')');
           console.log(data);
           //change message edit
           var successMsg = trans.NOTIFICATION_EDIT_SUCCESS_1 + '<strong>' + domain2edit.domain + '</strong>' + trans.NOTIFICATION_EDIT_SUCCESS_2 + '<ul><li>' + trans.NOTIFICATION_NEED_RESTART + '</li></ul>';
