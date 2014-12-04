@@ -44,11 +44,11 @@
             <label class="col-sm-2 control-label" for="textInputDisabled-markup">{{trans.DIALOG_EDIT_FORM_PROVIDER}}</label>
             <div class="col-sm-4">
                <select class="form-control" ng-model="domain.provider">
-                  <option>Microsoft Active Directory</option>
-                  <option>freeIPA</option>
-                  <option>Red Hat Directory Server</option>
-                  <option>IBM Tivoli Directory Server</option>
-                  <option>OpenLDAP</option>
+                  <option value="ad">Microsoft Active Directory</option>
+                  <option value="ipa">freeIPA</option>
+                  <option value="rhds">Red Hat Directory Server</option>
+                  <option value="itds">IBM Tivoli Directory Server</option>
+                  <option value="oldap">OpenLDAP</option>
                </select>
             </div>
             <div class="col-sm6">
