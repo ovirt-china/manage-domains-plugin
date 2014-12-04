@@ -2,21 +2,30 @@
 
 (function() {
 
-  var app = angular.module('plugin.tab', ['plugin.common', 'plugin.ajax']);
+  var app = angular.module('plugin.tab', ['plugin.common', 'plugin.ajax', 'plugin.translations']);
 
   app.value('dialogName', 'emd-tab');
 
-  app.run(['messager', 'dialogName', 'alertManager', 'domainsListManager', function(messager, dialogName, alertMan, domainsMan) {
+  app.run(['messager', 'dialogName', 'alertManager', 'domainsListManager', 'translationService', function(messager, dialogName, alertMan, domainsMan, translationService) {
 
     messager.sendActionMessage(dialogName, 'justLaunch', null);
 
-    alertMan.alertInfo('Thanks for using this plugin. You can access the all code <a href="https://github.com/eayun/UIPlugin-Engine-Manage-Domains">here</a>. If you have any suggestion please use <a href="https://github.com/eayun/UIPlugin-Engine-Manage-Domains/issues">this</a>.');
+    alertMan.alertInfo(translationService.translate().NOTIFICATION_WELCOME);
+
+    console.log('Language = ' + translationService.getLangKey());
 
     domainsMan.refreshDomains();
 
  }]);
 
+ app.controller('translationController', ['$scope', 'translationService', function($scope, translationService){
+
+  translationService.getTranslation($scope);
+
+ }]);
+
   app.controller('TableController', ['$scope', 'domainsListManager', function($scope, domainMan){
+
     $scope.domains = domainMan.getDomains();
 
     $scope.setDomains = function(domains){
@@ -89,9 +98,9 @@
 
          // Show the Edit Dialog Window
          showEditDialog: function (domain) {
-            var dialogName = "Edit " + domain.name;
+            var dialogName = "Edit " + domain.domain;
 
-            cache.setData('domainToEdit', domain);
+            cache.setData('DOMAIN_TO_EDIT', domain);
 
             pluginApi.showDialog( dialogName, 'edit-dialog', urlUtil.relativeUrl('edit.html'), '780px', '650px',
                {
@@ -100,7 +109,7 @@
                         label: 'Cancel',
                         onClick: function() {
                            pluginApi.closeDialog('edit-dialog');
-                           cache.removeData('domainToEdit');
+                           cache.removeData('DOMAIN_TO_EDIT');
                         }
                      },
                      {
@@ -121,7 +130,7 @@
          showRemoveDialog: function (domain) {
             var dialogName = "Remove " + domain.domain;
 
-            cache.setData('domainToRemove',domain);
+            cache.setData('DOMAIN_TO_REMOVE',domain);
 
             pluginApi.showDialog( dialogName, 'remove-dialog', urlUtil.relativeUrl('remove.html'), '450px', '170px',
                {
@@ -130,7 +139,7 @@
                         label: 'Cancel',
                         onClick: function() {
                            pluginApi.closeDialog('remove-dialog');
-                           cache.removeData('domainToRemove');
+                           cache.removeData('DOMAIN_TO_REMOVE');
                         }
                      },
                      {
@@ -151,7 +160,10 @@
    }]);
 
    // Controller to provide the functions to open the dialogs
-   app.controller('menuController', ['$scope', '$window', 'dialogManager', 'domainsListManager','alertManager', 'request', function ($scope, $window, dialogManager, domainsMan, alertMan, request){
+   app.controller('menuController', ['$scope', '$window', 'dialogManager', 'domainsListManager','alertManager', 'request', 'translationService', function ($scope, $window, dialogManager, domainsMan, alertMan, request, translationService){
+
+      var tr = translationService.translate();
+
       $scope.openAddDialog = function() {
          dialogManager.showAddDialog();
       };
@@ -176,7 +188,7 @@
 
       // Use to replace the non-working Remove Dialog
       $scope.deleteAlert = function(domain) {
-        var textAlert = 'Are you sure you want to delete the domain ' + domain.domain + ' ?';
+        var textAlert = tr.DIALOG_DELETE_HELP_1 + domain.domain + tr.DIALOG_DELETE_HELP_2;
 
         if($window.confirm(textAlert)) {
           //Trigger Delete Action
@@ -202,9 +214,9 @@
       $scope.reqRefreshisOver = function(isSuccessful) {
         $scope.isAnimated = false;
         if(!isSuccessful){
-          alertMan.alertDanger('Impossible to refresh the list of Domains.');
+          alertMan.alertDanger(tr.NOTIFICATION_REFRESH_FAILED);
         } else if (requestFromBtn) {
-          alertMan.alertSuccess('The list of Domains has been refreshed successfully.');
+          alertMan.alertSuccess(tr.NOTIFICATION_REFRESH_SUCCESS);
           requestFromBtn = false;
         }
 

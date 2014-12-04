@@ -21,6 +21,13 @@
       };
    }]);
 
+  // Return the language used by the browser
+  app.factory('languageUtil', function () {
+    return {
+        langKey: 'zh'
+     };
+  });
+
   // Service to communicate with the local Storage
   app.factory('storageService', function () {
 
@@ -113,5 +120,7 @@
        }
      };
    }]);
+
+
 
 })();

@@ -4,7 +4,7 @@
 
 (function() {
 
-  var app = angular.module('plugin.edit', ['plugin.common', 'plugin.ajax']);
+  var app = angular.module('plugin.edit', ['plugin.common', 'plugin.ajax', 'plugin.translations']);
 
   app.value('dialogName', 'edit-dialog');
 
@@ -13,12 +13,15 @@
     messager.sendActionMessage(dialogName, 'justOpen', null);
   }]);
 
-   app.controller('EditFormController',['$scope', '$window', 'messager', 'dialogName', 'cacheService', 'request', function($scope, $window, messager, dialogName, cache, request){
+   app.controller('EditFormController',['$scope', '$window', 'messager', 'dialogName', 'cacheService', 'request', 'translationService', '$location', '$anchorScroll', function($scope, $window, messager, dialogName, cache, request, translationService, $location, $anchorScroll){
+
+     translationService.getTranslation($scope);
 
      // initiate the Default domain2edit JSON object to be send to the API.
      $scope.domain ={"domain": "",
                      "provider": "",
                      "user": "",
+                     "password": "",
                      "addPermissions": false,
                      "configFile": "",
                      "ldapServers": "",
@@ -26,12 +29,18 @@
                      "passwordFile": ""
                     };
       // Get the name of the domain from the cache
-      $scope.domain.domain = cache.getData('domainToEdit').domain;
+      $scope.domain.domain = cache.getData('DOMAIN_TO_EDIT').domain;
 
     // functions to control the Loading Modal
     $scope.modalShown = false;
 
     $scope.toggleLoadingModal = function() {
+
+      // Get back to the top of the page to display
+      $location.hash('top');
+      $anchorScroll();
+
+      // Display or make the Loading Overlay to appear or disappear
       $scope.modalShown = !$scope.modalShown;
       $scope.$apply();
     };
@@ -54,7 +63,7 @@
 
           }
         } else {
-           $window.alert("Your form is not correct ! Please precise a valid absolute path to the file containing the password.");
+           $window.alert("Your form is not correct ! Please enter a password.");
         }
 
       };

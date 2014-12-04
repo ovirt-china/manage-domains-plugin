@@ -4,7 +4,7 @@
 
 (function() {
 
-  var app = angular.module('plugin.add', ['plugin.common', 'plugin.ajax']);
+  var app = angular.module('plugin.add', ['plugin.common', 'plugin.ajax', 'plugin.translations']);
 
   app.value('dialogName', 'add-dialog');
 
@@ -13,10 +13,14 @@
     messager.sendActionMessage(dialogName, 'justOpen', null);
   }]);
 
-   app.controller('AddFormController',['$scope', '$window', 'messager', 'dialogName', 'request', function($scope, $window, messager, dialogName, request){
+   app.controller('AddFormController',['$scope', '$window', 'messager', 'dialogName', 'request', 'translationService', '$location','$anchorScroll', function($scope, $window, messager, dialogName, request, translationService, $location, $anchorScroll){
+
+     translationService.getTranslation($scope);
+
      $scope.domain ={"domain": "",
                      "provider": "",
                      "user": "",
+                     "password": "",
                      "addPermissions": false,
                      "configFile": "",
                      "ldapServers": "",
@@ -27,6 +31,12 @@
 
 
       $scope.toggleLoadingModal = function() {
+
+        // Get back to the top of the page to display
+        $location.hash('top');
+        $anchorScroll();
+
+        // Display or make the Loading Overlay to appear or disappear
         $scope.modalShown = !$scope.modalShown;
         $scope.$apply();
       };
@@ -50,7 +60,7 @@
 
           }
         } else {
-           $window.alert("Domain, Provider, User and PasswordFile are requiered input. Please fill them correctly !");
+           $window.alert("Domain, Provider, User and Password are requiered input. Please fill them correctly !");
         }
 
       };

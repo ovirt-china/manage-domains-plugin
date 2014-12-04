@@ -4,7 +4,7 @@
 
 (function() {
 
-  var app = angular.module('plugin.init', ['plugin.common']);
+  var app = angular.module('plugin.init', ['plugin.common', 'plugin.translations']);
 
   app.service('contentWindowService', function(){
     var contentWindow = null ;
@@ -48,10 +48,12 @@
         };
   });
 
-   app.factory('tabManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
+   app.factory('tabManager', ['pluginApi', 'urlUtil', 'translationService', function (pluginApi, urlUtil, translationService) {
       return {
          addTab: function () {
-            pluginApi.addMainTab('Domains', 'emd-tab', urlUtil.relativeUrl('tab.html'));
+            var  trans = translationService.translate();
+
+            pluginApi.addMainTab(trans.TAB_NAME, 'emd-tab', urlUtil.relativeUrl('tab.html'));
          }
       };
    }]);
@@ -63,9 +65,15 @@
             tabManager.addTab();
          },
          MessageReceived: function (dataString, sourceWindow) {
-              var data = JSON.parse(dataString);
 
-              if (data.action && data.sender === pluginName) {
+              try {
+                    var data = JSON.parse(dataString); // verify that json is valid
+                }
+                catch (e) {
+                    console.log('[EMDPlugin > plugin.js > MessageReceived]' + '\n' + '--> Impossible to parse the received message. --> Message ignored.');
+                }
+
+              if (data && data.action && data.sender === pluginName) {
                 // console.info('--Message Received--' + '\n'
                 //               + '   From: WebAdmin > ' + pluginName + ' > ' + data.source + '\n'
                 //               + '   To: ' + pluginName + '\n'
