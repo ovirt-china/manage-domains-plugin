@@ -71,8 +71,8 @@
             <label class="col-sm-2 control-label" for="inputError-markup">{{trans.DIALOG_EDIT_FORM_PASSWORD}}</label>
             <div class="col-sm-10">
                <div class="input-group">
-                  <input type="password" id="inputError-markup" class="form-control" ng-hide="showpassword" ng-model="password" required>
-                  <input type="text" id="inputError-markup" class="form-control" ng-show="showpassword" ng-model="password" required>
+                  <input type="password" id="inputError-markup" class="form-control" ng-hide="showpassword" ng-model="domain.password" required>
+                  <input type="text" id="inputError-markup" class="form-control" ng-show="showpassword" ng-model="domain.password" required>
                   <span class="input-group-addon">
                      <input type="checkbox" ng-model="showpassword" ng-checked="false">
                      {{trans.DIALOG_EDIT_FORM_PASSWORD_SHOW}}
