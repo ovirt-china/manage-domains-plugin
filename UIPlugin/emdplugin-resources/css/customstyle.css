@@ -97,8 +97,13 @@ a.collapse-button:hover {
 /*--------------------Menu--------------------*/
 
 #menu {
+  padding: 5px;
   display: -webkit-box;
   display: -moz-box;
+}
+
+#menu .btn {
+  margin-right: 5px;
 }
 
 #processing-status {
