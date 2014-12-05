@@ -134,7 +134,7 @@
 
   app.value('chinese',
     {
-        "TAB_NAME" : "域名",
+        "TAB_NAME" : "域",
 
         "PROCESSING" : "处理...",
 
