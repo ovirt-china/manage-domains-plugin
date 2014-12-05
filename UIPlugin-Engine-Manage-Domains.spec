@@ -1,5 +1,5 @@
 %define _version 0.5
-%define _release 0
+%define _release 1
 
 Name:		UIPlugin-Engine-Manage-Domains
 Version:	%{_version}
@@ -69,6 +69,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Dec  5 2014 PanLiyang <liyang.pan@eayun.com> 0.5-1
+- Remove logging file handler
+
 * Fri Dec  5 2014 FengKai <lucas.vandroux@eayun.com> 0.5-0
 - Packaging by MaZhe <zhe.ma@eayun.com>
 - The plugin is now available in English and in Simplified Chinese.
