@@ -1,5 +1,5 @@
-%define _version 0.4
-%define _release 2.5
+%define _version 0.5
+%define _release 0
 
 Name:		UIPlugin-Engine-Manage-Domains
 Version:	%{_version}
@@ -69,6 +69,12 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Dec  5 2014 FengKai <lucas.vandroux@eayun.com> 0.5-0
+- Packaging by MaZhe <zhe.ma@eayun.com>
+- The plugin is now available in English and in Simplified Chinese.
+- The users can enter the password of a domain directly from the UI (no need to use a PasswordFile anymore)
+- Bug fixes
+
 * Mon Dec  1 2014 MaZhe <zhe.ma@eayun.com> 0.4-2.5
 - Modify setup script
 
