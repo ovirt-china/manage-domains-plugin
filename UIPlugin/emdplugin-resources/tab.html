@@ -8,10 +8,12 @@
 </head>
 <body ng-controller="translationController">
 
-   <!-- <div class="navbar-tab" id="menu" ng-controller="menuController">
+    <div id="menu" ng-controller="menuController">
+
       <button class="btn btn-primary" type="button" ng-click="openAddDialog()">
           <span class="glyphicon glyphicon-plus"></span> {{trans.BTN_ADD_LABEL}}
       </button>
+
       <button class="btn btn-default" type="button" ng-click="refreshDomainsFromBtn()" ng-disabled="isAnimated">
           <span class="glyphicon glyphicon-refresh" ng-class="{'icon-refresh-animate': isAnimated}"></span> {{trans.BTN_REFRESH_LABEL}}
       </button>
@@ -22,29 +24,6 @@
         </div>
         <div class="media-body">
           <div class="processing-descr">{{trans.PROCESSING}}</div>
-        </div>
-      </div>
-   </div> -->
-
-   <div id="menu" ng-controller="menuController">
-
-      <button class="btn btn-primary" type="button" ng-click="openAddDialog()">
-          <span class="glyphicon glyphicon-plus"></span> {{trans.BTN_ADD_LABEL}}
-      </button>
-
-
-
-      <button class="btn btn-default" type="button" ng-click="refreshDomainsFromBtn()" ng-disabled="isAnimated">
-          <span class="glyphicon glyphicon-refresh" ng-class="{'icon-refresh-animate': isAnimated}"></span> {{trans.BTN_REFRESH_LABEL}}
-      </button>
-
-
-      <div class="media" id="processing-status" ng-show="isReqProcessing">
-        <div class="pull-left spinner-container">
-          <div class="spinner spinner-sm"></div>
-        </div>
-        <div class="media-body">
-          <div class="processing-descr">处理...</div>
         </div>
       </div>
    </div>
