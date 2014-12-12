@@ -12,18 +12,15 @@ It has been requested by a client to be integrated in EayunOS v4.1 (oVirt Engine
 
 #### The Main Tab
 
-![Mockup of the emd-tab](https://raw.githubusercontent.com/eayun/UIPlugin-Engine-Manage-Domains/master/Mockup/mockup-emd-tab.png)  
-<center>*Screenshot of the main tab* </center>
+![Mockup of the emd-tab](https://raw.githubusercontent.com/eayun/UIPlugin-Engine-Manage-Domains/master/Mockup/mockup-emd-tab.png)
 
 #### The Add Dialog
 
-![Mockup of the emd add feature](https://raw.githubusercontent.com/eayun/UIPlugin-Engine-Manage-Domains/master/Mockup/mockup-emd-add.png)  
-<center>*Screenshot of the add dialog* </center>
+![Mockup of the emd add feature](https://raw.githubusercontent.com/eayun/UIPlugin-Engine-Manage-Domains/master/Mockup/mockup-emd-add.png)
 
 #### The Edit Dialog
 
-![Mockup of the emd edit feature](https://raw.githubusercontent.com/eayun/UIPlugin-Engine-Manage-Domains/master/Mockup/mockup-emd-edit.png)  
-<center>*Screenshot of the edit dialog* </center>
+![Mockup of the emd edit feature](https://raw.githubusercontent.com/eayun/UIPlugin-Engine-Manage-Domains/master/Mockup/mockup-emd-edit.png)
 
 ---
 
