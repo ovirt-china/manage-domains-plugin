@@ -36,7 +36,11 @@ How to use it
 
 You will find all the material to understand this plugin in its [Github Wiki](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki).
 
-However, here are some useful pages to start with: - [Add a New Domain](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Add-a-New-Domain) - [Edit a Domain](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Edit-a-Domain) - [Remove a Domain](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Remove-a-Domain)
+However, here are some useful pages to start with:
+
+- [Add a New Domain](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Add-a-New-Domain)
+- [Edit a Domain](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Edit-a-Domain)
+- [Remove a Domain](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Remove-a-Domain)
 
 Credit
 ------
