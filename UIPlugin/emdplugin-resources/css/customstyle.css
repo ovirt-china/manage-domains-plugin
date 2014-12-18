@@ -46,8 +46,11 @@
    padding-bottom:3px;
 }
 
-.form-group.highlight .help-block {
+.form-group.highlight  .help-block {
    color: #fff;
+}
+
+.form-group.highlight.provider  .help-block {
    padding-left:20px;
    padding-right:20px;
 }
