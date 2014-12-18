@@ -1,15 +1,15 @@
 %define _version 0.5
 %define _release 2
 
-Name:		UIPlugin-Engine-Manage-Domains
+Name:		manage-domains-plugin
 Version:	%{_version}
 Release:	%{_release}%{?dist}
-Summary:	Engine Domains Management UIPlugin for EayunOS
+Summary:	Engine Domains Management UIPlugin for ovirt
 
-Group:		EayunOS
+Group:		oVirt
 License:	GPL
-URL:		http://www.eayun.com
-Source0:	UIPlugin-Engine-Manage-Domains-%{_version}.tar.gz
+URL:		http://www.ovirt-china.org
+Source0:	manage-domains-plugin-%{_version}.tar.gz
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
 BuildRequires:	/bin/bash
@@ -69,6 +69,14 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Fri Dec 19 2014 MaZhe <zhe.ma@eayun.com> 0.5-2
+- Project rename
+  Remove a lot of useless code
+  Small Improvements in the UI
+  New README
+  New Documentation
+
+
 * Fri Dec  5 2014 PanLiyang <liyang.pan@eayun.com> 0.5-1
 - Remove logging file handler
 
