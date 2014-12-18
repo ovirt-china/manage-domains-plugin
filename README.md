@@ -1,26 +1,67 @@
 | :warning: WORK IN PROGRESS !!! :warning: |
 |------------------------------------------|
 
-Description [![Stories in Ready](https://badge.waffle.io/eayun/UIPlugin-Engine-Manage-Domains.png?label=ready&title=Ready)](https://waffle.io/eayun/UIPlugin-Engine-Manage-Domains)
-===================================================================================================================================================================================
+Manage Domains Plugin
+====================================================================================================================================================================================================
 
-This oVirt plugin is integrating an Authentication Domains Controller in the WebAdmin of EayunOS. Letting user add/edit/delete/list Authentication Domains without using complex command line.
-
-It is an UI Plugin commmunicating with a Java servlet.
-
-It has been requested by a client to be integrated in EayunOS v4.1 (oVirt Engine 3.5)
-
-#### The Main Tab
+**A Simple way to manage your Authentification Domains in oVirt WebAdmin**
 
 ![Mockup of the emd-tab](https://raw.githubusercontent.com/eayun/UIPlugin-Engine-Manage-Domains/master/Mockup/mockup-emd-tab.png)
 
-#### The Add Dialog
+Requirements
+------------
 
-![Mockup of the emd add feature](https://raw.githubusercontent.com/eayun/UIPlugin-Engine-Manage-Domains/master/Mockup/mockup-emd-add.png)
+-	oVirt-Engine 3.5+
 
-#### The Edit Dialog
+:warning: This is only a plugin for the oVirt-Engine.
 
-![Mockup of the emd edit feature](https://raw.githubusercontent.com/eayun/UIPlugin-Engine-Manage-Domains/master/Mockup/mockup-emd-edit.png)
+Installation
+------------
+
+#### Deploying the UIPlugin
+
+1.	Copy all what is inside the directory `/UIPlugin` to the directory `/usr/share/ovirt-engine/ui-plugins` on the ovirt-engine server.
+2.	Change `https://0.0.0.0` with the address of the ovirt-engine server in the config file `emdplugin.json` here : `"config": {"allowedMessageOriginsJSON":{"allowedMessageOrigins": "https://0.0.0.0"}}`
+
+#### Deploying the Servlet
+
+1.	Copy the file [ovirt-plugin-emd.conf](https://raw.githubusercontent.com/eayun/UIPlugin-Engine-Manage-Domains/master/ovirt-plugin-emd.conf) in the directory `/etc/httpd/conf.d` on the server and run `$service httpd restart`.
+2.	Copy the file `Servlet/engine-manage-domains/target/engineManageDomains.war` to the directory `/usr/share/ovirt-engine-jboss-as/standalone/deployments` on the server.
+3.	Go to `/usr/share/ovirt-engine-jboss-as/bin` and run `$./standalone.sh`.
+
+:bulb: For more precisions, the installation process is describe for each release in its notes or on the wiki page [Installation](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Installation)
+
+How to use it
+-------------
+
+You will find all the material to understand this plugin in its [Github Wiki](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki).
+
+However, here are some useful pages to start with:
+
+- [Add a New Domain](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Add-a-New-Domain)
+- [Edit a Domain](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Edit-a-Domain)
+- [Remove a Domain](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Remove-a-Domain)
+
+Credit
+------
+
+This plugin has been designed and developed with the help of those amazing projects:
+
+-	[AngularJS](https://docs.angularjs.org/) *v1.3.0*
+-	[Patternfly](http://getbootstrap.com/) *v1.0.5*
+-	[Font Awesome](http://fortawesome.github.io/Font-Awesome/) *v4.2.0*
+-	[RESTEasy](http://resteasy.jboss.org/) *2.3.1.GA*
+
+The template of the mockups is coming from the **Flat Browser - PSD** mockup from [Design Crazed](http://designscrazed.org/free-web-browser-mockups-psd/).
+
+Contact
+-------
+
+You have multiple options to contact us about this plugin:
+
+- [Open an issue](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/issues/new) on Github
+- Send us a mail at `eayunos at eayun.com`
+- Reach us on IRC Freenode #ovirt-china
 
 ---
 
