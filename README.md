@@ -61,7 +61,7 @@ You have multiple options to contact us about this plugin:
 
 - [Open an issue](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/issues/new) on Github
 - Send us a mail at `eayunos at eayun.com`
-- Reach us on IRC Freenode #eayunos
+- Reach us on IRC Freenode #ovirt-china
 
 ---
 
