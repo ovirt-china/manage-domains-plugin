@@ -1,7 +1,7 @@
 | :warning: WORK IN PROGRESS !!! :warning: |
 |------------------------------------------|
 
-Engine Manage Domains Plugin [![Stories in Ready](https://badge.waffle.io/eayun/UIPlugin-Engine-Manage-Domains.png?label=ready&title=Ready)](https://waffle.io/eayun/UIPlugin-Engine-Manage-Domains)
+Manage Domains Plugin
 ====================================================================================================================================================================================================
 
 **A Simple way to manage your Authentification Domains in oVirt WebAdmin**
