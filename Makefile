@@ -1,4 +1,4 @@
-project_name = UIPlugin-Engine-Manage-Domains
+project_name = manage-domains-plugin
 version = $(shell grep "%define _version" $(project_name).spec  | awk '{print $$3}')
 
 sources:
