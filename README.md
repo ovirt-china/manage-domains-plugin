@@ -54,6 +54,15 @@ This plugin has been designed and developed with the help of those amazing proje
 
 The template of the mockups is coming from the **Flat Browser - PSD** mockup from [Design Crazed](http://designscrazed.org/free-web-browser-mockups-psd/).
 
+Contact
+-------
+
+You have multiple options to contact us about this plugin:
+
+- [Open an issue](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/issues/new) on Github
+- Send us a mail at `eayunos at eayun.com`
+- Reach us on IRC Freenode #eayunos
+
 ---
 
 <p align="center">
