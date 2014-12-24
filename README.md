@@ -1,8 +1,5 @@
-| :warning: WORK IN PROGRESS !!! :warning: |
-|------------------------------------------|
-
 Manage Domains Plugin
-====================================================================================================================================================================================================
+=====================
 
 **A Simple way to manage your Authentification Domains in oVirt WebAdmin**
 
@@ -13,7 +10,7 @@ Requirements
 
 -	oVirt-Engine 3.5+
 
-:warning: This is only a plugin for the oVirt-Engine.
+:warning: In 3.5 there is a new implementation of ldap interaction[[1]](http://gerrit.ovirt.org/gitweb?p=ovirt-engine-extension-aaa-ldap.git;a=blob;f=README;hb=HEAD)[[2]](http://www.ovirt.org/Features/AAA). The legacy implementation, including engine-manage-domain will be depreciated and maintained only for regressions.
 
 Installation
 ------------
@@ -22,6 +19,8 @@ Installation
 
 1.	Copy all what is inside the directory `/UIPlugin` to the directory `/usr/share/ovirt-engine/ui-plugins` on the ovirt-engine server.
 2.	Change `https://0.0.0.0` with the address of the ovirt-engine server in the config file `emdplugin.json` here : `"config": {"allowedMessageOriginsJSON":{"allowedMessageOrigins": "https://0.0.0.0"}}`
+
+:bulb: It is recommended to enter the ip address of your machine and its domain name in case it is possible to use both: `"config": {"allowedMessageOriginsJSON":{"allowedMessageOrigins": ["https://<IP_ADDRESS>", "https://<DOMAIN_NAME>"]}}`
 
 #### Deploying the Servlet
 
@@ -38,9 +37,9 @@ You will find all the material to understand this plugin in its [Github Wiki](ht
 
 However, here are some useful pages to start with:
 
-- [Add a New Domain](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Add-a-New-Domain)
-- [Edit a Domain](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Edit-a-Domain)
-- [Remove a Domain](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Remove-a-Domain)
+-	[Add a New Domain](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Add-a-New-Domain)
+-	[Edit a Domain](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Edit-a-Domain)
+-	[Remove a Domain](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/wiki/Remove-a-Domain)
 
 Credit
 ------
@@ -59,9 +58,9 @@ Contact
 
 You have multiple options to contact us about this plugin:
 
-- [Open an issue](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/issues/new) on Github
-- Send us a mail at `eayunos at eayun.com`
-- Reach us on IRC Freenode #ovirt-china
+-	[Open an issue](https://github.com/eayun/UIPlugin-Engine-Manage-Domains/issues/new) on Github
+-	Send us a mail at `eayunos at eayun.com`
+-	Reach us on IRC Freenode #ovirt-china
 
 ---
 
