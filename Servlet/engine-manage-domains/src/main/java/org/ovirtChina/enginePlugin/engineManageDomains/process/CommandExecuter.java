@@ -169,7 +169,7 @@ public class CommandExecuter {
       command.add("--resolve-kdc");
     }
 
-    // If a password is define it is always the default authentification procedure
+    // If a password is define it is always the default authentication procedure
     if (!passwordFile.isEmpty() && password.isEmpty()){
       command.add("--password-file=" + passwordFile);
     }
@@ -262,7 +262,7 @@ public class CommandExecuter {
       command.add("--resolve-kdc");
     }
 
-    // If a password is define it is always the default authentification procedure
+    // If a password is define it is always the default authentication procedure
     if (!passwordFile.isEmpty() && password.isEmpty()){
       command.add("--password-file=" + passwordFile);
     }

@@ -1,7 +1,7 @@
 Manage Domains Plugin
 =====================
 
-**A Simple way to manage your Authentification Domains in oVirt WebAdmin**
+**A Simple way to manage your authentication Domains in oVirt WebAdmin**
 
 ![Mockup of the emd-tab](https://raw.githubusercontent.com/eayun/UIPlugin-Engine-Manage-Domains/master/Mockup/mockup-emd-tab.png)
 
