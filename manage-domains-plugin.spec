@@ -57,7 +57,6 @@ rm -rf %{buildroot}
 %dir /etc/httpd/conf.d/
 %dir /etc/rc.d/init.d/
 %dir /etc/engine-manage-domains/
-%dir /usr/sbin/
 %config /etc/httpd/conf.d/ovirt-plugin-emd.conf
 %config /etc/engine-manage-domains/engine-manage-domains.xml
 %config %attr(0755,root,root) /etc/rc.d/init.d/engine-manage-domains
