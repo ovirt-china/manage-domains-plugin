@@ -4,6 +4,7 @@
 
 Get_IP(){
    IPADDR=`ifconfig eth0 | grep inet | head -1 | awk '{print $2}' | cut -d ":" -f 2`
+   HOSTNAME=`hostname`
 }
 
 Configuration_System_Service(){
@@ -17,7 +18,7 @@ Configuration_System_Service(){
 Setup(){
    Get_IP
    echo "Modify configuration file ..."
-   sed -i "s/{\"allowedMessageOrigins\": \"https:.*\"}/{\"allowedMessageOrigins\": \"https:\/\/$IPADDR\"}/g" /usr/share/ovirt-engine/ui-plugins/emdplugin.json
+   sed -i "s/{\"allowedMessageOrigins\": \"https:.*\"}/{\"allowedMessageOrigins\": [\"https:\/\/$IPADDR\", \"https:\/\/$HOSTNAME\"]}/g" /usr/share/ovirt-engine/ui-plugins/emdplugin.json
    Configuration_System_Service
    echo "Setup proccess completed."
 }
