@@ -163,6 +163,9 @@
                 }
               }
 
+          },
+          SystemTreeSelectionChange: function(selectedNode) {
+              pluginApi.setTabAccessible('emd-tab', selectedNode.type == 'System');
           }
       };
    }]);
